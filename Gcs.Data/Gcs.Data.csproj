@@ -65,10 +65,15 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ModelGCS_DB.edmx</DependentUpon>
     </Compile>
+    <Compile Include="DataEntities\DataLogin.cs" />
+    <Compile Include="DataEntities\DataMenu.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="DataEntities\" />
+    <ProjectReference Include="..\Gcs.Models\Gcs.Models.csproj">
+      <Project>{1465BDDD-1DBC-429F-8E68-41C22DFC5615}</Project>
+      <Name>Gcs.Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <EntityDeploy Include="DataContext\ModelGCS_DB.edmx">

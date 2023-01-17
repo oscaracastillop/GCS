@@ -2121,7 +2121,9 @@
     <Content Include="Content\Site.css" />
     <Content Include="Content\StylesApp\Login.css" />
     <Content Include="Global.asax" />
+    <Content Include="JsApp\Home.js" />
     <Content Include="JsApp\Login.js" />
+    <Content Include="JsApp\Menu.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
@@ -4304,6 +4306,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\MenuController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -4355,6 +4358,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
     <Folder Include="Sources\ImagesProfileUsers\" />
+    <Folder Include="Views\Menu\" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\index.d.ts" />
@@ -4362,6 +4366,16 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Gcs.Data\Gcs.Data.csproj">
+      <Project>{816CFDA0-C01F-44CB-B88F-0D9B45A74536}</Project>
+      <Name>Gcs.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Gcs.Models\Gcs.Models.csproj">
+      <Project>{1465BDDD-1DBC-429F-8E68-41C22DFC5615}</Project>
+      <Name>Gcs.Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

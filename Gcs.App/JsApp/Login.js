@@ -5,7 +5,7 @@
         Swal.fire('Mensaje del Sistema', 'Por favor ingrese el nombre de Usuario', 'info');
     }
     else if (Password == '' || Password == null || Password == undefined) {
-        Swal.fire('Mensaje del Sistema', 'Por favor ingrese la contraseña', 'info');
+        Swal.fire('Mensaje del Sistema', 'Por favor ingrese la Contraseña', 'info');
     }
     else {
         $.ajax({
@@ -17,7 +17,7 @@
                 valor = resultado.split('*');
                 if (valor[0] == 'OK') {
                     Cookies.set('IdUser', valor[1]);
-                    window.location.href = '/Home/Inicio';
+                    window.location.href = '/Home';
                 } else {
                     Swal.fire('Mensaje del Sistema', valor[1], 'info');
                 }
