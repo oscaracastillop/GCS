@@ -1,0 +1,71 @@
+﻿.Titulo-Login {
+    margin-top: 40px;
+    font-size: 100px;
+    font-weight: bold;
+}
+
+.Titulo-Login2 {
+    margin-top: -20px;
+    font-size: 13px;
+}
+
+.Centrar-Objeto {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.Centrar-Texto {
+    text-align: center
+}
+
+.Tabla-Login {
+    margin-top: 40px;
+}
+
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+.distribution {
+    display: grid;
+    grid-template-columns: 0% 50% 50% 0%;
+}
+
+img{
+    height:50px;
+    line-height:100px;
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@-webkit-keyframes rotate {
+    from {
+        -webkit-transform: rotate(0deg);
+    }
+
+    to {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+.imgr {
+    -webkit-animation: 3s rotate linear infinite;
+    animation: 3s rotate linear infinite;
+    -webkit-transform-origin: 50% 50%;
+    transform-origin: 50% 50%;
+}
+
+#imgr2 {
+    -webkit-animation-direction: reverse;
+    animation-direction: reverse;
+}

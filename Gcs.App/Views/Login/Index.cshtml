@@ -3,11 +3,13 @@
     Layout = "~/Views/Shared/_LayoutLogin.cshtml";
 }
 <div class="Centrar-Texto">
-    <label class="Titulo-Login Centrar-Texto"><strong>GCS</strong></label>
+    <label class="Titulo-Login Centrar-Texto"><strong>GCS <img class="imgr" src="~/Sources/ImagesApp/Logo.png" /></strong></label>
+    
 </div>
 <div class="Centrar-Texto Titulo-Login2">
     <label>Sistema de gestión y control<span style="font-size:8px">&nbsp;&nbsp; V 1.0</span></label>
 </div>
+
 
 
 <div class="Tabla-Login">
@@ -47,6 +49,7 @@
             } else {
                 $('#InputPassword').attr('type', 'password');
             }
-        });
+        }); 
     });
+    
 </script>
