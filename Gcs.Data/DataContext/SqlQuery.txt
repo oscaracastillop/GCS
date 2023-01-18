@@ -1,0 +1,210 @@
+﻿CREATE DATABASE GCS_DB  
+GO 
+
+USE GCS_DB  
+GO  
+
+CREATE TABLE Rol 
+(Id int identity(1,1) Primary key ,
+Nombre varchar(255),
+Activo int default 1,
+unique(Nombre)
+)
+
+
+insert into Rol (Nombre) values ('Administrador')	
+insert into Rol (Nombre) values ('Usuario')
+
+go
+
+CREATE PROCEDURE [dbo].[SP_BuscarRolUsuario] @IdUser varchar(255), @Resultado varchar(255) OUTPUT
+AS
+BEGIN
+	DECLARE		@Rol varchar(255)
+		SELECT	@Rol = R.Nombre 
+		FROM	Rol R,
+				Usuario U
+		WHERE	R.Id = U.IdRol
+				and U.IdUser = @IdUser
+	
+	SET @Resultado = @Rol
+	SELECT @Resultado
+END
+
+go
+
+CREATE TABLE Usuario 
+(Id int identity(1,1) Primary key ,
+IdUser varchar(255),
+Usuario varchar(255),
+Password varchar(255),
+Email varchar(255),
+Nombre varchar(255),
+IdRol int,
+ImagenPerfil varchar(255),
+FechaCreacion datetime,
+FechaVigencia datetime,
+Activo int default 1,
+unique(Iduser),
+unique(Usuario)
+)
+
+ALTER TABLE Usuario ADD CONSTRAINT FK_IdRol FOREIGN KEY (IdRol) references Rol(Id)
+
+go
+
+CREATE FUNCTION [dbo].[Fun_BuscarIdUsuario] (@IdUsuario varchar(255))
+RETURNS int
+AS BEGIN
+DECLARE @Id int
+	SELECT	@Id = Id
+	FROM	Usuario
+	WHERE	IdUser = @IdUsuario 
+	RETURN @Id
+END
+
+go
+
+--SELECT CONVERT ( VARCHAR (32), HashBytes ( 'MD5' ,  'User1' ), 2) 
+--SELECT CONVERT ( VARCHAR (32), HashBytes ( 'MD5' ,  '123456' ), 2) 
+
+insert into Usuario (IdUser,Usuario,Password,Email,Nombre,IdRol,FechaCreacion, FechaVigencia, ImagenPerfil)values('E3AFED0047B08059D0FADA10F400C1E5','Admin','D035423BDB1989E8DCB8DD478D895A2F','admin@gcs.com.co','Administrador GCS',1, GETDATE(), '01-12-2023 13:52:30.343','Usuario.png')
+insert into Usuario (IdUser,Usuario,Password,Email,Nombre,IdRol,FechaCreacion, FechaVigencia, ImagenPerfil)values('6B908B785FDBA05A6446347DAE08D8C5','User1','E10ADC3949BA59ABBE56E057F20F883E','user1@gcs.com.co','Usuario 1',2, GETDATE(), '01-12-2023 13:52:30.343','Usuario.png')
+
+go
+
+CREATE TABLE Log_InicioSesion
+(Id int identity(1,1) Primary key ,
+IdUser int,
+FechaIngreso datetime
+)
+
+ALTER TABLE Log_InicioSesion ADD CONSTRAINT FK_IdUsuarioLog_InicioSesion FOREIGN KEY (IdUser) references Usuario(Id)
+
+go
+
+CREATE PROCEDURE [dbo].[SP_IniciarSesion] @Usuario varchar(255), @Password varchar(255), 
+@Resultado varchar(max) OUTPUT
+AS
+BEGIN
+DECLARE @ExisteUser INT, @ValidaPassword varchar(255), @IdUser varchar(255),
+	@PasswordMd5 varchar(255), @UsuarioMd5 varchar(255), @IdUsuario int, @Vigencia datetime,
+	@NombreUser varchar(255), @FechaActual datetime, @Activo Int
+	SELECT @UsuarioMd5 = CONVERT ( VARCHAR (32), HashBytes ( 'MD5' ,  @Usuario ), 2)
+	SELECT @PasswordMd5 = CONVERT ( VARCHAR (32), HashBytes ( 'MD5' ,  @Password ), 2)
+	SELECT @ExisteUser = COUNT(1) FROM Usuario Where IdUser = @UsuarioMd5
+	SELECT @ValidaPassword = Password  FROM Usuario WHERE IdUser = @UsuarioMd5
+	SELECT @IdUsuario = Id FROM Usuario Where IdUser = @UsuarioMd5
+	SELECT @NombreUser = Usuario FROM Usuario WHERE IdUser =  @UsuarioMd5
+	SELECT @Vigencia = FechaVigencia FROM Usuario WHERE IdUser = @UsuarioMd5
+	SELECT @FechaActual = GETDATE()
+	Select @Activo = Activo FROM Usuario WHERE Id = @IdUsuario
+	
+	IF @ExisteUser = 0
+		BEGIN
+			SET @Resultado = 'Error*El Usuario ingresado no Existe'
+		END
+	ELSE
+		BEGIN		
+		SELECT @IdUser = IdUser FROM Usuario where IdUser = @UsuarioMd5
+			IF @ValidaPassword = @PasswordMd5
+				BEGIN
+					IF @FechaActual < @Vigencia  
+						BEGIN
+							IF @Activo = 1
+								BEGIN
+									INSERT INTO Log_InicioSesion (IdUser,FechaIngreso)VALUES(@IdUsuario, GETDATE())
+									SET @Resultado = 'OK*'+@IdUser
+								END
+							ELSE
+								BEGIN
+									SET @Resultado = 'Error*El Usuario se encuentra Inactivo, por favor comuniquese con el Administrador de la Aplicación'
+								END
+						END
+					ELSE
+						BEGIN
+							SET @Resultado = 'Error*El Usuario '+@NombreUser+' no tiene permisos para ingresar a la Aplicación, la fecha limite de ingreso se encuentra vencida. Si desea Activar un nuevo periodo de tiempo comuniquese con el Administrador de la Aplicación.'
+						END					
+				END
+			ELSE
+				BEGIN
+					SET @Resultado = 'Error*Contraseña incorrecta'
+				END
+		END
+	SELECT @Resultado
+END
+
+go
+
+CREATE TABLE Menu
+(Id int identity(1,1) Primary key ,
+Nombre varchar(255),
+Icono varchar(max),
+Ruta varchar(max),
+Orden int,
+Activo int default 1,
+unique(Nombre)
+)
+
+go
+
+
+insert into Menu (Nombre, Icono, Ruta, Orden) Values ('Empresa','<i class="bi-building" style="font-size: 2rem; color: black;"></i>','/Modulo_Empresa',1)
+insert into Menu (Nombre, Icono, Ruta, Orden) Values ('Empleado','<i class="bi-people-fill" style="font-size: 2rem; color: black;"></i>','/Modulo_Empleado',2)
+insert into Menu (Nombre, Icono, Ruta, Orden) Values ('Contratista','<i class="bi-people-fill" style="font-size: 2rem; color: black;"></i>','/Modulo_Contratista',3)
+insert into Menu (Nombre, Icono, Ruta, Orden) Values ('Contabilidad','<i class="bi-calculator" style="font-size: 2rem; color: black;"></i>','/Modulo_Contabilidad',4)
+insert into Menu (Nombre, Icono, Ruta, Orden) Values ('Cliente','<i class="bi-calculator" style="font-size: 2rem; color: black;"></i>','/Modulo_Cliente',5)
+insert into Menu (Nombre, Icono, Ruta, Orden) Values ('Almacen','<i class="bi-shop" style="font-size: 2rem; color: black;"></i>','/Modulo_Almacen',6)
+insert into Menu (Nombre, Icono, Ruta, Orden) Values ('Mantenimiento','<i class="bi-tools" style="font-size: 2rem; color: black;"></i>','/Modulo_Mantenimiento',7)
+insert into Menu (Nombre, Icono, Ruta, Orden) Values ('Configuración','<i class="bi-gear" style="font-size: 2rem; color: black;"></i>','/Modulo_Configuracion',96)
+insert into Menu (Nombre, Icono, Ruta, Orden) Values ('Administración','<i class="bi-key-fill" style="font-size: 2rem; color: black;"></i>','/Modulo_Administracion',97)
+insert into Menu (Nombre, Icono, Ruta, Orden) Values ('Usuario','<i class="bi-person-workspace" style="font-size: 2rem; color: black;"></i>','/Modulo_Usuario',98)
+insert into Menu (Nombre, Icono, Ruta, Orden) Values ('Información','<i class="bi-info-circle-fill" style="font-size: 2rem; color: black;"></i>','/Modulo_Informacion',99)
+insert into Menu (Nombre, Icono, Ruta, Orden) Values ('Salir','<i class="bi-power" style="font-size: 2rem; color: red;"></i>','javascript:CerrarSesion()',100)
+
+go
+
+CREATE TABLE Permiso_Menu
+(Id int identity(1,1) Primary key ,
+IdMenu int,
+IdUsuario int,
+Permiso int default 0,
+)
+
+ALTER TABLE Permiso_Menu ADD CONSTRAINT FK_IdMenu FOREIGN KEY (IdMenu) references Menu(Id)
+ALTER TABLE Permiso_Menu ADD CONSTRAINT FK_IdUsuarioMenu FOREIGN KEY (IdUsuario) references Usuario(Id)
+
+go
+
+insert into Permiso_Menu (IdMenu, IdUsuario, Permiso) Values (1,1,1) -- Empresa
+insert into Permiso_Menu (IdMenu, IdUsuario, Permiso) Values (2,1,1) -- Empleado
+insert into Permiso_Menu (IdMenu, IdUsuario, Permiso) Values (3,1,1) -- Contratista
+insert into Permiso_Menu (IdMenu, IdUsuario, Permiso) Values (4,1,1) -- Contabilidad
+insert into Permiso_Menu (IdMenu, IdUsuario, Permiso) Values (5,1,1) -- Cliente
+insert into Permiso_Menu (IdMenu, IdUsuario, Permiso) Values (6,1,1) -- Almacen
+insert into Permiso_Menu (IdMenu, IdUsuario, Permiso) Values (7,1,1) -- Mantenimiento
+insert into Permiso_Menu (IdMenu, IdUsuario, Permiso) Values (8,1,1) -- Configuracion
+insert into Permiso_Menu (IdMenu, IdUsuario, Permiso) Values (9,1,1) -- Administracion
+insert into Permiso_Menu (IdMenu, IdUsuario, Permiso) Values (10,1,1) -- Usuario
+insert into Permiso_Menu (IdMenu, IdUsuario, Permiso) Values (11,1,1) -- Informacion
+insert into Permiso_Menu (IdMenu, IdUsuario, Permiso) Values (12,1,1) -- Salir
+
+go
+
+CREATE PROCEDURE [dbo].[SP_ListaMenu] @IdUsuario varchar(255)
+AS
+BEGIN
+DECLARE @Id int
+SELECT	@Id = dbo.Fun_BuscarIdUsuario(@IdUsuario)
+	SELECT	A.Id, 
+			A.Icono,
+			A.Nombre,
+			A.Ruta
+	FROM	Menu A,
+			Permiso_Menu B
+	WHERE	B.IdUsuario = @Id
+			and B.Permiso = 1
+			and A.Activo =1
+			and A.Id = B.IdMenu
+			order by Orden asc
+END
