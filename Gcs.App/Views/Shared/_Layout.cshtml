@@ -4,29 +4,36 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GCS - @ViewBag.Title</title>
+    <!-- #region Library -->
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
-
+    <link href="~/Content/StylesApp/App.css" rel="stylesheet" />
     <script src="~/Scripts/jquery-3.6.3.min.js"></script>
     <script src="~/Scripts/modernizr-2.8.3.js"></script>
     <script src="~/Scripts/js-cookie/js.cookie.js"></script>
     <link href="~/Content/icons-1.10.3/font/bootstrap-icons.css" rel="stylesheet" />
     <link href="~/Scripts/Sweetalert2/dist/sweetalert2.min.css" rel="stylesheet" />
     <script src="~/Scripts/Sweetalert2/dist/sweetalert2.min.js"></script>
-
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.css">
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.js"></script>
+    <!-- #endregion -->
+    <!-- #region Scripts App -->
     <script src="~/JsApp/Home.js"></script>
     <script src="~/JsApp/Menu.js"></script>
-
+    <script src="~/JsApp/SubMenu.js"></script>
+    <script src="~/JsApp/Pais.js"></script>
+    <!-- #endregion -->
 </head>
-<body style="background-color: #f1f3f4">
+<body>
     <div class="container body-content">
         @RenderBody()
         @*<hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>*@
+            <footer>
+                <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            </footer>*@
     </div>
     <script src="~/Scripts/jquery-3.6.3.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
 </body>
 </html>
@@ -36,24 +43,3 @@
     });
 </script>
 
-<style>
-    .btnMenu {
-        background-color: white;
-        margin-left: 15px;
-        margin-right: 15px;
-        margin-top: 15px;
-        margin-bottom: 15px;
-        height: 90px;
-        width: 120px;
-        border-radius: 0%;
-        -webkit-box-shadow: 0px 0px 10px -1px rgba(0,0,0,1);
-        -moz-box-shadow: 0px 0px 10px -1px rgba(0, 0, 0, 1);
-        box-shadow: 0px 0px 10px -1px rgba(0, 0, 0, 1);
-    }
-
-    .spanMenu {
-        font-size: 12px;
-        color: black;
-        font-weight: bold
-    }
-</style>

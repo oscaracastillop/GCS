@@ -4,19 +4,22 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GCS - @ViewBag.Title</title>
-    <link href="~/Content/StylesApp/Login.css" rel="stylesheet" />
+    <!-- #region Library -->
     <link href="~/Content/icons-1.10.3/font/bootstrap-icons.css" rel="stylesheet" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/StylesApp/Login.css" rel="stylesheet" />
     <link href="~/Scripts/Sweetalert2/dist/sweetalert2.min.css" rel="stylesheet" />
     <script src="~/Scripts/Sweetalert2/dist/sweetalert2.min.js"></script>
     <script src="~/Scripts/jquery-3.6.3.min.js"></script>
     <script src="~/Scripts/modernizr-2.8.3.js"></script>
     <script src="~/Scripts/js-cookie/js.cookie.js"></script>
+    <!-- #endregion -->
+    <!-- #region Scripts App -->
     <script src="~/JsApp/Login.js"></script>
-
+    <!-- #endregion -->
 </head>
-<body class="Fondo">
-    <div class="container body-content" style="margin-top:20px;">
+<body>
+    <div class="container body-content">
         @RenderBody()
     </div>
     <<script src="~/Scripts/jquery-3.6.3.min.js"></script>

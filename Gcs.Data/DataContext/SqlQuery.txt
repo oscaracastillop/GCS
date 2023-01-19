@@ -149,17 +149,17 @@ unique(Nombre)
 go
 
 
-insert into Menu (Nombre, Icono, Ruta, Orden) Values ('Empresa','<i class="bi-building" style="font-size: 2rem; color: black;"></i>','/Modulo_Empresa',1)
-insert into Menu (Nombre, Icono, Ruta, Orden) Values ('Empleado','<i class="bi-people-fill" style="font-size: 2rem; color: black;"></i>','/Modulo_Empleado',2)
-insert into Menu (Nombre, Icono, Ruta, Orden) Values ('Contratista','<i class="bi-people-fill" style="font-size: 2rem; color: black;"></i>','/Modulo_Contratista',3)
-insert into Menu (Nombre, Icono, Ruta, Orden) Values ('Contabilidad','<i class="bi-calculator" style="font-size: 2rem; color: black;"></i>','/Modulo_Contabilidad',4)
-insert into Menu (Nombre, Icono, Ruta, Orden) Values ('Cliente','<i class="bi-calculator" style="font-size: 2rem; color: black;"></i>','/Modulo_Cliente',5)
-insert into Menu (Nombre, Icono, Ruta, Orden) Values ('Almacen','<i class="bi-shop" style="font-size: 2rem; color: black;"></i>','/Modulo_Almacen',6)
-insert into Menu (Nombre, Icono, Ruta, Orden) Values ('Mantenimiento','<i class="bi-tools" style="font-size: 2rem; color: black;"></i>','/Modulo_Mantenimiento',7)
-insert into Menu (Nombre, Icono, Ruta, Orden) Values ('Configuración','<i class="bi-gear" style="font-size: 2rem; color: black;"></i>','/Modulo_Configuracion',96)
-insert into Menu (Nombre, Icono, Ruta, Orden) Values ('Administración','<i class="bi-key-fill" style="font-size: 2rem; color: black;"></i>','/Modulo_Administracion',97)
-insert into Menu (Nombre, Icono, Ruta, Orden) Values ('Usuario','<i class="bi-person-workspace" style="font-size: 2rem; color: black;"></i>','/Modulo_Usuario',98)
-insert into Menu (Nombre, Icono, Ruta, Orden) Values ('Información','<i class="bi-info-circle-fill" style="font-size: 2rem; color: black;"></i>','/Modulo_Informacion',99)
+insert into Menu (Nombre, Icono, Ruta, Orden) Values ('Empresa','<i class="bi-building" style="font-size: 2rem; color: #11ABE9;"></i>','/Modulo_Empresa',1)
+insert into Menu (Nombre, Icono, Ruta, Orden) Values ('Empleado','<i class="bi-people-fill" style="font-size: 2rem; color: #11ABE9;"></i>','/Modulo_Empleado',2)
+insert into Menu (Nombre, Icono, Ruta, Orden) Values ('Contratista','<i class="bi-people-fill" style="font-size: 2rem; color: #11ABE9;"></i>','/Modulo_Contratista',3)
+insert into Menu (Nombre, Icono, Ruta, Orden) Values ('Contabilidad','<i class="bi-calculator" style="font-size: 2rem; color: #11ABE9;"></i>','/Modulo_Contabilidad',4)
+insert into Menu (Nombre, Icono, Ruta, Orden) Values ('Cliente','<i class="bi-calculator" style="font-size: 2rem; color: #11ABE9;"></i>','/Modulo_Cliente',5)
+insert into Menu (Nombre, Icono, Ruta, Orden) Values ('Almacen','<i class="bi-shop" style="font-size: 2rem; color: #11ABE9;"></i>','/Modulo_Almacen',6)
+insert into Menu (Nombre, Icono, Ruta, Orden) Values ('Mantenimiento','<i class="bi-tools" style="font-size: 2rem; color: #11ABE9;"></i>','/Modulo_Mantenimiento',7)
+insert into Menu (Nombre, Icono, Ruta, Orden) Values ('Configuración','<i class="bi-gear" style="font-size: 2rem; color: #11ABE9;"></i>','/Modulo_Configuracion',96)
+insert into Menu (Nombre, Icono, Ruta, Orden) Values ('Administración','<i class="bi-key-fill" style="font-size: 2rem; color: #11ABE9;"></i>','/Modulo_Administracion',97)
+insert into Menu (Nombre, Icono, Ruta, Orden) Values ('Usuario','<i class="bi-person-workspace" style="font-size: 2rem; color: #11ABE9;"></i>','/Modulo_Usuario',98)
+insert into Menu (Nombre, Icono, Ruta, Orden) Values ('Información','<i class="bi-info-circle-fill" style="font-size: 2rem; color: orange;"></i>','/Modulo_Informacion',99)
 insert into Menu (Nombre, Icono, Ruta, Orden) Values ('Salir','<i class="bi-power" style="font-size: 2rem; color: red;"></i>','javascript:CerrarSesion()',100)
 
 go
@@ -208,3 +208,324 @@ SELECT	@Id = dbo.Fun_BuscarIdUsuario(@IdUsuario)
 			and A.Id = B.IdMenu
 			order by Orden asc
 END
+
+go
+
+CREATE TABLE SubMenu
+(Id int identity(1,1) Primary key ,
+IdMenu int,
+Nombre varchar(255),
+Icono varchar(255),
+Ruta varchar(255),
+Activo int default 1
+)
+
+ALTER TABLE SubMenu ADD CONSTRAINT FK_IdMenuSubmenu FOREIGN KEY (IdMenu) references Menu(Id)
+
+go
+
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (1, 'Empresa','<i class="bi-building" style="font-size: 2rem; color: #11ABE9;"></i>','/Empresa')
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (1, 'Sucursal','<i class="bi-shop" style="font-size: 2rem; color: #11ABE9;"></i>','/Sucursal')
+
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (2, 'Empleado','<i class="bi-person" style="font-size: 2rem; color: #11ABE9;"></i>','/Empleado')
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (2, 'Dia Laborado','<i class="bi-calendar-check" style="font-size: 2rem; color: #11ABE9;"></i>','/Dia_Laborado')
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (2, 'Hora Extra','<i class="bi-clock" style="font-size: 2rem; color: #11ABE9;"></i>','/Hora_Extra')
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (2, 'Permiso Empleado','<i class="bi-clock-history" style="font-size: 2rem; color: #11ABE9;"></i>','/Permiso_Empleado')
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (2, 'Préstamo','<i class="bi-cash-coin" style="font-size: 2rem; color: #11ABE9;"></i>','/Prestamo')
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (2, 'Nómina Empleado','<i class="bi-calculator" style="font-size: 2rem; color: #11ABE9;"></i>','/Nomina_Empleado')
+
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (3, 'Contratista','<i class="bi-person" style="font-size: 2rem; color: #11ABE9;"></i>','/Contratista')
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (3, 'Actividad Realizada','<i class="bi-hammer" style="font-size: 2rem; color: #11ABE9;"></i>','/Actividad_Realizada')
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (3, 'Nómina Contratista','<i class="bi-calculator" style="font-size: 2rem; color: #11ABE9;"></i>','/Nomina_Contratista')
+
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (4, 'Factura','<i class="bi-file-earmark-text" style="font-size: 2rem; color: #11ABE9;"></i>','/Factura')
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (4, 'Remisión','<i class="bi-file-earmark-text" style="font-size: 2rem; color: #11ABE9;"></i>','/Remision')
+
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (5, 'CLiente','<i class="bi-person-circle" style="font-size: 2rem; color: #11ABE9;"></i>','/Cliente')
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (5, 'Cotización','<i class="bi-file-earmark-medical" style="font-size: 2rem; color: #11ABE9;"></i>','/Cotizacion')
+
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (6, 'Compra','<i class="bi-cart4" style="font-size: 2rem; color: #11ABE9;"></i>','/Compra')
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (6, 'Salida','<i class="bi-box-arrow-right" style="font-size: 2rem; color: #11ABE9;"></i>','/Salida')
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (6, 'Inventario','<i class="bi-graph-up" style="font-size: 2rem; color: #11ABE9;"></i>','/Inventario')
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (6, 'Categoría','<i class="bi-grid" style="font-size: 2rem; color: #11ABE9;"></i>','/Categoria')
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (6, 'Producto','<i class="bi-box-seam" style="font-size: 2rem; color: #11ABE9;"></i>','/Producto')
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (6, 'Proveedor','<i class="bi-truck" style="font-size: 2rem; color: #11ABE9;"></i>','/Proveedor')
+
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (7, 'Maquínaria','<i class="bi-speedometer" style="font-size: 2rem; color: #11ABE9;"></i>','/Maquinaria')
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (7, 'Herramienta','<i class="bi-wrench-adjustable" style="font-size: 2rem; color: #11ABE9;"></i>','/Herramienta')
+
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'País','<i class="bi-geo-alt" style="font-size: 2rem; color: #11ABE9;"></i>','/Pais')
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'Departamento','<i class="bi-geo-fill" style="font-size: 2rem; color: #11ABE9;"></i>','/Departamento')
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'Ciudad','<i class="bi-geo-fill" style="font-size: 2rem; color: #11ABE9;"></i>','/Ciudad')
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'Tipo Actividad','<i class="bi-tools" style="font-size: 2rem; color: #11ABE9;"></i>','/Tipo_Actividad')
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'Tipo Hora Extra','<i class="bi-clock" style="font-size: 2rem; color: #11ABE9;"></i>','/Tipo_Hora_Extra')
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'Tipo Documento','<i class="bi-filetype-doc" style="font-size: 2rem; color: #11ABE9;"></i>','/Tipo_Documento')
+
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (9, 'Usuario','<i class="bi-person" style="font-size: 2rem; color: #11ABE9;"></i>','/Usuario')
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (9, 'Permiso Usuario','<i class="bi-lock" style="font-size: 2rem; color: #11ABE9;"></i>','/Permiso_Usuario')
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (9, 'Modulo','<i class="bi-file-post" style="font-size: 2rem; color: #11ABE9;"></i>','/Modulo')
+
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (10, 'Información Usuario','<i class="bi-person-badge" style="font-size: 2rem; color: #11ABE9;"></i>','/Informacion_Usuario')
+
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (11, 'Contacto','<i class="bi-envelope" style="font-size: 2rem; color: #11ABE9;"></i>','/Contacto')
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (11, 'Quienes Somos','<i class="bi-briefcase" style="font-size: 2rem; color: #11ABE9;"></i>','/Quienes_Somos')
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (11, 'Licencia de Uso','<i class="bi-card-text" style="font-size: 2rem; color: #11ABE9;"></i>','/Licencia_de_Uso')
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (11, 'Notas de la Versión','<i class="bi-info-circle" style="font-size: 2rem; color: #11ABE9;"></i>','/Notas_de_la_Version')
+
+go
+
+CREATE TABLE Permiso_SubMenu
+(Id int identity(1,1) Primary key ,
+IdSubMenu int,
+IdUsuario int,
+Permiso int default 0,
+Crear int default 0,
+Editar int default 0,
+Eliminar int default 0
+)
+
+ALTER TABLE Permiso_SubMenu ADD CONSTRAINT FK_IdSubMenu FOREIGN KEY (IdSubMenu) references SubMenu(Id)
+ALTER TABLE Permiso_SubMenu ADD CONSTRAINT FK_IdUsuarioSubMenu FOREIGN KEY (IdUsuario) references Usuario(Id)
+
+go
+
+insert into Permiso_SubMenu (IdSubMenu, IdUsuario, Permiso, Crear, Editar, Eliminar) Values (1,1,1,1,1,1)
+insert into Permiso_SubMenu (IdSubMenu, IdUsuario, Permiso, Crear, Editar, Eliminar) Values (2,1,1,1,1,1)
+insert into Permiso_SubMenu (IdSubMenu, IdUsuario, Permiso, Crear, Editar, Eliminar) Values (3,1,1,1,1,1)
+insert into Permiso_SubMenu (IdSubMenu, IdUsuario, Permiso, Crear, Editar, Eliminar) Values (4,1,1,1,1,1)
+insert into Permiso_SubMenu (IdSubMenu, IdUsuario, Permiso, Crear, Editar, Eliminar) Values (5,1,1,1,1,1)
+insert into Permiso_SubMenu (IdSubMenu, IdUsuario, Permiso, Crear, Editar, Eliminar) Values (6,1,1,1,1,1)
+insert into Permiso_SubMenu (IdSubMenu, IdUsuario, Permiso, Crear, Editar, Eliminar) Values (7,1,1,1,1,1)
+insert into Permiso_SubMenu (IdSubMenu, IdUsuario, Permiso, Crear, Editar, Eliminar) Values (8,1,1,1,1,1)
+insert into Permiso_SubMenu (IdSubMenu, IdUsuario, Permiso, Crear, Editar, Eliminar) Values (9,1,1,1,1,1)
+insert into Permiso_SubMenu (IdSubMenu, IdUsuario, Permiso, Crear, Editar, Eliminar) Values (10,1,1,1,1,1)
+insert into Permiso_SubMenu (IdSubMenu, IdUsuario, Permiso, Crear, Editar, Eliminar) Values (11,1,1,1,1,1)
+insert into Permiso_SubMenu (IdSubMenu, IdUsuario, Permiso, Crear, Editar, Eliminar) Values (12,1,1,1,1,1)
+insert into Permiso_SubMenu (IdSubMenu, IdUsuario, Permiso, Crear, Editar, Eliminar) Values (13,1,1,1,1,1)
+insert into Permiso_SubMenu (IdSubMenu, IdUsuario, Permiso, Crear, Editar, Eliminar) Values (14,1,1,1,1,1)
+insert into Permiso_SubMenu (IdSubMenu, IdUsuario, Permiso, Crear, Editar, Eliminar) Values (15,1,1,1,1,1)
+insert into Permiso_SubMenu (IdSubMenu, IdUsuario, Permiso, Crear, Editar, Eliminar) Values (16,1,1,1,1,1)
+insert into Permiso_SubMenu (IdSubMenu, IdUsuario, Permiso, Crear, Editar, Eliminar) Values (17,1,1,1,1,1)
+insert into Permiso_SubMenu (IdSubMenu, IdUsuario, Permiso, Crear, Editar, Eliminar) Values (18,1,1,1,1,1)
+insert into Permiso_SubMenu (IdSubMenu, IdUsuario, Permiso, Crear, Editar, Eliminar) Values (19,1,1,1,1,1)
+insert into Permiso_SubMenu (IdSubMenu, IdUsuario, Permiso, Crear, Editar, Eliminar) Values (20,1,1,1,1,1)
+insert into Permiso_SubMenu (IdSubMenu, IdUsuario, Permiso, Crear, Editar, Eliminar) Values (21,1,1,1,1,1)
+insert into Permiso_SubMenu (IdSubMenu, IdUsuario, Permiso, Crear, Editar, Eliminar) Values (22,1,1,1,1,1)
+insert into Permiso_SubMenu (IdSubMenu, IdUsuario, Permiso, Crear, Editar, Eliminar) Values (23,1,1,1,1,1)
+insert into Permiso_SubMenu (IdSubMenu, IdUsuario, Permiso, Crear, Editar, Eliminar) Values (24,1,1,1,1,1)
+insert into Permiso_SubMenu (IdSubMenu, IdUsuario, Permiso, Crear, Editar, Eliminar) Values (25,1,1,1,1,1)
+insert into Permiso_SubMenu (IdSubMenu, IdUsuario, Permiso, Crear, Editar, Eliminar) Values (26,1,1,1,1,1)
+insert into Permiso_SubMenu (IdSubMenu, IdUsuario, Permiso, Crear, Editar, Eliminar) Values (27,1,1,1,1,1)
+insert into Permiso_SubMenu (IdSubMenu, IdUsuario, Permiso, Crear, Editar, Eliminar) Values (28,1,1,1,1,1)
+insert into Permiso_SubMenu (IdSubMenu, IdUsuario, Permiso, Crear, Editar, Eliminar) Values (29,1,1,1,1,1)
+insert into Permiso_SubMenu (IdSubMenu, IdUsuario, Permiso, Crear, Editar, Eliminar) Values (30,1,1,1,1,1)
+insert into Permiso_SubMenu (IdSubMenu, IdUsuario, Permiso, Crear, Editar, Eliminar) Values (31,1,1,1,1,1)
+insert into Permiso_SubMenu (IdSubMenu, IdUsuario, Permiso, Crear, Editar, Eliminar) Values (32,1,1,1,1,1)
+insert into Permiso_SubMenu (IdSubMenu, IdUsuario, Permiso, Crear, Editar, Eliminar) Values (33,1,1,1,1,1)
+insert into Permiso_SubMenu (IdSubMenu, IdUsuario, Permiso, Crear, Editar, Eliminar) Values (34,1,1,1,1,1)
+insert into Permiso_SubMenu (IdSubMenu, IdUsuario, Permiso, Crear, Editar, Eliminar) Values (35,1,1,1,1,1)
+insert into Permiso_SubMenu (IdSubMenu, IdUsuario, Permiso, Crear, Editar, Eliminar) Values (36,1,1,1,1,1)
+insert into Permiso_SubMenu (IdSubMenu, IdUsuario, Permiso, Crear, Editar, Eliminar) Values (37,1,1,1,1,1)
+
+go
+
+CREATE PROCEDURE [dbo].[SP_ListaSubMenu] @IdUsuario varchar(255), @Modulo varchar(255)
+AS
+BEGIN
+DECLARE @Id int, @IdMenu int
+SELECT @IdMenu = Id From Menu WHERE Ruta = @Modulo
+SELECT	@Id = dbo.Fun_BuscarIdUsuario(@IdUsuario)
+	SELECT	A.Id,	
+			A.IdMenu,	
+			A.Icono, 
+			A.Nombre, 
+			A.Ruta
+	FROM	SubMenu A,
+			Permiso_SubMenu B
+	WHERE	B.IdUsuario = @Id
+			and B.Permiso = 1
+			and A.Activo =1 
+			and A.IdMenu = @IdMenu
+			and A.Id = B.IdSubMenu
+END
+
+GO
+
+CREATE FUNCTION Fun_PermisoUsuario(@Accion varchar(255), @IdUsuario Int, @SubMenu varchar(255))
+RETURNS int
+AS
+BEGIN	
+	DECLARE @Resultado Int
+	
+	IF @Accion ='Crear'
+		BEGIN			
+			SELECT	@Resultado = P.Crear
+			FROM	Usuario U,
+					SubMenu S,
+					Permiso_SubMenu P
+			WHERE	P.IdUsuario = U.Id and 
+					U.Id = @IdUsuario and
+					S.Ruta = @SubMenu
+		END
+	ELSE IF @Accion ='Editar'
+		BEGIN			
+			SELECT	@Resultado = P.Editar
+			FROM	Usuario U,
+					SubMenu S,
+					Permiso_SubMenu P
+			WHERE	P.IdUsuario = U.Id and 
+					U.Id = @IdUsuario and
+					S.Ruta = @SubMenu
+		END
+	ELSE IF @Accion ='Eliminar'
+		BEGIN			
+			SELECT	@Resultado = P.Eliminar
+			FROM	Usuario U,
+					SubMenu S,
+					Permiso_SubMenu P
+			WHERE	P.IdUsuario = U.Id and 
+					U.Id = @IdUsuario and
+					S.Ruta = @SubMenu
+		END
+	RETURN @Resultado
+END
+
+GO
+
+CREATE TABLE Pais 
+(Id int identity(1,1) Primary key ,
+Nombre varchar(255),
+Activo int default 1,
+CreateBy int,
+DateCreate datetime,
+unique(Nombre)
+)
+
+ALTER TABLE Pais ADD CONSTRAINT FK_IdCreateByPais FOREIGN KEY (CreateBy ) references Usuario(Id)
+
+go
+
+insert into Pais(Nombre, CreateBy,DateCreate)values('Colombia',1,Getdate())
+
+go
+
+CREATE PROCEDURE [dbo].[SP_GridPais]
+AS
+BEGIN
+	SELECT	Id, 
+			Nombre, 
+			CASE Activo
+			WHEN 1 THEN 'Activo'
+			ELSE 'Inactivo'
+			END as Estado
+			FROM Pais
+END
+
+GO
+
+CREATE PROCEDURE [dbo].[SP_CrearPais] @IdUser varchar(255), @NombrePais varchar(255), @Resultado varchar(255) OUTPUT
+AS
+BEGIN
+DECLARE @Crear INT, @IdUsuario INT, @NombreUsuario VARCHAR(255), @SubMenu VARCHAR(255)
+SELECT @IdUsuario = Id FROM Usuario WHERE IdUser = @IdUser
+SELECT @NombreUsuario = Nombre FROM Usuario WHERE IdUser = @IdUser
+SET @SubMenu = '/Pais'
+SELECT	@Crear = dbo.Fun_PermisoUsuario('Crear',@IdUsuario, @SubMenu)	
+		IF @Crear > 0
+			BEGIN
+				INSERT INTO Pais (Nombre,CreateBy, DateCreate) VALUES (@NombrePais, @IdUsuario, GETDATE()) 
+				SET @Resultado = 'OK*Se a creado el País ' + @NombrePais+ ' correctamente'
+			END
+		ELSE
+			BEGIN
+				SET @Resultado = 'Error*El Usuario '+ @NombreUsuario + ' no tiene permiso para crear País' 
+			END
+	SELECT @Resultado
+END
+
+go
+
+CREATE PROCEDURE SP_CargarDatosPais @IdPais Int
+AS
+BEGIN
+	SELECT Nombre,
+	Activo
+	FROM Pais
+	WHERE Id = @IdPais
+END
+
+go
+
+CREATE PROCEDURE [dbo].[SP_GuardarCambiosPais] @IdPais int, @IdUser varchar(255), @NombrePais varchar(255), @Activo int, @Resultado varchar(255) OUTPUT
+AS
+BEGIN
+DECLARE @Modificar INT, @IdUsuario INT, @NombreUsuario VARCHAR(255), @SubMenu VARCHAR(255)
+SET @SubMenu = '/Pais'
+SELECT @IdUsuario = Id FROM Usuario WHERE IdUser = @IdUser
+SELECT @NombreUsuario = Nombre FROM Usuario WHERE IdUser = @IdUser
+SELECT @Modificar = dbo.Fun_PermisoUsuario('Editar',@IdUsuario, @SubMenu)	
+				IF @Modificar > 0
+					BEGIN
+						UPDATE Pais SET  Nombre = @NombrePais, Activo = @Activo WHERE Id = @IdPais
+					    SET @Resultado = 'OK*Se guardaron los cambios del País ' + @NombrePais+ ' correctamente'
+					END
+				ELSE
+					BEGIN
+						SET @Resultado = 'Error*El Usuario '+ @NombreUsuario + ' no tiene permiso para realizar cambios al País' 
+					END
+	SELECT @Resultado
+END
+
+go
+
+CREATE PROCEDURE [dbo].[SP_ListaPais]
+AS
+BEGIN
+	SELECT Id, Nombre FROM Pais WHERE Activo = 1
+END
+
+go
+
+CREATE FUNCTION Fun_BuscarNombrePais (@IdPais INT)
+RETURNS VARCHAR(255)
+AS BEGIN
+DECLARE @NombrePais VARCHAR(255)
+	SELECT	@NombrePais = Nombre
+	FROM	Pais
+	WHERE	Id = @IdPais 
+	RETURN @NombrePais
+END
+
+go
+
+
+CREATE PROCEDURE [dbo].[SP_EliminarPais] @IdUser varchar(255), @IdPais int, @Resultado varchar(255) OUTPUT
+AS
+BEGIN
+DECLARE @Eliminar INT, @IdUsuario INT, @NombreUsuario VARCHAR(255), @validar INT, @NombrePais varchar(255), @SubMenu VARCHAR(255)
+SET @SubMenu = '/Pais'
+SELECT @IdUsuario = Id FROM Usuario WHERE IdUser = @IdUser
+SELECT @NombreUsuario = Nombre FROM Usuario WHERE IdUser = @IdUser
+SELECT @NombrePais = Nombre FROM Pais WHERE Id = @IdPais
+	SELECT	@Eliminar = dbo.Fun_PermisoUsuario('Eliminar',@IdUsuario, @SubMenu)	
+		IF @Eliminar > 0
+			BEGIN	
+				SELECT @validar = 0 --COUNT(1) FROM Departamento WHERE IdPais = @IdPais
+				IF @validar > 0 
+					BEGIN
+						SET @Resultado = 'Error*El País ' + @NombrePais +' no se puede Eliminar, actualmente se encuentra en Uso'	
+					END
+				ELSE
+					BEGIN
+						DELETE Pais WHERE Id = @IdPais
+						SET @Resultado = 'OK*Se Elimino el País correctamente'	
+					END								
+			END
+		ELSE
+			BEGIN
+				SET @Resultado = 'Error*El Usuario '+ @NombreUsuario + ' no tiene permiso para Eliminar el País' 
+			END
+	SELECT @Resultado
+END
+
+GO

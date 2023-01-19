@@ -1,7 +1,15 @@
-﻿.Titulo-Login {
+﻿body {
+    background-color: #f1f3f4;
+}
+
+.Titulo-Login {
     margin-top: 40px;
     font-size: 100px;
     font-weight: bold;
+}
+
+.Centrar-Texto {
+    text-align: center
 }
 
 .Titulo-Login2 {
@@ -9,17 +17,13 @@
     font-size: 13px;
 }
 
+.Tabla-Login {
+    margin-top: 40px;
+}
+
 .Centrar-Objeto {
     margin-left: auto;
     margin-right: auto;
-}
-
-.Centrar-Texto {
-    text-align: center
-}
-
-.Tabla-Login {
-    margin-top: 40px;
 }
 
 input,
@@ -28,17 +32,8 @@ textarea {
     max-width: 280px;
 }
 
-.distribution {
-    display: grid;
-    grid-template-columns: 0% 50% 50% 0%;
-}
 
-img{
-    height:50px;
-    line-height:100px;
-}
-
-@keyframes rotate {
+/*@keyframes rotate {
     from {
         transform: rotate(0deg);
     }
@@ -68,4 +63,4 @@ img{
 #imgr2 {
     -webkit-animation-direction: reverse;
     animation-direction: reverse;
-}
+}*/

@@ -1,0 +1,44 @@
+﻿@{
+    ViewBag.Title = "Editar Pais";
+}
+
+<h7><a href="/Home/Inicio"><i>Inicio</i></a><i class="bi-chevron-right"></i><a href="/Modulo_Configuracion"><i>Modulo Configuración</i></a><i class="bi-chevron-right"></i><a href="/Pais"><i>País</i></a><i class="bi-chevron-right"></i><label style="font-weight:bold">Editar País</label></h7>
+<hr />
+
+@*<table class="table table-borderless">
+    <tr style="min-width:100%">
+        <td width="50%"><label></label></td>
+        <td width="50%">
+            <a href="/Pais/Crear_Pais" class="btn btn-primary btn-sm" title="Agregar un nuevo Registro" style="float:right"><i class="bi-clipboard-plus"></i> Crear País</a>
+            <a href="/Pais" class="btn btn-secondary btn-sm" style="float:right; margin-right:5px"><i class="bi-list-columns-reverse"></i> Lista Paises</a>
+        </td>
+    </tr>
+</table>*@
+
+<table class="table table-borderless">
+    <tr>
+        <td>
+            <label for="InputEditarNombrePais"><strong>PAIS</strong></label>
+            <input class="form-control" type="text" id="InputEditarNombrePais" autocomplete="off" autofocus/>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label for="SelectEstadoPais"><strong>ESTADO</strong></label>
+            <select class="form-control" id="SelectEstadoPais">
+                <option value="0">Inactivo</option>
+                <option value="1">Activo</option>
+            </select>
+        </td>
+    <tr>
+        <td>
+            <button class="btn btn-success btn-sm" onclick="GuardarCambiosPais()">Guardar Cambios</button>
+        </td>
+    </tr>
+</table>
+
+<script>
+    $(document).ready(function () {
+        CargarDatosPais();
+    });
+</script>
