@@ -131,9 +131,41 @@ function ListaPais(Tipo) {
 
 function GridPais() {
     let datatable = $('#gridPais').DataTable({
-        "responsive": true,
+         "responsive": true,
+        dom: 'B<"clear">frtip',
+        buttons: [{
+            extend: 'excelHtml5',
+            footer: true,
+            title: 'Lista de Paises',
+            filename: 'Listado Paises',
+            text: 'Excel',
+            exportOptions: {
+                columns: [1, 2]
+            }
+        },
+        {
+            extend: 'pdfHtml5',
+            download: 'open',
+            footer: true,
+            title: 'Reporte de Paises',
+            filename: 'Reporte de Paises',
+            text: 'Pdf',
+            exportOptions: {
+                columns: [1, 2]
+            }
+        },
+        {
+            extend: 'print',
+            footer: true,
+            filename: 'Export_File_print',
+            text: 'Imprimir',
+            exportOptions: {
+                columns: [1, 2]
+            }
+        },
+        ],
         "order": [[1, "asc"]],
-        destroy: true,
+        destroy: true,       
         "ajax": {
             "url": '/Pais/GridPais',
             "type": "GET",
@@ -144,6 +176,7 @@ function GridPais() {
             { "data": "Nombre", title: "Pais" },
             { "data": "Estado", title: "Estado" },
             {
+                title: "Editar",
                 data: null,
                 defaultContent: '<a href="#" class="EditarPais" title="Editar"><i class="bi-pencil-fill" style="Color:green"></i></a>',
                 className: '',
@@ -151,56 +184,20 @@ function GridPais() {
                 width: 50,
             },
             {
+                title: "Eliminar",
                 data: null,
                 defaultContent: '<a href="#" class="EliminarPais" title="Eliminar"><i class="bi-trash-fill" style="Color:red"></i></a>',
                 className: '',
                 orderable: false,
                 width: 50,
             },
-        ],
-        dom: 'Bfrtlip',
-        //buttons: [
-        //    'excel', 'pdf', 'print'
-        //],
-        buttons: [{
-            //Botón para Excel
-            extend: 'excelHtml5',
-            footer: true,
-            title: 'Archivo',
-            filename: 'Export_File',
-
-            //Aquí es donde generas el botón personalizado
-            text: 'Excel'
-        },
-        //Botón para PDF
-        {
-            extend: 'pdfHtml5',
-            download: 'open',
-            footer: true,
-            title: 'Reporte de Paises',
-            filename: 'Reporte de Paises',
-            text: 'Pdf',
-            exportOptions: {
-                columns: [1, 2, 3]
-            }
-        },
-        //Botón para print
-        {
-            extend: 'print',
-            footer: true,
-            filename: 'Export_File_print',
-            text: 'Imprimir',
-            exportOptions: {
-                columns: [1, 2, 3]
-            }
-        },
-        ],
+        ],         
         "language": {
             "url": "//cdn.datatables.net/plug-ins/1.11.2/i18n/es_es.json"
         },
         lengthMenu: [
-            [5, 25, 50, -1],
-            ['5 Filas', '25 Filas', '50 Filas', 'Ver Todo']
+            [10, 25, 50, -1],
+            ['10 Filas', '25 Filas', '50 Filas', 'Ver Todo']
         ],
     });
     $('#gridPais').on('click', '.EditarPais', function () {
@@ -214,10 +211,9 @@ function GridPais() {
         let data = datatable.row($(this).parents()).data();
         $('#ModalEliminarPais').modal('show');
         $('#IdPais').text(data.Id);
-        $('#MensajeEliminarPais').text('Esta seguro de Eliminar el País ' + data.Nombre + ' ?');
+        $('#MensajeEliminarPais').text('Esta seguro de eliminar el país ' + data.Nombre + ' ?');
     })
 }
-
 
 
 

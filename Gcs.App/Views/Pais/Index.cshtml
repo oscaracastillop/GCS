@@ -8,10 +8,10 @@
     <a href="/Modulo_Configuracion"><i>MODULO CONFIGURACIÓN</i></a>
     &nbsp;<i class="bi-chevron-right"></i>&nbsp;
     <label style="font-weight:bold">PAÍS</label>
-</div>
-    
+    <hr />
+</div>  
 
-<hr />
+
 
 <table class="table table-borderless">
     <tr style="min-width:100%">
@@ -20,12 +20,7 @@
     </tr>
 </table>
 
-
-<div class="fondogrid">
-    <div class="grid">
-        <table id="gridPais" class="table"></table>
-    </div>
-</div>
+<table id="gridPais" class="table display" style="width:100%"></table>
 
 @*Modal Eliminar*@
 <div class="modal fade" id="ModalEliminarPais" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -46,62 +41,8 @@
     </div>
 </div>
 
-
-<div class="modal fade" id="ModalcrearPais" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel"><strong>CREAR PAÍS</strong></h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <span>Nombre País</span>
-                <input class="form-control" type="text" id="InputNombrePais" name="name" />
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-success btn-sm" onclick="CrearPais()"><i class="bi-upload"></i> Guardar</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="modal fade" id="ModalEditarPais" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel"><strong>EDITAR PAÍS</strong></h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <table class="table table-borderless">
-                    <tr>                        
-                        <td>
-                            <label id="IdEPais" hidden></label>
-                            <label for="InputENombrePais"><strong>NOMBRE PAÍS</strong></label>
-                            <input class="form-control" type="text" id="InputENombrePais" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label for="SelectEstadoPais"><strong>ESTADO</strong></label>
-                            <select class="form-control" id="SelectEstadoPais">
-                                <option value="0">Inactivo</option>
-                                <option value="1">Activo</option>
-                            </select>
-                        </td>
-                    </tr>
-                </table>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-success btn-sm" onclick="GuardarCambiosPais()"><i class="bi-upload"></i> Guardar Cambios</button>
-            </div>
-        </div>
-    </div>
-</div>
-
 <script>
     $(document).ready(function () {
         GridPais();
     });
 </script>
-
