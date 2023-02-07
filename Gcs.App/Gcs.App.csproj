@@ -4310,7 +4310,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MenuController.cs" />
-    <Compile Include="Controllers\Modulo_ConfiguracionController.cs" />
+    <Compile Include="Controllers\ModuloController.cs" />
     <Compile Include="Controllers\PaisController.cs" />
     <Compile Include="Controllers\SubMenuController.cs" />
     <Compile Include="Global.asax.cs">
@@ -4354,9 +4354,19 @@
     <Content Include="Scripts\js-cookie\js.cookie.min.mjs" />
     <Content Include="Scripts\js-cookie\js.cookie.mjs" />
     <Content Include="Views\Pais\Index.cshtml" />
-    <Content Include="Views\Modulo_Configuracion\Index.cshtml" />
     <Content Include="Views\Pais\Crear_Pais.cshtml" />
     <Content Include="Views\Pais\Editar_Pais.cshtml" />
+    <Content Include="Views\Modulo\Configuracion.cshtml" />
+    <Content Include="Views\Modulo\Empresa.cshtml" />
+    <Content Include="Views\Modulo\Empleado.cshtml" />
+    <Content Include="Views\Modulo\Contratista.cshtml" />
+    <Content Include="Views\Modulo\Contabilidad.cshtml" />
+    <Content Include="Views\Modulo\Cliente.cshtml" />
+    <Content Include="Views\Modulo\Almacen.cshtml" />
+    <Content Include="Views\Modulo\Mantenimiento.cshtml" />
+    <Content Include="Views\Modulo\Administracion.cshtml" />
+    <Content Include="Views\Modulo\Usuario.cshtml" />
+    <Content Include="Views\Modulo\Informacion.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

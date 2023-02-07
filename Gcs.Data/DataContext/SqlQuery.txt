@@ -149,17 +149,17 @@ unique(Nombre)
 go
 
 
-insert into Menu (Nombre, Icono, Ruta, Orden) Values ('Empresa','<i class="bi-building" style="font-size: 2rem; color: #11ABE9;"></i>','/Modulo_Empresa',1)
-insert into Menu (Nombre, Icono, Ruta, Orden) Values ('Empleado','<i class="bi-people-fill" style="font-size: 2rem; color: #11ABE9;"></i>','/Modulo_Empleado',2)
-insert into Menu (Nombre, Icono, Ruta, Orden) Values ('Contratista','<i class="bi-people-fill" style="font-size: 2rem; color: #11ABE9;"></i>','/Modulo_Contratista',3)
-insert into Menu (Nombre, Icono, Ruta, Orden) Values ('Contabilidad','<i class="bi-calculator" style="font-size: 2rem; color: #11ABE9;"></i>','/Modulo_Contabilidad',4)
-insert into Menu (Nombre, Icono, Ruta, Orden) Values ('Cliente','<i class="bi-calculator" style="font-size: 2rem; color: #11ABE9;"></i>','/Modulo_Cliente',5)
-insert into Menu (Nombre, Icono, Ruta, Orden) Values ('Almacen','<i class="bi-shop" style="font-size: 2rem; color: #11ABE9;"></i>','/Modulo_Almacen',6)
-insert into Menu (Nombre, Icono, Ruta, Orden) Values ('Mantenimiento','<i class="bi-tools" style="font-size: 2rem; color: #11ABE9;"></i>','/Modulo_Mantenimiento',7)
-insert into Menu (Nombre, Icono, Ruta, Orden) Values ('Configuración','<i class="bi-gear" style="font-size: 2rem; color: #11ABE9;"></i>','/Modulo_Configuracion',96)
-insert into Menu (Nombre, Icono, Ruta, Orden) Values ('Administración','<i class="bi-key-fill" style="font-size: 2rem; color: #11ABE9;"></i>','/Modulo_Administracion',97)
-insert into Menu (Nombre, Icono, Ruta, Orden) Values ('Usuario','<i class="bi-person-workspace" style="font-size: 2rem; color: #11ABE9;"></i>','/Modulo_Usuario',98)
-insert into Menu (Nombre, Icono, Ruta, Orden) Values ('Información','<i class="bi-info-circle-fill" style="font-size: 2rem; color: orange;"></i>','/Modulo_Informacion',99)
+insert into Menu (Nombre, Icono, Ruta, Orden) Values ('Empresa','<i class="bi-building" style="font-size: 2rem; color: #11ABE9;"></i>','/Modulo/Empresa',1)
+insert into Menu (Nombre, Icono, Ruta, Orden) Values ('Empleado','<i class="bi-people-fill" style="font-size: 2rem; color: #11ABE9;"></i>','/Modulo/Empleado',2)
+insert into Menu (Nombre, Icono, Ruta, Orden) Values ('Contratista','<i class="bi-people-fill" style="font-size: 2rem; color: #11ABE9;"></i>','/Modulo/Contratista',3)
+insert into Menu (Nombre, Icono, Ruta, Orden) Values ('Contabilidad','<i class="bi-calculator" style="font-size: 2rem; color: #11ABE9;"></i>','/Modulo/Contabilidad',4)
+insert into Menu (Nombre, Icono, Ruta, Orden) Values ('Cliente','<i class="bi-calculator" style="font-size: 2rem; color: #11ABE9;"></i>','/Modulo/Cliente',5)
+insert into Menu (Nombre, Icono, Ruta, Orden) Values ('Almacen','<i class="bi-shop" style="font-size: 2rem; color: #11ABE9;"></i>','/Modulo/Almacen',6)
+insert into Menu (Nombre, Icono, Ruta, Orden) Values ('Mantenimiento','<i class="bi-tools" style="font-size: 2rem; color: #11ABE9;"></i>','/Modulo/Mantenimiento',7)
+insert into Menu (Nombre, Icono, Ruta, Orden) Values ('Configuración','<i class="bi-gear" style="font-size: 2rem; color: #11ABE9;"></i>','/Modulo/Configuracion',96)
+insert into Menu (Nombre, Icono, Ruta, Orden) Values ('Administración','<i class="bi-key-fill" style="font-size: 2rem; color: #11ABE9;"></i>','/Modulo/Administracion',97)
+insert into Menu (Nombre, Icono, Ruta, Orden) Values ('Usuario','<i class="bi-person-workspace" style="font-size: 2rem; color: #11ABE9;"></i>','/Modulo/Usuario',98)
+insert into Menu (Nombre, Icono, Ruta, Orden) Values ('Información','<i class="bi-info-circle-fill" style="font-size: 2rem; color: orange;"></i>','/Modulo/Informacion',99)
 insert into Menu (Nombre, Icono, Ruta, Orden) Values ('Salir','<i class="bi-power" style="font-size: 2rem; color: red;"></i>','javascript:CerrarSesion()',100)
 
 go
@@ -529,3 +529,4 @@ SELECT @NombrePais = Nombre FROM Pais WHERE Id = @IdPais
 END
 
 GO
+
