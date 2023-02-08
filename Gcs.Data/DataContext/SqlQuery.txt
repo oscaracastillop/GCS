@@ -65,6 +65,18 @@ END
 
 go
 
+CREATE FUNCTION Fun_BuscarNombreUsuario(@IdUsuario INT)
+RETURNS VARCHAR(255)
+AS BEGIN
+DECLARE @NombreUsuario VARCHAR(255)
+	SELECT	@NombreUsuario = Nombre
+	FROM	Usuario
+	WHERE	Id = @IdUsuario 
+	RETURN @NombreUsuario
+END
+
+go
+
 --SELECT CONVERT ( VARCHAR (32), HashBytes ( 'MD5' ,  'User1' ), 2) 
 --SELECT CONVERT ( VARCHAR (32), HashBytes ( 'MD5' ,  '123456' ), 2) 
 
@@ -102,7 +114,7 @@ DECLARE @ExisteUser INT, @ValidaPassword varchar(255), @IdUser varchar(255),
 	
 	IF @ExisteUser = 0
 		BEGIN
-			SET @Resultado = 'Error*El Usuario ingresado no Existe'
+			SET @Resultado = 'Error*El usuario ingresado no existe'
 		END
 	ELSE
 		BEGIN		
@@ -118,12 +130,12 @@ DECLARE @ExisteUser INT, @ValidaPassword varchar(255), @IdUser varchar(255),
 								END
 							ELSE
 								BEGIN
-									SET @Resultado = 'Error*El Usuario se encuentra Inactivo, por favor comuniquese con el Administrador de la Aplicación'
+									SET @Resultado = 'Error*El usuario se encuentra inactivo, por favor comuniquese con el administrador de la aplicación'
 								END
 						END
 					ELSE
 						BEGIN
-							SET @Resultado = 'Error*El Usuario '+@NombreUser+' no tiene permisos para ingresar a la Aplicación, la fecha limite de ingreso se encuentra vencida. Si desea Activar un nuevo periodo de tiempo comuniquese con el Administrador de la Aplicación.'
+							SET @Resultado = 'Error*El usuario '+@NombreUser+' no tiene permisos para ingresar a la aplicación, la fecha limite de ingreso se encuentra vencida. Si desea activar un nuevo periodo de tiempo comuniquese con el administrador de la aplicación.'
 						END					
 				END
 			ELSE
@@ -254,12 +266,12 @@ insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (6, 'Proveedor','<i cla
 insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (7, 'Maquínaria','<i class="bi-speedometer" style="font-size: 2rem; color: #11ABE9;"></i>','/Maquinaria')
 insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (7, 'Herramienta','<i class="bi-wrench-adjustable" style="font-size: 2rem; color: #11ABE9;"></i>','/Herramienta')
 
-insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'País','<i class="bi-geo-alt" style="font-size: 2rem; color: #11ABE9;"></i>','/Pais')
-insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'Departamento','<i class="bi-geo-fill" style="font-size: 2rem; color: #11ABE9;"></i>','/Departamento')
-insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'Ciudad','<i class="bi-geo-fill" style="font-size: 2rem; color: #11ABE9;"></i>','/Ciudad')
-insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'Tipo Actividad','<i class="bi-tools" style="font-size: 2rem; color: #11ABE9;"></i>','/Tipo_Actividad')
-insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'Tipo Hora Extra','<i class="bi-clock" style="font-size: 2rem; color: #11ABE9;"></i>','/Tipo_Hora_Extra')
-insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'Tipo Documento','<i class="bi-filetype-doc" style="font-size: 2rem; color: #11ABE9;"></i>','/Tipo_Documento')
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'País','<i class="bi-geo-alt" style="font-size: 2rem; color: #11ABE9;"></i>','/Pais') --24
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'Departamento','<i class="bi-geo-fill" style="font-size: 2rem; color: #11ABE9;"></i>','/Departamento') --25
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'Ciudad','<i class="bi-geo-fill" style="font-size: 2rem; color: #11ABE9;"></i>','/Ciudad') --26
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'Tipo Actividad','<i class="bi-tools" style="font-size: 2rem; color: #11ABE9;"></i>','/Tipo_Actividad') --27
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'Tipo Hora Extra','<i class="bi-clock" style="font-size: 2rem; color: #11ABE9;"></i>','/Tipo_Hora_Extra') --28
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'Tipo Documento','<i class="bi-filetype-doc" style="font-size: 2rem; color: #11ABE9;"></i>','/Tipo_Documento') --29
 
 insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (9, 'Usuario','<i class="bi-person" style="font-size: 2rem; color: #11ABE9;"></i>','/Usuario')
 insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (9, 'Permiso Usuario','<i class="bi-lock" style="font-size: 2rem; color: #11ABE9;"></i>','/Permiso_Usuario')
@@ -438,7 +450,7 @@ SELECT	@Crear = dbo.Fun_PermisoUsuario('Crear',@IdUsuario, @SubMenu)
 			END
 		ELSE
 			BEGIN
-				SET @Resultado = 'Error*El Usuario '+ @NombreUsuario + ' no tiene permiso para crear País' 
+				SET @Resultado = 'Error*El usuario '+ @NombreUsuario + ' no tiene permiso para crear país' 
 			END
 	SELECT @Resultado
 END
@@ -467,11 +479,11 @@ SELECT @Modificar = dbo.Fun_PermisoUsuario('Editar',@IdUsuario, @SubMenu)
 				IF @Modificar > 0
 					BEGIN
 						UPDATE Pais SET  Nombre = @NombrePais, Activo = @Activo WHERE Id = @IdPais
-					    SET @Resultado = 'OK*Se guardaron los cambios del País ' + @NombrePais+ ' correctamente'
+					    SET @Resultado = 'OK*Se guardaron los cambios del país ' + @NombrePais+ ' correctamente'
 					END
 				ELSE
 					BEGIN
-						SET @Resultado = 'Error*El Usuario '+ @NombreUsuario + ' no tiene permiso para realizar cambios al País' 
+						SET @Resultado = 'Error*El usuario '+ @NombreUsuario + ' no tiene permiso para realizar cambios al país' 
 					END
 	SELECT @Resultado
 END
@@ -513,20 +525,199 @@ SELECT @NombrePais = Nombre FROM Pais WHERE Id = @IdPais
 				SELECT @validar = 0 --COUNT(1) FROM Departamento WHERE IdPais = @IdPais
 				IF @validar > 0 
 					BEGIN
-						SET @Resultado = 'Error*El País ' + @NombrePais +' no se puede Eliminar, actualmente se encuentra en Uso'	
+						SET @Resultado = 'Error*El país ' + @NombrePais +' no se puede eliminar, actualmente se encuentra en eso'	
 					END
 				ELSE
 					BEGIN
 						DELETE Pais WHERE Id = @IdPais
-						SET @Resultado = 'OK*Se Elimino el País correctamente'	
+						SET @Resultado = 'OK*Se elimino el país correctamente'	
 					END								
 			END
 		ELSE
 			BEGIN
-				SET @Resultado = 'Error*El Usuario '+ @NombreUsuario + ' no tiene permiso para Eliminar el País' 
+				SET @Resultado = 'Error*El usuario '+ @NombreUsuario + ' no tiene permiso para eliminar el país' 
 			END
 	SELECT @Resultado
 END
 
 GO
 
+CREATE TABLE Departamento 
+(Id int identity(1,1) Primary key ,
+IdPais int,
+Nombre varchar(255),
+Activo int default 1,
+CreateBy int,
+DateCreate datetime,
+unique(Nombre)
+)
+
+ALTER TABLE Departamento ADD CONSTRAINT FK_IdCreateByDepto FOREIGN KEY (CreateBy ) references Usuario(Id)
+ALTER TABLE Departamento ADD CONSTRAINT FK_IdpaisDepto FOREIGN KEY (IdPais ) references Pais(Id)
+
+go
+
+insert into Departamento (IdPais, Nombre, CreateBy, DateCreate)values (1,'Amazonas',1,getdate())
+insert into Departamento (IdPais, Nombre, CreateBy, DateCreate)values (1,'Antioquia',1,getdate())
+insert into Departamento (IdPais, Nombre, CreateBy, DateCreate)values (1,'Arauca',1,getdate())
+insert into Departamento (IdPais, Nombre, CreateBy, DateCreate)values (1,'Atlántico',1,getdate())
+insert into Departamento (IdPais, Nombre, CreateBy, DateCreate)values (1,'Bogotá',1,getdate())
+insert into Departamento (IdPais, Nombre, CreateBy, DateCreate)values (1,'Bolívar',1,getdate())
+insert into Departamento (IdPais, Nombre, CreateBy, DateCreate)values (1,'Boyacá',1,getdate())
+insert into Departamento (IdPais, Nombre, CreateBy, DateCreate)values (1,'Caldas',1,getdate())
+insert into Departamento (IdPais, Nombre, CreateBy, DateCreate)values (1,'Caquetá',1,getdate())
+insert into Departamento (IdPais, Nombre, CreateBy, DateCreate)values (1,'Casanare',1,getdate())
+insert into Departamento (IdPais, Nombre, CreateBy, DateCreate)values (1,'Cauca',1,getdate())
+insert into Departamento (IdPais, Nombre, CreateBy, DateCreate)values (1,'Cesar',1,getdate())
+insert into Departamento (IdPais, Nombre, CreateBy, DateCreate)values (1,'Chocó',1,getdate())
+insert into Departamento (IdPais, Nombre, CreateBy, DateCreate)values (1,'Córdoba',1,getdate())
+insert into Departamento (IdPais, Nombre, CreateBy, DateCreate)values (1,'Cundinamarca',1,getdate())
+insert into Departamento (IdPais, Nombre, CreateBy, DateCreate)values (1,'Guainía',1,getdate())
+insert into Departamento (IdPais, Nombre, CreateBy, DateCreate)values (1,'Guaviare',1,getdate())
+insert into Departamento (IdPais, Nombre, CreateBy, DateCreate)values (1,'Huila',1,getdate())
+insert into Departamento (IdPais, Nombre, CreateBy, DateCreate)values (1,'La Guajira',1,getdate())
+insert into Departamento (IdPais, Nombre, CreateBy, DateCreate)values (1,'Magdalena',1,getdate())
+insert into Departamento (IdPais, Nombre, CreateBy, DateCreate)values (1,'Meta',1,getdate())
+insert into Departamento (IdPais, Nombre, CreateBy, DateCreate)values (1,'Nariño',1,getdate())
+insert into Departamento (IdPais, Nombre, CreateBy, DateCreate)values (1,'Norte de Santander',1,getdate())
+insert into Departamento (IdPais, Nombre, CreateBy, DateCreate)values (1,'Putumayo',1,getdate())
+insert into Departamento (IdPais, Nombre, CreateBy, DateCreate)values (1,'Quindío',1,getdate())
+insert into Departamento (IdPais, Nombre, CreateBy, DateCreate)values (1,'Risaralda',1,getdate())
+insert into Departamento (IdPais, Nombre, CreateBy, DateCreate)values (1,'San Andrés y Providencia',1,getdate())
+insert into Departamento (IdPais, Nombre, CreateBy, DateCreate)values (1,'Santander',1,getdate())
+insert into Departamento (IdPais, Nombre, CreateBy, DateCreate)values (1,'Sucre',1,getdate())
+insert into Departamento (IdPais, Nombre, CreateBy, DateCreate)values (1,'Tolima',1,getdate())
+insert into Departamento (IdPais, Nombre, CreateBy, DateCreate)values (1,'Valle del Cauca',1,getdate())
+insert into Departamento (IdPais, Nombre, CreateBy, DateCreate)values (1,'Vaupés',1,getdate())
+insert into Departamento (IdPais, Nombre, CreateBy, DateCreate)values (1,'Vichada',1,getdate())
+
+
+go
+
+CREATE PROCEDURE [dbo].[SP_GridDepartamento]
+AS
+BEGIN
+	SELECT	Id, 
+			Nombre, 
+			dbo.Fun_BuscarNombrePais(IdPais) As NombrePais,
+			CASE Activo
+			WHEN 1 THEN 'Activo'
+			ELSE 'Inactivo'
+			END as Estado,
+			dbo.Fun_BuscarNombreUsuario(CreateBy) As CreateBy,
+			CONVERT(varchar(255),DateCreate,20) As FechaCreacion
+			FROM Departamento
+END
+
+go
+
+CREATE PROCEDURE [dbo].[SP_CrearDepartamento] @IdUser varchar(255), @IdPais int, @NombreDepartamento varchar(255), @Resultado varchar(255) OUTPUT
+AS
+BEGIN
+DECLARE @Crear INT, @IdUsuario INT, @NombreUsuario VARCHAR(255), @SubMenu VARCHAR(255)
+SELECT @IdUsuario = Id FROM Usuario WHERE IdUser = @IdUser
+
+SELECT @NombreUsuario = Nombre FROM Usuario WHERE IdUser = @IdUser
+SET @SubMenu = '/Departamento'
+SELECT	@Crear = dbo.Fun_PermisoUsuario('Crear',@IdUsuario, @SubMenu)	
+		IF @Crear > 0
+			BEGIN
+				INSERT INTO Departamento (IdPais,Nombre,CreateBy, DateCreate) VALUES ( @IdPais, @NombreDepartamento, @IdUsuario, GETDATE()) 
+				SET @Resultado = 'OK*Se a creado el Departamento ' + @NombreDepartamento+ ' correctamente'
+			END
+		ELSE
+			BEGIN
+				SET @Resultado = 'Error*El usuario '+ @NombreUsuario + ' no tiene permiso para crear departamento' 
+			END
+	SELECT @Resultado
+END
+
+go
+
+CREATE PROCEDURE SP_CargarDatosDepartamento @IdDepartamento Int
+AS
+BEGIN
+	SELECT IdPais,
+	Nombre,
+	Activo
+	FROM Departamento
+	WHERE Id = @IdDepartamento
+END
+
+go
+
+CREATE PROCEDURE [dbo].[SP_GuardarCambiosDepartamento] @IdPais int, @IdDepartamento int,@IdUser varchar(255), @NombreDepartamento varchar(255), @Activo int, @Resultado varchar(255) OUTPUT
+AS
+BEGIN
+DECLARE @Modificar INT, @IdUsuario INT, @NombreUsuario VARCHAR(255), @SubMenu VARCHAR(255)
+SET @SubMenu = '/Departamento'
+SELECT @IdUsuario = Id FROM Usuario WHERE IdUser = @IdUser
+SELECT @NombreUsuario = Nombre FROM Usuario WHERE IdUser = @IdUser
+SELECT @Modificar = dbo.Fun_PermisoUsuario('Editar',@IdUsuario, @SubMenu)	
+				IF @Modificar > 0
+					BEGIN
+						UPDATE Departamento SET IdPais = @IdPais,
+												Nombre = @NombreDepartamento, 
+												Activo = @Activo 
+											WHERE Id = @IdDepartamento
+					    SET @Resultado = 'OK*Se guardaron los cambios del departamento ' + @NombreDepartamento+ ' correctamente'
+					END
+				ELSE
+					BEGIN
+						SET @Resultado = 'Error*El usuario '+ @NombreUsuario + ' no tiene permiso para realizar cambios al departamento' 
+					END
+	SELECT @Resultado
+END
+
+go
+
+CREATE PROCEDURE [dbo].[SP_ListaDepartamento]
+AS
+BEGIN
+	SELECT Id, Nombre FROM Departamento WHERE Activo = 1
+END
+
+go
+
+CREATE FUNCTION Fun_BuscarNombreDepartamento(@IdDepartamento INT)
+RETURNS VARCHAR(255)
+AS BEGIN
+DECLARE @NombreDepartamento VARCHAR(255)
+	SELECT	@NombreDepartamento = Nombre
+	FROM	Departamento
+	WHERE	Id = @IdDepartamento 
+	RETURN @NombreDepartamento
+END
+
+go
+
+CREATE PROCEDURE [dbo].[SP_EliminarDepartamento] @IdUser varchar(255), @IdDepartamento int, @Resultado varchar(255) OUTPUT
+AS
+BEGIN
+DECLARE @Eliminar INT, @IdUsuario INT, @NombreUsuario VARCHAR(255), @validar INT, @NombreDepartamento varchar(255), @SubMenu VARCHAR(255)
+SET @SubMenu = '/Departamento'
+SELECT @IdUsuario = Id FROM Usuario WHERE IdUser = @IdUser
+SELECT @NombreUsuario = Nombre FROM Usuario WHERE IdUser = @IdUser
+SELECT @NombreDepartamento = Nombre FROM Departamento WHERE Id = @IdDepartamento
+	SELECT	@Eliminar = dbo.Fun_PermisoUsuario('Eliminar',@IdUsuario, @SubMenu)	
+		IF @Eliminar > 0
+			BEGIN	
+				SELECT @validar = COUNT(1) FROM Ciudad WHERE IdDepartamento = @IdDepartamento
+				IF @validar > 0 
+					BEGIN
+						SET @Resultado = 'Error*El departamento ' + @NombreDepartamento +' no se puede eliminar, actualmente se encuentra en uso'	
+					END
+				ELSE
+					BEGIN
+						DELETE Departamento WHERE Id = @IdDepartamento
+						SET @Resultado = 'OK*Se Elimino el Departamento correctamente'	
+					END								
+			END
+		ELSE
+			BEGIN
+				SET @Resultado = 'Error*El usuario '+ @NombreUsuario + ' no tiene permiso para eliminar el departamento' 
+			END
+	SELECT @Resultado
+END
+
+go
