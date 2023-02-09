@@ -72,6 +72,9 @@
     <Compile Include="DataEntities\DataPais.cs" />
     <Compile Include="DataEntities\DataRol.cs" />
     <Compile Include="DataEntities\DataSubMenu.cs" />
+    <Compile Include="DataEntities\DataTipoDocumento.cs" />
+    <Compile Include="DataEntities\DataTipoHoraExtra.cs" />
+    <Compile Include="DataEntities\DataTipoUnidadMedida.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

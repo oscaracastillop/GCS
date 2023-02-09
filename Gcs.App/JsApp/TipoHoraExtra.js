@@ -1,17 +1,14 @@
-﻿function CrearCiudad() {
+﻿function CrearTipoHoraExtra() {
     let User = Cookies.get('IdUser');
-    let IdDepartamento = $('#SelectDepartamento').val();
-    let NombreCiudad = $('#InputNombreCiudad').val()
-    if (IdDepartamento == -1) {
-        Swal.fire('Mensaje del Sistema', 'Seleccione el Departamento', 'info');
-    } else if (NombreCiudad == null || NombreCiudad == '' || NombreCiudad == undefined) {
-        Swal.fire('Mensaje del Sistema', 'Ingrese nombre del Ciudad', 'info');
+    let NombreTipoHoraExtra = $('#InputNombreTipoHoraExtra').val()
+    if (NombreTipoHoraExtra == null || NombreTipoHoraExtra == '' || NombreTipoHoraExtra == undefined) {
+        Swal.fire('Mensaje del Sistema', 'Ingrese nombre del tipo hora extra', 'info');
     } else {
         $.ajax({
             type: 'POST',
             dataType: 'json',
-            url: '/Ciudad/CrearCiudad',
-            data: { IdUser: User, IdDepartamento: IdDepartamento, NombreCiudad: NombreCiudad },
+            url: '/TipoHoraExtra/CrearTipoHoraExtra',
+            data: { IdUser: User, NombreTipoHoraExtra: NombreTipoHoraExtra },
             success: function (resultado) {
                 valor = resultado.split('*');
                 if (valor[0] == 'OK') {
@@ -20,7 +17,7 @@
                         text: valor[1],
                         icon: 'success',
                     }).then((result) => {
-                        window.location.href = '/Ciudad';
+                        window.location.href = '/TipoHoraExtra';
                     })
                 } else {
                     Swal.fire('Mensaje del Sistema', valor[1], 'info');
@@ -30,28 +27,19 @@
     }
 }
 
-function GuardarCambiosCiudad() {
+function GuardarCambiosTipoHoraExtra() {
     let User = Cookies.get('IdUser');
-    let IdDepartamento = $('#SelectEDepartamento').val();
-    let IdCiudad = Cookies.get('IdEdit');
-    let NombreCiudad = $('#InputENombreCiudad').val();
-    let Activo = $('#SelectEstadoCiudad').val();
-    if (NombreCiudad == '' || NombreCiudad == null || NombreCiudad == undefined) {
-        Swal.fire('Mensaje del Sistema', 'Ingrese nombre del Ciudad', 'info');
-    } else if (IdDepartamento == -1) {
-        Swal.fire('Mensaje del Sistema', 'Seleccione el Departamento', 'info');
+    let IdTipoHoraExtra = Cookies.get('IdEdit');
+    let NombreTipoHoraExtra = $('#InputENombreTipoHoraExtra').val();
+    let Activo = $('#SelectEstadoTipoHoraExtra').val();
+    if (NombreTipoHoraExtra == '' || NombreTipoHoraExtra == null || NombreTipoHoraExtra == undefined) {
+        Swal.fire('Mensaje del Sistema', 'Ingrese nombre del tipo hora extra', 'info');
     } else {
         $.ajax({
             type: 'POST',
             dataType: 'json',
-            url: '/Ciudad/GuardarCambiosCiudad',
-            data: {
-                IdDepartamento: IdDepartamento,
-                IdCiudad: IdCiudad,
-                IdUser: User,
-                NombreCiudad: NombreCiudad,
-                Activo: Activo
-            },
+            url: '/TipoHoraExtra/GuardarCambiosTipoHoraExtra',
+            data: { IdTipoHoraExtra: IdTipoHoraExtra, IdUser: User, NombreTipoHoraExtra: NombreTipoHoraExtra, Activo: Activo },
             success: function (resultado) {
                 valor = resultado.split('*');
                 if (valor[0] == 'OK') {
@@ -60,7 +48,7 @@ function GuardarCambiosCiudad() {
                         text: valor[1],
                         icon: 'success',
                     }).then((result) => {
-                        window.location.href = '/Ciudad';
+                        window.location.href = '/TipoHoraExtra';
                     })
                 } else {
                     Swal.fire('Mensaje del Sistema', valor[1], 'info');
@@ -70,16 +58,16 @@ function GuardarCambiosCiudad() {
     }
 }
 
-function EliminarCiudad() {
+function EliminarTipoHoraExtra() {
     let IdUser = Cookies.get('IdUser');
-    let IdCiudad = $('#IdCiudad').text();
+    let IdTipoHoraExtra = $('#IdTipoHoraExtra').text();
     $.ajax({
         type: 'POST',
         dataType: 'json',
-        url: '/Ciudad/EliminarCiudad',
+        url: '/TipoHoraExtra/EliminarTipoHoraExtra',
         data: {
             IdUser: IdUser,
-            IdCiudad: IdCiudad
+            IdTipoHoraExtra: IdTipoHoraExtra
         },
         success: function (resultado) {
             valor = resultado.split('*');
@@ -98,44 +86,42 @@ function EliminarCiudad() {
     });
 }
 
-function CargarDatosCiudad() {
-    let IdCiudad = Cookies.get('IdEdit');
-    ListaDepartamento("E");
+function CargarDatosTipoHoraExtra() {
+    let IdTipoHoraExtra = Cookies.get('IdEdit');
     $.ajax({
         type: 'POST',
         dataType: 'json',
-        url: '/Ciudad/CargarDatosCiudad',
-        data: { IdCiudad: IdCiudad },
+        url: '/TipoHoraExtra/CargarDatosTipoHoraExtra',
+        data: { IdTipoHoraExtra: IdTipoHoraExtra },
         success: function (resultado) {
-            $('#SelectEDepartamento').val(resultado[0].IdDepartamento);
-            $('#InputENombreCiudad').val(resultado[0].Nombre);
-            $('#SelectEstadoCiudad').val(resultado[0].Activo);
+            $('#InputENombreTipoHoraExtra').val(resultado[0].Nombre);
+            $('#SelectEstadoTipoHoraExtra').val(resultado[0].Activo);
 
         }
     });
 }
 
-function ListaCiudad(Tipo) {
+function ListaTipoHoraExtra(Tipo) {
     $.ajax({
         type: 'POST',
         dataType: 'json',
-        url: '/Ciudad/ListaCiudad',
+        url: '/TipoHoraExtra/ListaTipoHoraExtra',
         data: {},
         success: function (resultado) {
             var contador = 0;
             if (Tipo == "N") {
                 if (resultado.length === 0) {
-                    $("#SelectCiudad").append('<option value="">No hay Datos</option>');
+                    $("#SelectTipoHoraExtra").append('<option value="">No hay Datos</option>');
                 } else {
-                    $("#SelectCiudad").empty().append('<option value="-1">Seleccione Ciudad</option>');
+                    $("#SelectTipoHoraExtra").empty().append('<option value="-1">Seleccione tipo hora extra</option>');
                     $.each(resultado, function () {
-                        $("#SelectCiudad").append('<option value="' + resultado[contador].Id + '">' + resultado[contador].Nombre + '</option>');
+                        $("#SelectTipoHoraExtra").append('<option value="' + resultado[contador].Id + '">' + resultado[contador].Nombre + '</option>');
                         contador++;
                     });
                 }
             } else {
                 $.each(resultado, function () {
-                    $("#SelectECiudad").append('<option value="' + resultado[contador].Id + '">' + resultado[contador].Nombre + '</option>');
+                    $("#SelectETipoHoraExtra").append('<option value="' + resultado[contador].Id + '">' + resultado[contador].Nombre + '</option>');
                     contador++;
                 });
             }
@@ -143,29 +129,29 @@ function ListaCiudad(Tipo) {
     });
 }
 
-function GridCiudad() {
-    let datatable = $('#gridCiudad').DataTable({
+function GridTipoHoraExtra() {
+    let datatable = $('#gridTipoHoraExtra').DataTable({
         "responsive": true,
         dom: 'B<"clear">frtip',
         buttons: [{
             extend: 'excelHtml5',
             footer: true,
-            title: 'Lista de Ciudades',
-            filename: 'Lista de Ciudades',
+            title: 'Lista de Tipo Hora Extra',
+            filename: 'Listado Tipo Hora Extra',
             text: 'Excel',
             exportOptions: {
-                columns: [1, 2, 3, 4, 5]
+                columns: [1, 2, 3, 4]
             }
         },
         {
             extend: 'pdfHtml5',
             download: 'open',
             footer: true,
-            title: 'Lista de Ciudades',
-            filename: 'Lista de Ciudades',
+            title: 'Lista de Tipo Hora Extra',
+            filename: 'Lista de Tipo Hora Extra',
             text: 'Pdf',
             exportOptions: {
-                columns: [1, 2, 3, 4, 5]
+                columns: [1, 2, 3, 4]
             }
         },
         {
@@ -174,37 +160,38 @@ function GridCiudad() {
             filename: 'Export_File_print',
             text: 'Imprimir',
             exportOptions: {
-                columns: [1, 2, 3, 4, 5]
+                columns: [1, 2, 3, 4]
             }
         },
         ],
         "order": [[1, "asc"]],
         destroy: true,
         "ajax": {
-            "url": '/Ciudad/GridCiudad',
+            "url": '/TipoHoraExtra/GridTipoHoraExtra',
             "type": "GET",
             "datatype": "json"
         },
         columns: [
             { "data": "Id", title: "Id", "visible": false },
-            { "data": "Nombre", title: "Ciudad" },
-            { "data": "NombreDepartamento", title: "Departamento" },
+            { "data": "Nombre", title: "TipoHoraExtra" },
             { "data": "Estado", title: "Estado" },
             { "data": "CreateBy", title: "Creado por" },
             { "data": "DateCreate", title: "Fecha Creación" },
             {
                 title: "Editar",
                 data: null,
-                defaultContent: '<a href="#" class="EditarCiudad" title="Editar"><i class="bi-pencil-fill" style="Color:green"></i></a>',
+                defaultContent: '<a href="#" class="EditarTipoHoraExtra" title="Editar"><i class="bi-pencil-fill" style="Color:green"></i></a>',
                 className: '',
                 orderable: false,
+                width: 50,
             },
             {
                 title: "Eliminar",
                 data: null,
-                defaultContent: '<a href="#" class="EliminarCiudad" title="Eliminar"><i class="bi-trash-fill" style="Color:red"></i></a>',
+                defaultContent: '<a href="#" class="EliminarTipoHoraExtra" title="Eliminar"><i class="bi-trash-fill" style="Color:red"></i></a>',
                 className: '',
                 orderable: false,
+                width: 50,
             },
         ],
         "language": {
@@ -215,21 +202,20 @@ function GridCiudad() {
             ['10 Filas', '25 Filas', '50 Filas', 'Ver Todo']
         ],
     });
-    $('#gridCiudad').on('click', '.EditarCiudad', function () {
+    $('#gridTipoHoraExtra').on('click', '.EditarTipoHoraExtra', function () {
         let data = datatable.row($(this).parents()).data();
         Cookies.set('IdEdit', data.Id);
-        window.location = "/Ciudad/Editar_Ciudad";
+        window.location = "/TipoHoraExtra/Editar_TipoHoraExtra";
     });
 
 
-    $('#gridCiudad').on('click', '.EliminarCiudad', function () {
+    $('#gridTipoHoraExtra').on('click', '.EliminarTipoHoraExtra', function () {
         let data = datatable.row($(this).parents()).data();
-        $('#ModalEliminarCiudad').modal('show');
-        $('#IdCiudad').text(data.Id);
-        $('#MensajeEliminarCiudad').text('Esta seguro de eliminar la ciudad ' + data.Nombre + ' ?');
+        $('#ModalEliminarTipoHoraExtra').modal('show');
+        $('#IdTipoHoraExtra').text(data.Id);
+        $('#MensajeEliminarTipoHoraExtra').text('Esta seguro de eliminar el tipo hora extra ' + data.Nombre + ' ?');
     })
 }
-
 
 
 

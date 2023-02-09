@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "Editar Pais";
+    ViewBag.Title = "Tipo Hora Extra";
 }
 
 <h7>
@@ -7,36 +7,37 @@
     &nbsp;<i class="bi-chevron-right"></i>&nbsp;
     <a href="/Modulo/Configuracion"><i>MODULO CONFIGURACIÓN</i></a>
     &nbsp;<i class="bi-chevron-right"></i>&nbsp;
-    <a href="/Pais"><i>PAÍS</i></a>
+    <a href="/TipoHoraExtra"><i>TIPO HORA EXTRA</i></a>
     &nbsp;<i class="bi-chevron-right"></i>&nbsp;
-    <label style="font-weight:bold">EDITAR PAÍS</label>
+    <label style="font-weight:bold">EDITAR TIPO HORA EXTRA</label>
     <hr />
 </h7>
 
 <table class="table table-borderless">
     <tr>
         <td>
-            <label><strong>Nombre País</strong></label>
-            <input class="form-control" type="text" id="InputENombrePais" autocomplete="off"/>
+            <label><strong>Nombre Tipo Hora Extra</strong></label>
+            <input class="form-control" type="text" id="InputENombreTipoHoraExtra" autocomplete="off" />
         </td>
     </tr>
     <tr>
         <td>
             <label><strong>Estado</strong></label>
-            <select class="form-control" id="SelectEstadoPais">
+            <select class="form-control" id="SelectEstadoTipoHoraExtra">
                 <option value="0">Inactivo</option>
                 <option value="1">Activo</option>
             </select>
         </td>
     <tr>
         <td>
-            <button class="btn btn-success btn-sm" onclick="GuardarCambiosPais()">Guardar Cambios</button>
+            <button class="btn btn-success btn-sm" onclick="GuardarCambiosTipoHoraExtra()">Guardar Cambios</button>
         </td>
     </tr>
 </table>
 
 <script>
     $(document).ready(function () {
-        CargarDatosPais();
+        CargarDatosTipoHoraExtra();
     });
 </script>
+

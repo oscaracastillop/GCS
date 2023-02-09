@@ -1,17 +1,14 @@
-﻿function CrearCiudad() {
+﻿function CrearTipoDocumento() {
     let User = Cookies.get('IdUser');
-    let IdDepartamento = $('#SelectDepartamento').val();
-    let NombreCiudad = $('#InputNombreCiudad').val()
-    if (IdDepartamento == -1) {
-        Swal.fire('Mensaje del Sistema', 'Seleccione el Departamento', 'info');
-    } else if (NombreCiudad == null || NombreCiudad == '' || NombreCiudad == undefined) {
-        Swal.fire('Mensaje del Sistema', 'Ingrese nombre del Ciudad', 'info');
+    let NombreTipoDocumento = $('#InputNombreTipoDocumento').val()
+    if (NombreTipoDocumento == null || NombreTipoDocumento == '' || NombreTipoDocumento == undefined) {
+        Swal.fire('Mensaje del Sistema', 'Ingrese nombre del tipo documento', 'info');
     } else {
         $.ajax({
             type: 'POST',
             dataType: 'json',
-            url: '/Ciudad/CrearCiudad',
-            data: { IdUser: User, IdDepartamento: IdDepartamento, NombreCiudad: NombreCiudad },
+            url: '/TipoDocumento/CrearTipoDocumento',
+            data: { IdUser: User, NombreTipoDocumento: NombreTipoDocumento },
             success: function (resultado) {
                 valor = resultado.split('*');
                 if (valor[0] == 'OK') {
@@ -20,7 +17,7 @@
                         text: valor[1],
                         icon: 'success',
                     }).then((result) => {
-                        window.location.href = '/Ciudad';
+                        window.location.href = '/TipoDocumento';
                     })
                 } else {
                     Swal.fire('Mensaje del Sistema', valor[1], 'info');
@@ -30,28 +27,19 @@
     }
 }
 
-function GuardarCambiosCiudad() {
+function GuardarCambiosTipoDocumento() {
     let User = Cookies.get('IdUser');
-    let IdDepartamento = $('#SelectEDepartamento').val();
-    let IdCiudad = Cookies.get('IdEdit');
-    let NombreCiudad = $('#InputENombreCiudad').val();
-    let Activo = $('#SelectEstadoCiudad').val();
-    if (NombreCiudad == '' || NombreCiudad == null || NombreCiudad == undefined) {
-        Swal.fire('Mensaje del Sistema', 'Ingrese nombre del Ciudad', 'info');
-    } else if (IdDepartamento == -1) {
-        Swal.fire('Mensaje del Sistema', 'Seleccione el Departamento', 'info');
+    let IdTipoDocumento = Cookies.get('IdEdit');
+    let NombreTipoDocumento = $('#InputENombreTipoDocumento').val();
+    let Activo = $('#SelectEstadoTipoDocumento').val();
+    if (NombreTipoDocumento == '' || NombreTipoDocumento == null || NombreTipoDocumento == undefined) {
+        Swal.fire('Mensaje del Sistema', 'Ingrese nombre del tipo documento', 'info');
     } else {
         $.ajax({
             type: 'POST',
             dataType: 'json',
-            url: '/Ciudad/GuardarCambiosCiudad',
-            data: {
-                IdDepartamento: IdDepartamento,
-                IdCiudad: IdCiudad,
-                IdUser: User,
-                NombreCiudad: NombreCiudad,
-                Activo: Activo
-            },
+            url: '/TipoDocumento/GuardarCambiosTipoDocumento',
+            data: { IdTipoDocumento: IdTipoDocumento, IdUser: User, NombreTipoDocumento: NombreTipoDocumento, Activo: Activo },
             success: function (resultado) {
                 valor = resultado.split('*');
                 if (valor[0] == 'OK') {
@@ -60,7 +48,7 @@ function GuardarCambiosCiudad() {
                         text: valor[1],
                         icon: 'success',
                     }).then((result) => {
-                        window.location.href = '/Ciudad';
+                        window.location.href = '/TipoDocumento';
                     })
                 } else {
                     Swal.fire('Mensaje del Sistema', valor[1], 'info');
@@ -70,16 +58,16 @@ function GuardarCambiosCiudad() {
     }
 }
 
-function EliminarCiudad() {
+function EliminarTipoDocumento() {
     let IdUser = Cookies.get('IdUser');
-    let IdCiudad = $('#IdCiudad').text();
+    let IdTipoDocumento = $('#IdTipoDocumento').text();
     $.ajax({
         type: 'POST',
         dataType: 'json',
-        url: '/Ciudad/EliminarCiudad',
+        url: '/TipoDocumento/EliminarTipoDocumento',
         data: {
             IdUser: IdUser,
-            IdCiudad: IdCiudad
+            IdTipoDocumento: IdTipoDocumento
         },
         success: function (resultado) {
             valor = resultado.split('*');
@@ -98,44 +86,42 @@ function EliminarCiudad() {
     });
 }
 
-function CargarDatosCiudad() {
-    let IdCiudad = Cookies.get('IdEdit');
-    ListaDepartamento("E");
+function CargarDatosTipoDocumento() {
+    let IdTipoDocumento = Cookies.get('IdEdit');
     $.ajax({
         type: 'POST',
         dataType: 'json',
-        url: '/Ciudad/CargarDatosCiudad',
-        data: { IdCiudad: IdCiudad },
+        url: '/TipoDocumento/CargarDatosTipoDocumento',
+        data: { IdTipoDocumento: IdTipoDocumento },
         success: function (resultado) {
-            $('#SelectEDepartamento').val(resultado[0].IdDepartamento);
-            $('#InputENombreCiudad').val(resultado[0].Nombre);
-            $('#SelectEstadoCiudad').val(resultado[0].Activo);
+            $('#InputENombreTipoDocumento').val(resultado[0].Nombre);
+            $('#SelectEstadoTipoDocumento').val(resultado[0].Activo);
 
         }
     });
 }
 
-function ListaCiudad(Tipo) {
+function ListaTipoDocumento(Tipo) {
     $.ajax({
         type: 'POST',
         dataType: 'json',
-        url: '/Ciudad/ListaCiudad',
+        url: '/TipoDocumento/ListaTipoDocumento',
         data: {},
         success: function (resultado) {
             var contador = 0;
             if (Tipo == "N") {
                 if (resultado.length === 0) {
-                    $("#SelectCiudad").append('<option value="">No hay Datos</option>');
+                    $("#SelectTipoDocumento").append('<option value="">No hay Datos</option>');
                 } else {
-                    $("#SelectCiudad").empty().append('<option value="-1">Seleccione Ciudad</option>');
+                    $("#SelectTipoDocumento").empty().append('<option value="-1">Seleccione tipo documento</option>');
                     $.each(resultado, function () {
-                        $("#SelectCiudad").append('<option value="' + resultado[contador].Id + '">' + resultado[contador].Nombre + '</option>');
+                        $("#SelectTipoDocumento").append('<option value="' + resultado[contador].Id + '">' + resultado[contador].Nombre + '</option>');
                         contador++;
                     });
                 }
             } else {
                 $.each(resultado, function () {
-                    $("#SelectECiudad").append('<option value="' + resultado[contador].Id + '">' + resultado[contador].Nombre + '</option>');
+                    $("#SelectETipoDocumento").append('<option value="' + resultado[contador].Id + '">' + resultado[contador].Nombre + '</option>');
                     contador++;
                 });
             }
@@ -143,29 +129,29 @@ function ListaCiudad(Tipo) {
     });
 }
 
-function GridCiudad() {
-    let datatable = $('#gridCiudad').DataTable({
+function GridTipoDocumento() {
+    let datatable = $('#gridTipoDocumento').DataTable({
         "responsive": true,
         dom: 'B<"clear">frtip',
         buttons: [{
             extend: 'excelHtml5',
             footer: true,
-            title: 'Lista de Ciudades',
-            filename: 'Lista de Ciudades',
+            title: 'Lista de Tipo Documento',
+            filename: 'Listado Tipo Documento',
             text: 'Excel',
             exportOptions: {
-                columns: [1, 2, 3, 4, 5]
+                columns: [1, 2, 3, 4]
             }
         },
         {
             extend: 'pdfHtml5',
             download: 'open',
             footer: true,
-            title: 'Lista de Ciudades',
-            filename: 'Lista de Ciudades',
+            title: 'Listado Tipo Documento',
+            filename: 'Listado Tipo Documento',
             text: 'Pdf',
             exportOptions: {
-                columns: [1, 2, 3, 4, 5]
+                columns: [1, 2, 3, 4]
             }
         },
         {
@@ -174,37 +160,38 @@ function GridCiudad() {
             filename: 'Export_File_print',
             text: 'Imprimir',
             exportOptions: {
-                columns: [1, 2, 3, 4, 5]
+                columns: [1, 2, 3, 4]
             }
         },
         ],
         "order": [[1, "asc"]],
         destroy: true,
         "ajax": {
-            "url": '/Ciudad/GridCiudad',
+            "url": '/TipoDocumento/GridTipoDocumento',
             "type": "GET",
             "datatype": "json"
         },
         columns: [
             { "data": "Id", title: "Id", "visible": false },
-            { "data": "Nombre", title: "Ciudad" },
-            { "data": "NombreDepartamento", title: "Departamento" },
+            { "data": "Nombre", title: "Tipo Documento" },
             { "data": "Estado", title: "Estado" },
             { "data": "CreateBy", title: "Creado por" },
             { "data": "DateCreate", title: "Fecha Creación" },
             {
                 title: "Editar",
                 data: null,
-                defaultContent: '<a href="#" class="EditarCiudad" title="Editar"><i class="bi-pencil-fill" style="Color:green"></i></a>',
+                defaultContent: '<a href="#" class="EditarTipoDocumento" title="Editar"><i class="bi-pencil-fill" style="Color:green"></i></a>',
                 className: '',
                 orderable: false,
+                width: 50,
             },
             {
                 title: "Eliminar",
                 data: null,
-                defaultContent: '<a href="#" class="EliminarCiudad" title="Eliminar"><i class="bi-trash-fill" style="Color:red"></i></a>',
+                defaultContent: '<a href="#" class="EliminarTipoDocumento" title="Eliminar"><i class="bi-trash-fill" style="Color:red"></i></a>',
                 className: '',
                 orderable: false,
+                width: 50,
             },
         ],
         "language": {
@@ -215,21 +202,20 @@ function GridCiudad() {
             ['10 Filas', '25 Filas', '50 Filas', 'Ver Todo']
         ],
     });
-    $('#gridCiudad').on('click', '.EditarCiudad', function () {
+    $('#gridTipoDocumento').on('click', '.EditarTipoDocumento', function () {
         let data = datatable.row($(this).parents()).data();
         Cookies.set('IdEdit', data.Id);
-        window.location = "/Ciudad/Editar_Ciudad";
+        window.location = "/TipoDocumento/Editar_TipoDocumento";
     });
 
 
-    $('#gridCiudad').on('click', '.EliminarCiudad', function () {
+    $('#gridTipoDocumento').on('click', '.EliminarTipoDocumento', function () {
         let data = datatable.row($(this).parents()).data();
-        $('#ModalEliminarCiudad').modal('show');
-        $('#IdCiudad').text(data.Id);
-        $('#MensajeEliminarCiudad').text('Esta seguro de eliminar la ciudad ' + data.Nombre + ' ?');
+        $('#ModalEliminarTipoDocumento').modal('show');
+        $('#IdTipoDocumento').text(data.Id);
+        $('#MensajeEliminarTipoDocumento').text('Esta seguro de eliminar el tipo documento ' + data.Nombre + ' ?');
     })
 }
-
 
 
 

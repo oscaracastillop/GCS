@@ -150,22 +150,22 @@ function GridDepartamento() {
         buttons: [{
             extend: 'excelHtml5',
             footer: true,
-            title: 'Lista de Paises',
-            filename: 'Listado Paises',
+            title: 'Lista de Departamentos',
+            filename: 'Lista de Departamentos',
             text: 'Excel',
             exportOptions: {
-                columns: [1, 2]
+                columns: [1, 2, 3, 4, 5]
             }
         },
         {
             extend: 'pdfHtml5',
             download: 'open',
             footer: true,
-            title: 'Reporte de Paises',
-            filename: 'Reporte de Paises',
+            title: 'Lista de Departamentos',
+            filename: 'Lista de Departamentos',
             text: 'Pdf',
             exportOptions: {
-                columns: [1, 2]
+                columns: [1, 2, 3, 4, 5]
             }
         },
         {
@@ -174,7 +174,7 @@ function GridDepartamento() {
             filename: 'Export_File_print',
             text: 'Imprimir',
             exportOptions: {
-                columns: [1, 2]
+                columns: [1, 2, 3, 4, 5]
             }
         },
         ],

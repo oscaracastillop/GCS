@@ -30,7 +30,7 @@
 function GuardarCambiosPais() {
     let User = Cookies.get('IdUser');
     let IdPais = Cookies.get('IdEdit');
-    let NombrePais = $('#InputEditarNombrePais').val();
+    let NombrePais = $('#InputENombrePais').val();
     let Activo = $('#SelectEstadoPais').val();
     if (NombrePais == '' || NombrePais == null || NombrePais == undefined) {
         Swal.fire('Mensaje del Sistema', 'Ingrese nombre del País', 'info');
@@ -137,21 +137,21 @@ function GridPais() {
             extend: 'excelHtml5',
             footer: true,
             title: 'Lista de Paises',
-            filename: 'Listado Paises',
+            filename: 'Lista de Paises',
             text: 'Excel',
             exportOptions: {
-                columns: [1, 2]
+                columns: [1, 2, 3, 4]
             }
         },
         {
             extend: 'pdfHtml5',
             download: 'open',
             footer: true,
-            title: 'Reporte de Paises',
-            filename: 'Reporte de Paises',
+            title: 'Lista de Paises',
+            filename: 'Lista de Paises',
             text: 'Pdf',
             exportOptions: {
-                columns: [1, 2]
+                columns: [1, 2, 3, 4]
             }
         },
         {
@@ -160,7 +160,7 @@ function GridPais() {
             filename: 'Export_File_print',
             text: 'Imprimir',
             exportOptions: {
-                columns: [1, 2]
+                columns: [1, 2, 3, 4]
             }
         },
         ],

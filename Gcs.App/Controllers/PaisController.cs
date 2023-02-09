@@ -11,7 +11,6 @@ namespace Gcs.App.Controllers
     {
         private readonly DataPais dataPais = new DataPais();
         // GET: Pais
-        #region Vistas
         public ActionResult Index()
         {
             return View();
@@ -24,9 +23,6 @@ namespace Gcs.App.Controllers
         {
             return View();
         }
-        #endregion
-
-        #region Metodos
         public JsonResult CrearPais(string IdUser, string NombrePais)
         {
             string resultado = dataPais.CrearPais(IdUser, NombrePais);
@@ -60,6 +56,5 @@ namespace Gcs.App.Controllers
             var data = dataPais.GridPais();
             return Json(new { data = data }, JsonRequestBehavior.AllowGet);
         }
-        #endregion
     }
 }

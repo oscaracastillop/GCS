@@ -246,7 +246,7 @@ insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (2, 'Permiso Empleado',
 insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (2, 'Préstamo','<i class="bi-cash-coin" style="font-size: 2rem; color: #11ABE9;"></i>','/Prestamo')
 insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (2, 'Nómina Empleado','<i class="bi-calculator" style="font-size: 2rem; color: #11ABE9;"></i>','/Nomina_Empleado')
 
-insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (3, 'Contratista','<i class="bi-person" style="font-size: 2rem; color: #11ABE9;"></i>','/Contratista')
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (3, 'Contratista','<i class="bi-person-gear" style="font-size: 2rem; color: #11ABE9;"></i>','/Contratista')
 insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (3, 'Actividad Realizada','<i class="bi-hammer" style="font-size: 2rem; color: #11ABE9;"></i>','/Actividad_Realizada')
 insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (3, 'Nómina Contratista','<i class="bi-calculator" style="font-size: 2rem; color: #11ABE9;"></i>','/Nomina_Contratista')
 
@@ -266,12 +266,13 @@ insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (6, 'Proveedor','<i cla
 insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (7, 'Maquínaria','<i class="bi-speedometer" style="font-size: 2rem; color: #11ABE9;"></i>','/Maquinaria')
 insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (7, 'Herramienta','<i class="bi-wrench-adjustable" style="font-size: 2rem; color: #11ABE9;"></i>','/Herramienta')
 
-insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'País','<i class="bi-geo-alt" style="font-size: 2rem; color: #11ABE9;"></i>','/Pais') --24
-insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'Departamento','<i class="bi-geo-fill" style="font-size: 2rem; color: #11ABE9;"></i>','/Departamento') --25
-insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'Ciudad','<i class="bi-geo-fill" style="font-size: 2rem; color: #11ABE9;"></i>','/Ciudad') --26
-insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'Tipo Actividad','<i class="bi-tools" style="font-size: 2rem; color: #11ABE9;"></i>','/Tipo_Actividad') --27
-insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'Tipo Hora Extra','<i class="bi-clock" style="font-size: 2rem; color: #11ABE9;"></i>','/Tipo_Hora_Extra') --28
-insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'Tipo Documento','<i class="bi-filetype-doc" style="font-size: 2rem; color: #11ABE9;"></i>','/Tipo_Documento') --29
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'País','<i class="bi-geo-fill" style="font-size: 2rem; color: #11ABE9;"></i>','/Pais')--24
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'Departamento','<i class="bi-geo-fill" style="font-size: 2rem; color: #11ABE9;"></i>','/Departamento')--25
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'Ciudad','<i class="bi-geo-fill" style="font-size: 2rem; color: #11ABE9;"></i>','/Ciudad')--26
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'Tipo Actividad','<i class="bi-tools" style="font-size: 2rem; color: #11ABE9;"></i>','/TipoActividad')--27
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'Tipo Hora Extra','<i class="bi-clock" style="font-size: 2rem; color: #11ABE9;"></i>','/TipoHoraExtra')--28
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'Tipo Documento','<i class="bi-filetype-doc" style="font-size: 2rem; color: #11ABE9;"></i>','/TipoDocumento')--29
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'Tipo Unidad Medida','<i class="bi-speedometer" style="font-size: 2rem; color: #11ABE9;"></i>','/TipoUnidadMedida')--30
 
 insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (9, 'Usuario','<i class="bi-person" style="font-size: 2rem; color: #11ABE9;"></i>','/Usuario')
 insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (9, 'Permiso Usuario','<i class="bi-lock" style="font-size: 2rem; color: #11ABE9;"></i>','/Permiso_Usuario')
@@ -338,6 +339,7 @@ insert into Permiso_SubMenu (IdSubMenu, IdUsuario, Permiso, Crear, Editar, Elimi
 insert into Permiso_SubMenu (IdSubMenu, IdUsuario, Permiso, Crear, Editar, Eliminar) Values (35,1,1,1,1,1)
 insert into Permiso_SubMenu (IdSubMenu, IdUsuario, Permiso, Crear, Editar, Eliminar) Values (36,1,1,1,1,1)
 insert into Permiso_SubMenu (IdSubMenu, IdUsuario, Permiso, Crear, Editar, Eliminar) Values (37,1,1,1,1,1)
+insert into Permiso_SubMenu (IdSubMenu, IdUsuario, Permiso, Crear, Editar, Eliminar) Values (38,1,1,1,1,1)
 
 go
 
@@ -1991,3 +1993,442 @@ SELECT @NombreCiudad = Nombre FROM Ciudad WHERE Id = @IdCiudad
 END
 
 go
+
+CREATE TABLE TipoDocumento 
+(Id int identity(1,1) Primary key ,
+Nombre varchar(255),
+Activo int default 1,
+CreateBy int,
+DateCreate datetime,
+unique(Nombre)
+)
+
+ALTER TABLE TipoDocumento ADD CONSTRAINT FK_IdCreateByTipoDocumento FOREIGN KEY (CreateBy ) references Usuario(Id)
+
+go
+
+insert into TipoDocumento(Nombre, CreateBy,DateCreate)values('Cédula Ciudadanáa',1,Getdate())
+insert into TipoDocumento(Nombre, CreateBy,DateCreate)values('Cédula Extranjería',1,Getdate())
+insert into TipoDocumento(Nombre, CreateBy,DateCreate)values('Rut',1,Getdate())
+insert into TipoDocumento(Nombre, CreateBy,DateCreate)values('Nit',1,Getdate())
+
+go
+
+CREATE PROCEDURE [dbo].[SP_GridTipoDocumento]
+AS
+BEGIN
+	SELECT	Id, 
+			Nombre, 
+			CASE Activo
+			WHEN 1 THEN 'Activo'
+			ELSE 'Inactivo'
+			END as Estado,
+			dbo.Fun_BuscarNombreUsuario(CreateBy) As CreateBy,
+			CONVERT(varchar(255),DateCreate,20) As DateCreate
+			FROM TipoDocumento
+END
+
+GO
+
+CREATE PROCEDURE [dbo].[SP_CrearTipoDocumento] @IdUser varchar(255), @NombreTipoDocumento varchar(255), @Resultado varchar(255) OUTPUT
+AS
+BEGIN
+DECLARE @Crear INT, @IdUsuario INT, @NombreUsuario VARCHAR(255), @SubMenu VARCHAR(255)
+SELECT @IdUsuario = Id FROM Usuario WHERE IdUser = @IdUser
+SELECT @NombreUsuario = Nombre FROM Usuario WHERE IdUser = @IdUser
+SET @SubMenu = '/TipoDocumento'
+SELECT	@Crear = dbo.Fun_PermisoUsuario('Crear',@IdUsuario, @SubMenu)	
+		IF @Crear > 0
+			BEGIN
+				INSERT INTO TipoDocumento (Nombre,CreateBy, DateCreate) VALUES (@NombreTipoDocumento, @IdUsuario, GETDATE()) 
+				SET @Resultado = 'OK*Se a creado el tipo documento ' + @NombreTipoDocumento+ ' correctamente'
+			END
+		ELSE
+			BEGIN
+				SET @Resultado = 'Error*El usuario '+ @NombreUsuario + ' no tiene permiso para crear tipo documento' 
+			END
+	SELECT @Resultado
+END
+
+go
+
+CREATE PROCEDURE SP_CargarDatosTipoDocumento @IdTipoDocumento Int
+AS
+BEGIN
+	SELECT Nombre,
+	Activo
+	FROM TipoDocumento
+	WHERE Id = @IdTipoDocumento
+END
+
+go
+
+CREATE PROCEDURE [dbo].[SP_GuardarCambiosTipoDocumento] @IdTipoDocumento int, @IdUser varchar(255), @NombreTipoDocumento varchar(255), @Activo int, @Resultado varchar(255) OUTPUT
+AS
+BEGIN
+DECLARE @Modificar INT, @IdUsuario INT, @NombreUsuario VARCHAR(255), @SubMenu VARCHAR(255)
+SET @SubMenu = '/TipoDocumento'
+SELECT @IdUsuario = Id FROM Usuario WHERE IdUser = @IdUser
+SELECT @NombreUsuario = Nombre FROM Usuario WHERE IdUser = @IdUser
+SELECT @Modificar = dbo.Fun_PermisoUsuario('Editar',@IdUsuario, @SubMenu)	
+				IF @Modificar > 0
+					BEGIN
+						UPDATE TipoDocumento SET  Nombre = @NombreTipoDocumento, Activo = @Activo WHERE Id = @IdTipoDocumento
+					    SET @Resultado = 'OK*Se guardaron los cambios del tipo documento ' + @NombreTipoDocumento+ ' correctamente'
+					END
+				ELSE
+					BEGIN
+						SET @Resultado = 'Error*El usuario '+ @NombreUsuario + ' no tiene permiso para realizar cambios al tipo documento' 
+					END
+	SELECT @Resultado
+END
+
+go
+
+CREATE PROCEDURE [dbo].[SP_ListaTipoDocumento]
+AS
+BEGIN
+	SELECT Id, Nombre FROM TipoDocumento WHERE Activo = 1
+END
+
+go
+
+CREATE FUNCTION Fun_BuscarNombreTipoDocumento(@IdTipoDocumento INT)
+RETURNS VARCHAR(255)
+AS BEGIN
+DECLARE @NombreTipoDocumento VARCHAR(255)
+	SELECT	@NombreTipoDocumento = Nombre
+	FROM	TipoDocumento
+	WHERE	Id = @IdTipoDocumento
+	RETURN @NombreTipoDocumento
+END
+
+go
+
+
+CREATE PROCEDURE [dbo].[SP_EliminarTipoDocumento] @IdUser varchar(255), @IdTipoDocumento int, @Resultado varchar(255) OUTPUT
+AS
+BEGIN
+DECLARE @Eliminar INT, @IdUsuario INT, @NombreUsuario VARCHAR(255), @validar INT, @NombreTipoDocumento varchar(255), @SubMenu VARCHAR(255)
+SET @SubMenu = '/TipoDocumento'
+SELECT @IdUsuario = Id FROM Usuario WHERE IdUser = @IdUser
+SELECT @NombreUsuario = Nombre FROM Usuario WHERE IdUser = @IdUser
+SELECT @NombreTipoDocumento = Nombre FROM Pais WHERE Id = @IdTipoDocumento
+	SELECT	@Eliminar = dbo.Fun_PermisoUsuario('Eliminar',@IdUsuario, @SubMenu)	
+		IF @Eliminar > 0
+			BEGIN	
+				SELECT @validar = 0 --COUNT(1) FROM Departamento WHERE IdTipoDocumento = @IdTipoDocumento
+				IF @validar > 0 
+					BEGIN
+						SET @Resultado = 'Error*El tipo documento ' + @NombreTipoDocumento +' no se puede eliminar, actualmente se encuentra en eso'	
+					END
+				ELSE
+					BEGIN
+						DELETE TipoDocumento WHERE Id = @IdTipoDocumento
+						SET @Resultado = 'OK*Se elimino el tipo documento correctamente'	
+					END								
+			END
+		ELSE
+			BEGIN
+				SET @Resultado = 'Error*El usuario '+ @NombreUsuario + ' no tiene permiso para eliminar el tipo documento' 
+			END
+	SELECT @Resultado
+END
+
+go
+
+CREATE TABLE TipoHoraExtra 
+(Id int identity(1,1) Primary key ,
+Nombre varchar(255),
+Activo int default 1,
+CreateBy int,
+DateCreate datetime,
+unique(Nombre)
+)
+
+ALTER TABLE TipoHoraExtra ADD CONSTRAINT FK_IdCreateByTipoHoraExtra FOREIGN KEY (CreateBy ) references Usuario(Id)
+
+go
+
+insert into TipoHoraExtra(Nombre, CreateBy,DateCreate)values('Hora extra diurna',1,Getdate())
+insert into TipoHoraExtra(Nombre, CreateBy,DateCreate)values('Hora extra nocturna',1,Getdate())
+insert into TipoHoraExtra(Nombre, CreateBy,DateCreate)values('Hora extra dominical o festiva diurna',1,Getdate())
+insert into TipoHoraExtra(Nombre, CreateBy,DateCreate)values('Hora extra dominical y festiva nocturna',1,Getdate())
+
+go
+
+CREATE PROCEDURE [dbo].[SP_GridTipoHoraExtra]
+AS
+BEGIN
+	SELECT	Id, 
+			Nombre, 
+			CASE Activo
+			WHEN 1 THEN 'Activo'
+			ELSE 'Inactivo'
+			END as Estado,
+			dbo.Fun_BuscarNombreUsuario(CreateBy) As CreateBy,
+			CONVERT(varchar(255),DateCreate,20) As DateCreate
+			FROM TipoHoraExtra
+END
+
+GO
+
+CREATE PROCEDURE [dbo].[SP_CrearTipoHoraExtra] @IdUser varchar(255), @NombreTipoHoraExtra varchar(255), @Resultado varchar(255) OUTPUT
+AS
+BEGIN
+DECLARE @Crear INT, @IdUsuario INT, @NombreUsuario VARCHAR(255), @SubMenu VARCHAR(255)
+SELECT @IdUsuario = Id FROM Usuario WHERE IdUser = @IdUser
+SELECT @NombreUsuario = Nombre FROM Usuario WHERE IdUser = @IdUser
+SET @SubMenu = '/TipoHoraExtra'
+SELECT	@Crear = dbo.Fun_PermisoUsuario('Crear',@IdUsuario, @SubMenu)	
+		IF @Crear > 0
+			BEGIN
+				INSERT INTO TipoHoraExtra (Nombre,CreateBy, DateCreate) VALUES (@NombreTipoHoraExtra, @IdUsuario, GETDATE()) 
+				SET @Resultado = 'OK*Se a creado el tipo hora extra ' + @NombreTipoHoraExtra+ ' correctamente'
+			END
+		ELSE
+			BEGIN
+				SET @Resultado = 'Error*El usuario '+ @NombreUsuario + ' no tiene permiso para crear tipo hora extra' 
+			END
+	SELECT @Resultado
+END
+
+go
+
+CREATE PROCEDURE SP_CargarDatosTipoHoraExtra @IdTipoHoraExtra Int
+AS
+BEGIN
+	SELECT Nombre,
+	Activo
+	FROM TipoHoraExtra
+	WHERE Id = @IdTipoHoraExtra
+END
+
+go
+
+CREATE PROCEDURE [dbo].[SP_GuardarCambiosTipoHoraExtra] @IdTipoHoraExtra int, @IdUser varchar(255), @NombreTipoHoraExtra varchar(255), @Activo int, @Resultado varchar(255) OUTPUT
+AS
+BEGIN
+DECLARE @Modificar INT, @IdUsuario INT, @NombreUsuario VARCHAR(255), @SubMenu VARCHAR(255)
+SET @SubMenu = '/TipoHoraExtra'
+SELECT @IdUsuario = Id FROM Usuario WHERE IdUser = @IdUser
+SELECT @NombreUsuario = Nombre FROM Usuario WHERE IdUser = @IdUser
+SELECT @Modificar = dbo.Fun_PermisoUsuario('Editar',@IdUsuario, @SubMenu)	
+				IF @Modificar > 0
+					BEGIN
+						UPDATE TipoHoraExtra SET  Nombre = @NombreTipoHoraExtra, Activo = @Activo WHERE Id = @IdTipoHoraExtra
+					    SET @Resultado = 'OK*Se guardaron los cambios del tipo hora extra ' + @NombreTipoHoraExtra+ ' correctamente'
+					END
+				ELSE
+					BEGIN
+						SET @Resultado = 'Error*El usuario '+ @NombreUsuario + ' no tiene permiso para realizar cambios al tipo hora extra' 
+					END
+	SELECT @Resultado
+END
+
+go
+
+CREATE PROCEDURE [dbo].[SP_ListaTipoHoraExtra]
+AS
+BEGIN
+	SELECT Id, Nombre FROM TipoHoraExtra WHERE Activo = 1
+END
+
+go
+
+CREATE FUNCTION Fun_BuscarNombreTipoHoraExtra(@IdTipoHoraExtra INT)
+RETURNS VARCHAR(255)
+AS BEGIN
+DECLARE @NombreTipoHoraExtra VARCHAR(255)
+	SELECT	@NombreTipoHoraExtra = Nombre
+	FROM	TipoHoraExtra
+	WHERE	Id = @IdTipoHoraExtra
+	RETURN @NombreTipoHoraExtra
+END
+
+go
+
+
+CREATE PROCEDURE [dbo].[SP_EliminarTipoHoraExtra] @IdUser varchar(255), @IdTipoHoraExtra int, @Resultado varchar(255) OUTPUT
+AS
+BEGIN
+DECLARE @Eliminar INT, @IdUsuario INT, @NombreUsuario VARCHAR(255), @validar INT, @NombreTipoHoraExtra varchar(255), @SubMenu VARCHAR(255)
+SET @SubMenu = '/TipoHoraExtra'
+SELECT @IdUsuario = Id FROM Usuario WHERE IdUser = @IdUser
+SELECT @NombreUsuario = Nombre FROM Usuario WHERE IdUser = @IdUser
+SELECT @NombreTipoHoraExtra = Nombre FROM Pais WHERE Id = @IdTipoHoraExtra
+	SELECT	@Eliminar = dbo.Fun_PermisoUsuario('Eliminar',@IdUsuario, @SubMenu)	
+		IF @Eliminar > 0
+			BEGIN	
+				SELECT @validar = 0 --COUNT(1) FROM Departamento WHERE IdTipoHoraExtra = @IdTipoHoraExtra
+				IF @validar > 0 
+					BEGIN
+						SET @Resultado = 'Error*El tipo hora extra ' + @NombreTipoHoraExtra +' no se puede eliminar, actualmente se encuentra en eso'	
+					END
+				ELSE
+					BEGIN
+						DELETE TipoHoraExtra WHERE Id = @IdTipoHoraExtra
+						SET @Resultado = 'OK*Se elimino el tipo hora extra correctamente'	
+					END								
+			END
+		ELSE
+			BEGIN
+				SET @Resultado = 'Error*El usuario '+ @NombreUsuario + ' no tiene permiso para eliminar el tipo hora extra' 
+			END
+	SELECT @Resultado
+END
+
+go
+
+CREATE TABLE TipoUnidadMedida 
+(Id int identity(1,1) Primary key ,
+Nombre varchar(255),
+Activo int default 1,
+CreateBy int,
+DateCreate datetime,
+unique(Nombre)
+)
+
+ALTER TABLE TipoUnidadMedida ADD CONSTRAINT FK_IdCreateByTipoUnidadMedida FOREIGN KEY (CreateBy ) references Usuario(Id)
+
+go
+insert into TipoUnidadMedida(Nombre, CreateBy,DateCreate)values('Unidad(s)',1,Getdate())
+insert into TipoUnidadMedida(Nombre, CreateBy,DateCreate)values('Milímetro(s)',1,Getdate())
+insert into TipoUnidadMedida(Nombre, CreateBy,DateCreate)values('Centímetro(s)',1,Getdate())
+insert into TipoUnidadMedida(Nombre, CreateBy,DateCreate)values('Metro(s)',1,Getdate())
+insert into TipoUnidadMedida(Nombre, CreateBy,DateCreate)values('Kilómetro(s)',1,Getdate())
+insert into TipoUnidadMedida(Nombre, CreateBy,DateCreate)values('Milígramo(s)',1,Getdate())
+insert into TipoUnidadMedida(Nombre, CreateBy,DateCreate)values('Gramo(s)',1,Getdate())
+insert into TipoUnidadMedida(Nombre, CreateBy,DateCreate)values('Kilogramo(s)',1,Getdate())
+insert into TipoUnidadMedida(Nombre, CreateBy,DateCreate)values('Milímetro(s) Cuadrado(s)',1,Getdate())
+insert into TipoUnidadMedida(Nombre, CreateBy,DateCreate)values('Centímetro(s) Cuadrado(s)',1,Getdate())
+insert into TipoUnidadMedida(Nombre, CreateBy,DateCreate)values('Metro(s) Cuadrado(s)',1,Getdate())
+insert into TipoUnidadMedida(Nombre, CreateBy,DateCreate)values('Milímetro(s) Cúbico(s)',1,Getdate())
+insert into TipoUnidadMedida(Nombre, CreateBy,DateCreate)values('Centímetro(s) Cúbico(s)',1,Getdate())
+insert into TipoUnidadMedida(Nombre, CreateBy,DateCreate)values('Metro(s) Cúbico(s)',1,Getdate())
+insert into TipoUnidadMedida(Nombre, CreateBy,DateCreate)values('Mililitro(s)',1,Getdate())
+insert into TipoUnidadMedida(Nombre, CreateBy,DateCreate)values('Litro(s)',1,Getdate())
+insert into TipoUnidadMedida(Nombre, CreateBy,DateCreate)values('Grado(s) Celsius',1,Getdate())
+insert into TipoUnidadMedida(Nombre, CreateBy,DateCreate)values('Grado(s) Fahrenheit',1,Getdate())
+
+go
+
+CREATE PROCEDURE [dbo].[SP_GridTipoUnidadMedida]
+AS
+BEGIN
+	SELECT	Id, 
+			Nombre, 
+			CASE Activo
+			WHEN 1 THEN 'Activo'
+			ELSE 'Inactivo'
+			END as Estado,
+			dbo.Fun_BuscarNombreUsuario(CreateBy) As CreateBy,
+			CONVERT(varchar(255),DateCreate,20) As DateCreate
+			FROM TipoUnidadMedida
+END
+
+GO
+
+CREATE PROCEDURE [dbo].[SP_CrearTipoUnidadMedida] @IdUser varchar(255), @NombreTipoUnidadMedida varchar(255), @Resultado varchar(255) OUTPUT
+AS
+BEGIN
+DECLARE @Crear INT, @IdUsuario INT, @NombreUsuario VARCHAR(255), @SubMenu VARCHAR(255)
+SELECT @IdUsuario = Id FROM Usuario WHERE IdUser = @IdUser
+SELECT @NombreUsuario = Nombre FROM Usuario WHERE IdUser = @IdUser
+SET @SubMenu = '/TipoUnidadMedida'
+SELECT	@Crear = dbo.Fun_PermisoUsuario('Crear',@IdUsuario, @SubMenu)	
+		IF @Crear > 0
+			BEGIN
+				INSERT INTO TipoUnidadMedida (Nombre,CreateBy, DateCreate) VALUES (@NombreTipoUnidadMedida, @IdUsuario, GETDATE()) 
+				SET @Resultado = 'OK*Se a creado el tipo unidad medida ' + @NombreTipoUnidadMedida+ ' correctamente'
+			END
+		ELSE
+			BEGIN
+				SET @Resultado = 'Error*El usuario '+ @NombreUsuario + ' no tiene permiso para crear tipo unidad medida' 
+			END
+	SELECT @Resultado
+END
+
+go
+
+CREATE PROCEDURE SP_CargarDatosTipoUnidadMedida @IdTipoUnidadMedida Int
+AS
+BEGIN
+	SELECT Nombre,
+	Activo
+	FROM TipoUnidadMedida
+	WHERE Id = @IdTipoUnidadMedida
+END
+
+go
+
+CREATE PROCEDURE [dbo].[SP_GuardarCambiosTipoUnidadMedida] @IdTipoUnidadMedida int, @IdUser varchar(255), @NombreTipoUnidadMedida varchar(255), @Activo int, @Resultado varchar(255) OUTPUT
+AS
+BEGIN
+DECLARE @Modificar INT, @IdUsuario INT, @NombreUsuario VARCHAR(255), @SubMenu VARCHAR(255)
+SET @SubMenu = '/TipoUnidadMedida'
+SELECT @IdUsuario = Id FROM Usuario WHERE IdUser = @IdUser
+SELECT @NombreUsuario = Nombre FROM Usuario WHERE IdUser = @IdUser
+SELECT @Modificar = dbo.Fun_PermisoUsuario('Editar',@IdUsuario, @SubMenu)	
+				IF @Modificar > 0
+					BEGIN
+						UPDATE TipoUnidadMedida SET  Nombre = @NombreTipoUnidadMedida, Activo = @Activo WHERE Id = @IdTipoUnidadMedida
+					    SET @Resultado = 'OK*Se guardaron los cambios del tipo unidad medida ' + @NombreTipoUnidadMedida+ ' correctamente'
+					END
+				ELSE
+					BEGIN
+						SET @Resultado = 'Error*El usuario '+ @NombreUsuario + ' no tiene permiso para realizar cambios al tipo unidad medida' 
+					END
+	SELECT @Resultado
+END
+
+go
+
+CREATE PROCEDURE [dbo].[SP_ListaTipoUnidadMedida]
+AS
+BEGIN
+	SELECT Id, Nombre FROM TipoUnidadMedida WHERE Activo = 1
+END
+
+go
+
+CREATE FUNCTION Fun_BuscarNombreTipoUnidadMedida(@IdTipoUnidadMedida INT)
+RETURNS VARCHAR(255)
+AS BEGIN
+DECLARE @NombreTipoUnidadMedida VARCHAR(255)
+	SELECT	@NombreTipoUnidadMedida = Nombre
+	FROM	TipoUnidadMedida
+	WHERE	Id = @IdTipoUnidadMedida
+	RETURN @NombreTipoUnidadMedida
+END
+
+go
+
+CREATE PROCEDURE [dbo].[SP_EliminarTipoUnidadMedida] @IdUser varchar(255), @IdTipoUnidadMedida int, @Resultado varchar(255) OUTPUT
+AS
+BEGIN
+DECLARE @Eliminar INT, @IdUsuario INT, @NombreUsuario VARCHAR(255), @validar INT, @NombreTipoUnidadMedida varchar(255), @SubMenu VARCHAR(255)
+SET @SubMenu = '/TipoUnidadMedida'
+SELECT @IdUsuario = Id FROM Usuario WHERE IdUser = @IdUser
+SELECT @NombreUsuario = Nombre FROM Usuario WHERE IdUser = @IdUser
+SELECT @NombreTipoUnidadMedida = Nombre FROM Pais WHERE Id = @IdTipoUnidadMedida
+	SELECT	@Eliminar = dbo.Fun_PermisoUsuario('Eliminar',@IdUsuario, @SubMenu)	
+		IF @Eliminar > 0
+			BEGIN	
+				SELECT @validar = 0
+				IF @validar > 0 
+					BEGIN
+						SET @Resultado = 'Error*El tipo unidad medida ' + @NombreTipoUnidadMedida +' no se puede eliminar, actualmente se encuentra en eso'	
+					END
+				ELSE
+					BEGIN
+						DELETE TipoUnidadMedida WHERE Id = @IdTipoUnidadMedida
+						SET @Resultado = 'OK*Se elimino el tipo unidad medida correctamente'	
+					END								
+			END
+		ELSE
+			BEGIN
+				SET @Resultado = 'Error*El usuario '+ @NombreUsuario + ' no tiene permiso para eliminar el tipo unidad medida' 
+			END
+	SELECT @Resultado
+END

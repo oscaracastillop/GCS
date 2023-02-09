@@ -2129,6 +2129,9 @@
     <Content Include="JsApp\Menu.js" />
     <Content Include="JsApp\Pais.js" />
     <Content Include="JsApp\SubMenu.js" />
+    <Content Include="JsApp\TipoDocumento.js" />
+    <Content Include="JsApp\TipoHoraExtra.js" />
+    <Content Include="JsApp\TipoUnidadMedida.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
@@ -4317,6 +4320,9 @@
     <Compile Include="Controllers\ModuloController.cs" />
     <Compile Include="Controllers\PaisController.cs" />
     <Compile Include="Controllers\SubMenuController.cs" />
+    <Compile Include="Controllers\TipoDocumentoController.cs" />
+    <Compile Include="Controllers\TipoHoraExtraController.cs" />
+    <Compile Include="Controllers\TipoUnidadMedidaController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -4377,6 +4383,15 @@
     <Content Include="Views\Ciudad\Index.cshtml" />
     <Content Include="Views\Ciudad\Crear_Ciudad.cshtml" />
     <Content Include="Views\Ciudad\Editar_Ciudad.cshtml" />
+    <Content Include="Views\TipoDocumento\Index.cshtml" />
+    <Content Include="Views\TipoDocumento\Crear_TipoDocumento.cshtml" />
+    <Content Include="Views\TipoDocumento\Editar_TipoDocumento.cshtml" />
+    <Content Include="Views\TipoHoraExtra\Index.cshtml" />
+    <Content Include="Views\TipoHoraExtra\Crear_TipoHoraExtra.cshtml" />
+    <Content Include="Views\TipoHoraExtra\Editar_TipoHoraExtra.cshtml" />
+    <Content Include="Views\TipoUnidadMedida\Index.cshtml" />
+    <Content Include="Views\TipoUnidadMedida\Crear_TipoUnidadMedida.cshtml" />
+    <Content Include="Views\TipoUnidadMedida\Editar_TipoUnidadMedida.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

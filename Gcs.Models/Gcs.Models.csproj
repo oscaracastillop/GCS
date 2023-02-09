@@ -46,6 +46,9 @@
     <Compile Include="Models\Menu.cs" />
     <Compile Include="Models\Pais.cs" />
     <Compile Include="Models\SubMenu.cs" />
+    <Compile Include="Models\TipoDocumento.cs" />
+    <Compile Include="Models\TipoHoraExtra.cs" />
+    <Compile Include="Models\TipoUnidadMedida.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
