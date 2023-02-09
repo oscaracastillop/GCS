@@ -2122,6 +2122,7 @@
     <Content Include="Content\StylesApp\App.css" />
     <Content Include="Content\StylesApp\Login.css" />
     <Content Include="Global.asax" />
+    <Content Include="JsApp\Ciudad.js" />
     <Content Include="JsApp\Departamento.js" />
     <Content Include="JsApp\Home.js" />
     <Content Include="JsApp\Login.js" />
@@ -4308,6 +4309,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\CiudadController.cs" />
     <Compile Include="Controllers\DepartamentoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -4372,6 +4374,9 @@
     <Content Include="Views\Departamento\Index.cshtml" />
     <Content Include="Views\Departamento\Crear_Departamento.cshtml" />
     <Content Include="Views\Departamento\Editar_Departamento.cshtml" />
+    <Content Include="Views\Ciudad\Index.cshtml" />
+    <Content Include="Views\Ciudad\Crear_Ciudad.cshtml" />
+    <Content Include="Views\Ciudad\Editar_Ciudad.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
