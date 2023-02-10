@@ -1,14 +1,14 @@
-﻿function CrearPais() {
+﻿function CrearArl() {
     let User = Cookies.get('IdUser');
-    let NombrePais = $('#InputNombrePais').val()
-    if (NombrePais == null || NombrePais == '' || NombrePais == undefined) {
-        Swal.fire('Mensaje del Sistema', 'Ingrese nombre del país', 'info');
+    let NombreArl = $('#InputNombreArl').val()
+    if (NombreArl == null || NombreArl == '' || NombreArl == undefined) {
+        Swal.fire('Mensaje del Sistema', 'Ingrese nombre de la arl', 'info');
     } else {
         $.ajax({
             type: 'POST',
             dataType: 'json',
-            url: '/Pais/CrearPais',
-            data: { IdUser: User, NombrePais: NombrePais },
+            url: '/Arl/CrearArl',
+            data: { IdUser: User, NombreArl: NombreArl },
             success: function (resultado) {
                 valor = resultado.split('*');
                 if (valor[0] == 'OK') {
@@ -17,7 +17,7 @@
                         text: valor[1],
                         icon: 'success',
                     }).then((result) => {
-                        window.location.href = '/Pais';
+                        window.location.href = '/Arl';
                     })
                 } else {
                     Swal.fire('Mensaje del Sistema', valor[1], 'info');
@@ -27,19 +27,19 @@
     }
 }
 
-function GuardarCambiosPais() {
+function GuardarCambiosArl() {
     let User = Cookies.get('IdUser');
-    let IdPais = Cookies.get('IdEdit');
-    let NombrePais = $('#InputENombrePais').val();
-    let Activo = $('#SelectEstadoPais').val();
-    if (NombrePais == '' || NombrePais == null || NombrePais == undefined) {
-        Swal.fire('Mensaje del Sistema', 'Ingrese nombre del País', 'info');
+    let IdArl = Cookies.get('IdEdit');
+    let NombreArl = $('#InputENombreArl').val();
+    let Activo = $('#SelectEstadoArl').val();
+    if (NombreArl == '' || NombreArl == null || NombreArl == undefined) {
+        Swal.fire('Mensaje del Sistema', 'Ingrese nombre de la arl', 'info');
     } else {
         $.ajax({
             type: 'POST',
             dataType: 'json',
-            url: '/Pais/GuardarCambiosPais',
-            data: { IdPais: IdPais, IdUser: User, NombrePais: NombrePais, Activo: Activo },
+            url: '/Arl/GuardarCambiosArl',
+            data: { IdArl: IdArl, IdUser: User, NombreArl: NombreArl, Activo: Activo },
             success: function (resultado) {
                 valor = resultado.split('*');
                 if (valor[0] == 'OK') {
@@ -48,7 +48,7 @@ function GuardarCambiosPais() {
                         text: valor[1],
                         icon: 'success',
                     }).then((result) => {
-                        window.location.href = '/Pais';
+                        window.location.href = '/Arl';
                     })
                 } else {
                     Swal.fire('Mensaje del Sistema', valor[1], 'info');
@@ -58,16 +58,16 @@ function GuardarCambiosPais() {
     }
 }
 
-function EliminarPais() {
+function EliminarArl() {
     let IdUser = Cookies.get('IdUser');
-    let IdPais = $('#IdPais').text();
+    let IdArl = $('#IdArl').text();
     $.ajax({
         type: 'POST',
         dataType: 'json',
-        url: '/Pais/EliminarPais',
+        url: '/Arl/EliminarArl',
         data: {
             IdUser: IdUser,
-            IdPais: IdPais
+            IdArl: IdArl
         },
         success: function (resultado) {
             valor = resultado.split('*');
@@ -86,42 +86,42 @@ function EliminarPais() {
     });
 }
 
-function CargarDatosPais() {
-    let IdPais = Cookies.get('IdEdit');
+function CargarDatosArl() {
+    let IdArl = Cookies.get('IdEdit');
     $.ajax({
         type: 'POST',
         dataType: 'json',
-        url: '/Pais/CargarDatosPais',
-        data: { IdPais: IdPais },
+        url: '/Arl/CargarDatosArl',
+        data: { IdArl: IdArl },
         success: function (resultado) {
-            $('#InputENombrePais').val(resultado[0].Nombre);
-            $('#SelectEstadoPais').val(resultado[0].Activo);
+            $('#InputENombreArl').val(resultado[0].Nombre);
+            $('#SelectEstadoArl').val(resultado[0].Activo);
 
         }
     });
 }
 
-function ListaPais(Tipo) {
+function ListaArl(Tipo) {
     $.ajax({
         type: 'POST',
         dataType: 'json',
-        url: '/Pais/ListaPais',
+        url: '/Arl/ListaArl',
         data: {},
         success: function (resultado) {
             var contador = 0;
             if (Tipo == "N") {
                 if (resultado.length === 0) {
-                    $("#SelectPais").append('<option value="">No hay Datos</option>');
+                    $("#SelectArl").append('<option value="">No hay Datos</option>');
                 } else {
-                    $("#SelectPais").empty().append('<option value="-1">Seleccione País</option>');
+                    $("#SelectArl").empty().append('<option value="-1">Seleccione arl</option>');
                     $.each(resultado, function () {
-                        $("#SelectPais").append('<option value="' + resultado[contador].Id + '">' + resultado[contador].Nombre + '</option>');
+                        $("#SelectArl").append('<option value="' + resultado[contador].Id + '">' + resultado[contador].Nombre + '</option>');
                         contador++;
                     });
                 }
             } else {
                 $.each(resultado, function () {
-                    $("#SelectEPais").append('<option value="' + resultado[contador].Id + '">' + resultado[contador].Nombre + '</option>');
+                    $("#SelectEArl").append('<option value="' + resultado[contador].Id + '">' + resultado[contador].Nombre + '</option>');
                     contador++;
                 });
             }
@@ -129,15 +129,15 @@ function ListaPais(Tipo) {
     });
 }
 
-function GridPais() {
-    let datatable = $('#gridPais').DataTable({
-         "responsive": true,
+function GridArl() {
+    let datatable = $('#gridArl').DataTable({
+        "responsive": true,
         dom: 'B<"clear">frtip',
         buttons: [{
             extend: 'excelHtml5',
             footer: true,
-            title: 'Lista de Paises',
-            filename: 'Lista de Paises',
+            title: 'Lista de Arl',
+            filename: 'Lista de Arl',
             text: 'Excel',
             exportOptions: {
                 columns: [1, 2, 3, 4]
@@ -147,8 +147,8 @@ function GridPais() {
             extend: 'pdfHtml5',
             download: 'open',
             footer: true,
-            title: 'Lista de Paises',
-            filename: 'Lista de Paises',
+            title: 'Lista de Arl',
+            filename: 'Lista de Arl',
             text: 'Pdf',
             exportOptions: {
                 columns: [1, 2, 3, 4]
@@ -165,22 +165,22 @@ function GridPais() {
         },
         ],
         "order": [[1, "asc"]],
-        destroy: true,       
+        destroy: true,
         "ajax": {
-            "url": '/Pais/GridPais',
+            "url": '/Arl/GridArl',
             "type": "GET",
             "datatype": "json"
         },
         columns: [
             { "data": "Id", title: "Id", "visible": false },
-            { "data": "Nombre", title: "Pais" },
+            { "data": "Nombre", title: "Arl" },
             { "data": "Estado", title: "Estado" },
             { "data": "CreateBy", title: "Creado por" },
             { "data": "DateCreate", title: "Fecha Creación" },
             {
                 title: "Editar",
                 data: null,
-                defaultContent: '<a href="#" class="EditarPais" title="Editar"><i class="bi-pencil-fill" style="Color:green"></i></a>',
+                defaultContent: '<a href="#" class="EditarArl" title="Editar"><i class="bi-pencil-fill" style="Color:green"></i></a>',
                 className: '',
                 orderable: false,
                 width: 50,
@@ -188,12 +188,12 @@ function GridPais() {
             {
                 title: "Eliminar",
                 data: null,
-                defaultContent: '<a href="#" class="EliminarPais" title="Eliminar"><i class="bi-trash-fill" style="Color:red"></i></a>',
+                defaultContent: '<a href="#" class="EliminarArl" title="Eliminar"><i class="bi-trash-fill" style="Color:red"></i></a>',
                 className: '',
                 orderable: false,
                 width: 50,
             },
-        ],         
+        ],
         "language": {
             "url": "//cdn.datatables.net/plug-ins/1.11.2/i18n/es_es.json"
         },
@@ -202,18 +202,18 @@ function GridPais() {
             ['10 Filas', '25 Filas', '50 Filas', 'Ver Todo']
         ],
     });
-    $('#gridPais').on('click', '.EditarPais', function () {
+    $('#gridArl').on('click', '.EditarArl', function () {
         let data = datatable.row($(this).parents()).data();
         Cookies.set('IdEdit', data.Id);
-        window.location = "/Pais/Editar_Pais";
+        window.location = "/Arl/Editar_Arl";
     });
 
 
-    $('#gridPais').on('click', '.EliminarPais', function () {
+    $('#gridArl').on('click', '.EliminarArl', function () {
         let data = datatable.row($(this).parents()).data();
-        $('#ModalEliminarPais').modal('show');
-        $('#IdPais').text(data.Id);
-        $('#MensajeEliminarPais').text('Esta seguro de eliminar el país ' + data.Nombre + ' ?');
+        $('#ModalEliminarArl').modal('show');
+        $('#IdArl').text(data.Id);
+        $('#MensajeEliminarArl').text('Esta seguro de eliminar la arl ' + data.Nombre + ' ?');
     })
 }
 

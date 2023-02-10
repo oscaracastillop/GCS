@@ -1,14 +1,14 @@
-﻿function CrearPais() {
+﻿function CrearCajaCompensacionFamiliar() {
     let User = Cookies.get('IdUser');
-    let NombrePais = $('#InputNombrePais').val()
-    if (NombrePais == null || NombrePais == '' || NombrePais == undefined) {
-        Swal.fire('Mensaje del Sistema', 'Ingrese nombre del país', 'info');
+    let NombreCajaCompensacionFamiliar = $('#InputNombreCajaCompensacionFamiliar').val()
+    if (NombreCajaCompensacionFamiliar == null || NombreCajaCompensacionFamiliar == '' || NombreCajaCompensacionFamiliar == undefined) {
+        Swal.fire('Mensaje del Sistema', 'Ingrese nombre de la caja compensación familiar', 'info');
     } else {
         $.ajax({
             type: 'POST',
             dataType: 'json',
-            url: '/Pais/CrearPais',
-            data: { IdUser: User, NombrePais: NombrePais },
+            url: '/CajaCompensacionFamiliar/CrearCajaCompensacionFamiliar',
+            data: { IdUser: User, NombreCajaCompensacionFamiliar: NombreCajaCompensacionFamiliar },
             success: function (resultado) {
                 valor = resultado.split('*');
                 if (valor[0] == 'OK') {
@@ -17,7 +17,7 @@
                         text: valor[1],
                         icon: 'success',
                     }).then((result) => {
-                        window.location.href = '/Pais';
+                        window.location.href = '/CajaCompensacionFamiliar';
                     })
                 } else {
                     Swal.fire('Mensaje del Sistema', valor[1], 'info');
@@ -27,19 +27,19 @@
     }
 }
 
-function GuardarCambiosPais() {
+function GuardarCambiosCajaCompensacionFamiliar() {
     let User = Cookies.get('IdUser');
-    let IdPais = Cookies.get('IdEdit');
-    let NombrePais = $('#InputENombrePais').val();
-    let Activo = $('#SelectEstadoPais').val();
-    if (NombrePais == '' || NombrePais == null || NombrePais == undefined) {
-        Swal.fire('Mensaje del Sistema', 'Ingrese nombre del País', 'info');
+    let IdCajaCompensacionFamiliar = Cookies.get('IdEdit');
+    let NombreCajaCompensacionFamiliar = $('#InputENombreCajaCompensacionFamiliar').val();
+    let Activo = $('#SelectEstadoCajaCompensacionFamiliar').val();
+    if (NombreCajaCompensacionFamiliar == '' || NombreCajaCompensacionFamiliar == null || NombreCajaCompensacionFamiliar == undefined) {
+        Swal.fire('Mensaje del Sistema', 'Ingrese nombre de la caja compensación familiar', 'info');
     } else {
         $.ajax({
             type: 'POST',
             dataType: 'json',
-            url: '/Pais/GuardarCambiosPais',
-            data: { IdPais: IdPais, IdUser: User, NombrePais: NombrePais, Activo: Activo },
+            url: '/CajaCompensacionFamiliar/GuardarCambiosCajaCompensacionFamiliar',
+            data: { IdCajaCompensacionFamiliar: IdCajaCompensacionFamiliar, IdUser: User, NombreCajaCompensacionFamiliar: NombreCajaCompensacionFamiliar, Activo: Activo },
             success: function (resultado) {
                 valor = resultado.split('*');
                 if (valor[0] == 'OK') {
@@ -48,7 +48,7 @@ function GuardarCambiosPais() {
                         text: valor[1],
                         icon: 'success',
                     }).then((result) => {
-                        window.location.href = '/Pais';
+                        window.location.href = '/CajaCompensacionFamiliar';
                     })
                 } else {
                     Swal.fire('Mensaje del Sistema', valor[1], 'info');
@@ -58,16 +58,16 @@ function GuardarCambiosPais() {
     }
 }
 
-function EliminarPais() {
+function EliminarCajaCompensacionFamiliar() {
     let IdUser = Cookies.get('IdUser');
-    let IdPais = $('#IdPais').text();
+    let IdCajaCompensacionFamiliar = $('#IdCajaCompensacionFamiliar').text();
     $.ajax({
         type: 'POST',
         dataType: 'json',
-        url: '/Pais/EliminarPais',
+        url: '/CajaCompensacionFamiliar/EliminarCajaCompensacionFamiliar',
         data: {
             IdUser: IdUser,
-            IdPais: IdPais
+            IdCajaCompensacionFamiliar: IdCajaCompensacionFamiliar
         },
         success: function (resultado) {
             valor = resultado.split('*');
@@ -86,42 +86,42 @@ function EliminarPais() {
     });
 }
 
-function CargarDatosPais() {
-    let IdPais = Cookies.get('IdEdit');
+function CargarDatosCajaCompensacionFamiliar() {
+    let IdCajaCompensacionFamiliar = Cookies.get('IdEdit');
     $.ajax({
         type: 'POST',
         dataType: 'json',
-        url: '/Pais/CargarDatosPais',
-        data: { IdPais: IdPais },
+        url: '/CajaCompensacionFamiliar/CargarDatosCajaCompensacionFamiliar',
+        data: { IdCajaCompensacionFamiliar: IdCajaCompensacionFamiliar },
         success: function (resultado) {
-            $('#InputENombrePais').val(resultado[0].Nombre);
-            $('#SelectEstadoPais').val(resultado[0].Activo);
+            $('#InputENombreCajaCompensacionFamiliar').val(resultado[0].Nombre);
+            $('#SelectEstadoCajaCompensacionFamiliar').val(resultado[0].Activo);
 
         }
     });
 }
 
-function ListaPais(Tipo) {
+function ListaCajaCompensacionFamiliar(Tipo) {
     $.ajax({
         type: 'POST',
         dataType: 'json',
-        url: '/Pais/ListaPais',
+        url: '/CajaCompensacionFamiliar/ListaCajaCompensacionFamiliar',
         data: {},
         success: function (resultado) {
             var contador = 0;
             if (Tipo == "N") {
                 if (resultado.length === 0) {
-                    $("#SelectPais").append('<option value="">No hay Datos</option>');
+                    $("#SelectCajaCompensacionFamiliar").append('<option value="">No hay Datos</option>');
                 } else {
-                    $("#SelectPais").empty().append('<option value="-1">Seleccione País</option>');
+                    $("#SelectCajaCompensacionFamiliar").empty().append('<option value="-1">Seleccione CajaCompensacionFamiliar</option>');
                     $.each(resultado, function () {
-                        $("#SelectPais").append('<option value="' + resultado[contador].Id + '">' + resultado[contador].Nombre + '</option>');
+                        $("#SelectCajaCompensacionFamiliar").append('<option value="' + resultado[contador].Id + '">' + resultado[contador].Nombre + '</option>');
                         contador++;
                     });
                 }
             } else {
                 $.each(resultado, function () {
-                    $("#SelectEPais").append('<option value="' + resultado[contador].Id + '">' + resultado[contador].Nombre + '</option>');
+                    $("#SelectECajaCompensacionFamiliar").append('<option value="' + resultado[contador].Id + '">' + resultado[contador].Nombre + '</option>');
                     contador++;
                 });
             }
@@ -129,15 +129,15 @@ function ListaPais(Tipo) {
     });
 }
 
-function GridPais() {
-    let datatable = $('#gridPais').DataTable({
-         "responsive": true,
+function GridCajaCompensacionFamiliar() {
+    let datatable = $('#gridCajaCompensacionFamiliar').DataTable({
+        "responsive": true,
         dom: 'B<"clear">frtip',
         buttons: [{
             extend: 'excelHtml5',
             footer: true,
-            title: 'Lista de Paises',
-            filename: 'Lista de Paises',
+            title: 'Lista de Caja Compensacion Familiar',
+            filename: 'Lista de Caja Compensacion Familiar',
             text: 'Excel',
             exportOptions: {
                 columns: [1, 2, 3, 4]
@@ -147,8 +147,8 @@ function GridPais() {
             extend: 'pdfHtml5',
             download: 'open',
             footer: true,
-            title: 'Lista de Paises',
-            filename: 'Lista de Paises',
+            title: 'Lista de Caja Compensacion Familiar',
+            filename: 'Lista de Caja Compensacion Familiar',
             text: 'Pdf',
             exportOptions: {
                 columns: [1, 2, 3, 4]
@@ -165,22 +165,22 @@ function GridPais() {
         },
         ],
         "order": [[1, "asc"]],
-        destroy: true,       
+        destroy: true,
         "ajax": {
-            "url": '/Pais/GridPais',
+            "url": '/CajaCompensacionFamiliar/GridCajaCompensacionFamiliar',
             "type": "GET",
             "datatype": "json"
         },
         columns: [
             { "data": "Id", title: "Id", "visible": false },
-            { "data": "Nombre", title: "Pais" },
+            { "data": "Nombre", title: "CajaCompensacionFamiliar" },
             { "data": "Estado", title: "Estado" },
             { "data": "CreateBy", title: "Creado por" },
             { "data": "DateCreate", title: "Fecha Creación" },
             {
                 title: "Editar",
                 data: null,
-                defaultContent: '<a href="#" class="EditarPais" title="Editar"><i class="bi-pencil-fill" style="Color:green"></i></a>',
+                defaultContent: '<a href="#" class="EditarCajaCompensacionFamiliar" title="Editar"><i class="bi-pencil-fill" style="Color:green"></i></a>',
                 className: '',
                 orderable: false,
                 width: 50,
@@ -188,12 +188,12 @@ function GridPais() {
             {
                 title: "Eliminar",
                 data: null,
-                defaultContent: '<a href="#" class="EliminarPais" title="Eliminar"><i class="bi-trash-fill" style="Color:red"></i></a>',
+                defaultContent: '<a href="#" class="EliminarCajaCompensacionFamiliar" title="Eliminar"><i class="bi-trash-fill" style="Color:red"></i></a>',
                 className: '',
                 orderable: false,
                 width: 50,
             },
-        ],         
+        ],
         "language": {
             "url": "//cdn.datatables.net/plug-ins/1.11.2/i18n/es_es.json"
         },
@@ -202,18 +202,18 @@ function GridPais() {
             ['10 Filas', '25 Filas', '50 Filas', 'Ver Todo']
         ],
     });
-    $('#gridPais').on('click', '.EditarPais', function () {
+    $('#gridCajaCompensacionFamiliar').on('click', '.EditarCajaCompensacionFamiliar', function () {
         let data = datatable.row($(this).parents()).data();
         Cookies.set('IdEdit', data.Id);
-        window.location = "/Pais/Editar_Pais";
+        window.location = "/CajaCompensacionFamiliar/Editar_CajaCompensacionFamiliar";
     });
 
 
-    $('#gridPais').on('click', '.EliminarPais', function () {
+    $('#gridCajaCompensacionFamiliar').on('click', '.EliminarCajaCompensacionFamiliar', function () {
         let data = datatable.row($(this).parents()).data();
-        $('#ModalEliminarPais').modal('show');
-        $('#IdPais').text(data.Id);
-        $('#MensajeEliminarPais').text('Esta seguro de eliminar el país ' + data.Nombre + ' ?');
+        $('#ModalEliminarCajaCompensacionFamiliar').modal('show');
+        $('#IdCajaCompensacionFamiliar').text(data.Id);
+        $('#MensajeEliminarCajaCompensacionFamiliar').text('Esta seguro de eliminar la caja compensación familiar ' + data.Nombre + ' ?');
     })
 }
 

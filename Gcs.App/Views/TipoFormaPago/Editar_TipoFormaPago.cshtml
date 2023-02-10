@@ -1,0 +1,43 @@
+﻿@{
+    ViewBag.Title = "Tipo Forma Pago";
+}
+
+<h7>
+    <a href="/Home"><i>INICIO</i></a>
+    &nbsp;<i class="bi-chevron-right"></i>&nbsp;
+    <a href="/Modulo/Configuracion"><i>MODULO CONFIGURACIÓN</i></a>
+    &nbsp;<i class="bi-chevron-right"></i>&nbsp;
+    <a href="/TipoFormaPago"><i>TIPO FORMA PAGO</i></a>
+    &nbsp;<i class="bi-chevron-right"></i>&nbsp;
+    <label style="font-weight:bold">EDITAR TIPO FORMA PAGO</label>
+    <hr />
+</h7>
+
+<table class="table table-borderless">
+    <tr>
+        <td>
+            <label><strong>Nombre Tipo Forma Pago</strong></label>
+            <input class="form-control" type="text" id="InputENombreTipoFormaPago" autocomplete="off" />
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label><strong>Estado</strong></label>
+            <select class="form-control" id="SelectEstadoTipoFormaPago">
+                <option value="0">Inactivo</option>
+                <option value="1">Activo</option>
+            </select>
+        </td>
+    <tr>
+        <td>
+            <button class="btn btn-success btn-sm" onclick="GuardarCambiosTipoFormaPago()">Guardar Cambios</button>
+        </td>
+    </tr>
+</table>
+
+<script>
+    $(document).ready(function () {
+        CargarDatosTipoFormaPago();
+    });
+</script>
+

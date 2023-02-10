@@ -1,14 +1,14 @@
-﻿function CrearPais() {
+﻿function CrearTipoFormaPago() {
     let User = Cookies.get('IdUser');
-    let NombrePais = $('#InputNombrePais').val()
-    if (NombrePais == null || NombrePais == '' || NombrePais == undefined) {
-        Swal.fire('Mensaje del Sistema', 'Ingrese nombre del país', 'info');
+    let NombreTipoFormaPago = $('#InputNombreTipoFormaPago').val()
+    if (NombreTipoFormaPago == null || NombreTipoFormaPago == '' || NombreTipoFormaPago == undefined) {
+        Swal.fire('Mensaje del Sistema', 'Ingrese nombre del tipo forma pago', 'info');
     } else {
         $.ajax({
             type: 'POST',
             dataType: 'json',
-            url: '/Pais/CrearPais',
-            data: { IdUser: User, NombrePais: NombrePais },
+            url: '/TipoFormaPago/CrearTipoFormaPago',
+            data: { IdUser: User, NombreTipoFormaPago: NombreTipoFormaPago },
             success: function (resultado) {
                 valor = resultado.split('*');
                 if (valor[0] == 'OK') {
@@ -17,7 +17,7 @@
                         text: valor[1],
                         icon: 'success',
                     }).then((result) => {
-                        window.location.href = '/Pais';
+                        window.location.href = '/TipoFormaPago';
                     })
                 } else {
                     Swal.fire('Mensaje del Sistema', valor[1], 'info');
@@ -27,19 +27,19 @@
     }
 }
 
-function GuardarCambiosPais() {
+function GuardarCambiosTipoFormaPago() {
     let User = Cookies.get('IdUser');
-    let IdPais = Cookies.get('IdEdit');
-    let NombrePais = $('#InputENombrePais').val();
-    let Activo = $('#SelectEstadoPais').val();
-    if (NombrePais == '' || NombrePais == null || NombrePais == undefined) {
-        Swal.fire('Mensaje del Sistema', 'Ingrese nombre del País', 'info');
+    let IdTipoFormaPago = Cookies.get('IdEdit');
+    let NombreTipoFormaPago = $('#InputENombreTipoFormaPago').val();
+    let Activo = $('#SelectEstadoTipoFormaPago').val();
+    if (NombreTipoFormaPago == '' || NombreTipoFormaPago == null || NombreTipoFormaPago == undefined) {
+        Swal.fire('Mensaje del Sistema', 'Ingrese nombre del tipo forma pago', 'info');
     } else {
         $.ajax({
             type: 'POST',
             dataType: 'json',
-            url: '/Pais/GuardarCambiosPais',
-            data: { IdPais: IdPais, IdUser: User, NombrePais: NombrePais, Activo: Activo },
+            url: '/TipoFormaPago/GuardarCambiosTipoFormaPago',
+            data: { IdTipoFormaPago: IdTipoFormaPago, IdUser: User, NombreTipoFormaPago: NombreTipoFormaPago, Activo: Activo },
             success: function (resultado) {
                 valor = resultado.split('*');
                 if (valor[0] == 'OK') {
@@ -48,7 +48,7 @@ function GuardarCambiosPais() {
                         text: valor[1],
                         icon: 'success',
                     }).then((result) => {
-                        window.location.href = '/Pais';
+                        window.location.href = '/TipoFormaPago';
                     })
                 } else {
                     Swal.fire('Mensaje del Sistema', valor[1], 'info');
@@ -58,16 +58,16 @@ function GuardarCambiosPais() {
     }
 }
 
-function EliminarPais() {
+function EliminarTipoFormaPago() {
     let IdUser = Cookies.get('IdUser');
-    let IdPais = $('#IdPais').text();
+    let IdTipoFormaPago = $('#IdTipoFormaPago').text();
     $.ajax({
         type: 'POST',
         dataType: 'json',
-        url: '/Pais/EliminarPais',
+        url: '/TipoFormaPago/EliminarTipoFormaPago',
         data: {
             IdUser: IdUser,
-            IdPais: IdPais
+            IdTipoFormaPago: IdTipoFormaPago
         },
         success: function (resultado) {
             valor = resultado.split('*');
@@ -86,42 +86,42 @@ function EliminarPais() {
     });
 }
 
-function CargarDatosPais() {
-    let IdPais = Cookies.get('IdEdit');
+function CargarDatosTipoFormaPago() {
+    let IdTipoFormaPago = Cookies.get('IdEdit');
     $.ajax({
         type: 'POST',
         dataType: 'json',
-        url: '/Pais/CargarDatosPais',
-        data: { IdPais: IdPais },
+        url: '/TipoFormaPago/CargarDatosTipoFormaPago',
+        data: { IdTipoFormaPago: IdTipoFormaPago },
         success: function (resultado) {
-            $('#InputENombrePais').val(resultado[0].Nombre);
-            $('#SelectEstadoPais').val(resultado[0].Activo);
+            $('#InputENombreTipoFormaPago').val(resultado[0].Nombre);
+            $('#SelectEstadoTipoFormaPago').val(resultado[0].Activo);
 
         }
     });
 }
 
-function ListaPais(Tipo) {
+function ListaTipoFormaPago(Tipo) {
     $.ajax({
         type: 'POST',
         dataType: 'json',
-        url: '/Pais/ListaPais',
+        url: '/TipoFormaPago/ListaTipoFormaPago',
         data: {},
         success: function (resultado) {
             var contador = 0;
             if (Tipo == "N") {
                 if (resultado.length === 0) {
-                    $("#SelectPais").append('<option value="">No hay Datos</option>');
+                    $("#SelectTipoFormaPago").append('<option value="">No hay Datos</option>');
                 } else {
-                    $("#SelectPais").empty().append('<option value="-1">Seleccione País</option>');
+                    $("#SelectTipoFormaPago").empty().append('<option value="-1">Seleccione TipoFormaPago</option>');
                     $.each(resultado, function () {
-                        $("#SelectPais").append('<option value="' + resultado[contador].Id + '">' + resultado[contador].Nombre + '</option>');
+                        $("#SelectTipoFormaPago").append('<option value="' + resultado[contador].Id + '">' + resultado[contador].Nombre + '</option>');
                         contador++;
                     });
                 }
             } else {
                 $.each(resultado, function () {
-                    $("#SelectEPais").append('<option value="' + resultado[contador].Id + '">' + resultado[contador].Nombre + '</option>');
+                    $("#SelectETipoFormaPago").append('<option value="' + resultado[contador].Id + '">' + resultado[contador].Nombre + '</option>');
                     contador++;
                 });
             }
@@ -129,15 +129,15 @@ function ListaPais(Tipo) {
     });
 }
 
-function GridPais() {
-    let datatable = $('#gridPais').DataTable({
-         "responsive": true,
+function GridTipoFormaPago() {
+    let datatable = $('#gridTipoFormaPago').DataTable({
+        "responsive": true,
         dom: 'B<"clear">frtip',
         buttons: [{
             extend: 'excelHtml5',
             footer: true,
-            title: 'Lista de Paises',
-            filename: 'Lista de Paises',
+            title: 'Lista de Tipo Forma Pago',
+            filename: 'Lista de Tipo Forma Pago',
             text: 'Excel',
             exportOptions: {
                 columns: [1, 2, 3, 4]
@@ -147,8 +147,8 @@ function GridPais() {
             extend: 'pdfHtml5',
             download: 'open',
             footer: true,
-            title: 'Lista de Paises',
-            filename: 'Lista de Paises',
+            title: 'Lista de Tipo Forma Pago',
+            filename: 'Lista de Tipo Forma Pago',
             text: 'Pdf',
             exportOptions: {
                 columns: [1, 2, 3, 4]
@@ -165,22 +165,22 @@ function GridPais() {
         },
         ],
         "order": [[1, "asc"]],
-        destroy: true,       
+        destroy: true,
         "ajax": {
-            "url": '/Pais/GridPais',
+            "url": '/TipoFormaPago/GridTipoFormaPago',
             "type": "GET",
             "datatype": "json"
         },
         columns: [
             { "data": "Id", title: "Id", "visible": false },
-            { "data": "Nombre", title: "Pais" },
+            { "data": "Nombre", title: "TipoFormaPago" },
             { "data": "Estado", title: "Estado" },
             { "data": "CreateBy", title: "Creado por" },
             { "data": "DateCreate", title: "Fecha Creación" },
             {
                 title: "Editar",
                 data: null,
-                defaultContent: '<a href="#" class="EditarPais" title="Editar"><i class="bi-pencil-fill" style="Color:green"></i></a>',
+                defaultContent: '<a href="#" class="EditarTipoFormaPago" title="Editar"><i class="bi-pencil-fill" style="Color:green"></i></a>',
                 className: '',
                 orderable: false,
                 width: 50,
@@ -188,12 +188,12 @@ function GridPais() {
             {
                 title: "Eliminar",
                 data: null,
-                defaultContent: '<a href="#" class="EliminarPais" title="Eliminar"><i class="bi-trash-fill" style="Color:red"></i></a>',
+                defaultContent: '<a href="#" class="EliminarTipoFormaPago" title="Eliminar"><i class="bi-trash-fill" style="Color:red"></i></a>',
                 className: '',
                 orderable: false,
                 width: 50,
             },
-        ],         
+        ],
         "language": {
             "url": "//cdn.datatables.net/plug-ins/1.11.2/i18n/es_es.json"
         },
@@ -202,18 +202,18 @@ function GridPais() {
             ['10 Filas', '25 Filas', '50 Filas', 'Ver Todo']
         ],
     });
-    $('#gridPais').on('click', '.EditarPais', function () {
+    $('#gridTipoFormaPago').on('click', '.EditarTipoFormaPago', function () {
         let data = datatable.row($(this).parents()).data();
         Cookies.set('IdEdit', data.Id);
-        window.location = "/Pais/Editar_Pais";
+        window.location = "/TipoFormaPago/Editar_TipoFormaPago";
     });
 
 
-    $('#gridPais').on('click', '.EliminarPais', function () {
+    $('#gridTipoFormaPago').on('click', '.EliminarTipoFormaPago', function () {
         let data = datatable.row($(this).parents()).data();
-        $('#ModalEliminarPais').modal('show');
-        $('#IdPais').text(data.Id);
-        $('#MensajeEliminarPais').text('Esta seguro de eliminar el país ' + data.Nombre + ' ?');
+        $('#ModalEliminarTipoFormaPago').modal('show');
+        $('#IdTipoFormaPago').text(data.Id);
+        $('#MensajeEliminarTipoFormaPago').text('Esta seguro de eliminar la forma pago ' + data.Nombre + ' ?');
     })
 }
 

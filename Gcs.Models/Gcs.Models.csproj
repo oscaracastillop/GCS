@@ -41,13 +41,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\Arl.cs" />
+    <Compile Include="Models\CajaCompensacionFamiliar.cs" />
     <Compile Include="Models\Ciudad.cs" />
     <Compile Include="Models\Departamento.cs" />
+    <Compile Include="Models\Eps.cs" />
     <Compile Include="Models\Menu.cs" />
     <Compile Include="Models\Pais.cs" />
     <Compile Include="Models\SubMenu.cs" />
     <Compile Include="Models\TipoDocumento.cs" />
+    <Compile Include="Models\TipoFormaPago.cs" />
+    <Compile Include="Models\TipoGenero.cs" />
     <Compile Include="Models\TipoHoraExtra.cs" />
+    <Compile Include="Models\TipoMoneda.cs" />
     <Compile Include="Models\TipoUnidadMedida.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

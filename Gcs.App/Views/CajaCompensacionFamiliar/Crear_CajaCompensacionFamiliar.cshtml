@@ -1,0 +1,29 @@
+﻿@{
+    ViewBag.Title = "Caja Compensacion Familiar";
+}
+
+<h7>
+    <a href="/Home"><i>INICIO</i></a>
+    &nbsp;<i class="bi-chevron-right"></i>&nbsp;
+    <a href="/Modulo/Configuracion"><i>MODULO CONFIGURACIÓN</i></a>
+    &nbsp;<i class="bi-chevron-right"></i>&nbsp;
+    <a href="/CajaCompensacionFamiliar"><i>CAJA COMPENSACION FAMILIAR</i></a>
+    &nbsp;<i class="bi-chevron-right"></i>&nbsp;
+    <label style="font-weight:bold">CREAR CAJA COMPENSACION FAMILIAR</label>
+    <hr />
+</h7>
+
+<table class="table table-borderless">
+    <tr>
+        <td>
+            <label><strong>Nombre Caja Compensacion Familiar</strong></label>
+            <input class="form-control" type="text" id="InputNombreCajaCompensacionFamiliar" name="name" autocomplete="off" />
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <button class="btn btn-success btn-sm" onclick="CrearCajaCompensacionFamiliar()"><i class="bi-upload"></i> Guardar</button>
+        </td>
+    </tr>
+</table>
+

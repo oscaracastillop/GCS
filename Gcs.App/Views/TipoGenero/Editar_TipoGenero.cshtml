@@ -1,0 +1,43 @@
+﻿@{
+    ViewBag.Title = "Tipo Género";
+}
+
+<h7>
+    <a href="/Home"><i>INICIO</i></a>
+    &nbsp;<i class="bi-chevron-right"></i>&nbsp;
+    <a href="/Modulo/Configuracion"><i>MODULO CONFIGURACIÓN</i></a>
+    &nbsp;<i class="bi-chevron-right"></i>&nbsp;
+    <a href="/TipoGenero"><i>TIPO GENERO</i></a>
+    &nbsp;<i class="bi-chevron-right"></i>&nbsp;
+    <label style="font-weight:bold">EDITAR TIPO GENERO</label>
+    <hr />
+</h7>
+
+<table class="table table-borderless">
+    <tr>
+        <td>
+            <label><strong>Nombre Tipo Género</strong></label>
+            <input class="form-control" type="text" id="InputENombreTipoGenero" autocomplete="off" />
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label><strong>Estado</strong></label>
+            <select class="form-control" id="SelectEstadoTipoGenero">
+                <option value="0">Inactivo</option>
+                <option value="1">Activo</option>
+            </select>
+        </td>
+    <tr>
+        <td>
+            <button class="btn btn-success btn-sm" onclick="GuardarCambiosTipoGenero()">Guardar Cambios</button>
+        </td>
+    </tr>
+</table>
+
+<script>
+    $(document).ready(function () {
+        CargarDatosTipoGenero();
+    });
+</script>
+

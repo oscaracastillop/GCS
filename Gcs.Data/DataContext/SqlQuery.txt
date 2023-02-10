@@ -269,10 +269,16 @@ insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (7, 'Herramienta','<i c
 insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'País','<i class="bi-geo-fill" style="font-size: 2rem; color: #11ABE9;"></i>','/Pais')--24
 insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'Departamento','<i class="bi-geo-fill" style="font-size: 2rem; color: #11ABE9;"></i>','/Departamento')--25
 insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'Ciudad','<i class="bi-geo-fill" style="font-size: 2rem; color: #11ABE9;"></i>','/Ciudad')--26
-insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'Tipo Actividad','<i class="bi-tools" style="font-size: 2rem; color: #11ABE9;"></i>','/TipoActividad')--27
-insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'Tipo Hora Extra','<i class="bi-clock" style="font-size: 2rem; color: #11ABE9;"></i>','/TipoHoraExtra')--28
-insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'Tipo Documento','<i class="bi-filetype-doc" style="font-size: 2rem; color: #11ABE9;"></i>','/TipoDocumento')--29
-insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'Tipo Unidad Medida','<i class="bi-speedometer" style="font-size: 2rem; color: #11ABE9;"></i>','/TipoUnidadMedida')--30
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'Arl','<i class="bi-badge-ar" style="font-size: 2rem; color: #11ABE9;"></i>','/Arl')--27
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'Caja Compensación Familiar','<i class="bi-c-circle" style="font-size: 2rem; color: #11ABE9;"></i>','/CajaCompensacionFamiliar')--28
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'Eps','<i class="bi-explicit" style="font-size: 2rem; color: #11ABE9;"></i>','/Eps')--29
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'Tipo Actividad','<i class="bi-tools" style="font-size: 2rem; color: #11ABE9;"></i>','/TipoActividad')--30
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'Tipo Documento','<i class="bi-filetype-doc" style="font-size: 2rem; color: #11ABE9;"></i>','/TipoDocumento')--31
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'Tipo Forma Pago','<i class="bi-credit-card" style="font-size: 2rem; color: #11ABE9;"></i>','/TipoFormaPago')--32
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'Tipo Género','<i class="bi-filetype-doc" style="font-size: 2rem; color: #11ABE9;"></i>','/TipoGenero')--33
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'Tipo Hora Extra','<i class="bi-clock" style="font-size: 2rem; color: #11ABE9;"></i>','/TipoHoraExtra')--34
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'Tipo Moneda','<i class="bi-cash-coin" style="font-size: 2rem; color: #11ABE9;"></i>','/TipoMoneda')--35
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'Tipo Unidad Medida','<i class="bi-speedometer" style="font-size: 2rem; color: #11ABE9;"></i>','/TipoUnidadMedida')--36
 
 insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (9, 'Usuario','<i class="bi-person" style="font-size: 2rem; color: #11ABE9;"></i>','/Usuario')
 insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (9, 'Permiso Usuario','<i class="bi-lock" style="font-size: 2rem; color: #11ABE9;"></i>','/Permiso_Usuario')
@@ -340,6 +346,12 @@ insert into Permiso_SubMenu (IdSubMenu, IdUsuario, Permiso, Crear, Editar, Elimi
 insert into Permiso_SubMenu (IdSubMenu, IdUsuario, Permiso, Crear, Editar, Eliminar) Values (36,1,1,1,1,1)
 insert into Permiso_SubMenu (IdSubMenu, IdUsuario, Permiso, Crear, Editar, Eliminar) Values (37,1,1,1,1,1)
 insert into Permiso_SubMenu (IdSubMenu, IdUsuario, Permiso, Crear, Editar, Eliminar) Values (38,1,1,1,1,1)
+insert into Permiso_SubMenu (IdSubMenu, IdUsuario, Permiso, Crear, Editar, Eliminar) Values (39,1,1,1,1,1)
+insert into Permiso_SubMenu (IdSubMenu, IdUsuario, Permiso, Crear, Editar, Eliminar) Values (40,1,1,1,1,1)
+insert into Permiso_SubMenu (IdSubMenu, IdUsuario, Permiso, Crear, Editar, Eliminar) Values (41,1,1,1,1,1)
+insert into Permiso_SubMenu (IdSubMenu, IdUsuario, Permiso, Crear, Editar, Eliminar) Values (42,1,1,1,1,1)
+insert into Permiso_SubMenu (IdSubMenu, IdUsuario, Permiso, Crear, Editar, Eliminar) Values (43,1,1,1,1,1)
+insert into Permiso_SubMenu (IdSubMenu, IdUsuario, Permiso, Crear, Editar, Eliminar) Values (44,1,1,1,1,1)
 
 go
 
