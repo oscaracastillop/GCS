@@ -23,15 +23,15 @@ namespace Gcs.App.Controllers
         {
             return View();
         }
-        public JsonResult CrearArl(string IdUser, string NombreArl)
+        public JsonResult CrearArl(string IdUser, string NombreArl, string Email, string Telefono)
         {
-            string resultado = dataArl.CrearArl(IdUser, NombreArl);
+            string resultado = dataArl.CrearArl(IdUser, NombreArl, Email, Telefono);
             return Json(resultado);
         }
 
-        public JsonResult GuardarCambiosArl(int IdArl, string IdUser, string NombreArl, int Activo)
+        public JsonResult GuardarCambiosArl(int IdArl, string IdUser, string NombreArl, string Email, string Telefono, int Activo)
         {
-            var resultado = dataArl.GuardarCambiosArl(IdArl, IdUser, NombreArl, Activo);
+            var resultado = dataArl.GuardarCambiosArl(IdArl, IdUser, NombreArl, Email, Telefono, Activo);
             return Json(resultado);
         }
         public JsonResult EliminarArl(string IdUser, int IdArl)

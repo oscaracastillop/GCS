@@ -15,16 +15,18 @@ namespace Gcs.Data.DataEntities
         readonly GCS_DBEntities _conection = new GCS_DBEntities();
         private readonly DataRol dataRol = new DataRol();
 
-        public string CrearCajaCompensacionFamiliar(string IdUser, string NombreCajaCompensacionFamiliar)
+        public string CrearCajaCompensacionFamiliar(string IdUser, string NombreCajaCompensacionFamiliar, string Email, string Telefono)
         {
             string resultado = String.Empty;
             try
             {
                 var varIdUser = new SqlParameter("@IdUser", SqlDbType.VarChar) { Value = IdUser };
                 var varNombreCajaCompensacionFamiliar = new SqlParameter("@NombreCajaCompensacionFamiliar", SqlDbType.VarChar) { Value = NombreCajaCompensacionFamiliar };
+                var varEmail = new SqlParameter("@Email", SqlDbType.VarChar) { Value = Email };
+                var varTelefono = new SqlParameter("@Telefono", SqlDbType.VarChar) { Value = Telefono };
                 var varResultado = new SqlParameter("@Resultado", SqlDbType.VarChar) { Direction = ParameterDirection.Output, Size = 255 };
 
-                _conection.Database.ExecuteSqlCommand("SP_CrearCajaCompensacionFamiliar @IdUser, @NombreCajaCompensacionFamiliar, @Resultado OUTPUT", varIdUser, varNombreCajaCompensacionFamiliar, varResultado);
+                _conection.Database.ExecuteSqlCommand("SP_CrearCajaCompensacionFamiliar @IdUser, @NombreCajaCompensacionFamiliar, @Email, @Telefono, @Resultado OUTPUT", varIdUser, varNombreCajaCompensacionFamiliar, varEmail, varTelefono, varResultado);
 
                 resultado = Convert.ToString(varResultado.Value);
             }
@@ -39,7 +41,7 @@ namespace Gcs.Data.DataEntities
                 {
                     if (ex.Message.Contains("No se puede insertar"))
                     {
-                        resultado = "Error*No se puede insertar valores duplicados, la caja compensación familiar " + NombreCajaCompensacionFamiliar + " ya Existe";
+                        resultado = "Error*No se puede insertar valores duplicados, la caja compensacion familiar " + NombreCajaCompensacionFamiliar + " ya Existe";
                     }
                     else
                     {
@@ -50,7 +52,7 @@ namespace Gcs.Data.DataEntities
             return resultado;
         }
 
-        public string GuardarCambiosCajaCompensacionFamiliar(int IdCajaCompensacionFamiliar, string IdUser, string NombreCajaCompensacionFamiliar, int Activo)
+        public string GuardarCambiosCajaCompensacionFamiliar(int IdCajaCompensacionFamiliar, string IdUser, string NombreCajaCompensacionFamiliar, string Email, string Telefono, int Activo)
         {
             string resultado = String.Empty;
             try
@@ -58,10 +60,12 @@ namespace Gcs.Data.DataEntities
                 var varIdCajaCompensacionFamiliar = new SqlParameter("@IdCajaCompensacionFamiliar", SqlDbType.Int) { Value = IdCajaCompensacionFamiliar };
                 var varIdUser = new SqlParameter("@IdUser", SqlDbType.VarChar) { Value = IdUser };
                 var varNombreCajaCompensacionFamiliar = new SqlParameter("@NombreCajaCompensacionFamiliar", SqlDbType.VarChar) { Value = NombreCajaCompensacionFamiliar };
+                var varEmail = new SqlParameter("@Email", SqlDbType.VarChar) { Value = Email };
+                var varTelefono = new SqlParameter("@Telefono", SqlDbType.VarChar) { Value = Telefono };
                 var varActivo = new SqlParameter("@Activo", SqlDbType.Int) { Value = Activo };
                 var varResultado = new SqlParameter("@Resultado", SqlDbType.VarChar) { Direction = ParameterDirection.Output, Size = 255 };
 
-                _conection.Database.ExecuteSqlCommand("SP_GuardarCambiosCajaCompensacionFamiliar @IdCajaCompensacionFamiliar, @IdUser, @NombreCajaCompensacionFamiliar, @Activo, @Resultado OUTPUT", varIdCajaCompensacionFamiliar, varIdUser, varNombreCajaCompensacionFamiliar, varActivo, varResultado);
+                _conection.Database.ExecuteSqlCommand("SP_GuardarCambiosCajaCompensacionFamiliar @IdCajaCompensacionFamiliar, @IdUser, @NombreCajaCompensacionFamiliar, @Email, @Telefono, @Activo, @Resultado OUTPUT", varIdCajaCompensacionFamiliar, varIdUser, varNombreCajaCompensacionFamiliar, varEmail, varTelefono, varActivo, varResultado);
 
                 resultado = Convert.ToString(varResultado.Value);
             }

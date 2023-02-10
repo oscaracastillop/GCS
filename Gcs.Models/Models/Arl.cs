@@ -12,8 +12,8 @@ namespace Gcs.Models.Models
         {
             public int Id { get; set; }
             public string Nombre { get; set; }
-            public string CorreoContacto { get; set; }
-            public string TelefonoContacto { get; set; }
+            public string Email { get; set; }
+            public string Telefono { get; set; }
             public string Estado { get; set; }
             public string CreateBy { get; set; }
             public string DateCreate { get; set; }
@@ -28,6 +28,8 @@ namespace Gcs.Models.Models
         public class CargarDatosArl
         {
             public string Nombre { get; set; }
+            public int Email { get; set; }
+            public string Telefono { get; set; }
             public int Activo { get; set; }
         }
     }

@@ -2127,6 +2127,8 @@
     <Content Include="JsApp\Ciudad.js" />
     <Content Include="JsApp\Departamento.js" />
     <Content Include="JsApp\Eps.js" />
+    <Content Include="JsApp\FondoCesantias.js" />
+    <Content Include="JsApp\FondoPension.js" />
     <Content Include="JsApp\Home.js" />
     <Content Include="JsApp\Login.js" />
     <Content Include="JsApp\Menu.js" />
@@ -4323,6 +4325,8 @@
     <Compile Include="Controllers\CiudadController.cs" />
     <Compile Include="Controllers\DepartamentoController.cs" />
     <Compile Include="Controllers\EpsController.cs" />
+    <Compile Include="Controllers\FondoCesantiasController.cs" />
+    <Compile Include="Controllers\FondoPensionController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MenuController.cs" />
@@ -4422,6 +4426,12 @@
     <Content Include="Views\TipoMoneda\Index.cshtml" />
     <Content Include="Views\TipoMoneda\Crear_TipoMoneda.cshtml" />
     <Content Include="Views\TipoMoneda\Editar_TipoMoneda.cshtml" />
+    <Content Include="Views\FondoCesantias\Index.cshtml" />
+    <Content Include="Views\FondoCesantias\Crear_FondoCesantias.cshtml" />
+    <Content Include="Views\FondoCesantias\Editar_FondoCesantias.cshtml" />
+    <Content Include="Views\FondoPension\Index.cshtml" />
+    <Content Include="Views\FondoPension\Crear_FondoPension.cshtml" />
+    <Content Include="Views\FondoPension\Editar_FondoPension.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

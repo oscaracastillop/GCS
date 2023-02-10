@@ -1,16 +1,16 @@
-﻿function CrearEps() {
+﻿function CrearFondoPension() {
     let User = Cookies.get('IdUser');
-    let NombreEps = $('#InputNombreEps').val();
-    let Email = $('#InputEmailEps').val();
-    let Telefono = $('#InputTelefonoEps').val();
-    if (NombreEps == null || NombreEps == '' || NombreEps == undefined) {
-        Swal.fire('Mensaje del Sistema', 'Ingrese nombre de la eps', 'info');
+    let NombreFondoPension = $('#InputNombreFondoPension').val();
+    let Email = $('#InputEmailFondoPension').val();
+    let Telefono = $('#InputTelefonoFondoPension').val();
+    if (NombreFondoPension == null || NombreFondoPension == '' || NombreFondoPension == undefined) {
+        Swal.fire('Mensaje del Sistema', 'Ingrese nombre de el fondo pensión', 'info');
     } else {
         $.ajax({
             type: 'POST',
             dataType: 'json',
-            url: '/Eps/CrearEps',
-            data: { IdUser: User, NombreEps: NombreEps, Email: Email, Telefono: Telefono },
+            url: '/FondoPension/CrearFondoPension',
+            data: { IdUser: User, NombreFondoPension: NombreFondoPension, Email: Email, Telefono: Telefono },
             success: function (resultado) {
                 valor = resultado.split('*');
                 if (valor[0] == 'OK') {
@@ -19,7 +19,7 @@
                         text: valor[1],
                         icon: 'success',
                     }).then((result) => {
-                        window.location.href = '/Eps';
+                        window.location.href = '/FondoPension';
                     })
                 } else {
                     Swal.fire('Mensaje del Sistema', valor[1], 'info');
@@ -29,21 +29,21 @@
     }
 }
 
-function GuardarCambiosEps() {
+function GuardarCambiosFondoPension() {
     let User = Cookies.get('IdUser');
-    let IdEps = Cookies.get('IdEdit');
-    let NombreEps = $('#InputENombreEps').val();
-    let Email = $('#InputEEmailEps').val();
-    let Telefono = $('#InputETelefonoEps').val();
-    let Activo = $('#SelectEstadoEps').val();
-    if (NombreEps == '' || NombreEps == null || NombreEps == undefined) {
-        Swal.fire('Mensaje del Sistema', 'Ingrese nombre de la eps', 'info');
+    let IdFondoPension = Cookies.get('IdEdit');
+    let NombreFondoPension = $('#InputENombreFondoPension').val();
+    let Email = $('#InputEEmailFondoPension').val();
+    let Telefono = $('#InputETelefonoFondoPension').val();
+    let Activo = $('#SelectEstadoFondoPension').val();
+    if (NombreFondoPension == '' || NombreFondoPension == null || NombreFondoPension == undefined) {
+        Swal.fire('Mensaje del Sistema', 'Ingrese nombre de el fondo pensión', 'info');
     } else {
         $.ajax({
             type: 'POST',
             dataType: 'json',
-            url: '/Eps/GuardarCambiosEps',
-            data: { IdEps: IdEps, IdUser: User, NombreEps: NombreEps, Email: Email, Telefono: Telefono, Activo: Activo },
+            url: '/FondoPension/GuardarCambiosFondoPension',
+            data: { IdFondoPension: IdFondoPension, IdUser: User, NombreFondoPension: NombreFondoPension, Email: Email, Telefono: Telefono, Activo: Activo },
             success: function (resultado) {
                 valor = resultado.split('*');
                 if (valor[0] == 'OK') {
@@ -52,7 +52,7 @@ function GuardarCambiosEps() {
                         text: valor[1],
                         icon: 'success',
                     }).then((result) => {
-                        window.location.href = '/Eps';
+                        window.location.href = '/FondoPension';
                     })
                 } else {
                     Swal.fire('Mensaje del Sistema', valor[1], 'info');
@@ -62,16 +62,16 @@ function GuardarCambiosEps() {
     }
 }
 
-function EliminarEps() {
+function EliminarFondoPension() {
     let IdUser = Cookies.get('IdUser');
-    let IdEps = $('#IdEps').text();
+    let IdFondoPension = $('#IdFondoPension').text();
     $.ajax({
         type: 'POST',
         dataType: 'json',
-        url: '/Eps/EliminarEps',
+        url: '/FondoPension/EliminarFondoPension',
         data: {
             IdUser: IdUser,
-            IdEps: IdEps
+            IdFondoPension: IdFondoPension
         },
         success: function (resultado) {
             valor = resultado.split('*');
@@ -90,43 +90,43 @@ function EliminarEps() {
     });
 }
 
-function CargarDatosEps() {
-    let IdEps = Cookies.get('IdEdit');
+function CargarDatosFondoPension() {
+    let IdFondoPension = Cookies.get('IdEdit');
     $.ajax({
         type: 'POST',
         dataType: 'json',
-        url: '/Eps/CargarDatosEps',
-        data: { IdEps: IdEps },
+        url: '/FondoPension/CargarDatosFondoPension',
+        data: { IdFondoPension: IdFondoPension },
         success: function (resultado) {
-            $('#InputENombreEps').val(resultado[0].Nombre);
-            $('#InputEEmailEps').val(resultado[0].Email);
-            $('#InputETelefonoEps').val(resultado[0].Telefono);
-            $('#SelectEstadoEps').val(resultado[0].Activo);
+            $('#InputENombreFondoPension').val(resultado[0].Nombre);
+            $('#InputEEmailFondoPension').val(resultado[0].Email);
+            $('#InputETelefonoFondoPension').val(resultado[0].Telefono);
+            $('#SelectEstadoFondoPension').val(resultado[0].Activo);
         }
     });
 }
 
-function ListaEps(Tipo) {
+function ListaFondoPension(Tipo) {
     $.ajax({
         type: 'POST',
         dataType: 'json',
-        url: '/Eps/ListaEps',
+        url: '/FondoPension/ListaFondoPension',
         data: {},
         success: function (resultado) {
             var contador = 0;
             if (Tipo == "N") {
                 if (resultado.length === 0) {
-                    $("#SelectEps").append('<option value="">No hay Datos</option>');
+                    $("#SelectFondoPension").append('<option value="">No hay Datos</option>');
                 } else {
-                    $("#SelectEps").empty().append('<option value="-1">Seleccione Eps</option>');
+                    $("#SelectFondoPension").empty().append('<option value="-1">Seleccione FondoPension</option>');
                     $.each(resultado, function () {
-                        $("#SelectEps").append('<option value="' + resultado[contador].Id + '">' + resultado[contador].Nombre + '</option>');
+                        $("#SelectFondoPension").append('<option value="' + resultado[contador].Id + '">' + resultado[contador].Nombre + '</option>');
                         contador++;
                     });
                 }
             } else {
                 $.each(resultado, function () {
-                    $("#SelectEEps").append('<option value="' + resultado[contador].Id + '">' + resultado[contador].Nombre + '</option>');
+                    $("#SelectEFondoPension").append('<option value="' + resultado[contador].Id + '">' + resultado[contador].Nombre + '</option>');
                     contador++;
                 });
             }
@@ -134,15 +134,15 @@ function ListaEps(Tipo) {
     });
 }
 
-function GridEps() {
-    let datatable = $('#gridEps').DataTable({
+function GridFondoPension() {
+    let datatable = $('#gridFondoPension').DataTable({
         "responsive": true,
         dom: 'B<"clear">frtip',
         buttons: [{
             extend: 'excelHtml5',
             footer: true,
-            title: 'Lista de Eps',
-            filename: 'Lista de Eps',
+            title: 'Lista de Fondo Pensión',
+            filename: 'Lista de Fondo Pensión',
             text: 'Excel',
             exportOptions: {
                 columns: [1, 2, 3, 4, 5, 6]
@@ -152,8 +152,8 @@ function GridEps() {
             extend: 'pdfHtml5',
             download: 'open',
             footer: true,
-            title: 'Lista de Eps',
-            filename: 'Lista de Eps',
+            title: 'Lista de Fondo Pensión',
+            filename: 'Lista de Fondo Pensión',
             text: 'Pdf',
             exportOptions: {
                 columns: [1, 2, 3, 4, 5, 6]
@@ -172,13 +172,13 @@ function GridEps() {
         "order": [[1, "asc"]],
         destroy: true,
         "ajax": {
-            "url": '/Eps/GridEps',
+            "url": '/FondoPension/GridFondoPension',
             "type": "GET",
             "datatype": "json"
         },
         columns: [
             { "data": "Id", title: "Id", "visible": false },
-            { "data": "Nombre", title: "Eps" },
+            { "data": "Nombre", title: "FondoPension" },
             { "data": "Estado", title: "Estado" },
             { "data": "Email", title: "Email" },
             { "data": "Telefono", title: "Teléfono" },
@@ -187,7 +187,7 @@ function GridEps() {
             {
                 title: "Editar",
                 data: null,
-                defaultContent: '<a href="#" class="EditarEps" title="Editar"><i class="bi-pencil-fill" style="Color:green"></i></a>',
+                defaultContent: '<a href="#" class="EditarFondoPension" title="Editar"><i class="bi-pencil-fill" style="Color:green"></i></a>',
                 className: '',
                 orderable: false,
                 width: 50,
@@ -195,7 +195,7 @@ function GridEps() {
             {
                 title: "Eliminar",
                 data: null,
-                defaultContent: '<a href="#" class="EliminarEps" title="Eliminar"><i class="bi-trash-fill" style="Color:red"></i></a>',
+                defaultContent: '<a href="#" class="EliminarFondoPension" title="Eliminar"><i class="bi-trash-fill" style="Color:red"></i></a>',
                 className: '',
                 orderable: false,
                 width: 50,
@@ -209,18 +209,18 @@ function GridEps() {
             ['10 Filas', '25 Filas', '50 Filas', 'Ver Todo']
         ],
     });
-    $('#gridEps').on('click', '.EditarEps', function () {
+    $('#gridFondoPension').on('click', '.EditarFondoPension', function () {
         let data = datatable.row($(this).parents()).data();
         Cookies.set('IdEdit', data.Id);
-        window.location = "/Eps/Editar_Eps";
+        window.location = "/FondoPension/Editar_FondoPension";
     });
 
 
-    $('#gridEps').on('click', '.EliminarEps', function () {
+    $('#gridFondoPension').on('click', '.EliminarFondoPension', function () {
         let data = datatable.row($(this).parents()).data();
-        $('#ModalEliminarEps').modal('show');
-        $('#IdEps').text(data.Id);
-        $('#MensajeEliminarEps').text('Esta seguro de eliminar la eps ' + data.Nombre + ' ?');
+        $('#ModalEliminarFondoPension').modal('show');
+        $('#IdFondoPension').text(data.Id);
+        $('#MensajeEliminarFondoPension').text('Esta seguro de eliminar el fondo pensión ' + data.Nombre + ' ?');
     })
 }
 

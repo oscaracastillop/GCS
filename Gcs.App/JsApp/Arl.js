@@ -1,6 +1,8 @@
 ﻿function CrearArl() {
     let User = Cookies.get('IdUser');
-    let NombreArl = $('#InputNombreArl').val()
+    let NombreArl = $('#InputNombreArl').val();
+    let Email = $('#InputEmailArl').val();
+    let Telefono = $('#InputTelefonoArl').val();
     if (NombreArl == null || NombreArl == '' || NombreArl == undefined) {
         Swal.fire('Mensaje del Sistema', 'Ingrese nombre de la arl', 'info');
     } else {
@@ -8,7 +10,7 @@
             type: 'POST',
             dataType: 'json',
             url: '/Arl/CrearArl',
-            data: { IdUser: User, NombreArl: NombreArl },
+            data: { IdUser: User, NombreArl: NombreArl, Email: Email, Telefono: Telefono },
             success: function (resultado) {
                 valor = resultado.split('*');
                 if (valor[0] == 'OK') {
@@ -31,6 +33,8 @@ function GuardarCambiosArl() {
     let User = Cookies.get('IdUser');
     let IdArl = Cookies.get('IdEdit');
     let NombreArl = $('#InputENombreArl').val();
+    let Email = $('#InputEEmailArl').val();
+    let Telefono = $('#InputETelefonoArl').val();
     let Activo = $('#SelectEstadoArl').val();
     if (NombreArl == '' || NombreArl == null || NombreArl == undefined) {
         Swal.fire('Mensaje del Sistema', 'Ingrese nombre de la arl', 'info');
@@ -39,7 +43,7 @@ function GuardarCambiosArl() {
             type: 'POST',
             dataType: 'json',
             url: '/Arl/GuardarCambiosArl',
-            data: { IdArl: IdArl, IdUser: User, NombreArl: NombreArl, Activo: Activo },
+            data: { IdArl: IdArl, IdUser: User, NombreArl: NombreArl, Email: Email, Telefono: Telefono, Activo: Activo },
             success: function (resultado) {
                 valor = resultado.split('*');
                 if (valor[0] == 'OK') {
@@ -95,8 +99,9 @@ function CargarDatosArl() {
         data: { IdArl: IdArl },
         success: function (resultado) {
             $('#InputENombreArl').val(resultado[0].Nombre);
-            $('#SelectEstadoArl').val(resultado[0].Activo);
-
+            $('#InputEEmailArl').val(resultado[0].Email);
+            $('#InputETelefonoArl').val(resultado[0].Telefono);
+            $('#SelectEstadoArl').val(resultado[0].Activo);            
         }
     });
 }
@@ -140,7 +145,7 @@ function GridArl() {
             filename: 'Lista de Arl',
             text: 'Excel',
             exportOptions: {
-                columns: [1, 2, 3, 4]
+                columns: [1, 2, 3, 4, 5, 6]
             }
         },
         {
@@ -151,7 +156,7 @@ function GridArl() {
             filename: 'Lista de Arl',
             text: 'Pdf',
             exportOptions: {
-                columns: [1, 2, 3, 4]
+                columns: [1, 2, 3, 4, 5, 6]
             }
         },
         {
@@ -160,7 +165,7 @@ function GridArl() {
             filename: 'Export_File_print',
             text: 'Imprimir',
             exportOptions: {
-                columns: [1, 2, 3, 4]
+                columns: [1, 2, 3, 4, 5, 6]
             }
         },
         ],
@@ -175,6 +180,8 @@ function GridArl() {
             { "data": "Id", title: "Id", "visible": false },
             { "data": "Nombre", title: "Arl" },
             { "data": "Estado", title: "Estado" },
+            { "data": "Email", title: "Email" },
+            { "data": "Telefono", title: "Teléfono" },
             { "data": "CreateBy", title: "Creado por" },
             { "data": "DateCreate", title: "Fecha Creación" },
             {

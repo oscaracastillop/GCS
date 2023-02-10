@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Gcs.Models.Models
 {
-    public class CajaCompensacionFamiliar
+    public class FondoCesantias
     {
-        public class GridCajaCompensacionFamiliar
+        public class GridFondoCesantias
         {
             public int Id { get; set; }
             public string Nombre { get; set; }
@@ -19,13 +19,13 @@ namespace Gcs.Models.Models
             public string DateCreate { get; set; }
         }
 
-        public class ListaCajaCompensacionFamiliar
+        public class ListaFondoCesantias
         {
             public int Id { get; set; }
             public string Nombre { get; set; }
         }
 
-        public class CargarDatosCajaCompensacionFamiliar
+        public class CargarDatosFondoCesantias
         {
             public string Nombre { get; set; }
             public int Email { get; set; }

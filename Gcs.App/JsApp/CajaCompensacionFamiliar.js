@@ -1,6 +1,8 @@
 ﻿function CrearCajaCompensacionFamiliar() {
     let User = Cookies.get('IdUser');
-    let NombreCajaCompensacionFamiliar = $('#InputNombreCajaCompensacionFamiliar').val()
+    let NombreCajaCompensacionFamiliar = $('#InputNombreCajaCompensacionFamiliar').val();
+    let Email = $('#InputEmailCajaCompensacionFamiliar').val();
+    let Telefono = $('#InputTelefonoCajaCompensacionFamiliar').val();
     if (NombreCajaCompensacionFamiliar == null || NombreCajaCompensacionFamiliar == '' || NombreCajaCompensacionFamiliar == undefined) {
         Swal.fire('Mensaje del Sistema', 'Ingrese nombre de la caja compensación familiar', 'info');
     } else {
@@ -8,7 +10,7 @@
             type: 'POST',
             dataType: 'json',
             url: '/CajaCompensacionFamiliar/CrearCajaCompensacionFamiliar',
-            data: { IdUser: User, NombreCajaCompensacionFamiliar: NombreCajaCompensacionFamiliar },
+            data: { IdUser: User, NombreCajaCompensacionFamiliar: NombreCajaCompensacionFamiliar, Email: Email, Telefono: Telefono },
             success: function (resultado) {
                 valor = resultado.split('*');
                 if (valor[0] == 'OK') {
@@ -31,6 +33,8 @@ function GuardarCambiosCajaCompensacionFamiliar() {
     let User = Cookies.get('IdUser');
     let IdCajaCompensacionFamiliar = Cookies.get('IdEdit');
     let NombreCajaCompensacionFamiliar = $('#InputENombreCajaCompensacionFamiliar').val();
+    let Email = $('#InputEEmailCajaCompensacionFamiliar').val();
+    let Telefono = $('#InputETelefonoCajaCompensacionFamiliar').val();
     let Activo = $('#SelectEstadoCajaCompensacionFamiliar').val();
     if (NombreCajaCompensacionFamiliar == '' || NombreCajaCompensacionFamiliar == null || NombreCajaCompensacionFamiliar == undefined) {
         Swal.fire('Mensaje del Sistema', 'Ingrese nombre de la caja compensación familiar', 'info');
@@ -39,7 +43,7 @@ function GuardarCambiosCajaCompensacionFamiliar() {
             type: 'POST',
             dataType: 'json',
             url: '/CajaCompensacionFamiliar/GuardarCambiosCajaCompensacionFamiliar',
-            data: { IdCajaCompensacionFamiliar: IdCajaCompensacionFamiliar, IdUser: User, NombreCajaCompensacionFamiliar: NombreCajaCompensacionFamiliar, Activo: Activo },
+            data: { IdCajaCompensacionFamiliar: IdCajaCompensacionFamiliar, IdUser: User, NombreCajaCompensacionFamiliar: NombreCajaCompensacionFamiliar, Email: Email, Telefono: Telefono, Activo: Activo },
             success: function (resultado) {
                 valor = resultado.split('*');
                 if (valor[0] == 'OK') {
@@ -95,8 +99,9 @@ function CargarDatosCajaCompensacionFamiliar() {
         data: { IdCajaCompensacionFamiliar: IdCajaCompensacionFamiliar },
         success: function (resultado) {
             $('#InputENombreCajaCompensacionFamiliar').val(resultado[0].Nombre);
+            $('#InputEEmailCajaCompensacionFamiliar').val(resultado[0].Email);
+            $('#InputETelefonoCajaCompensacionFamiliar').val(resultado[0].Telefono);
             $('#SelectEstadoCajaCompensacionFamiliar').val(resultado[0].Activo);
-
         }
     });
 }
@@ -136,22 +141,22 @@ function GridCajaCompensacionFamiliar() {
         buttons: [{
             extend: 'excelHtml5',
             footer: true,
-            title: 'Lista de Caja Compensacion Familiar',
-            filename: 'Lista de Caja Compensacion Familiar',
+            title: 'Lista de Caja Compensación Familiar',
+            filename: 'Lista de Caja Compensación Familiar',
             text: 'Excel',
             exportOptions: {
-                columns: [1, 2, 3, 4]
+                columns: [1, 2, 3, 4, 5, 6]
             }
         },
         {
             extend: 'pdfHtml5',
             download: 'open',
             footer: true,
-            title: 'Lista de Caja Compensacion Familiar',
-            filename: 'Lista de Caja Compensacion Familiar',
+            title: 'Lista de Caja Compensación Familiar',
+            filename: 'Lista de Caja Compensación Familiar',
             text: 'Pdf',
             exportOptions: {
-                columns: [1, 2, 3, 4]
+                columns: [1, 2, 3, 4, 5, 6]
             }
         },
         {
@@ -160,7 +165,7 @@ function GridCajaCompensacionFamiliar() {
             filename: 'Export_File_print',
             text: 'Imprimir',
             exportOptions: {
-                columns: [1, 2, 3, 4]
+                columns: [1, 2, 3, 4, 5, 6]
             }
         },
         ],
@@ -175,6 +180,8 @@ function GridCajaCompensacionFamiliar() {
             { "data": "Id", title: "Id", "visible": false },
             { "data": "Nombre", title: "CajaCompensacionFamiliar" },
             { "data": "Estado", title: "Estado" },
+            { "data": "Email", title: "Email" },
+            { "data": "Telefono", title: "Teléfono" },
             { "data": "CreateBy", title: "Creado por" },
             { "data": "DateCreate", title: "Fecha Creación" },
             {

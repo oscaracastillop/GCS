@@ -23,15 +23,15 @@ namespace Gcs.App.Controllers
         {
             return View();
         }
-        public JsonResult CrearEps(string IdUser, string NombreEps)
+        public JsonResult CrearEps(string IdUser, string NombreEps, string Email, string Telefono)
         {
-            string resultado = dataEps.CrearEps(IdUser, NombreEps);
+            string resultado = dataEps.CrearEps(IdUser, NombreEps, Email, Telefono);
             return Json(resultado);
         }
 
-        public JsonResult GuardarCambiosEps(int IdEps, string IdUser, string NombreEps, int Activo)
+        public JsonResult GuardarCambiosEps(int IdEps, string IdUser, string NombreEps, string Email, string Telefono, int Activo)
         {
-            var resultado = dataEps.GuardarCambiosEps(IdEps, IdUser, NombreEps, Activo);
+            var resultado = dataEps.GuardarCambiosEps(IdEps, IdUser, NombreEps, Email, Telefono, Activo);
             return Json(resultado);
         }
         public JsonResult EliminarEps(string IdUser, int IdEps)

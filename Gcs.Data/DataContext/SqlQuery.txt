@@ -272,13 +272,15 @@ insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'Ciudad','<i class=
 insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'Arl','<i class="bi-badge-ar" style="font-size: 2rem; color: #11ABE9;"></i>','/Arl')--27
 insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'Caja Compensación Familiar','<i class="bi-c-circle" style="font-size: 2rem; color: #11ABE9;"></i>','/CajaCompensacionFamiliar')--28
 insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'Eps','<i class="bi-explicit" style="font-size: 2rem; color: #11ABE9;"></i>','/Eps')--29
-insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'Tipo Actividad','<i class="bi-tools" style="font-size: 2rem; color: #11ABE9;"></i>','/TipoActividad')--30
-insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'Tipo Documento','<i class="bi-filetype-doc" style="font-size: 2rem; color: #11ABE9;"></i>','/TipoDocumento')--31
-insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'Tipo Forma Pago','<i class="bi-credit-card" style="font-size: 2rem; color: #11ABE9;"></i>','/TipoFormaPago')--32
-insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'Tipo Género','<i class="bi-filetype-doc" style="font-size: 2rem; color: #11ABE9;"></i>','/TipoGenero')--33
-insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'Tipo Hora Extra','<i class="bi-clock" style="font-size: 2rem; color: #11ABE9;"></i>','/TipoHoraExtra')--34
-insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'Tipo Moneda','<i class="bi-cash-coin" style="font-size: 2rem; color: #11ABE9;"></i>','/TipoMoneda')--35
-insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'Tipo Unidad Medida','<i class="bi-speedometer" style="font-size: 2rem; color: #11ABE9;"></i>','/TipoUnidadMedida')--36
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'Fondo Pensiones','<i class="bi-explicit" style="font-size: 2rem; color: #11ABE9;"></i>','/FondoPension')--30
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'Fondo Cesantías','<i class="bi-explicit" style="font-size: 2rem; color: #11ABE9;"></i>','/FondoCesantias')--31
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'Tipo Actividad','<i class="bi-tools" style="font-size: 2rem; color: #11ABE9;"></i>','/TipoActividad')--32
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'Tipo Documento','<i class="bi-filetype-doc" style="font-size: 2rem; color: #11ABE9;"></i>','/TipoDocumento')--33
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'Tipo Forma Pago','<i class="bi-credit-card" style="font-size: 2rem; color: #11ABE9;"></i>','/TipoFormaPago')--34
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'Tipo Género','<i class="bi-filetype-doc" style="font-size: 2rem; color: #11ABE9;"></i>','/TipoGenero')--35
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'Tipo Hora Extra','<i class="bi-clock" style="font-size: 2rem; color: #11ABE9;"></i>','/TipoHoraExtra')--36
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'Tipo Moneda','<i class="bi-cash-coin" style="font-size: 2rem; color: #11ABE9;"></i>','/TipoMoneda')--37
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'Tipo Unidad Medida','<i class="bi-speedometer" style="font-size: 2rem; color: #11ABE9;"></i>','/TipoUnidadMedida')--38
 
 insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (9, 'Usuario','<i class="bi-person" style="font-size: 2rem; color: #11ABE9;"></i>','/Usuario')
 insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (9, 'Permiso Usuario','<i class="bi-lock" style="font-size: 2rem; color: #11ABE9;"></i>','/Permiso_Usuario')
@@ -352,6 +354,8 @@ insert into Permiso_SubMenu (IdSubMenu, IdUsuario, Permiso, Crear, Editar, Elimi
 insert into Permiso_SubMenu (IdSubMenu, IdUsuario, Permiso, Crear, Editar, Eliminar) Values (42,1,1,1,1,1)
 insert into Permiso_SubMenu (IdSubMenu, IdUsuario, Permiso, Crear, Editar, Eliminar) Values (43,1,1,1,1,1)
 insert into Permiso_SubMenu (IdSubMenu, IdUsuario, Permiso, Crear, Editar, Eliminar) Values (44,1,1,1,1,1)
+insert into Permiso_SubMenu (IdSubMenu, IdUsuario, Permiso, Crear, Editar, Eliminar) Values (45,1,1,1,1,1)
+insert into Permiso_SubMenu (IdSubMenu, IdUsuario, Permiso, Crear, Editar, Eliminar) Values (46,1,1,1,1,1)
 
 go
 
@@ -2441,6 +2445,1153 @@ SELECT @NombreTipoUnidadMedida = Nombre FROM Pais WHERE Id = @IdTipoUnidadMedida
 		ELSE
 			BEGIN
 				SET @Resultado = 'Error*El usuario '+ @NombreUsuario + ' no tiene permiso para eliminar el tipo unidad medida' 
+			END
+	SELECT @Resultado
+END
+
+go
+
+CREATE TABLE TipoMoneda 
+(Id int identity(1,1) Primary key ,
+Nombre varchar(255),
+Activo int default 1,
+CreateBy int,
+DateCreate datetime,
+unique(Nombre)
+)
+
+ALTER TABLE TipoMoneda ADD CONSTRAINT FK_IdCreateByTipoMoneda FOREIGN KEY (CreateBy ) references Usuario(Id)
+
+go
+insert into TipoMoneda(Nombre, CreateBy,DateCreate)values('Pesos Colombianos',1,Getdate())
+insert into TipoMoneda(Nombre, CreateBy,DateCreate)values('Dólares',1,Getdate())
+
+go
+
+CREATE PROCEDURE [dbo].[SP_GridTipoMoneda]
+AS
+BEGIN
+	SELECT	Id, 
+			Nombre, 
+			CASE Activo
+			WHEN 1 THEN 'Activo'
+			ELSE 'Inactivo'
+			END as Estado,
+			dbo.Fun_BuscarNombreUsuario(CreateBy) As CreateBy,
+			CONVERT(varchar(255),DateCreate,20) As DateCreate
+			FROM TipoMoneda
+END
+
+GO
+
+CREATE PROCEDURE [dbo].[SP_CrearTipoMoneda] @IdUser varchar(255), @NombreTipoMoneda varchar(255), @Resultado varchar(255) OUTPUT
+AS
+BEGIN
+DECLARE @Crear INT, @IdUsuario INT, @NombreUsuario VARCHAR(255), @SubMenu VARCHAR(255)
+SELECT @IdUsuario = Id FROM Usuario WHERE IdUser = @IdUser
+SELECT @NombreUsuario = Nombre FROM Usuario WHERE IdUser = @IdUser
+SET @SubMenu = '/TipoMoneda'
+SELECT	@Crear = dbo.Fun_PermisoUsuario('Crear',@IdUsuario, @SubMenu)	
+		IF @Crear > 0
+			BEGIN
+				INSERT INTO TipoMoneda (Nombre,CreateBy, DateCreate) VALUES (@NombreTipoMoneda, @IdUsuario, GETDATE()) 
+				SET @Resultado = 'OK*Se a creado el tipo de moneda ' + @NombreTipoMoneda+ ' correctamente'
+			END
+		ELSE
+			BEGIN
+				SET @Resultado = 'Error*El usuario '+ @NombreUsuario + ' no tiene permiso para crear tipo de moneda' 
+			END
+	SELECT @Resultado
+END
+
+go
+
+CREATE PROCEDURE SP_CargarDatosTipoMoneda @IdTipoMoneda Int
+AS
+BEGIN
+	SELECT Nombre,
+	Activo
+	FROM TipoMoneda
+	WHERE Id = @IdTipoMoneda
+END
+
+go
+
+CREATE PROCEDURE [dbo].[SP_GuardarCambiosTipoMoneda] @IdTipoMoneda int, @IdUser varchar(255), @NombreTipoMoneda varchar(255), @Activo int, @Resultado varchar(255) OUTPUT
+AS
+BEGIN
+DECLARE @Modificar INT, @IdUsuario INT, @NombreUsuario VARCHAR(255), @SubMenu VARCHAR(255)
+SET @SubMenu = '/TipoMoneda'
+SELECT @IdUsuario = Id FROM Usuario WHERE IdUser = @IdUser
+SELECT @NombreUsuario = Nombre FROM Usuario WHERE IdUser = @IdUser
+SELECT @Modificar = dbo.Fun_PermisoUsuario('Editar',@IdUsuario, @SubMenu)	
+				IF @Modificar > 0
+					BEGIN
+						UPDATE TipoMoneda SET  Nombre = @NombreTipoMoneda, Activo = @Activo WHERE Id = @IdTipoMoneda
+					    SET @Resultado = 'OK*Se guardaron los cambios del tipo de moneda ' + @NombreTipoMoneda+ ' correctamente'
+					END
+				ELSE
+					BEGIN
+						SET @Resultado = 'Error*El usuario '+ @NombreUsuario + ' no tiene permiso para realizar cambios al tipo de moneda' 
+					END
+	SELECT @Resultado
+END
+
+go
+
+CREATE PROCEDURE [dbo].[SP_ListaTipoMoneda]
+AS
+BEGIN
+	SELECT Id, Nombre FROM TipoMoneda WHERE Activo = 1
+END
+
+go
+
+CREATE FUNCTION Fun_BuscarNombreTipoMoneda(@IdTipoMoneda INT)
+RETURNS VARCHAR(255)
+AS BEGIN
+DECLARE @NombreTipoMoneda VARCHAR(255)
+	SELECT	@NombreTipoMoneda = Nombre
+	FROM	TipoMoneda
+	WHERE	Id = @IdTipoMoneda
+	RETURN @NombreTipoMoneda
+END
+
+go
+
+CREATE PROCEDURE [dbo].[SP_EliminarTipoMoneda] @IdUser varchar(255), @IdTipoMoneda int, @Resultado varchar(255) OUTPUT
+AS
+BEGIN
+DECLARE @Eliminar INT, @IdUsuario INT, @NombreUsuario VARCHAR(255), @validar INT, @NombreTipoMoneda varchar(255), @SubMenu VARCHAR(255)
+SET @SubMenu = '/TipoMoneda'
+SELECT @IdUsuario = Id FROM Usuario WHERE IdUser = @IdUser
+SELECT @NombreUsuario = Nombre FROM Usuario WHERE IdUser = @IdUser
+SELECT @NombreTipoMoneda = Nombre FROM Pais WHERE Id = @IdTipoMoneda
+	SELECT	@Eliminar = dbo.Fun_PermisoUsuario('Eliminar',@IdUsuario, @SubMenu)	
+		IF @Eliminar > 0
+			BEGIN	
+				SELECT @validar = 0
+				IF @validar > 0 
+					BEGIN
+						SET @Resultado = 'Error*El tipo de moneda ' + @NombreTipoMoneda +' no se puede eliminar, actualmente se encuentra en eso'	
+					END
+				ELSE
+					BEGIN
+						DELETE TipoMoneda WHERE Id = @IdTipoMoneda
+						SET @Resultado = 'OK*Se elimino el tipo de moneda correctamente'	
+					END								
+			END
+		ELSE
+			BEGIN
+				SET @Resultado = 'Error*El usuario '+ @NombreUsuario + ' no tiene permiso para eliminar el tipo moneda' 
+			END
+	SELECT @Resultado
+END
+
+go
+
+CREATE TABLE TipoGenero 
+(Id int identity(1,1) Primary key ,
+Nombre varchar(255),
+Activo int default 1,
+CreateBy int,
+DateCreate datetime,
+unique(Nombre)
+)
+
+ALTER TABLE TipoGenero ADD CONSTRAINT FK_IdCreateByTipoGenero FOREIGN KEY (CreateBy ) references Usuario(Id)
+
+go
+insert into TipoGenero(Nombre, CreateBy,DateCreate)values('Masculino',1,Getdate())
+insert into TipoGenero(Nombre, CreateBy,DateCreate)values('Femenino',1,Getdate())
+
+go
+
+CREATE PROCEDURE [dbo].[SP_GridTipoGenero]
+AS
+BEGIN
+	SELECT	Id, 
+			Nombre, 
+			CASE Activo
+			WHEN 1 THEN 'Activo'
+			ELSE 'Inactivo'
+			END as Estado,
+			dbo.Fun_BuscarNombreUsuario(CreateBy) As CreateBy,
+			CONVERT(varchar(255),DateCreate,20) As DateCreate
+			FROM TipoGenero
+END
+
+GO
+
+CREATE PROCEDURE [dbo].[SP_CrearTipoGenero] @IdUser varchar(255), @NombreTipoGenero varchar(255), @Resultado varchar(255) OUTPUT
+AS
+BEGIN
+DECLARE @Crear INT, @IdUsuario INT, @NombreUsuario VARCHAR(255), @SubMenu VARCHAR(255)
+SELECT @IdUsuario = Id FROM Usuario WHERE IdUser = @IdUser
+SELECT @NombreUsuario = Nombre FROM Usuario WHERE IdUser = @IdUser
+SET @SubMenu = '/TipoGenero'
+SELECT	@Crear = dbo.Fun_PermisoUsuario('Crear',@IdUsuario, @SubMenu)	
+		IF @Crear > 0
+			BEGIN
+				INSERT INTO TipoGenero (Nombre,CreateBy, DateCreate) VALUES (@NombreTipoGenero, @IdUsuario, GETDATE()) 
+				SET @Resultado = 'OK*Se a creado el tipo de género ' + @NombreTipoGenero+ ' correctamente'
+			END
+		ELSE
+			BEGIN
+				SET @Resultado = 'Error*El usuario '+ @NombreUsuario + ' no tiene permiso para crear tipo de género' 
+			END
+	SELECT @Resultado
+END
+
+go
+
+CREATE PROCEDURE SP_CargarDatosTipoGenero @IdTipoGenero Int
+AS
+BEGIN
+	SELECT Nombre,
+	Activo
+	FROM TipoGenero
+	WHERE Id = @IdTipoGenero
+END
+
+go
+
+CREATE PROCEDURE [dbo].[SP_GuardarCambiosTipoGenero] @IdTipoGenero int, @IdUser varchar(255), @NombreTipoGenero varchar(255), @Activo int, @Resultado varchar(255) OUTPUT
+AS
+BEGIN
+DECLARE @Modificar INT, @IdUsuario INT, @NombreUsuario VARCHAR(255), @SubMenu VARCHAR(255)
+SET @SubMenu = '/TipoGenero'
+SELECT @IdUsuario = Id FROM Usuario WHERE IdUser = @IdUser
+SELECT @NombreUsuario = Nombre FROM Usuario WHERE IdUser = @IdUser
+SELECT @Modificar = dbo.Fun_PermisoUsuario('Editar',@IdUsuario, @SubMenu)	
+				IF @Modificar > 0
+					BEGIN
+						UPDATE TipoGenero SET  Nombre = @NombreTipoGenero, Activo = @Activo WHERE Id = @IdTipoGenero
+					    SET @Resultado = 'OK*Se guardaron los cambios del tipo de género ' + @NombreTipoGenero+ ' correctamente'
+					END
+				ELSE
+					BEGIN
+						SET @Resultado = 'Error*El usuario '+ @NombreUsuario + ' no tiene permiso para realizar cambios al tipo de género' 
+					END
+	SELECT @Resultado
+END
+
+go
+
+CREATE PROCEDURE [dbo].[SP_ListaTipoGenero]
+AS
+BEGIN
+	SELECT Id, Nombre FROM TipoGenero WHERE Activo = 1
+END
+
+go
+
+CREATE FUNCTION Fun_BuscarNombreTipoGenero(@IdTipoGenero INT)
+RETURNS VARCHAR(255)
+AS BEGIN
+DECLARE @NombreTipoGenero VARCHAR(255)
+	SELECT	@NombreTipoGenero = Nombre
+	FROM	TipoGenero
+	WHERE	Id = @IdTipoGenero
+	RETURN @NombreTipoGenero
+END
+
+go
+
+CREATE PROCEDURE [dbo].[SP_EliminarTipoGenero] @IdUser varchar(255), @IdTipoGenero int, @Resultado varchar(255) OUTPUT
+AS
+BEGIN
+DECLARE @Eliminar INT, @IdUsuario INT, @NombreUsuario VARCHAR(255), @validar INT, @NombreTipoGenero varchar(255), @SubMenu VARCHAR(255)
+SET @SubMenu = '/TipoGenero'
+SELECT @IdUsuario = Id FROM Usuario WHERE IdUser = @IdUser
+SELECT @NombreUsuario = Nombre FROM Usuario WHERE IdUser = @IdUser
+SELECT @NombreTipoGenero = Nombre FROM Pais WHERE Id = @IdTipoGenero
+	SELECT	@Eliminar = dbo.Fun_PermisoUsuario('Eliminar',@IdUsuario, @SubMenu)	
+		IF @Eliminar > 0
+			BEGIN	
+				SELECT @validar = 0
+				IF @validar > 0 
+					BEGIN
+						SET @Resultado = 'Error*El tipo de género ' + @NombreTipoGenero +' no se puede eliminar, actualmente se encuentra en eso'	
+					END
+				ELSE
+					BEGIN
+						DELETE TipoGenero WHERE Id = @IdTipoGenero
+						SET @Resultado = 'OK*Se elimino el tipo de género correctamente'	
+					END								
+			END
+		ELSE
+			BEGIN
+				SET @Resultado = 'Error*El usuario '+ @NombreUsuario + ' no tiene permiso para eliminar el tipo género' 
+			END
+	SELECT @Resultado
+END
+
+go
+
+CREATE TABLE TipoFormaPago 
+(Id int identity(1,1) Primary key ,
+Nombre varchar(255),
+Activo int default 1,
+CreateBy int,
+DateCreate datetime,
+unique(Nombre)
+)
+
+ALTER TABLE TipoFormaPago ADD CONSTRAINT FK_IdCreateByTipoFormaPago FOREIGN KEY (CreateBy ) references Usuario(Id)
+
+go
+insert into TipoFormaPago(Nombre, CreateBy,DateCreate)values('Contado',1,Getdate())
+insert into TipoFormaPago(Nombre, CreateBy,DateCreate)values('Crédito a 7 días',1,Getdate())
+insert into TipoFormaPago(Nombre, CreateBy,DateCreate)values('Crédito a 15 días',1,Getdate())
+insert into TipoFormaPago(Nombre, CreateBy,DateCreate)values('Crédito a 30 días',1,Getdate())
+insert into TipoFormaPago(Nombre, CreateBy,DateCreate)values('Crédito a 45 días',1,Getdate())
+insert into TipoFormaPago(Nombre, CreateBy,DateCreate)values('Crédito a 60 días',1,Getdate())
+
+go
+
+CREATE PROCEDURE [dbo].[SP_GridTipoFormaPago]
+AS
+BEGIN
+	SELECT	Id, 
+			Nombre, 
+			CASE Activo
+			WHEN 1 THEN 'Activo'
+			ELSE 'Inactivo'
+			END as Estado,
+			dbo.Fun_BuscarNombreUsuario(CreateBy) As CreateBy,
+			CONVERT(varchar(255),DateCreate,20) As DateCreate
+			FROM TipoFormaPago
+END
+
+GO
+
+CREATE PROCEDURE [dbo].[SP_CrearTipoFormaPago] @IdUser varchar(255), @NombreTipoFormaPago varchar(255), @Resultado varchar(255) OUTPUT
+AS
+BEGIN
+DECLARE @Crear INT, @IdUsuario INT, @NombreUsuario VARCHAR(255), @SubMenu VARCHAR(255)
+SELECT @IdUsuario = Id FROM Usuario WHERE IdUser = @IdUser
+SELECT @NombreUsuario = Nombre FROM Usuario WHERE IdUser = @IdUser
+SET @SubMenu = '/TipoFormaPago'
+SELECT	@Crear = dbo.Fun_PermisoUsuario('Crear',@IdUsuario, @SubMenu)	
+		IF @Crear > 0
+			BEGIN
+				INSERT INTO TipoFormaPago (Nombre,CreateBy, DateCreate) VALUES (@NombreTipoFormaPago, @IdUsuario, GETDATE()) 
+				SET @Resultado = 'OK*Se a creado el tipo forma de pago ' + @NombreTipoFormaPago+ ' correctamente'
+			END
+		ELSE
+			BEGIN
+				SET @Resultado = 'Error*El usuario '+ @NombreUsuario + ' no tiene permiso para crear tipo forma de pago' 
+			END
+	SELECT @Resultado
+END
+
+go
+
+CREATE PROCEDURE SP_CargarDatosTipoFormaPago @IdTipoFormaPago Int
+AS
+BEGIN
+	SELECT Nombre,
+	Activo
+	FROM TipoFormaPago
+	WHERE Id = @IdTipoFormaPago
+END
+
+go
+
+CREATE PROCEDURE [dbo].[SP_GuardarCambiosTipoFormaPago] @IdTipoFormaPago int, @IdUser varchar(255), @NombreTipoFormaPago varchar(255), @Activo int, @Resultado varchar(255) OUTPUT
+AS
+BEGIN
+DECLARE @Modificar INT, @IdUsuario INT, @NombreUsuario VARCHAR(255), @SubMenu VARCHAR(255)
+SET @SubMenu = '/TipoFormaPago'
+SELECT @IdUsuario = Id FROM Usuario WHERE IdUser = @IdUser
+SELECT @NombreUsuario = Nombre FROM Usuario WHERE IdUser = @IdUser
+SELECT @Modificar = dbo.Fun_PermisoUsuario('Editar',@IdUsuario, @SubMenu)	
+				IF @Modificar > 0
+					BEGIN
+						UPDATE TipoFormaPago SET  Nombre = @NombreTipoFormaPago, Activo = @Activo WHERE Id = @IdTipoFormaPago
+					    SET @Resultado = 'OK*Se guardaron los cambios del tipo forma de pago ' + @NombreTipoFormaPago+ ' correctamente'
+					END
+				ELSE
+					BEGIN
+						SET @Resultado = 'Error*El usuario '+ @NombreUsuario + ' no tiene permiso para realizar cambios al tipo forma de pago' 
+					END
+	SELECT @Resultado
+END
+
+go
+
+CREATE PROCEDURE [dbo].[SP_ListaTipoFormaPago]
+AS
+BEGIN
+	SELECT Id, Nombre FROM TipoFormaPago WHERE Activo = 1
+END
+
+go
+
+CREATE FUNCTION Fun_BuscarNombreTipoFormaPago(@IdTipoFormaPago INT)
+RETURNS VARCHAR(255)
+AS BEGIN
+DECLARE @NombreTipoFormaPago VARCHAR(255)
+	SELECT	@NombreTipoFormaPago = Nombre
+	FROM	TipoFormaPago
+	WHERE	Id = @IdTipoFormaPago
+	RETURN @NombreTipoFormaPago
+END
+
+go
+
+CREATE PROCEDURE [dbo].[SP_EliminarTipoFormaPago] @IdUser varchar(255), @IdTipoFormaPago int, @Resultado varchar(255) OUTPUT
+AS
+BEGIN
+DECLARE @Eliminar INT, @IdUsuario INT, @NombreUsuario VARCHAR(255), @validar INT, @NombreTipoFormaPago varchar(255), @SubMenu VARCHAR(255)
+SET @SubMenu = '/TipoFormaPago'
+SELECT @IdUsuario = Id FROM Usuario WHERE IdUser = @IdUser
+SELECT @NombreUsuario = Nombre FROM Usuario WHERE IdUser = @IdUser
+SELECT @NombreTipoFormaPago = Nombre FROM Pais WHERE Id = @IdTipoFormaPago
+	SELECT	@Eliminar = dbo.Fun_PermisoUsuario('Eliminar',@IdUsuario, @SubMenu)	
+		IF @Eliminar > 0
+			BEGIN	
+				SELECT @validar = 0
+				IF @validar > 0 
+					BEGIN
+						SET @Resultado = 'Error*El tipo forma de pago ' + @NombreTipoFormaPago +' no se puede eliminar, actualmente se encuentra en eso'	
+					END
+				ELSE
+					BEGIN
+						DELETE TipoFormaPago WHERE Id = @IdTipoFormaPago
+						SET @Resultado = 'OK*Se elimino el tipo forma de pago correctamente'	
+					END								
+			END
+		ELSE
+			BEGIN
+				SET @Resultado = 'Error*El usuario '+ @NombreUsuario + ' no tiene permiso para eliminar el tipo forma de pago' 
+			END
+	SELECT @Resultado
+END
+
+go
+
+CREATE TABLE Eps 
+(Id int identity(1,1) Primary key ,
+Nombre varchar(255),
+Email varchar(255),
+Telefono varchar(255),
+Activo int default 1,
+CreateBy int,
+DateCreate datetime,
+unique(Nombre)
+)
+
+ALTER TABLE Eps ADD CONSTRAINT FK_IdCreateByEps FOREIGN KEY (CreateBy ) references Usuario(Id)
+
+go
+insert into Eps(Nombre, CreateBy,DateCreate)values('Famisanar',1,Getdate())
+insert into Eps(Nombre, CreateBy,DateCreate)values('Nueva Eps',1,Getdate())
+insert into Eps(Nombre, CreateBy,DateCreate)values('Sanitas',1,Getdate())
+
+go
+
+CREATE PROCEDURE [dbo].[SP_GridEps]
+AS
+BEGIN
+	SELECT	Id, 
+			Nombre, 
+			Email,
+			Telefono,
+			CASE Activo
+			WHEN 1 THEN 'Activo'
+			ELSE 'Inactivo'
+			END as Estado,
+			dbo.Fun_BuscarNombreUsuario(CreateBy) As CreateBy,
+			CONVERT(varchar(255),DateCreate,20) As DateCreate
+			FROM Eps
+END
+
+GO
+
+CREATE PROCEDURE [dbo].[SP_CrearEps] @IdUser varchar(255), @NombreEps varchar(255), @Email varchar(255), @Telefono varchar(255), @Resultado varchar(255) OUTPUT
+AS
+BEGIN
+DECLARE @Crear INT, @IdUsuario INT, @NombreUsuario VARCHAR(255), @SubMenu VARCHAR(255)
+SELECT @IdUsuario = Id FROM Usuario WHERE IdUser = @IdUser
+SELECT @NombreUsuario = Nombre FROM Usuario WHERE IdUser = @IdUser
+SET @SubMenu = '/Eps'
+SELECT	@Crear = dbo.Fun_PermisoUsuario('Crear',@IdUsuario, @SubMenu)	
+		IF @Crear > 0
+			BEGIN
+				INSERT INTO Eps (Nombre,Email,Telefono,CreateBy, DateCreate) VALUES (@NombreEps, @Email, @Telefono, @IdUsuario, GETDATE()) 
+				SET @Resultado = 'OK*Se a creado la eps ' + @NombreEps+ ' correctamente'
+			END
+		ELSE
+			BEGIN
+				SET @Resultado = 'Error*El usuario '+ @NombreUsuario + ' no tiene permiso para crear la eps' 
+			END
+	SELECT @Resultado
+END
+
+go
+
+CREATE PROCEDURE SP_CargarDatosEps @IdEps Int
+AS
+BEGIN
+	SELECT Nombre,
+	Email,
+	Telefono,
+	Activo
+	FROM Eps
+	WHERE Id = @IdEps
+END
+
+go
+
+CREATE PROCEDURE [dbo].[SP_GuardarCambiosEps] @IdEps int, @IdUser varchar(255), @NombreEps varchar(255), @Email varchar(255), @Telefono varchar(255),  @Activo int, @Resultado varchar(255) OUTPUT
+AS
+BEGIN
+DECLARE @Modificar INT, @IdUsuario INT, @NombreUsuario VARCHAR(255), @SubMenu VARCHAR(255)
+SET @SubMenu = '/Eps'
+SELECT @IdUsuario = Id FROM Usuario WHERE IdUser = @IdUser
+SELECT @NombreUsuario = Nombre FROM Usuario WHERE IdUser = @IdUser
+SELECT @Modificar = dbo.Fun_PermisoUsuario('Editar',@IdUsuario, @SubMenu)	
+				IF @Modificar > 0
+					BEGIN
+						UPDATE Eps SET  Nombre = @NombreEps, Activo = @Activo, @Email = Email, @Telefono = Telefono WHERE Id = @IdEps
+					    SET @Resultado = 'OK*Se guardaron los cambios de la eps ' + @NombreEps+ ' correctamente'
+					END
+				ELSE
+					BEGIN
+						SET @Resultado = 'Error*El usuario '+ @NombreUsuario + ' no tiene permiso para realizar cambios a la eps' 
+					END
+	SELECT @Resultado
+END
+
+go
+
+CREATE PROCEDURE [dbo].[SP_ListaEps]
+AS
+BEGIN
+	SELECT Id, Nombre FROM Eps WHERE Activo = 1
+END
+
+go
+
+CREATE FUNCTION Fun_BuscarNombreEps(@IdEps INT)
+RETURNS VARCHAR(255)
+AS BEGIN
+DECLARE @NombreEps VARCHAR(255)
+	SELECT	@NombreEps = Nombre
+	FROM	Eps
+	WHERE	Id = @IdEps
+	RETURN @NombreEps
+END
+
+go
+
+CREATE PROCEDURE [dbo].[SP_EliminarEps] @IdUser varchar(255), @IdEps int, @Resultado varchar(255) OUTPUT
+AS
+BEGIN
+DECLARE @Eliminar INT, @IdUsuario INT, @NombreUsuario VARCHAR(255), @validar INT, @NombreEps varchar(255), @SubMenu VARCHAR(255)
+SET @SubMenu = '/Eps'
+SELECT @IdUsuario = Id FROM Usuario WHERE IdUser = @IdUser
+SELECT @NombreUsuario = Nombre FROM Usuario WHERE IdUser = @IdUser
+SELECT @NombreEps = Nombre FROM Pais WHERE Id = @IdEps
+	SELECT	@Eliminar = dbo.Fun_PermisoUsuario('Eliminar',@IdUsuario, @SubMenu)	
+		IF @Eliminar > 0
+			BEGIN	
+				SELECT @validar = 0
+				IF @validar > 0 
+					BEGIN
+						SET @Resultado = 'Error*La eps ' + @NombreEps +' no se puede eliminar, actualmente se encuentra en eso'	
+					END
+				ELSE
+					BEGIN
+						DELETE Eps WHERE Id = @IdEps
+						SET @Resultado = 'OK*Se elimino la eps correctamente'	
+					END								
+			END
+		ELSE
+			BEGIN
+				SET @Resultado = 'Error*El usuario '+ @NombreUsuario + ' no tiene permiso para eliminar la eps' 
+			END
+	SELECT @Resultado
+END
+
+go
+
+CREATE TABLE Arl 
+(Id int identity(1,1) Primary key ,
+Nombre varchar(255),
+Email varchar(255),
+Telefono varchar(255),
+Activo int default 1,
+CreateBy int,
+DateCreate datetime,
+unique(Nombre)
+)
+
+ALTER TABLE Arl ADD CONSTRAINT FK_IdCreateByArl FOREIGN KEY (CreateBy ) references Usuario(Id)
+
+go
+insert into Arl(Nombre, CreateBy,DateCreate)values('Sura',1,Getdate())
+
+go
+
+CREATE PROCEDURE [dbo].[SP_GridArl]
+AS
+BEGIN
+	SELECT	Id, 
+			Nombre, 
+			Email,
+			Telefono,
+			CASE Activo
+			WHEN 1 THEN 'Activo'
+			ELSE 'Inactivo'
+			END as Estado,
+			dbo.Fun_BuscarNombreUsuario(CreateBy) As CreateBy,
+			CONVERT(varchar(255),DateCreate,20) As DateCreate
+			FROM Arl
+END
+
+GO
+
+CREATE PROCEDURE [dbo].[SP_CrearArl] @IdUser varchar(255), @NombreArl varchar(255), @Email varchar(255), @Telefono varchar(255), @Resultado varchar(255) OUTPUT
+AS
+BEGIN
+DECLARE @Crear INT, @IdUsuario INT, @NombreUsuario VARCHAR(255), @SubMenu VARCHAR(255)
+SELECT @IdUsuario = Id FROM Usuario WHERE IdUser = @IdUser
+SELECT @NombreUsuario = Nombre FROM Usuario WHERE IdUser = @IdUser
+SET @SubMenu = '/Arl'
+SELECT	@Crear = dbo.Fun_PermisoUsuario('Crear',@IdUsuario, @SubMenu)	
+		IF @Crear > 0
+			BEGIN
+				INSERT INTO Arl (Nombre,Email,Telefono,CreateBy, DateCreate) VALUES (@NombreArl, @Email, @Telefono, @IdUsuario, GETDATE()) 
+				SET @Resultado = 'OK*Se a creado la Arl ' + @NombreArl+ ' correctamente'
+			END
+		ELSE
+			BEGIN
+				SET @Resultado = 'Error*El usuario '+ @NombreUsuario + ' no tiene permiso para crear la Arl' 
+			END
+	SELECT @Resultado
+END
+
+go
+
+CREATE PROCEDURE SP_CargarDatosArl @IdArl Int
+AS
+BEGIN
+	SELECT Nombre,
+	Email,
+	Telefono,
+	Activo
+	FROM Arl
+	WHERE Id = @IdArl
+END
+
+go
+
+CREATE PROCEDURE [dbo].[SP_GuardarCambiosArl] @IdArl int, @IdUser varchar(255), @NombreArl varchar(255), @Email varchar(255), @Telefono varchar(255),  @Activo int, @Resultado varchar(255) OUTPUT
+AS
+BEGIN
+DECLARE @Modificar INT, @IdUsuario INT, @NombreUsuario VARCHAR(255), @SubMenu VARCHAR(255)
+SET @SubMenu = '/Arl'
+SELECT @IdUsuario = Id FROM Usuario WHERE IdUser = @IdUser
+SELECT @NombreUsuario = Nombre FROM Usuario WHERE IdUser = @IdUser
+SELECT @Modificar = dbo.Fun_PermisoUsuario('Editar',@IdUsuario, @SubMenu)	
+				IF @Modificar > 0
+					BEGIN
+						UPDATE Arl SET  Nombre = @NombreArl, Activo = @Activo, @Email = Email, @Telefono = Telefono WHERE Id = @IdArl
+					    SET @Resultado = 'OK*Se guardaron los cambios de la Arl ' + @NombreArl+ ' correctamente'
+					END
+				ELSE
+					BEGIN
+						SET @Resultado = 'Error*El usuario '+ @NombreUsuario + ' no tiene permiso para realizar cambios a la Arl' 
+					END
+	SELECT @Resultado
+END
+
+go
+
+CREATE PROCEDURE [dbo].[SP_ListaArl]
+AS
+BEGIN
+	SELECT Id, Nombre FROM Arl WHERE Activo = 1
+END
+
+go
+
+CREATE FUNCTION Fun_BuscarNombreArl(@IdArl INT)
+RETURNS VARCHAR(255)
+AS BEGIN
+DECLARE @NombreArl VARCHAR(255)
+	SELECT	@NombreArl = Nombre
+	FROM	Arl
+	WHERE	Id = @IdArl
+	RETURN @NombreArl
+END
+
+go
+
+CREATE PROCEDURE [dbo].[SP_EliminarArl] @IdUser varchar(255), @IdArl int, @Resultado varchar(255) OUTPUT
+AS
+BEGIN
+DECLARE @Eliminar INT, @IdUsuario INT, @NombreUsuario VARCHAR(255), @validar INT, @NombreArl varchar(255), @SubMenu VARCHAR(255)
+SET @SubMenu = '/Arl'
+SELECT @IdUsuario = Id FROM Usuario WHERE IdUser = @IdUser
+SELECT @NombreUsuario = Nombre FROM Usuario WHERE IdUser = @IdUser
+SELECT @NombreArl = Nombre FROM Pais WHERE Id = @IdArl
+	SELECT	@Eliminar = dbo.Fun_PermisoUsuario('Eliminar',@IdUsuario, @SubMenu)	
+		IF @Eliminar > 0
+			BEGIN	
+				SELECT @validar = 0
+				IF @validar > 0 
+					BEGIN
+						SET @Resultado = 'Error*La Arl ' + @NombreArl +' no se puede eliminar, actualmente se encuentra en eso'	
+					END
+				ELSE
+					BEGIN
+						DELETE Arl WHERE Id = @IdArl
+						SET @Resultado = 'OK*Se elimino la Arl correctamente'	
+					END								
+			END
+		ELSE
+			BEGIN
+				SET @Resultado = 'Error*El usuario '+ @NombreUsuario + ' no tiene permiso para eliminar la Arl' 
+			END
+	SELECT @Resultado
+END
+
+go
+
+CREATE TABLE CajaCompensacionFamiliar 
+(Id int identity(1,1) Primary key ,
+Nombre varchar(255),
+Email varchar(255),
+Telefono varchar(255),
+Activo int default 1,
+CreateBy int,
+DateCreate datetime,
+unique(Nombre)
+)
+
+ALTER TABLE CajaCompensacionFamiliar ADD CONSTRAINT FK_IdCreateByCajaCompensacionFamiliar FOREIGN KEY (CreateBy ) references Usuario(Id)
+
+go
+insert into CajaCompensacionFamiliar(Nombre, CreateBy,DateCreate)values('Cafam',1,Getdate())
+insert into CajaCompensacionFamiliar(Nombre, CreateBy,DateCreate)values('Colsubsidio',1,Getdate())
+insert into CajaCompensacionFamiliar(Nombre, CreateBy,DateCreate)values('Compensar',1,Getdate())
+
+go
+
+CREATE PROCEDURE [dbo].[SP_GridCajaCompensacionFamiliar]
+AS
+BEGIN
+	SELECT	Id, 
+			Nombre, 
+			Email,
+			Telefono,
+			CASE Activo
+			WHEN 1 THEN 'Activo'
+			ELSE 'Inactivo'
+			END as Estado,
+			dbo.Fun_BuscarNombreUsuario(CreateBy) As CreateBy,
+			CONVERT(varchar(255),DateCreate,20) As DateCreate
+			FROM CajaCompensacionFamiliar
+END
+
+GO
+
+CREATE PROCEDURE [dbo].[SP_CrearCajaCompensacionFamiliar] @IdUser varchar(255), @NombreCajaCompensacionFamiliar varchar(255), @Email varchar(255), @Telefono varchar(255), @Resultado varchar(255) OUTPUT
+AS
+BEGIN
+DECLARE @Crear INT, @IdUsuario INT, @NombreUsuario VARCHAR(255), @SubMenu VARCHAR(255)
+SELECT @IdUsuario = Id FROM Usuario WHERE IdUser = @IdUser
+SELECT @NombreUsuario = Nombre FROM Usuario WHERE IdUser = @IdUser
+SET @SubMenu = '/CajaCompensacionFamiliar'
+SELECT	@Crear = dbo.Fun_PermisoUsuario('Crear',@IdUsuario, @SubMenu)	
+		IF @Crear > 0
+			BEGIN
+				INSERT INTO CajaCompensacionFamiliar (Nombre,Email,Telefono,CreateBy, DateCreate) VALUES (@NombreCajaCompensacionFamiliar, @Email, @Telefono, @IdUsuario, GETDATE()) 
+				SET @Resultado = 'OK*Se a creado la caja de compensación familiar ' + @NombreCajaCompensacionFamiliar+ ' correctamente'
+			END
+		ELSE
+			BEGIN
+				SET @Resultado = 'Error*El usuario '+ @NombreUsuario + ' no tiene permiso para crear la caja de compensación familiar' 
+			END
+	SELECT @Resultado
+END
+
+go
+
+CREATE PROCEDURE SP_CargarDatosCajaCompensacionFamiliar @IdCajaCompensacionFamiliar Int
+AS
+BEGIN
+	SELECT Nombre,
+	Email,
+	Telefono,
+	Activo
+	FROM CajaCompensacionFamiliar
+	WHERE Id = @IdCajaCompensacionFamiliar
+END
+
+go
+
+CREATE PROCEDURE [dbo].[SP_GuardarCambiosCajaCompensacionFamiliar] @IdCajaCompensacionFamiliar int, @IdUser varchar(255), @NombreCajaCompensacionFamiliar varchar(255), @Email varchar(255), @Telefono varchar(255),  @Activo int, @Resultado varchar(255) OUTPUT
+AS
+BEGIN
+DECLARE @Modificar INT, @IdUsuario INT, @NombreUsuario VARCHAR(255), @SubMenu VARCHAR(255)
+SET @SubMenu = '/CajaCompensacionFamiliar'
+SELECT @IdUsuario = Id FROM Usuario WHERE IdUser = @IdUser
+SELECT @NombreUsuario = Nombre FROM Usuario WHERE IdUser = @IdUser
+SELECT @Modificar = dbo.Fun_PermisoUsuario('Editar',@IdUsuario, @SubMenu)	
+				IF @Modificar > 0
+					BEGIN
+						UPDATE CajaCompensacionFamiliar SET  Nombre = @NombreCajaCompensacionFamiliar, Activo = @Activo, @Email = Email, @Telefono = Telefono WHERE Id = @IdCajaCompensacionFamiliar
+					    SET @Resultado = 'OK*Se guardaron los cambios de la caja de compensación familiar ' + @NombreCajaCompensacionFamiliar+ ' correctamente'
+					END
+				ELSE
+					BEGIN
+						SET @Resultado = 'Error*El usuario '+ @NombreUsuario + ' no tiene permiso para realizar cambios de la caja de compensación familiar' 
+					END
+	SELECT @Resultado
+END
+
+go
+
+CREATE PROCEDURE [dbo].[SP_ListaCajaCompensacionFamiliar]
+AS
+BEGIN
+	SELECT Id, Nombre FROM CajaCompensacionFamiliar WHERE Activo = 1
+END
+
+go
+
+CREATE FUNCTION Fun_BuscarNombreCajaCompensacionFamiliar(@IdCajaCompensacionFamiliar INT)
+RETURNS VARCHAR(255)
+AS BEGIN
+DECLARE @NombreCajaCompensacionFamiliar VARCHAR(255)
+	SELECT	@NombreCajaCompensacionFamiliar = Nombre
+	FROM	CajaCompensacionFamiliar
+	WHERE	Id = @IdCajaCompensacionFamiliar
+	RETURN @NombreCajaCompensacionFamiliar
+END
+
+go
+
+CREATE PROCEDURE [dbo].[SP_EliminarCajaCompensacionFamiliar] @IdUser varchar(255), @IdCajaCompensacionFamiliar int, @Resultado varchar(255) OUTPUT
+AS
+BEGIN
+DECLARE @Eliminar INT, @IdUsuario INT, @NombreUsuario VARCHAR(255), @validar INT, @NombreCajaCompensacionFamiliar varchar(255), @SubMenu VARCHAR(255)
+SET @SubMenu = '/CajaCompensacionFamiliar'
+SELECT @IdUsuario = Id FROM Usuario WHERE IdUser = @IdUser
+SELECT @NombreUsuario = Nombre FROM Usuario WHERE IdUser = @IdUser
+SELECT @NombreCajaCompensacionFamiliar = Nombre FROM Pais WHERE Id = @IdCajaCompensacionFamiliar
+	SELECT	@Eliminar = dbo.Fun_PermisoUsuario('Eliminar',@IdUsuario, @SubMenu)	
+		IF @Eliminar > 0
+			BEGIN	
+				SELECT @validar = 0
+				IF @validar > 0 
+					BEGIN
+						SET @Resultado = 'Error*La caja de compensación familiar ' + @NombreCajaCompensacionFamiliar +' no se puede eliminar, actualmente se encuentra en eso'	
+					END
+				ELSE
+					BEGIN
+						DELETE CajaCompensacionFamiliar WHERE Id = @IdCajaCompensacionFamiliar
+						SET @Resultado = 'OK*Se elimino la caja de compensación familiar correctamente'	
+					END								
+			END
+		ELSE
+			BEGIN
+				SET @Resultado = 'Error*El usuario '+ @NombreUsuario + ' no tiene permiso para eliminar la caja de compensación familiar' 
+			END
+	SELECT @Resultado
+END
+
+go
+
+CREATE TABLE FondoCesantias 
+(Id int identity(1,1) Primary key ,
+Nombre varchar(255),
+Email varchar(255),
+Telefono varchar(255),
+Activo int default 1,
+CreateBy int,
+DateCreate datetime,
+unique(Nombre)
+)
+
+ALTER TABLE FondoCesantias ADD CONSTRAINT FK_IdCreateByFondoCesantias FOREIGN KEY (CreateBy ) references Usuario(Id)
+
+go
+insert into FondoCesantias(Nombre, CreateBy,DateCreate)values('Porvenir',1,Getdate())
+insert into FondoCesantias(Nombre, CreateBy,DateCreate)values('Protección',1,Getdate())
+
+go
+
+CREATE PROCEDURE [dbo].[SP_GridFondoCesantias]
+AS
+BEGIN
+	SELECT	Id, 
+			Nombre, 
+			Email,
+			Telefono,
+			CASE Activo
+			WHEN 1 THEN 'Activo'
+			ELSE 'Inactivo'
+			END as Estado,
+			dbo.Fun_BuscarNombreUsuario(CreateBy) As CreateBy,
+			CONVERT(varchar(255),DateCreate,20) As DateCreate
+			FROM FondoCesantias
+END
+
+GO
+
+CREATE PROCEDURE [dbo].[SP_CrearFondoCesantias] @IdUser varchar(255), @NombreFondoCesantias varchar(255), @Email varchar(255), @Telefono varchar(255), @Resultado varchar(255) OUTPUT
+AS
+BEGIN
+DECLARE @Crear INT, @IdUsuario INT, @NombreUsuario VARCHAR(255), @SubMenu VARCHAR(255)
+SELECT @IdUsuario = Id FROM Usuario WHERE IdUser = @IdUser
+SELECT @NombreUsuario = Nombre FROM Usuario WHERE IdUser = @IdUser
+SET @SubMenu = '/FondoCesantias'
+SELECT	@Crear = dbo.Fun_PermisoUsuario('Crear',@IdUsuario, @SubMenu)	
+		IF @Crear > 0
+			BEGIN
+				INSERT INTO FondoCesantias (Nombre,Email,Telefono,CreateBy, DateCreate) VALUES (@NombreFondoCesantias, @Email, @Telefono, @IdUsuario, GETDATE()) 
+				SET @Resultado = 'OK*Se a creado el fondo de cesantías ' + @NombreFondoCesantias+ ' correctamente'
+			END
+		ELSE
+			BEGIN
+				SET @Resultado = 'Error*El usuario '+ @NombreUsuario + ' no tiene permiso para crear el fondo de cesantías' 
+			END
+	SELECT @Resultado
+END
+
+go
+
+CREATE PROCEDURE SP_CargarDatosFondoCesantias @IdFondoCesantias Int
+AS
+BEGIN
+	SELECT Nombre,
+	Email,
+	Telefono,
+	Activo
+	FROM FondoCesantias
+	WHERE Id = @IdFondoCesantias
+END
+
+go
+
+CREATE PROCEDURE [dbo].[SP_GuardarCambiosFondoCesantias] @IdFondoCesantias int, @IdUser varchar(255), @NombreFondoCesantias varchar(255), @Email varchar(255), @Telefono varchar(255),  @Activo int, @Resultado varchar(255) OUTPUT
+AS
+BEGIN
+DECLARE @Modificar INT, @IdUsuario INT, @NombreUsuario VARCHAR(255), @SubMenu VARCHAR(255)
+SET @SubMenu = '/FondoCesantias'
+SELECT @IdUsuario = Id FROM Usuario WHERE IdUser = @IdUser
+SELECT @NombreUsuario = Nombre FROM Usuario WHERE IdUser = @IdUser
+SELECT @Modificar = dbo.Fun_PermisoUsuario('Editar',@IdUsuario, @SubMenu)	
+				IF @Modificar > 0
+					BEGIN
+						UPDATE FondoCesantias SET  Nombre = @NombreFondoCesantias, Activo = @Activo, @Email = Email, @Telefono = Telefono WHERE Id = @IdFondoCesantias
+					    SET @Resultado = 'OK*Se guardaron los cambios del fondo de cesantías ' + @NombreFondoCesantias+ ' correctamente'
+					END
+				ELSE
+					BEGIN
+						SET @Resultado = 'Error*El usuario '+ @NombreUsuario + ' no tiene permiso para realizar cambios del fondo de cesantías' 
+					END
+	SELECT @Resultado
+END
+
+go
+
+CREATE PROCEDURE [dbo].[SP_ListaFondoCesantias]
+AS
+BEGIN
+	SELECT Id, Nombre FROM FondoCesantias WHERE Activo = 1
+END
+
+go
+
+CREATE FUNCTION Fun_BuscarNombreFondoCesantias(@IdFondoCesantias INT)
+RETURNS VARCHAR(255)
+AS BEGIN
+DECLARE @NombreFondoCesantias VARCHAR(255)
+	SELECT	@NombreFondoCesantias = Nombre
+	FROM	FondoCesantias
+	WHERE	Id = @IdFondoCesantias
+	RETURN @NombreFondoCesantias
+END
+
+go
+
+CREATE PROCEDURE [dbo].[SP_EliminarFondoCesantias] @IdUser varchar(255), @IdFondoCesantias int, @Resultado varchar(255) OUTPUT
+AS
+BEGIN
+DECLARE @Eliminar INT, @IdUsuario INT, @NombreUsuario VARCHAR(255), @validar INT, @NombreFondoCesantias varchar(255), @SubMenu VARCHAR(255)
+SET @SubMenu = '/FondoCesantias'
+SELECT @IdUsuario = Id FROM Usuario WHERE IdUser = @IdUser
+SELECT @NombreUsuario = Nombre FROM Usuario WHERE IdUser = @IdUser
+SELECT @NombreFondoCesantias = Nombre FROM Pais WHERE Id = @IdFondoCesantias
+	SELECT	@Eliminar = dbo.Fun_PermisoUsuario('Eliminar',@IdUsuario, @SubMenu)	
+		IF @Eliminar > 0
+			BEGIN	
+				SELECT @validar = 0
+				IF @validar > 0 
+					BEGIN
+						SET @Resultado = 'Error*El fondo de cesantías ' + @NombreFondoCesantias +' no se puede eliminar, actualmente se encuentra en eso'	
+					END
+				ELSE
+					BEGIN
+						DELETE FondoCesantias WHERE Id = @IdFondoCesantias
+						SET @Resultado = 'OK*Se elimino el fondo de cesantías correctamente'	
+					END								
+			END
+		ELSE
+			BEGIN
+				SET @Resultado = 'Error*El usuario '+ @NombreUsuario + ' no tiene permiso para eliminar el fondo de cesantías' 
+			END
+	SELECT @Resultado
+END
+
+go
+
+CREATE TABLE FondoPension 
+(Id int identity(1,1) Primary key ,
+Nombre varchar(255),
+Email varchar(255),
+Telefono varchar(255),
+Activo int default 1,
+CreateBy int,
+DateCreate datetime,
+unique(Nombre)
+)
+
+ALTER TABLE FondoPension ADD CONSTRAINT FK_IdCreateByFondoPension FOREIGN KEY (CreateBy ) references Usuario(Id)
+
+go
+insert into FondoPension(Nombre, CreateBy,DateCreate)values('Porvenir',1,Getdate())
+insert into FondoPension(Nombre, CreateBy,DateCreate)values('Protección',1,Getdate())
+
+go
+
+CREATE PROCEDURE [dbo].[SP_GridFondoPension]
+AS
+BEGIN
+	SELECT	Id, 
+			Nombre, 
+			Email,
+			Telefono,
+			CASE Activo
+			WHEN 1 THEN 'Activo'
+			ELSE 'Inactivo'
+			END as Estado,
+			dbo.Fun_BuscarNombreUsuario(CreateBy) As CreateBy,
+			CONVERT(varchar(255),DateCreate,20) As DateCreate
+			FROM FondoPension
+END
+
+GO
+
+CREATE PROCEDURE [dbo].[SP_CrearFondoPension] @IdUser varchar(255), @NombreFondoPension varchar(255), @Email varchar(255), @Telefono varchar(255), @Resultado varchar(255) OUTPUT
+AS
+BEGIN
+DECLARE @Crear INT, @IdUsuario INT, @NombreUsuario VARCHAR(255), @SubMenu VARCHAR(255)
+SELECT @IdUsuario = Id FROM Usuario WHERE IdUser = @IdUser
+SELECT @NombreUsuario = Nombre FROM Usuario WHERE IdUser = @IdUser
+SET @SubMenu = '/FondoPension'
+SELECT	@Crear = dbo.Fun_PermisoUsuario('Crear',@IdUsuario, @SubMenu)	
+		IF @Crear > 0
+			BEGIN
+				INSERT INTO FondoPension (Nombre,Email,Telefono,CreateBy, DateCreate) VALUES (@NombreFondoPension, @Email, @Telefono, @IdUsuario, GETDATE()) 
+				SET @Resultado = 'OK*Se a creado el fondo pensión ' + @NombreFondoPension+ ' correctamente'
+			END
+		ELSE
+			BEGIN
+				SET @Resultado = 'Error*El usuario '+ @NombreUsuario + ' no tiene permiso para crear el fondo pensión' 
+			END
+	SELECT @Resultado
+END
+
+go
+
+CREATE PROCEDURE SP_CargarDatosFondoPension @IdFondoPension Int
+AS
+BEGIN
+	SELECT Nombre,
+	Email,
+	Telefono,
+	Activo
+	FROM FondoPension
+	WHERE Id = @IdFondoPension
+END
+
+go
+
+CREATE PROCEDURE [dbo].[SP_GuardarCambiosFondoPension] @IdFondoPension int, @IdUser varchar(255), @NombreFondoPension varchar(255), @Email varchar(255), @Telefono varchar(255),  @Activo int, @Resultado varchar(255) OUTPUT
+AS
+BEGIN
+DECLARE @Modificar INT, @IdUsuario INT, @NombreUsuario VARCHAR(255), @SubMenu VARCHAR(255)
+SET @SubMenu = '/FondoPension'
+SELECT @IdUsuario = Id FROM Usuario WHERE IdUser = @IdUser
+SELECT @NombreUsuario = Nombre FROM Usuario WHERE IdUser = @IdUser
+SELECT @Modificar = dbo.Fun_PermisoUsuario('Editar',@IdUsuario, @SubMenu)	
+				IF @Modificar > 0
+					BEGIN
+						UPDATE FondoPension SET  Nombre = @NombreFondoPension, Activo = @Activo, @Email = Email, @Telefono = Telefono WHERE Id = @IdFondoPension
+					    SET @Resultado = 'OK*Se guardaron los cambios del fondo pensión ' + @NombreFondoPension+ ' correctamente'
+					END
+				ELSE
+					BEGIN
+						SET @Resultado = 'Error*El usuario '+ @NombreUsuario + ' no tiene permiso para realizar cambios del fondo pensión' 
+					END
+	SELECT @Resultado
+END
+
+go
+
+CREATE PROCEDURE [dbo].[SP_ListaFondoPension]
+AS
+BEGIN
+	SELECT Id, Nombre FROM FondoPension WHERE Activo = 1
+END
+
+go
+
+CREATE FUNCTION Fun_BuscarNombreFondoPension(@IdFondoPension INT)
+RETURNS VARCHAR(255)
+AS BEGIN
+DECLARE @NombreFondoPension VARCHAR(255)
+	SELECT	@NombreFondoPension = Nombre
+	FROM	FondoPension
+	WHERE	Id = @IdFondoPension
+	RETURN @NombreFondoPension
+END
+
+go
+
+CREATE PROCEDURE [dbo].[SP_EliminarFondoPension] @IdUser varchar(255), @IdFondoPension int, @Resultado varchar(255) OUTPUT
+AS
+BEGIN
+DECLARE @Eliminar INT, @IdUsuario INT, @NombreUsuario VARCHAR(255), @validar INT, @NombreFondoPension varchar(255), @SubMenu VARCHAR(255)
+SET @SubMenu = '/FondoPension'
+SELECT @IdUsuario = Id FROM Usuario WHERE IdUser = @IdUser
+SELECT @NombreUsuario = Nombre FROM Usuario WHERE IdUser = @IdUser
+SELECT @NombreFondoPension = Nombre FROM Pais WHERE Id = @IdFondoPension
+	SELECT	@Eliminar = dbo.Fun_PermisoUsuario('Eliminar',@IdUsuario, @SubMenu)	
+		IF @Eliminar > 0
+			BEGIN	
+				SELECT @validar = 0
+				IF @validar > 0 
+					BEGIN
+						SET @Resultado = 'Error*El fondo pensión ' + @NombreFondoPension +' no se puede eliminar, actualmente se encuentra en eso'	
+					END
+				ELSE
+					BEGIN
+						DELETE FondoPension WHERE Id = @IdFondoPension
+						SET @Resultado = 'OK*Se elimino el fondo pensión correctamente'	
+					END								
+			END
+		ELSE
+			BEGIN
+				SET @Resultado = 'Error*El usuario '+ @NombreUsuario + ' no tiene permiso para eliminar el fondo pensión' 
 			END
 	SELECT @Resultado
 END

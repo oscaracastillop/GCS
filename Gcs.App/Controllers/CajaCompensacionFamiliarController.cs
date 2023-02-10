@@ -23,15 +23,15 @@ namespace Gcs.App.Controllers
         {
             return View();
         }
-        public JsonResult CrearCajaCompensacionFamiliar(string IdUser, string NombreCajaCompensacionFamiliar)
+        public JsonResult CrearCajaCompensacionFamiliar(string IdUser, string NombreCajaCompensacionFamiliar, string Email, string Telefono)
         {
-            string resultado = dataCajaCompensacionFamiliar.CrearCajaCompensacionFamiliar(IdUser, NombreCajaCompensacionFamiliar);
+            string resultado = dataCajaCompensacionFamiliar.CrearCajaCompensacionFamiliar(IdUser, NombreCajaCompensacionFamiliar, Email, Telefono);
             return Json(resultado);
         }
 
-        public JsonResult GuardarCambiosCajaCompensacionFamiliar(int IdCajaCompensacionFamiliar, string IdUser, string NombreCajaCompensacionFamiliar, int Activo)
+        public JsonResult GuardarCambiosCajaCompensacionFamiliar(int IdCajaCompensacionFamiliar, string IdUser, string NombreCajaCompensacionFamiliar, string Email, string Telefono, int Activo)
         {
-            var resultado = dataCajaCompensacionFamiliar.GuardarCambiosCajaCompensacionFamiliar(IdCajaCompensacionFamiliar, IdUser, NombreCajaCompensacionFamiliar, Activo);
+            var resultado = dataCajaCompensacionFamiliar.GuardarCambiosCajaCompensacionFamiliar(IdCajaCompensacionFamiliar, IdUser, NombreCajaCompensacionFamiliar,Email, Telefono, Activo);
             return Json(resultado);
         }
         public JsonResult EliminarCajaCompensacionFamiliar(string IdUser, int IdCajaCompensacionFamiliar)

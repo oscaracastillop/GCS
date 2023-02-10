@@ -1,16 +1,16 @@
-﻿function CrearEps() {
+﻿function CrearFondoCesantias() {
     let User = Cookies.get('IdUser');
-    let NombreEps = $('#InputNombreEps').val();
-    let Email = $('#InputEmailEps').val();
-    let Telefono = $('#InputTelefonoEps').val();
-    if (NombreEps == null || NombreEps == '' || NombreEps == undefined) {
-        Swal.fire('Mensaje del Sistema', 'Ingrese nombre de la eps', 'info');
+    let NombreFondoCesantias = $('#InputNombreFondoCesantias').val();
+    let Email = $('#InputEmailFondoCesantias').val();
+    let Telefono = $('#InputTelefonoFondoCesantias').val();
+    if (NombreFondoCesantias == null || NombreFondoCesantias == '' || NombreFondoCesantias == undefined) {
+        Swal.fire('Mensaje del Sistema', 'Ingrese nombre de el fondo de cesantías', 'info');
     } else {
         $.ajax({
             type: 'POST',
             dataType: 'json',
-            url: '/Eps/CrearEps',
-            data: { IdUser: User, NombreEps: NombreEps, Email: Email, Telefono: Telefono },
+            url: '/FondoCesantias/CrearFondoCesantias',
+            data: { IdUser: User, NombreFondoCesantias: NombreFondoCesantias, Email: Email, Telefono: Telefono },
             success: function (resultado) {
                 valor = resultado.split('*');
                 if (valor[0] == 'OK') {
@@ -19,7 +19,7 @@
                         text: valor[1],
                         icon: 'success',
                     }).then((result) => {
-                        window.location.href = '/Eps';
+                        window.location.href = '/FondoCesantias';
                     })
                 } else {
                     Swal.fire('Mensaje del Sistema', valor[1], 'info');
@@ -29,21 +29,21 @@
     }
 }
 
-function GuardarCambiosEps() {
+function GuardarCambiosFondoCesantias() {
     let User = Cookies.get('IdUser');
-    let IdEps = Cookies.get('IdEdit');
-    let NombreEps = $('#InputENombreEps').val();
-    let Email = $('#InputEEmailEps').val();
-    let Telefono = $('#InputETelefonoEps').val();
-    let Activo = $('#SelectEstadoEps').val();
-    if (NombreEps == '' || NombreEps == null || NombreEps == undefined) {
-        Swal.fire('Mensaje del Sistema', 'Ingrese nombre de la eps', 'info');
+    let IdFondoCesantias = Cookies.get('IdEdit');
+    let NombreFondoCesantias = $('#InputENombreFondoCesantias').val();
+    let Email = $('#InputEEmailFondoCesantias').val();
+    let Telefono = $('#InputETelefonoFondoCesantias').val();
+    let Activo = $('#SelectEstadoFondoCesantias').val();
+    if (NombreFondoCesantias == '' || NombreFondoCesantias == null || NombreFondoCesantias == undefined) {
+        Swal.fire('Mensaje del Sistema', 'Ingrese nombre de el fondo de cesantías', 'info');
     } else {
         $.ajax({
             type: 'POST',
             dataType: 'json',
-            url: '/Eps/GuardarCambiosEps',
-            data: { IdEps: IdEps, IdUser: User, NombreEps: NombreEps, Email: Email, Telefono: Telefono, Activo: Activo },
+            url: '/FondoCesantias/GuardarCambiosFondoCesantias',
+            data: { IdFondoCesantias: IdFondoCesantias, IdUser: User, NombreFondoCesantias: NombreFondoCesantias, Email: Email, Telefono: Telefono, Activo: Activo },
             success: function (resultado) {
                 valor = resultado.split('*');
                 if (valor[0] == 'OK') {
@@ -52,7 +52,7 @@ function GuardarCambiosEps() {
                         text: valor[1],
                         icon: 'success',
                     }).then((result) => {
-                        window.location.href = '/Eps';
+                        window.location.href = '/FondoCesantias';
                     })
                 } else {
                     Swal.fire('Mensaje del Sistema', valor[1], 'info');
@@ -62,16 +62,16 @@ function GuardarCambiosEps() {
     }
 }
 
-function EliminarEps() {
+function EliminarFondoCesantias() {
     let IdUser = Cookies.get('IdUser');
-    let IdEps = $('#IdEps').text();
+    let IdFondoCesantias = $('#IdFondoCesantias').text();
     $.ajax({
         type: 'POST',
         dataType: 'json',
-        url: '/Eps/EliminarEps',
+        url: '/FondoCesantias/EliminarFondoCesantias',
         data: {
             IdUser: IdUser,
-            IdEps: IdEps
+            IdFondoCesantias: IdFondoCesantias
         },
         success: function (resultado) {
             valor = resultado.split('*');
@@ -90,43 +90,43 @@ function EliminarEps() {
     });
 }
 
-function CargarDatosEps() {
-    let IdEps = Cookies.get('IdEdit');
+function CargarDatosFondoCesantias() {
+    let IdFondoCesantias = Cookies.get('IdEdit');
     $.ajax({
         type: 'POST',
         dataType: 'json',
-        url: '/Eps/CargarDatosEps',
-        data: { IdEps: IdEps },
+        url: '/FondoCesantias/CargarDatosFondoCesantias',
+        data: { IdFondoCesantias: IdFondoCesantias },
         success: function (resultado) {
-            $('#InputENombreEps').val(resultado[0].Nombre);
-            $('#InputEEmailEps').val(resultado[0].Email);
-            $('#InputETelefonoEps').val(resultado[0].Telefono);
-            $('#SelectEstadoEps').val(resultado[0].Activo);
+            $('#InputENombreFondoCesantias').val(resultado[0].Nombre);
+            $('#InputEEmailFondoCesantias').val(resultado[0].Email);
+            $('#InputETelefonoFondoCesantias').val(resultado[0].Telefono);
+            $('#SelectEstadoFondoCesantias').val(resultado[0].Activo);
         }
     });
 }
 
-function ListaEps(Tipo) {
+function ListaFondoCesantias(Tipo) {
     $.ajax({
         type: 'POST',
         dataType: 'json',
-        url: '/Eps/ListaEps',
+        url: '/FondoCesantias/ListaFondoCesantias',
         data: {},
         success: function (resultado) {
             var contador = 0;
             if (Tipo == "N") {
                 if (resultado.length === 0) {
-                    $("#SelectEps").append('<option value="">No hay Datos</option>');
+                    $("#SelectFondoCesantias").append('<option value="">No hay Datos</option>');
                 } else {
-                    $("#SelectEps").empty().append('<option value="-1">Seleccione Eps</option>');
+                    $("#SelectFondoCesantias").empty().append('<option value="-1">Seleccione FondoCesantias</option>');
                     $.each(resultado, function () {
-                        $("#SelectEps").append('<option value="' + resultado[contador].Id + '">' + resultado[contador].Nombre + '</option>');
+                        $("#SelectFondoCesantias").append('<option value="' + resultado[contador].Id + '">' + resultado[contador].Nombre + '</option>');
                         contador++;
                     });
                 }
             } else {
                 $.each(resultado, function () {
-                    $("#SelectEEps").append('<option value="' + resultado[contador].Id + '">' + resultado[contador].Nombre + '</option>');
+                    $("#SelectEFondoCesantias").append('<option value="' + resultado[contador].Id + '">' + resultado[contador].Nombre + '</option>');
                     contador++;
                 });
             }
@@ -134,15 +134,15 @@ function ListaEps(Tipo) {
     });
 }
 
-function GridEps() {
-    let datatable = $('#gridEps').DataTable({
+function GridFondoCesantias() {
+    let datatable = $('#gridFondoCesantias').DataTable({
         "responsive": true,
         dom: 'B<"clear">frtip',
         buttons: [{
             extend: 'excelHtml5',
             footer: true,
-            title: 'Lista de Eps',
-            filename: 'Lista de Eps',
+            title: 'Lista de Fondo Cesantías',
+            filename: 'Lista de Fondo Cesantías',
             text: 'Excel',
             exportOptions: {
                 columns: [1, 2, 3, 4, 5, 6]
@@ -152,8 +152,8 @@ function GridEps() {
             extend: 'pdfHtml5',
             download: 'open',
             footer: true,
-            title: 'Lista de Eps',
-            filename: 'Lista de Eps',
+            title: 'Lista de Fondo Cesantías',
+            filename: 'Lista de Fondo Cesantías',
             text: 'Pdf',
             exportOptions: {
                 columns: [1, 2, 3, 4, 5, 6]
@@ -172,13 +172,13 @@ function GridEps() {
         "order": [[1, "asc"]],
         destroy: true,
         "ajax": {
-            "url": '/Eps/GridEps',
+            "url": '/FondoCesantias/GridFondoCesantias',
             "type": "GET",
             "datatype": "json"
         },
         columns: [
             { "data": "Id", title: "Id", "visible": false },
-            { "data": "Nombre", title: "Eps" },
+            { "data": "Nombre", title: "FondoCesantias" },
             { "data": "Estado", title: "Estado" },
             { "data": "Email", title: "Email" },
             { "data": "Telefono", title: "Teléfono" },
@@ -187,7 +187,7 @@ function GridEps() {
             {
                 title: "Editar",
                 data: null,
-                defaultContent: '<a href="#" class="EditarEps" title="Editar"><i class="bi-pencil-fill" style="Color:green"></i></a>',
+                defaultContent: '<a href="#" class="EditarFondoCesantias" title="Editar"><i class="bi-pencil-fill" style="Color:green"></i></a>',
                 className: '',
                 orderable: false,
                 width: 50,
@@ -195,7 +195,7 @@ function GridEps() {
             {
                 title: "Eliminar",
                 data: null,
-                defaultContent: '<a href="#" class="EliminarEps" title="Eliminar"><i class="bi-trash-fill" style="Color:red"></i></a>',
+                defaultContent: '<a href="#" class="EliminarFondoCesantias" title="Eliminar"><i class="bi-trash-fill" style="Color:red"></i></a>',
                 className: '',
                 orderable: false,
                 width: 50,
@@ -209,18 +209,18 @@ function GridEps() {
             ['10 Filas', '25 Filas', '50 Filas', 'Ver Todo']
         ],
     });
-    $('#gridEps').on('click', '.EditarEps', function () {
+    $('#gridFondoCesantias').on('click', '.EditarFondoCesantias', function () {
         let data = datatable.row($(this).parents()).data();
         Cookies.set('IdEdit', data.Id);
-        window.location = "/Eps/Editar_Eps";
+        window.location = "/FondoCesantias/Editar_FondoCesantias";
     });
 
 
-    $('#gridEps').on('click', '.EliminarEps', function () {
+    $('#gridFondoCesantias').on('click', '.EliminarFondoCesantias', function () {
         let data = datatable.row($(this).parents()).data();
-        $('#ModalEliminarEps').modal('show');
-        $('#IdEps').text(data.Id);
-        $('#MensajeEliminarEps').text('Esta seguro de eliminar la eps ' + data.Nombre + ' ?');
+        $('#ModalEliminarFondoCesantias').modal('show');
+        $('#IdFondoCesantias').text(data.Id);
+        $('#MensajeEliminarFondoCesantias').text('Esta seguro de eliminar el fondo de cesantías ' + data.Nombre + ' ?');
     })
 }
 

@@ -6,27 +6,27 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static Gcs.Models.Models.Eps;
+using static Gcs.Models.Models.FondoPension;
 
 namespace Gcs.Data.DataEntities
 {
-    public class DataEps
+    public class DataFondoPension
     {
         readonly GCS_DBEntities _conection = new GCS_DBEntities();
         private readonly DataRol dataRol = new DataRol();
 
-        public string CrearEps(string IdUser, string NombreEps, string Email, string Telefono)
+        public string CrearFondoPension(string IdUser, string NombreFondoPension, string Email, string Telefono)
         {
             string resultado = String.Empty;
             try
             {
                 var varIdUser = new SqlParameter("@IdUser", SqlDbType.VarChar) { Value = IdUser };
-                var varNombreEps = new SqlParameter("@NombreEps", SqlDbType.VarChar) { Value = NombreEps };
+                var varNombreFondoPension = new SqlParameter("@NombreFondoPension", SqlDbType.VarChar) { Value = NombreFondoPension };
                 var varEmail = new SqlParameter("@Email", SqlDbType.VarChar) { Value = Email };
                 var varTelefono = new SqlParameter("@Telefono", SqlDbType.VarChar) { Value = Telefono };
                 var varResultado = new SqlParameter("@Resultado", SqlDbType.VarChar) { Direction = ParameterDirection.Output, Size = 255 };
 
-                _conection.Database.ExecuteSqlCommand("SP_CrearEps @IdUser, @NombreEps, @Email, @Telefono, @Resultado OUTPUT", varIdUser, varNombreEps, varEmail, varTelefono, varResultado);
+                _conection.Database.ExecuteSqlCommand("SP_CrearFondoPension @IdUser, @NombreFondoPension, @Email, @Telefono, @Resultado OUTPUT", varIdUser, varNombreFondoPension, varEmail, varTelefono, varResultado);
 
                 resultado = Convert.ToString(varResultado.Value);
             }
@@ -41,7 +41,7 @@ namespace Gcs.Data.DataEntities
                 {
                     if (ex.Message.Contains("No se puede insertar"))
                     {
-                        resultado = "Error*No se puede insertar valores duplicados, la eps " + NombreEps + " ya Existe";
+                        resultado = "Error*No se puede insertar valores duplicados, el fondo pensión " + NombreFondoPension + " ya Existe";
                     }
                     else
                     {
@@ -52,20 +52,20 @@ namespace Gcs.Data.DataEntities
             return resultado;
         }
 
-        public string GuardarCambiosEps(int IdEps, string IdUser, string NombreEps, string Email, string Telefono, int Activo)
+        public string GuardarCambiosFondoPension(int IdFondoPension, string IdUser, string NombreFondoPension, string Email, string Telefono, int Activo)
         {
             string resultado = String.Empty;
             try
             {
-                var varIdEps = new SqlParameter("@IdEps", SqlDbType.Int) { Value = IdEps };
+                var varIdFondoPension = new SqlParameter("@IdFondoPension", SqlDbType.Int) { Value = IdFondoPension };
                 var varIdUser = new SqlParameter("@IdUser", SqlDbType.VarChar) { Value = IdUser };
-                var varNombreEps = new SqlParameter("@NombreEps", SqlDbType.VarChar) { Value = NombreEps };
+                var varNombreFondoPension = new SqlParameter("@NombreFondoPension", SqlDbType.VarChar) { Value = NombreFondoPension };
                 var varEmail = new SqlParameter("@Email", SqlDbType.VarChar) { Value = Email };
                 var varTelefono = new SqlParameter("@Telefono", SqlDbType.VarChar) { Value = Telefono };
                 var varActivo = new SqlParameter("@Activo", SqlDbType.Int) { Value = Activo };
                 var varResultado = new SqlParameter("@Resultado", SqlDbType.VarChar) { Direction = ParameterDirection.Output, Size = 255 };
 
-                _conection.Database.ExecuteSqlCommand("SP_GuardarCambiosEps @IdEps, @IdUser, @NombreEps, @Email, @Telefono, @Activo, @Resultado OUTPUT", varIdEps, varIdUser, varNombreEps, varEmail, varTelefono, varActivo, varResultado);
+                _conection.Database.ExecuteSqlCommand("SP_GuardarCambiosFondoPension @IdFondoPension, @IdUser, @NombreFondoPension, @Email, @Telefono, @Activo, @Resultado OUTPUT", varIdFondoPension, varIdUser, varNombreFondoPension, varEmail, varTelefono, varActivo, varResultado);
 
                 resultado = Convert.ToString(varResultado.Value);
             }
@@ -80,7 +80,7 @@ namespace Gcs.Data.DataEntities
                 {
                     if (ex.Message.Contains("No se puede insertar"))
                     {
-                        resultado = "Error*No se puede insertar valores duplicados, la eps " + NombreEps + " ya Existe";
+                        resultado = "Error*No se puede insertar valores duplicados, el fondo pensión " + NombreFondoPension + " ya Existe";
                     }
                     else
                     {
@@ -91,16 +91,16 @@ namespace Gcs.Data.DataEntities
             return resultado;
         }
 
-        public string EliminarEps(string IdUser, int IdEps)
+        public string EliminarFondoPension(string IdUser, int IdFondoPension)
         {
             string resultado = String.Empty;
             try
             {
                 var varIdUser = new SqlParameter("@IdUser", SqlDbType.VarChar) { Value = IdUser };
-                var varIdEps = new SqlParameter("@IdEps", SqlDbType.Int) { Value = IdEps };
+                var varIdFondoPension = new SqlParameter("@IdFondoPension", SqlDbType.Int) { Value = IdFondoPension };
                 var varResultado = new SqlParameter("@Resultado", SqlDbType.VarChar) { Direction = ParameterDirection.Output, Size = 255 };
 
-                _conection.Database.ExecuteSqlCommand("SP_EliminarEps @IdUser, @IdEps, @Resultado OUTPUT", varIdUser, varIdEps, varResultado);
+                _conection.Database.ExecuteSqlCommand("SP_EliminarFondoPension @IdUser, @IdFondoPension, @Resultado OUTPUT", varIdUser, varIdFondoPension, varResultado);
 
                 resultado = Convert.ToString(varResultado.Value);
             }
@@ -119,12 +119,12 @@ namespace Gcs.Data.DataEntities
             return resultado;
         }
 
-        public List<CargarDatosEps> CargarDatosEps(int IdEps)
+        public List<CargarDatosFondoPension> CargarDatosFondoPension(int IdFondoPension)
         {
             try
             {
-                return _conection.Database.SqlQuery<CargarDatosEps>("SP_CargarDatosEps @IdEps",
-                    new SqlParameter("@IdEps", IdEps)).ToList();
+                return _conection.Database.SqlQuery<CargarDatosFondoPension>("SP_CargarDatosFondoPension @IdFondoPension",
+                    new SqlParameter("@IdFondoPension", IdFondoPension)).ToList();
             }
             catch (Exception ex)
             {
@@ -132,11 +132,11 @@ namespace Gcs.Data.DataEntities
             }
         }
 
-        public List<ListaEps> ListaEps()
+        public List<ListaFondoPension> ListaFondoPension()
         {
             try
             {
-                return _conection.Database.SqlQuery<ListaEps>("SP_ListaEps").ToList();
+                return _conection.Database.SqlQuery<ListaFondoPension>("SP_ListaFondoPension").ToList();
             }
             catch (Exception ex)
             {
@@ -144,11 +144,11 @@ namespace Gcs.Data.DataEntities
             }
         }
 
-        public List<GridEps> GridEps()
+        public List<GridFondoPension> GridFondoPension()
         {
             try
             {
-                var response = _conection.Database.SqlQuery<GridEps>("SP_GridEps").ToList();
+                var response = _conection.Database.SqlQuery<GridFondoPension>("SP_GridFondoPension").ToList();
                 return response;
             }
             catch (Exception ex)

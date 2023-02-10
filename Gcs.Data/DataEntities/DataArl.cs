@@ -15,16 +15,18 @@ namespace Gcs.Data.DataEntities
         readonly GCS_DBEntities _conection = new GCS_DBEntities();
         private readonly DataRol dataRol = new DataRol();
 
-        public string CrearArl(string IdUser, string NombreArl)
+        public string CrearArl(string IdUser, string NombreArl, string Email, string Telefono)
         {
             string resultado = String.Empty;
             try
             {
                 var varIdUser = new SqlParameter("@IdUser", SqlDbType.VarChar) { Value = IdUser };
                 var varNombreArl = new SqlParameter("@NombreArl", SqlDbType.VarChar) { Value = NombreArl };
+                var varEmail = new SqlParameter("@Email", SqlDbType.VarChar) { Value = Email };
+                var varTelefono = new SqlParameter("@Telefono", SqlDbType.VarChar) { Value = Telefono };
                 var varResultado = new SqlParameter("@Resultado", SqlDbType.VarChar) { Direction = ParameterDirection.Output, Size = 255 };
 
-                _conection.Database.ExecuteSqlCommand("SP_CrearArl @IdUser, @NombreArl, @Resultado OUTPUT", varIdUser, varNombreArl, varResultado);
+                _conection.Database.ExecuteSqlCommand("SP_CrearArl @IdUser, @NombreArl, @Email, @Telefono, @Resultado OUTPUT", varIdUser, varNombreArl, varEmail, varTelefono,varResultado);
 
                 resultado = Convert.ToString(varResultado.Value);
             }
@@ -50,7 +52,7 @@ namespace Gcs.Data.DataEntities
             return resultado;
         }
 
-        public string GuardarCambiosArl(int IdArl, string IdUser, string NombreArl, int Activo)
+        public string GuardarCambiosArl(int IdArl, string IdUser, string NombreArl, string Email, string Telefono, int Activo)
         {
             string resultado = String.Empty;
             try
@@ -58,10 +60,12 @@ namespace Gcs.Data.DataEntities
                 var varIdArl = new SqlParameter("@IdArl", SqlDbType.Int) { Value = IdArl };
                 var varIdUser = new SqlParameter("@IdUser", SqlDbType.VarChar) { Value = IdUser };
                 var varNombreArl = new SqlParameter("@NombreArl", SqlDbType.VarChar) { Value = NombreArl };
+                var varEmail = new SqlParameter("@Email", SqlDbType.VarChar) { Value = Email };
+                var varTelefono = new SqlParameter("@Telefono", SqlDbType.VarChar) { Value = Telefono };
                 var varActivo = new SqlParameter("@Activo", SqlDbType.Int) { Value = Activo };
                 var varResultado = new SqlParameter("@Resultado", SqlDbType.VarChar) { Direction = ParameterDirection.Output, Size = 255 };
 
-                _conection.Database.ExecuteSqlCommand("SP_GuardarCambiosArl @IdArl, @IdUser, @NombreArl, @Activo, @Resultado OUTPUT", varIdArl, varIdUser, varNombreArl, varActivo, varResultado);
+                _conection.Database.ExecuteSqlCommand("SP_GuardarCambiosArl @IdArl, @IdUser, @NombreArl, @Email, @Telefono, @Activo, @Resultado OUTPUT", varIdArl, varIdUser, varNombreArl, varEmail, varTelefono, varActivo, varResultado);
 
                 resultado = Convert.ToString(varResultado.Value);
             }
