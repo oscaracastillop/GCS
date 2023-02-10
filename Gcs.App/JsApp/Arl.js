@@ -178,10 +178,10 @@ function GridArl() {
         },
         columns: [
             { "data": "Id", title: "Id", "visible": false },
-            { "data": "Nombre", title: "Arl" },
-            { "data": "Estado", title: "Estado" },
+            { "data": "Nombre", title: "Arl" },            
             { "data": "Email", title: "Email" },
             { "data": "Telefono", title: "Teléfono" },
+            { "data": "Estado", title: "Estado" },
             { "data": "CreateBy", title: "Creado por" },
             { "data": "DateCreate", title: "Fecha Creación" },
             {

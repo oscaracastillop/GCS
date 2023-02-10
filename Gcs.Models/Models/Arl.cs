@@ -28,7 +28,7 @@ namespace Gcs.Models.Models
         public class CargarDatosArl
         {
             public string Nombre { get; set; }
-            public int Email { get; set; }
+            public string Email { get; set; }
             public string Telefono { get; set; }
             public int Activo { get; set; }
         }

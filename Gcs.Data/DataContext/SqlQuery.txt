@@ -269,18 +269,18 @@ insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (7, 'Herramienta','<i c
 insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'País','<i class="bi-geo-fill" style="font-size: 2rem; color: #11ABE9;"></i>','/Pais')--24
 insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'Departamento','<i class="bi-geo-fill" style="font-size: 2rem; color: #11ABE9;"></i>','/Departamento')--25
 insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'Ciudad','<i class="bi-geo-fill" style="font-size: 2rem; color: #11ABE9;"></i>','/Ciudad')--26
-insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'Arl','<i class="bi-badge-ar" style="font-size: 2rem; color: #11ABE9;"></i>','/Arl')--27
-insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'Caja Compensación Familiar','<i class="bi-c-circle" style="font-size: 2rem; color: #11ABE9;"></i>','/CajaCompensacionFamiliar')--28
-insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'Eps','<i class="bi-explicit" style="font-size: 2rem; color: #11ABE9;"></i>','/Eps')--29
-insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'Fondo Pensiones','<i class="bi-explicit" style="font-size: 2rem; color: #11ABE9;"></i>','/FondoPension')--30
-insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'Fondo Cesantías','<i class="bi-explicit" style="font-size: 2rem; color: #11ABE9;"></i>','/FondoCesantias')--31
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'Arl','<i class="bi-pass" style="font-size: 2rem; color: #11ABE9;"></i>','/Arl')--27
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'Caja Compensación Familiar','<i class="bi-pass" style="font-size: 2rem; color: #11ABE9;"></i>','/CajaCompensacionFamiliar')--28
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'Eps','<i class="bi-pass" style="font-size: 2rem; color: #11ABE9;"></i>','/Eps')--29
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'Fondo Pensiones','<i class="bi-pass" style="font-size: 2rem; color: #11ABE9;"></i>','/FondoPension')--30
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'Fondo Cesantías','<i class="bi-pass" style="font-size: 2rem; color: #11ABE9;"></i>','/FondoCesantias')--31
 insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'Tipo Actividad','<i class="bi-tools" style="font-size: 2rem; color: #11ABE9;"></i>','/TipoActividad')--32
 insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'Tipo Documento','<i class="bi-filetype-doc" style="font-size: 2rem; color: #11ABE9;"></i>','/TipoDocumento')--33
 insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'Tipo Forma Pago','<i class="bi-credit-card" style="font-size: 2rem; color: #11ABE9;"></i>','/TipoFormaPago')--34
-insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'Tipo Género','<i class="bi-filetype-doc" style="font-size: 2rem; color: #11ABE9;"></i>','/TipoGenero')--35
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'Tipo Género','<i class="bi-people" style="font-size: 2rem; color: #11ABE9;"></i>','/TipoGenero')--35
 insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'Tipo Hora Extra','<i class="bi-clock" style="font-size: 2rem; color: #11ABE9;"></i>','/TipoHoraExtra')--36
 insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'Tipo Moneda','<i class="bi-cash-coin" style="font-size: 2rem; color: #11ABE9;"></i>','/TipoMoneda')--37
-insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'Tipo Unidad Medida','<i class="bi-speedometer" style="font-size: 2rem; color: #11ABE9;"></i>','/TipoUnidadMedida')--38
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'Tipo Unidad Medida','<i class="bi-speedometer2" style="font-size: 2rem; color: #11ABE9;"></i>','/TipoUnidadMedida')--38
 
 insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (9, 'Usuario','<i class="bi-person" style="font-size: 2rem; color: #11ABE9;"></i>','/Usuario')
 insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (9, 'Permiso Usuario','<i class="bi-lock" style="font-size: 2rem; color: #11ABE9;"></i>','/Permiso_Usuario')
@@ -2955,7 +2955,7 @@ SELECT @NombreUsuario = Nombre FROM Usuario WHERE IdUser = @IdUser
 SELECT @Modificar = dbo.Fun_PermisoUsuario('Editar',@IdUsuario, @SubMenu)	
 				IF @Modificar > 0
 					BEGIN
-						UPDATE Eps SET  Nombre = @NombreEps, Activo = @Activo, @Email = Email, @Telefono = Telefono WHERE Id = @IdEps
+						UPDATE Eps SET  Nombre = @NombreEps, Activo = @Activo, Email = @Email, Telefono = @Telefono WHERE Id = @IdEps
 					    SET @Resultado = 'OK*Se guardaron los cambios de la eps ' + @NombreEps+ ' correctamente'
 					END
 				ELSE
@@ -3099,7 +3099,7 @@ SELECT @NombreUsuario = Nombre FROM Usuario WHERE IdUser = @IdUser
 SELECT @Modificar = dbo.Fun_PermisoUsuario('Editar',@IdUsuario, @SubMenu)	
 				IF @Modificar > 0
 					BEGIN
-						UPDATE Arl SET  Nombre = @NombreArl, Activo = @Activo, @Email = Email, @Telefono = Telefono WHERE Id = @IdArl
+						UPDATE Arl SET  Nombre = @NombreArl, Activo = @Activo, Email = @Email, Telefono = @Telefono WHERE Id = @IdArl
 					    SET @Resultado = 'OK*Se guardaron los cambios de la Arl ' + @NombreArl+ ' correctamente'
 					END
 				ELSE
@@ -3245,7 +3245,7 @@ SELECT @NombreUsuario = Nombre FROM Usuario WHERE IdUser = @IdUser
 SELECT @Modificar = dbo.Fun_PermisoUsuario('Editar',@IdUsuario, @SubMenu)	
 				IF @Modificar > 0
 					BEGIN
-						UPDATE CajaCompensacionFamiliar SET  Nombre = @NombreCajaCompensacionFamiliar, Activo = @Activo, @Email = Email, @Telefono = Telefono WHERE Id = @IdCajaCompensacionFamiliar
+						UPDATE CajaCompensacionFamiliar SET  Nombre = @NombreCajaCompensacionFamiliar, Activo = @Activo, Email = @Email, Telefono = @Telefono WHERE Id = @IdCajaCompensacionFamiliar
 					    SET @Resultado = 'OK*Se guardaron los cambios de la caja de compensación familiar ' + @NombreCajaCompensacionFamiliar+ ' correctamente'
 					END
 				ELSE
@@ -3390,7 +3390,7 @@ SELECT @NombreUsuario = Nombre FROM Usuario WHERE IdUser = @IdUser
 SELECT @Modificar = dbo.Fun_PermisoUsuario('Editar',@IdUsuario, @SubMenu)	
 				IF @Modificar > 0
 					BEGIN
-						UPDATE FondoCesantias SET  Nombre = @NombreFondoCesantias, Activo = @Activo, @Email = Email, @Telefono = Telefono WHERE Id = @IdFondoCesantias
+						UPDATE FondoCesantias SET  Nombre = @NombreFondoCesantias, Activo = @Activo, Email = @Email, Telefono = @Telefono WHERE Id = @IdFondoCesantias
 					    SET @Resultado = 'OK*Se guardaron los cambios del fondo de cesantías ' + @NombreFondoCesantias+ ' correctamente'
 					END
 				ELSE
@@ -3535,7 +3535,7 @@ SELECT @NombreUsuario = Nombre FROM Usuario WHERE IdUser = @IdUser
 SELECT @Modificar = dbo.Fun_PermisoUsuario('Editar',@IdUsuario, @SubMenu)	
 				IF @Modificar > 0
 					BEGIN
-						UPDATE FondoPension SET  Nombre = @NombreFondoPension, Activo = @Activo, @Email = Email, @Telefono = Telefono WHERE Id = @IdFondoPension
+						UPDATE FondoPension SET  Nombre = @NombreFondoPension, Activo = @Activo, Email = @Email, Telefono = @Telefono WHERE Id = @IdFondoPension
 					    SET @Resultado = 'OK*Se guardaron los cambios del fondo pensión ' + @NombreFondoPension+ ' correctamente'
 					END
 				ELSE
