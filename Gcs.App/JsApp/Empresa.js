@@ -5,20 +5,25 @@
     let Identificacion = $('#InputIdentificacionEmpresa').val();
     let Email = $('#InputEmailEmpresa').val();
     let Telefono = $('#InputTelefonoEmpresa').val();
-    let NombreEmpresa = $('#InputNombreEmpresa').val();
-
-
-
-    let Email = $('#InputEmailArl').val();
-    let Telefono = $('#InputTelefonoArl').val();
-    if (NombreArl == null || NombreArl == '' || NombreArl == undefined) {
-        Swal.fire('Mensaje del Sistema', 'Ingrese nombre de la arl', 'info');
+    let Contacto = $('#InputContactoEmpresa').val();
+    let IdCiudad = $('#SelectCiudad').val();
+    if (NombreEmpresa == null || NombreEmpresa == '' || NombreEmpresa == undefined) {
+        Swal.fire('Mensaje del Sistema', 'Ingrese nombre de la empresa', 'info');
     } else {
         $.ajax({
             type: 'POST',
             dataType: 'json',
-            url: '/Arl/CrearArl',
-            data: { IdUser: User, NombreArl: NombreArl, Email: Email, Telefono: Telefono },
+            url: '/Empresa/CrearEmpresa',
+            data: {
+                IdUser: User,
+                NombreEmpresa: NombreEmpresa,
+                IdTipoDocumento: IdTipoDocumento,
+                Identificacion: Identificacion,
+                Email: Email,
+                Telefono: Telefono,
+                Contacto: Contacto,
+                IdCiudad: IdCiudad
+            },
             success: function (resultado) {
                 valor = resultado.split('*');
                 if (valor[0] == 'OK') {
@@ -27,7 +32,7 @@
                         text: valor[1],
                         icon: 'success',
                     }).then((result) => {
-                        window.location.href = '/Arl';
+                        window.location.href = '/Empresa';
                     })
                 } else {
                     Swal.fire('Mensaje del Sistema', valor[1], 'info');
