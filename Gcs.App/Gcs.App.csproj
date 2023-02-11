@@ -2126,6 +2126,7 @@
     <Content Include="JsApp\CajaCompensacionFamiliar.js" />
     <Content Include="JsApp\Ciudad.js" />
     <Content Include="JsApp\Departamento.js" />
+    <Content Include="JsApp\Empresa.js" />
     <Content Include="JsApp\Eps.js" />
     <Content Include="JsApp\FondoCesantias.js" />
     <Content Include="JsApp\FondoPension.js" />
