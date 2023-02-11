@@ -4324,6 +4324,7 @@
     <Compile Include="Controllers\CajaCompensacionFamiliarController.cs" />
     <Compile Include="Controllers\CiudadController.cs" />
     <Compile Include="Controllers\DepartamentoController.cs" />
+    <Compile Include="Controllers\EmpresaController.cs" />
     <Compile Include="Controllers\EpsController.cs" />
     <Compile Include="Controllers\FondoCesantiasController.cs" />
     <Compile Include="Controllers\FondoPensionController.cs" />
@@ -4333,6 +4334,7 @@
     <Compile Include="Controllers\ModuloController.cs" />
     <Compile Include="Controllers\PaisController.cs" />
     <Compile Include="Controllers\SubMenuController.cs" />
+    <Compile Include="Controllers\SucursalController.cs" />
     <Compile Include="Controllers\TipoDocumentoController.cs" />
     <Compile Include="Controllers\TipoFormaPagoController.cs" />
     <Compile Include="Controllers\TipoGeneroController.cs" />
@@ -4432,6 +4434,9 @@
     <Content Include="Views\FondoPension\Index.cshtml" />
     <Content Include="Views\FondoPension\Crear_FondoPension.cshtml" />
     <Content Include="Views\FondoPension\Editar_FondoPension.cshtml" />
+    <Content Include="Views\Empresa\Index.cshtml" />
+    <Content Include="Views\Empresa\Crear_Empresa.cshtml" />
+    <Content Include="Views\Empresa\Editar_Empresa.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -4445,6 +4450,7 @@
     <Folder Include="Sources\ImagesProfileUsers\" />
     <Folder Include="Views\Menu\" />
     <Folder Include="Views\SubMenu\" />
+    <Folder Include="Views\Sucursal\" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\index.d.ts" />

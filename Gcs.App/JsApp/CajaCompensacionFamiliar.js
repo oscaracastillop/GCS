@@ -178,7 +178,7 @@ function GridCajaCompensacionFamiliar() {
         },
         columns: [
             { "data": "Id", title: "Id", "visible": false },
-            { "data": "Nombre", title: "CajaCompensacionFamiliar" },
+            { "data": "Nombre", title: "Caja Compensación" },
             { "data": "Estado", title: "Estado" },
             { "data": "Email", title: "Email" },
             { "data": "Telefono", title: "Teléfono" },

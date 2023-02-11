@@ -173,7 +173,7 @@ function GridTipoFormaPago() {
         },
         columns: [
             { "data": "Id", title: "Id", "visible": false },
-            { "data": "Nombre", title: "TipoFormaPago" },
+            { "data": "Nombre", title: "Forma Pago" },
             { "data": "Estado", title: "Estado" },
             { "data": "CreateBy", title: "Creado por" },
             { "data": "DateCreate", title: "Fecha Creación" },

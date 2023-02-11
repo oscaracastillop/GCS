@@ -173,7 +173,7 @@ function GridTipoGenero() {
         },
         columns: [
             { "data": "Id", title: "Id", "visible": false },
-            { "data": "Nombre", title: "TipoGenero" },
+            { "data": "Nombre", title: "Género" },
             { "data": "Estado", title: "Estado" },
             { "data": "CreateBy", title: "Creado por" },
             { "data": "DateCreate", title: "Fecha Creación" },

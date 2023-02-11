@@ -178,7 +178,7 @@ function GridFondoPension() {
         },
         columns: [
             { "data": "Id", title: "Id", "visible": false },
-            { "data": "Nombre", title: "FondoPension" },
+            { "data": "Nombre", title: "Fondo Pensión" },
             { "data": "Estado", title: "Estado" },
             { "data": "Email", title: "Email" },
             { "data": "Telefono", title: "Teléfono" },

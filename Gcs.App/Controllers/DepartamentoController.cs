@@ -52,6 +52,11 @@ namespace Gcs.App.Controllers
             var resultado = dataDepartamento.ListaDepartamento();
             return Json(resultado);
         }
+        public JsonResult BuscarDeptoIdPais(int IdPais)
+        {
+            var resultado = dataDepartamento.BuscarDeptoIdPais(IdPais);
+            return Json(resultado);
+        }
         public ActionResult GridDepartamento()
         {
             var data = dataDepartamento.GridDepartamento();

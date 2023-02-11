@@ -1,0 +1,77 @@
+﻿@{
+    ViewBag.Title = "Crear Empresa";
+}
+
+<h7>
+    <a href="/Home"><i>INICIO</i></a>
+    &nbsp;<i class="bi-chevron-right"></i>&nbsp;
+    <a href="/Modulo/Configuracion"><i>MODULO CONFIGURACIÓN</i></a>
+    &nbsp;<i class="bi-chevron-right"></i>&nbsp;
+    <a href="/Empresa"><i>EMPRESA</i></a>
+    &nbsp;<i class="bi-chevron-right"></i>&nbsp;
+    <label style="font-weight:bold">CREAR EMPRESA</label>
+    <hr />
+</h7>
+
+<table class="table table-borderless">
+    <tr>
+        <td>
+            <label><strong>Nombre Empresa</strong></label>
+            <input class="form-control" type="text" id="InputNombreEmpresa" name="name" autocomplete="off" />
+        </td>
+        <td>
+            <label><strong>Tipo Documento</strong></label>
+            <select class="form-control" id="SelectTipoDocumento"></select>
+        </td>
+        <td>
+            <label><strong>Identificación Empresa</strong></label>
+            <input class="form-control" type="text" id="InputIdentificacionEmpresa" name="name" autocomplete="off" />
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label><strong>Email</strong></label>
+            <input class="form-control" type="text" id="InputEmailEmpresa" name="name" autocomplete="off" />
+        </td>
+        <td>
+            <label><strong>Teléfono</strong></label>
+            <input class="form-control" type="text" id="InputTelefonoEmpresa" name="name" autocomplete="off" />
+        </td>
+        <td>
+            <label><strong>Nombre Contacto</strong></label>
+            <input class="form-control" type="text" id="InputContactoEmpresa" name="name" autocomplete="off" />
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label><strong>País</strong></label>
+            <select class="form-control" id="SelectPais" onchange="BuscarDeptoIdPais('N',$('#SelectPais').val())"></select>
+        </td>
+        <td>
+            <label><strong>Departamento</strong></label>
+            <select class="form-control" id="SelectDepartamento" onchange="BuscarCiudadIdDepartamento('N',$('#SelectDepartamento').val())"></select>
+        </td>
+        <td>
+            <label><strong>Ciudad</strong></label>
+            <select class="form-control" id="SelectCiudad"></select>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label><strong>Dirección</strong></label>
+            <input class="form-control" type="text" id="InputDireccionEmpresa" name="name" autocomplete="off" />
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <button class="btn btn-success btn-sm" onclick="CrearEmpresa()"><i class="bi-upload"></i> Guardar</button>
+        </td>
+    </tr>
+</table>
+
+<script>
+    $(document).ready(function () {
+        ListaTipoDocumento('N');
+        ListaPais('N');
+    });
+</script>

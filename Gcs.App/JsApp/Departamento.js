@@ -143,6 +143,41 @@ function ListaDepartamento(Tipo) {
     });
 }
 
+function BuscarDeptoIdPais(Tipo,IdPais) {
+    $.ajax({
+        type: 'POST',
+        dataType: 'json',
+        url: '/Departamento/BuscarDeptoIdPais',
+        data: {IdPais: IdPais},
+        success: function (resultado) {
+            $("#SelectDepartamento").empty().append();
+            $("#SelectCiudad").empty().append();
+            var contador = 0;
+            if (Tipo == "N") {
+                if (IdPais == -1) {
+                    $("#SelectDepartamento").empty().append();
+                    $("#SelectCiudad").empty().append();
+                } else {
+                    if (resultado.length === 0) {
+                        $("#SelectDepartamento").append('<option value="">No hay Datos</option>');
+                    } else {
+                        $("#SelectDepartamento").empty().append('<option value="-1">Seleccione Departamento</option>');
+                        $.each(resultado, function () {
+                            $("#SelectDepartamento").append('<option value="' + resultado[contador].Id + '">' + resultado[contador].Nombre + '</option>');
+                            contador++;
+                        });
+                    }
+                }                
+            } else {
+                $.each(resultado, function () {
+                    $("#SelectEDepartamento").append('<option value="' + resultado[contador].Id + '">' + resultado[contador].Nombre + '</option>');
+                    contador++;
+                });
+            }
+        },
+    });
+}
+
 function GridDepartamento() {
     let datatable = $('#gridDepartamento').DataTable({
         "responsive": true,

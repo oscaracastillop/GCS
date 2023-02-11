@@ -699,6 +699,14 @@ END
 
 go
 
+CREATE PROCEDURE [dbo].[SP_BuscarDeptoIdPais] @IdPais int
+AS
+BEGIN
+	SELECT Id, Nombre FROM Departamento WHERE Activo = 1 AND IdPais = @IdPais
+END
+
+go
+
 CREATE FUNCTION Fun_BuscarNombreDepartamento(@IdDepartamento INT)
 RETURNS VARCHAR(255)
 AS BEGIN
@@ -1963,6 +1971,14 @@ CREATE PROCEDURE [dbo].[SP_ListaCiudad]
 AS
 BEGIN
 	SELECT Id, Nombre FROM Ciudad WHERE Activo = 1
+END
+
+go
+
+CREATE PROCEDURE [dbo].[SP_BuscarCiudadIdDepto] @IdDepartamento int
+AS
+BEGIN
+	SELECT Id, Nombre FROM Ciudad WHERE Activo = 1 AND IdDepartamento = @IdDepartamento
 END
 
 go

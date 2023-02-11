@@ -178,7 +178,7 @@ function GridFondoCesantias() {
         },
         columns: [
             { "data": "Id", title: "Id", "visible": false },
-            { "data": "Nombre", title: "FondoCesantias" },
+            { "data": "Nombre", title: "Fondo Cesantías" },
             { "data": "Estado", title: "Estado" },
             { "data": "Email", title: "Email" },
             { "data": "Telefono", title: "Teléfono" },

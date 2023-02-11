@@ -69,6 +69,7 @@
     <Compile Include="DataEntities\DataCajaCompensacionFamiliar.cs" />
     <Compile Include="DataEntities\DataCiudad.cs" />
     <Compile Include="DataEntities\DataDepartamento.cs" />
+    <Compile Include="DataEntities\DataEmpresa.cs" />
     <Compile Include="DataEntities\DataEps.cs" />
     <Compile Include="DataEntities\DataFondoCesantias.cs" />
     <Compile Include="DataEntities\DataFondoPension.cs" />
@@ -77,6 +78,7 @@
     <Compile Include="DataEntities\DataPais.cs" />
     <Compile Include="DataEntities\DataRol.cs" />
     <Compile Include="DataEntities\DataSubMenu.cs" />
+    <Compile Include="DataEntities\DataSucursal.cs" />
     <Compile Include="DataEntities\DataTipoDocumento.cs" />
     <Compile Include="DataEntities\DataTipoFormaPago.cs" />
     <Compile Include="DataEntities\DataTipoGenero.cs" />

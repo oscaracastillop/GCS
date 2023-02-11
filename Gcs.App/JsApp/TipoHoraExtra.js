@@ -173,7 +173,7 @@ function GridTipoHoraExtra() {
         },
         columns: [
             { "data": "Id", title: "Id", "visible": false },
-            { "data": "Nombre", title: "TipoHoraExtra" },
+            { "data": "Nombre", title: "Hora Extra" },
             { "data": "Estado", title: "Estado" },
             { "data": "CreateBy", title: "Creado por" },
             { "data": "DateCreate", title: "Fecha Creación" },

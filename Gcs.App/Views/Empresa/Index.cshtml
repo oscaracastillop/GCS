@@ -1,22 +1,22 @@
 ﻿@{
-    ViewBag.Title = "País";
+    ViewBag.Title = "Empresa";
 }
 <div>
     <a href="/Home"><i>INICIO</i></a>
     &nbsp;<i class="bi-chevron-right"></i>&nbsp;
     <a href="/Modulo/Configuracion"><i>MODULO CONFIGURACIÓN</i></a>
     &nbsp;<i class="bi-chevron-right"></i>&nbsp;
-    <label style="font-weight:bold">PAÍS</label>
+    <label style="font-weight:bold">EMPRESA</label>
     <hr />
-</div>  
+</div>
 
-<a href="/Pais/Crear_Pais" class="btn btn-success btn-sm" title="Agregar un nuevo Registro" style="float:right">Crear País</a>  
+<a href="/Empresa/Crear_Empresa" class="btn btn-success btn-sm" title="Agregar un nuevo Registro" style="float:right">Crear Empresa</a>
 <br />
 <br />
-<table id="gridPais" class="table display" style="width:100%"></table>
+<table id="gridEmpresa" class="table display" style="width:100%"></table>
 
 @*Modal Eliminar*@
-<div class="modal fade" id="ModalEliminarPais" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade" id="ModalEliminarEmpresa" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -24,11 +24,11 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <label id="IdPais" hidden></label>
-                <label id="MensajeEliminarPais"></label>
+                <label id="IdEmpresa" hidden></label>
+                <label id="MensajeEliminarEmpresa"></label>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-danger btn-sm" onclick="EliminarPais()"><i class="bi-trash"></i> Eliminar</button>
+                <button type="button" class="btn btn-danger btn-sm" onclick="EliminarEmpresa()"><i class="bi-trash"></i> Eliminar</button>
             </div>
         </div>
     </div>
@@ -36,6 +36,6 @@
 
 <script>
     $(document).ready(function () {
-        GridPais();
+        GridEmpresa();
     });
 </script>

@@ -142,6 +142,18 @@ namespace Gcs.Data.DataEntities
             }
         }
 
+        public List<ListaDepartamento> BuscarDeptoIdPais(int IdPais)
+        {
+            try
+            {
+                return _conection.Database.SqlQuery<ListaDepartamento>("SP_BuscarDeptoIdPais @IdPais", new SqlParameter("@IdPais",IdPais)).ToList();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public List<GridDepartamento> GridDepartamento()
         {
             try

@@ -143,6 +143,39 @@ function ListaCiudad(Tipo) {
     });
 }
 
+function BuscarCiudadIdDepartamento(Tipo, IdDepartamento) {
+    $.ajax({
+        type: 'POST',
+        dataType: 'json',
+        url: '/Ciudad/BuscarCiudadIdDepto',
+        data: { IdDepartamento: IdDepartamento },
+        success: function (resultado) {   
+            $("#SelectCiudad").empty().append();
+            var contador = 0;
+            if (Tipo == "N") {
+                if (IdDepartamento == -1) {
+                    $("#SelectCiudad").empty().append();
+                } else {
+                    if (resultado.length === 0) {
+                        $("#SelectCiudad").append('<option value="0">No hay Datos</option>');
+                    } else {
+                        $("#SelectCiudad").empty().append('<option value="-1">Seleccione Ciudad</option>');
+                        $.each(resultado, function () {
+                            $("#SelectCiudad").append('<option value="' + resultado[contador].Id + '">' + resultado[contador].Nombre + '</option>');
+                            contador++;
+                        });
+                    }
+                }            
+            } else {
+                $.each(resultado, function () {
+                    $("#SelectECiudad").append('<option value="' + resultado[contador].Id + '">' + resultado[contador].Nombre + '</option>');
+                    contador++;
+                });
+            }
+        },
+    });
+}
+
 function GridCiudad() {
     let datatable = $('#gridCiudad').DataTable({
         "responsive": true,

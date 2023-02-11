@@ -173,7 +173,7 @@ function GridTipoMoneda() {
         },
         columns: [
             { "data": "Id", title: "Id", "visible": false },
-            { "data": "Nombre", title: "TipoMoneda" },
+            { "data": "Nombre", title: "Moneda" },
             { "data": "Estado", title: "Estado" },
             { "data": "CreateBy", title: "Creado por" },
             { "data": "DateCreate", title: "Fecha Creación" },

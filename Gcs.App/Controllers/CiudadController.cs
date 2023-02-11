@@ -53,6 +53,11 @@ namespace Gcs.App.Controllers
             var resultado = dataCiudad.ListaCiudad();
             return Json(resultado);
         }
+        public JsonResult BuscarCiudadIdDepto(int IdDepartamento)
+        {
+            var resultado = dataCiudad.BuscarCiudadIdDepto(IdDepartamento);
+            return Json(resultado);
+        }
         public ActionResult GridCiudad()
         {
             var data = dataCiudad.GridCiudad();

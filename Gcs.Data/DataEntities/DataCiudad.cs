@@ -141,7 +141,17 @@ namespace Gcs.Data.DataEntities
                 throw ex;
             }
         }
-
+        public List<ListaCiudad> BuscarCiudadIdDepto(int IdDepartamento)
+        {
+            try
+            {
+                return _conection.Database.SqlQuery<ListaCiudad>("SP_BuscarCiudadIdDepto @IdDepartamento", new SqlParameter("@IdDepartamento", IdDepartamento)).ToList();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
         public List<GridCiudad> GridCiudad()
         {
             try

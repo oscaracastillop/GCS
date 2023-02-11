@@ -173,7 +173,7 @@ function GridTipoUnidadMedida() {
         },
         columns: [
             { "data": "Id", title: "Id", "visible": false },
-            { "data": "Nombre", title: "TipoUnidadMedida" },
+            { "data": "Nombre", title: "Unidad Medida" },
             { "data": "Estado", title: "Estado" },
             { "data": "CreateBy", title: "Creado por" },
             { "data": "DateCreate", title: "Fecha Creación" },
