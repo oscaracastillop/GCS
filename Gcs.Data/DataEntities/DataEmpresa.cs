@@ -59,15 +59,50 @@ namespace Gcs.Data.DataEntities
 
 
 
+        public string EliminarEmpresa(string IdUser, int IdEmpresa)
+        {
+            string resultado = String.Empty;
+            try
+            {
+                var varIdUser = new SqlParameter("@IdUser", SqlDbType.VarChar) { Value = IdUser };
+                var varIdEmpresa = new SqlParameter("@IdEmpresa", SqlDbType.Int) { Value = IdEmpresa };
+                var varResultado = new SqlParameter("@Resultado", SqlDbType.VarChar) { Direction = ParameterDirection.Output, Size = 255 };
+
+                _conection.Database.ExecuteSqlCommand("SP_EliminarEmpresa @IdUser, @IdEmpresa, @Resultado OUTPUT", varIdUser, varIdEmpresa, varResultado);
+
+                resultado = Convert.ToString(varResultado.Value);
+            }
+            catch (Exception ex)
+            {
+                var Rol = dataRol.BuscarRolUsuario(IdUser);
+                if (Rol == "Administrador")
+                {
+                    resultado = "Error*" + ex.Message;
+                }
+                else
+                {
+                    resultado = "Error*En el momento no se puede realizar este proceso, por favor comuniquese con el Administrador";
+                }
+            }
+            return resultado;
+        }
 
 
 
 
 
 
-
-
-
+        public List<ListaEmpresa> ListaEmpresa()
+        {
+            try
+            {
+                return _conection.Database.SqlQuery<ListaEmpresa>("SP_ListaEmpresa").ToList();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
         public List<GridEmpresa> GridEmpresa()
         {
             try

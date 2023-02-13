@@ -3712,3 +3712,44 @@ WHERE	C.Id = @IdCiudad
 	RETURN @CiudadCompuesta
 END
 
+go
+
+CREATE PROCEDURE [dbo].[SP_ListaEmpresa]
+AS
+BEGIN
+	SELECT Id, Nombre FROM Empresa WHERE Activo = 1
+END
+
+go
+
+CREATE PROCEDURE [dbo].[SP_EliminarEmpresa] @IdUser varchar(255), @IdEmpresa int, @Resultado varchar(255) OUTPUT
+AS
+BEGIN
+DECLARE @Eliminar INT, @IdUsuario INT, @NombreUsuario VARCHAR(255), @validar INT, @NombreEmpresa varchar(255), @SubMenu VARCHAR(255)
+SET @SubMenu = '/Empresa'
+SELECT @IdUsuario = Id FROM Usuario WHERE IdUser = @IdUser
+SELECT @NombreUsuario = Nombre FROM Usuario WHERE IdUser = @IdUser
+SELECT @NombreEmpresa = Nombre FROM Pais WHERE Id = @IdEmpresa
+	SELECT	@Eliminar = dbo.Fun_PermisoUsuario('Eliminar',@IdUsuario, @SubMenu)	
+		IF @Eliminar > 0
+			BEGIN	
+				SELECT @validar = 0
+				IF @validar > 0 
+					BEGIN
+						SET @Resultado = 'Error*La empresa ' + @NombreEmpresa +' no se puede eliminar, actualmente se encuentra en eso'	
+					END
+				ELSE
+					BEGIN
+						DELETE Empresa WHERE Id = @IdEmpresa
+						SET @Resultado = 'OK*Se elimino la empresa'	
+					END								
+			END
+		ELSE
+			BEGIN
+				SET @Resultado = 'Error*El usuario '+ @NombreUsuario + ' no tiene permiso para eliminar la empresa' 
+			END
+	SELECT @Resultado
+END
+
+go
+

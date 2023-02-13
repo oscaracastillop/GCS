@@ -52,6 +52,64 @@
 
 
 
+function EliminarEmpresa() {
+    let IdUser = Cookies.get('IdUser');
+    let IdEmpresa = $('#IdEmpresa').text();
+    $.ajax({
+        type: 'POST',
+        dataType: 'json',
+        url: '/Empresa/EliminarEmpresa',
+        data: {
+            IdUser: IdUser,
+            IdEmpresa: IdEmpresa
+        },
+        success: function (resultado) {
+            valor = resultado.split('*');
+            if (valor[0] == 'OK') {
+                Swal.fire({
+                    title: 'Mensaje del Sistema',
+                    text: valor[1],
+                    icon: 'success',
+                }).then((result) => {
+                    location.reload();
+                })
+            } else {
+                Swal.fire('Mensaje del Sistema', valor[1], 'info');
+            }
+        }
+    });
+}
+
+
+
+
+function ListaEmpresa(Tipo) {
+    $.ajax({
+        type: 'POST',
+        dataType: 'json',
+        url: '/Empresa/ListaEmpresa',
+        data: {},
+        success: function (resultado) {
+            var contador = 0;
+            if (Tipo == "N") {
+                if (resultado.length === 0) {
+                    $("#SelectEmpresa").append('<option value="">No hay Datos</option>');
+                } else {
+                    $("#SelectEmpresa").empty().append('<option value="-1">Seleccione Empresa</option>');
+                    $.each(resultado, function () {
+                        $("#SelectEmpresa").append('<option value="' + resultado[contador].Id + '">' + resultado[contador].Nombre + '</option>');
+                        contador++;
+                    });
+                }
+            } else {
+                $.each(resultado, function () {
+                    $("#SelectEEmpresa").append('<option value="' + resultado[contador].Id + '">' + resultado[contador].Nombre + '</option>');
+                    contador++;
+                });
+            }
+        },
+    });
+}
 
 function GridEmpresa() {
     let datatable = $('#gridEmpresa').DataTable({

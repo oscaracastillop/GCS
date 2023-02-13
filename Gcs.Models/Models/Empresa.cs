@@ -23,5 +23,10 @@ namespace Gcs.Models.Models
             public string CreateBy { get; set; }
             public string DateCreate { get; set; }
         }
+        public class ListaEmpresa
+        {
+            public int Id { get; set; }
+            public string Nombre { get; set; }
+        }
     }
 }

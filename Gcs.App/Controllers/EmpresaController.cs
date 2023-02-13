@@ -34,11 +34,11 @@ namespace Gcs.App.Controllers
         //    var resultado = dataEmpresa.GuardarCambiosEmpresa(IdEmpresa, IdUser, NombreEmpresa, Activo);
         //    return Json(resultado);
         //}
-        //public JsonResult EliminarEmpresa(string IdUser, int IdEmpresa)
-        //{
-        //    string resultado = dataEmpresa.EliminarEmpresa(IdUser, IdEmpresa);
-        //    return Json(resultado);
-        //}
+        public JsonResult EliminarEmpresa(string IdUser, int IdEmpresa)
+        {
+            string resultado = dataEmpresa.EliminarEmpresa(IdUser, IdEmpresa);
+            return Json(resultado);
+        }
 
         //public ActionResult CargarDatosEmpresa(int IdEmpresa)
         //{
@@ -46,11 +46,11 @@ namespace Gcs.App.Controllers
         //    return Json(resultado);
         //}
 
-        //public JsonResult ListaEmpresa()
-        //{
-        //    var resultado = dataEmpresa.ListaEmpresa();
-        //    return Json(resultado);
-        //}
+        public JsonResult ListaEmpresa()
+        {
+            var resultado = dataEmpresa.ListaEmpresa();
+            return Json(resultado);
+        }
         public ActionResult GridEmpresa()
         {
             var data = dataEmpresa.GridEmpresa();
