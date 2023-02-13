@@ -23,11 +23,11 @@ namespace Gcs.App.Controllers
         {
             return View();
         }
-        //public JsonResult CrearEmpresa(string IdUser, string NombreEmpresa)
-        //{
-        //    string resultado = dataEmpresa.CrearEmpresa(IdUser, NombreEmpresa);
-        //    return Json(resultado);
-        //}
+        public JsonResult CrearEmpresa(string IdUser, string NombreEmpresa, int IdTipoDocumento, string Identificacion, string Email, string Telefono, string Contacto, int IdCiudad, string Direccion)
+        {
+            string resultado = dataEmpresa.CrearEmpresa(IdUser, NombreEmpresa, IdTipoDocumento, Identificacion, Email, Telefono, Contacto, IdCiudad, Direccion);
+            return Json(resultado);
+        }
 
         //public JsonResult GuardarCambiosEmpresa(int IdEmpresa, string IdUser, string NombreEmpresa, int Activo)
         //{
@@ -51,10 +51,10 @@ namespace Gcs.App.Controllers
         //    var resultado = dataEmpresa.ListaEmpresa();
         //    return Json(resultado);
         //}
-        //public ActionResult GridEmpresa()
-        //{
-        //    var data = dataEmpresa.GridEmpresa();
-        //    return Json(new { data = data }, JsonRequestBehavior.AllowGet);
-        //}
+        public ActionResult GridEmpresa()
+        {
+            var data = dataEmpresa.GridEmpresa();
+            return Json(new { data = data }, JsonRequestBehavior.AllowGet);
+        }
     }
 }

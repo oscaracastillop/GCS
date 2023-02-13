@@ -2039,7 +2039,7 @@ ALTER TABLE TipoDocumento ADD CONSTRAINT FK_IdCreateByTipoDocumento FOREIGN KEY 
 
 go
 
-insert into TipoDocumento(Nombre, CreateBy,DateCreate)values('Cédula Ciudadanáa',1,Getdate())
+insert into TipoDocumento(Nombre, CreateBy,DateCreate)values('Cédula Ciudadanía',1,Getdate())
 insert into TipoDocumento(Nombre, CreateBy,DateCreate)values('Cédula Extranjería',1,Getdate())
 insert into TipoDocumento(Nombre, CreateBy,DateCreate)values('Rut',1,Getdate())
 insert into TipoDocumento(Nombre, CreateBy,DateCreate)values('Nit',1,Getdate())
@@ -3611,3 +3611,104 @@ SELECT @NombreFondoPension = Nombre FROM Pais WHERE Id = @IdFondoPension
 			END
 	SELECT @Resultado
 END
+
+go
+
+CREATE TABLE Empresa 
+(Id int identity(1,1) Primary key ,
+Nombre varchar(255),
+IdTipoDocumento int,
+Identificacion varchar(255),
+Email varchar(255),
+Telefono varchar(255),
+Contacto varchar(255),
+IdCiudad int,
+Direccion varchar(255),
+Activo int default 1,
+CreateBy int,
+DateCreate datetime,
+unique(Nombre)
+)
+
+ALTER TABLE Empresa ADD CONSTRAINT FK_IdCreateByEmpresa FOREIGN KEY (CreateBy ) references Usuario(Id)
+ALTER TABLE Empresa ADD CONSTRAINT FK_IdTipoDocumentoEmpresa FOREIGN KEY (IdTipoDocumento ) references TipoDocumento(Id)
+ALTER TABLE Empresa ADD CONSTRAINT FK_IdCiudadEmpresa FOREIGN KEY (IdCiudad ) references Ciudad(Id)
+
+go
+
+CREATE PROCEDURE [dbo].[SP_CrearEmpresa] 
+@IdUser varchar(255), 
+@NombreEmpresa varchar(255), 
+@IdTipoDocumento int,
+@Identificacion varchar(255),
+@Email varchar(255), 
+@Telefono varchar(255), 
+@Contacto varchar(255),
+@IdCiudad int,
+@Direccion varchar(255),
+@Resultado varchar(255) OUTPUT
+AS
+BEGIN
+DECLARE @Crear INT, @IdUsuario INT, @NombreUsuario VARCHAR(255), @SubMenu VARCHAR(255)
+SELECT @IdUsuario = Id FROM Usuario WHERE IdUser = @IdUser
+SELECT @NombreUsuario = Nombre FROM Usuario WHERE IdUser = @IdUser
+SET @SubMenu = '/Empresa'
+SELECT	@Crear = dbo.Fun_PermisoUsuario('Crear',@IdUsuario, @SubMenu)	
+		IF @Crear > 0
+			BEGIN
+				INSERT INTO Empresa 
+				(Nombre,IdTipoDocumento,Identificacion,Email,Telefono,Contacto,IdCiudad,Direccion,CreateBy, DateCreate) 
+				VALUES 
+				(@NombreEmpresa, @IdTipoDocumento, @Identificacion, @Email, @Telefono, @Contacto, @IdCiudad, @Direccion, @IdUsuario, GETDATE()) 
+				SET @Resultado = 'OK*Se a creado la empresa ' + @NombreEmpresa+ ' correctamente'
+			END
+		ELSE
+			BEGIN
+				SET @Resultado = 'Error*El usuario '+ @NombreUsuario + ' no tiene permiso para crear la empresa' 
+			END
+	SELECT @Resultado
+END
+
+go
+CREATE PROCEDURE [dbo].[SP_GridEmpresa]
+AS
+BEGIN
+	SELECT	Id, 
+			Nombre, 
+			dbo.Fun_BuscarNombreTipoDocumento(IdTipoDocumento) As TipoDocumento,
+			Identificacion,
+			Email,
+			Telefono,
+			Contacto,
+			Direccion,
+			dbo.Fun_BuscarNombreCiudadCompuesto(IdCiudad) As Ciudad,
+			CASE Activo
+			WHEN 1 THEN 'Activo'
+			ELSE 'Inactivo'
+			END as Estado,
+			dbo.Fun_BuscarNombreUsuario(CreateBy) As CreateBy,
+			CONVERT(varchar(255),DateCreate,20) As DateCreate
+			FROM Empresa
+END
+
+GO
+
+CREATE FUNCTION [dbo].[Fun_BuscarNombreCiudadCompuesto](@IdCiudad INT)
+RETURNS VARCHAR(255)
+AS BEGIN
+DECLARE @NombreCiudad VARCHAR(255), @NombreDepartamento VARCHAR(255), @NombrePais VARCHAR(255), @CiudadCompuesta VARCHAR(255)
+
+SELECT	@NombreCiudad = C.Nombre,
+		@NombreDepartamento = D.Nombre,
+		@NombrePais = P.Nombre
+FROM	Pais P,
+		Departamento D,
+		Ciudad C
+WHERE	C.Id = @IdCiudad 
+		AND C.IdDepartamento = D.Id 
+		AND D.IdPais = P.Id
+
+	SET @CiudadCompuesta = @NombrePais+'/'+@NombreDepartamento+'/'+@NombreCiudad
+	RETURN @CiudadCompuesta
+END
+
