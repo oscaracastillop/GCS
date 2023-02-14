@@ -545,7 +545,7 @@ SELECT @NombrePais = Nombre FROM Pais WHERE Id = @IdPais
 				SELECT @validar = 0 --COUNT(1) FROM Departamento WHERE IdPais = @IdPais
 				IF @validar > 0 
 					BEGIN
-						SET @Resultado = 'Error*El país ' + @NombrePais +' no se puede eliminar, actualmente se encuentra en eso'	
+						SET @Resultado = 'Error*El país ' + @NombrePais +' no se puede eliminar, actualmente se encuentra en uso'	
 					END
 				ELSE
 					BEGIN
@@ -1993,6 +1993,27 @@ DECLARE @NombreCiudad VARCHAR(255)
 	RETURN @NombreCiudad
 END
 
+GO
+
+CREATE FUNCTION [dbo].[Fun_BuscarNombreCiudadCompuesto](@IdCiudad INT)
+RETURNS VARCHAR(255)
+AS BEGIN
+DECLARE @NombreCiudad VARCHAR(255), @NombreDepartamento VARCHAR(255), @NombrePais VARCHAR(255), @CiudadCompuesta VARCHAR(255)
+
+SELECT	@NombreCiudad = C.Nombre,
+		@NombreDepartamento = D.Nombre,
+		@NombrePais = P.Nombre
+FROM	Pais P,
+		Departamento D,
+		Ciudad C
+WHERE	C.Id = @IdCiudad 
+		AND C.IdDepartamento = D.Id 
+		AND D.IdPais = P.Id
+
+	SET @CiudadCompuesta = @NombrePais+'/'+@NombreDepartamento+'/'+@NombreCiudad
+	RETURN @CiudadCompuesta
+END
+
 go
 
 CREATE PROCEDURE [dbo].[SP_EliminarCiudad] @IdUser varchar(255), @IdCiudad int, @Resultado varchar(255) OUTPUT
@@ -2043,6 +2064,7 @@ insert into TipoDocumento(Nombre, CreateBy,DateCreate)values('Cédula Ciudadaní
 insert into TipoDocumento(Nombre, CreateBy,DateCreate)values('Cédula Extranjería',1,Getdate())
 insert into TipoDocumento(Nombre, CreateBy,DateCreate)values('Rut',1,Getdate())
 insert into TipoDocumento(Nombre, CreateBy,DateCreate)values('Nit',1,Getdate())
+insert into TipoDocumento(Nombre, CreateBy,DateCreate)values('Pasaporte',1,Getdate())
 
 go
 
@@ -2152,7 +2174,7 @@ SELECT @NombreTipoDocumento = Nombre FROM Pais WHERE Id = @IdTipoDocumento
 				SELECT @validar = 0 --COUNT(1) FROM Departamento WHERE IdTipoDocumento = @IdTipoDocumento
 				IF @validar > 0 
 					BEGIN
-						SET @Resultado = 'Error*El tipo documento ' + @NombreTipoDocumento +' no se puede eliminar, actualmente se encuentra en eso'	
+						SET @Resultado = 'Error*El tipo documento ' + @NombreTipoDocumento +' no se puede eliminar, actualmente se encuentra en uso'	
 					END
 				ELSE
 					BEGIN
@@ -2295,7 +2317,7 @@ SELECT @NombreTipoHoraExtra = Nombre FROM Pais WHERE Id = @IdTipoHoraExtra
 				SELECT @validar = 0 --COUNT(1) FROM Departamento WHERE IdTipoHoraExtra = @IdTipoHoraExtra
 				IF @validar > 0 
 					BEGIN
-						SET @Resultado = 'Error*El tipo hora extra ' + @NombreTipoHoraExtra +' no se puede eliminar, actualmente se encuentra en eso'	
+						SET @Resultado = 'Error*El tipo hora extra ' + @NombreTipoHoraExtra +' no se puede eliminar, actualmente se encuentra en uso'	
 					END
 				ELSE
 					BEGIN
@@ -2450,7 +2472,7 @@ SELECT @NombreTipoUnidadMedida = Nombre FROM Pais WHERE Id = @IdTipoUnidadMedida
 				SELECT @validar = 0
 				IF @validar > 0 
 					BEGIN
-						SET @Resultado = 'Error*El tipo unidad medida ' + @NombreTipoUnidadMedida +' no se puede eliminar, actualmente se encuentra en eso'	
+						SET @Resultado = 'Error*El tipo unidad medida ' + @NombreTipoUnidadMedida +' no se puede eliminar, actualmente se encuentra en uso'	
 					END
 				ELSE
 					BEGIN
@@ -2589,7 +2611,7 @@ SELECT @NombreTipoMoneda = Nombre FROM Pais WHERE Id = @IdTipoMoneda
 				SELECT @validar = 0
 				IF @validar > 0 
 					BEGIN
-						SET @Resultado = 'Error*El tipo de moneda ' + @NombreTipoMoneda +' no se puede eliminar, actualmente se encuentra en eso'	
+						SET @Resultado = 'Error*El tipo de moneda ' + @NombreTipoMoneda +' no se puede eliminar, actualmente se encuentra en uso'	
 					END
 				ELSE
 					BEGIN
@@ -2728,7 +2750,7 @@ SELECT @NombreTipoGenero = Nombre FROM Pais WHERE Id = @IdTipoGenero
 				SELECT @validar = 0
 				IF @validar > 0 
 					BEGIN
-						SET @Resultado = 'Error*El tipo de género ' + @NombreTipoGenero +' no se puede eliminar, actualmente se encuentra en eso'	
+						SET @Resultado = 'Error*El tipo de género ' + @NombreTipoGenero +' no se puede eliminar, actualmente se encuentra en uso'	
 					END
 				ELSE
 					BEGIN
@@ -2871,7 +2893,7 @@ SELECT @NombreTipoFormaPago = Nombre FROM Pais WHERE Id = @IdTipoFormaPago
 				SELECT @validar = 0
 				IF @validar > 0 
 					BEGIN
-						SET @Resultado = 'Error*El tipo forma de pago ' + @NombreTipoFormaPago +' no se puede eliminar, actualmente se encuentra en eso'	
+						SET @Resultado = 'Error*El tipo forma de pago ' + @NombreTipoFormaPago +' no se puede eliminar, actualmente se encuentra en uso'	
 					END
 				ELSE
 					BEGIN
@@ -3017,7 +3039,7 @@ SELECT @NombreEps = Nombre FROM Pais WHERE Id = @IdEps
 				SELECT @validar = 0
 				IF @validar > 0 
 					BEGIN
-						SET @Resultado = 'Error*La eps ' + @NombreEps +' no se puede eliminar, actualmente se encuentra en eso'	
+						SET @Resultado = 'Error*La eps ' + @NombreEps +' no se puede eliminar, actualmente se encuentra en uso'	
 					END
 				ELSE
 					BEGIN
@@ -3161,7 +3183,7 @@ SELECT @NombreArl = Nombre FROM Pais WHERE Id = @IdArl
 				SELECT @validar = 0
 				IF @validar > 0 
 					BEGIN
-						SET @Resultado = 'Error*La Arl ' + @NombreArl +' no se puede eliminar, actualmente se encuentra en eso'	
+						SET @Resultado = 'Error*La Arl ' + @NombreArl +' no se puede eliminar, actualmente se encuentra en uso'	
 					END
 				ELSE
 					BEGIN
@@ -3307,7 +3329,7 @@ SELECT @NombreCajaCompensacionFamiliar = Nombre FROM Pais WHERE Id = @IdCajaComp
 				SELECT @validar = 0
 				IF @validar > 0 
 					BEGIN
-						SET @Resultado = 'Error*La caja de compensación familiar ' + @NombreCajaCompensacionFamiliar +' no se puede eliminar, actualmente se encuentra en eso'	
+						SET @Resultado = 'Error*La caja de compensación familiar ' + @NombreCajaCompensacionFamiliar +' no se puede eliminar, actualmente se encuentra en uso'	
 					END
 				ELSE
 					BEGIN
@@ -3452,7 +3474,7 @@ SELECT @NombreFondoCesantias = Nombre FROM Pais WHERE Id = @IdFondoCesantias
 				SELECT @validar = 0
 				IF @validar > 0 
 					BEGIN
-						SET @Resultado = 'Error*El fondo de cesantías ' + @NombreFondoCesantias +' no se puede eliminar, actualmente se encuentra en eso'	
+						SET @Resultado = 'Error*El fondo de cesantías ' + @NombreFondoCesantias +' no se puede eliminar, actualmente se encuentra en uso'	
 					END
 				ELSE
 					BEGIN
@@ -3597,7 +3619,7 @@ SELECT @NombreFondoPension = Nombre FROM Pais WHERE Id = @IdFondoPension
 				SELECT @validar = 0
 				IF @validar > 0 
 					BEGIN
-						SET @Resultado = 'Error*El fondo pensión ' + @NombreFondoPension +' no se puede eliminar, actualmente se encuentra en eso'	
+						SET @Resultado = 'Error*El fondo pensión ' + @NombreFondoPension +' no se puede eliminar, actualmente se encuentra en uso'	
 					END
 				ELSE
 					BEGIN
@@ -3689,7 +3711,7 @@ BEGIN
 	Pais P,
 	Departamento D,
 	Ciudad C
-	WHERE E.Id = 2
+	WHERE E.Id = IdEmpresa
 	AND C.IdDepartamento = D.Id
 	AND D.IdPais = P.Id
 	AND E.IdCiudad = C.Id
@@ -3762,33 +3784,24 @@ BEGIN
 			FROM Empresa
 END
 
-GO
-
-CREATE FUNCTION [dbo].[Fun_BuscarNombreCiudadCompuesto](@IdCiudad INT)
-RETURNS VARCHAR(255)
-AS BEGIN
-DECLARE @NombreCiudad VARCHAR(255), @NombreDepartamento VARCHAR(255), @NombrePais VARCHAR(255), @CiudadCompuesta VARCHAR(255)
-
-SELECT	@NombreCiudad = C.Nombre,
-		@NombreDepartamento = D.Nombre,
-		@NombrePais = P.Nombre
-FROM	Pais P,
-		Departamento D,
-		Ciudad C
-WHERE	C.Id = @IdCiudad 
-		AND C.IdDepartamento = D.Id 
-		AND D.IdPais = P.Id
-
-	SET @CiudadCompuesta = @NombrePais+'/'+@NombreDepartamento+'/'+@NombreCiudad
-	RETURN @CiudadCompuesta
-END
-
 go
 
 CREATE PROCEDURE [dbo].[SP_ListaEmpresa]
 AS
 BEGIN
 	SELECT Id, Nombre FROM Empresa WHERE Activo = 1
+END
+
+go
+
+CREATE FUNCTION Fun_BuscarNombreEmpresa(@IdEmpresa INT)
+RETURNS VARCHAR(255)
+AS BEGIN
+DECLARE @NombreEmpresa VARCHAR(255)
+	SELECT	@NombreEmpresa = Nombre
+	FROM	Empresa
+	WHERE	Id = @IdEmpresa
+	RETURN @NombreEmpresa
 END
 
 go
@@ -3807,7 +3820,7 @@ SELECT @NombreEmpresa = Nombre FROM Pais WHERE Id = @IdEmpresa
 				SELECT @validar = 0
 				IF @validar > 0 
 					BEGIN
-						SET @Resultado = 'Error*La empresa ' + @NombreEmpresa +' no se puede eliminar, actualmente se encuentra en eso'	
+						SET @Resultado = 'Error*La empresa ' + @NombreEmpresa +' no se puede eliminar, actualmente se encuentra en uso'	
 					END
 				ELSE
 					BEGIN
@@ -3818,6 +3831,217 @@ SELECT @NombreEmpresa = Nombre FROM Pais WHERE Id = @IdEmpresa
 		ELSE
 			BEGIN
 				SET @Resultado = 'Error*El usuario '+ @NombreUsuario + ' no tiene permiso para eliminar la empresa' 
+			END
+	SELECT @Resultado
+END
+
+go
+
+CREATE TABLE Sucursal 
+(Id int identity(1,1) Primary key ,
+IdEmpresa int,
+Nombre varchar(255),
+IdTipoDocumento int,
+Identificacion varchar(255),
+Email varchar(255),
+Telefono varchar(255),
+Contacto varchar(255),
+IdCiudad int,
+Direccion varchar(255),
+Activo int default 1,
+CreateBy int,
+DateCreate datetime,
+unique(Nombre)
+)
+
+ALTER TABLE Sucursal ADD CONSTRAINT FK_IEmpresaSucursal FOREIGN KEY (IdEmpresa ) references Empresa(Id)
+ALTER TABLE Sucursal ADD CONSTRAINT FK_IdCreateBySucursal FOREIGN KEY (CreateBy ) references Usuario(Id)
+ALTER TABLE Sucursal ADD CONSTRAINT FK_IdTipoDocumentoSucursal FOREIGN KEY (IdTipoDocumento ) references TipoDocumento(Id)
+ALTER TABLE Sucursal ADD CONSTRAINT FK_IdCiudadSucursal FOREIGN KEY (IdCiudad ) references Ciudad(Id)
+
+go
+
+CREATE PROCEDURE [dbo].[SP_CrearSucursal] 
+@IdUser varchar(255), 
+@IdEmpresa int,
+@NombreSucursal varchar(255), 
+@IdTipoDocumento int,
+@Identificacion varchar(255),
+@Email varchar(255), 
+@Telefono varchar(255), 
+@Contacto varchar(255),
+@IdCiudad int,
+@Direccion varchar(255),
+@Resultado varchar(255) OUTPUT
+AS
+BEGIN
+DECLARE @Crear INT, @IdUsuario INT, @NombreUsuario VARCHAR(255), @SubMenu VARCHAR(255)
+SELECT @IdUsuario = Id FROM Usuario WHERE IdUser = @IdUser
+SELECT @NombreUsuario = Nombre FROM Usuario WHERE IdUser = @IdUser
+SET @SubMenu = '/Sucursal'
+SELECT	@Crear = dbo.Fun_PermisoUsuario('Crear',@IdUsuario, @SubMenu)	
+		IF @Crear > 0
+			BEGIN
+				INSERT INTO Sucursal 
+				(IdEmpresa, Nombre,IdTipoDocumento,Identificacion,Email,Telefono,Contacto,IdCiudad,Direccion,CreateBy, DateCreate) 
+				VALUES 
+				(@IdEmpresa, @NombreSucursal, @IdTipoDocumento, @Identificacion, @Email, @Telefono, @Contacto, @IdCiudad, @Direccion, @IdUsuario, GETDATE()) 
+				SET @Resultado = 'OK*Se a creado la sucursal ' + @NombreSucursal+ ' correctamente'
+			END
+		ELSE
+			BEGIN
+				SET @Resultado = 'Error*El usuario '+ @NombreUsuario + ' no tiene permiso para crear la sucursal' 
+			END
+	SELECT @Resultado
+END
+
+go
+
+CREATE PROCEDURE SP_CargarDatosSucursal @IdSucursal Int
+AS
+BEGIN
+	SELECT 
+	E.Nombre,
+	S.Nombre,
+	S.IdTipoDocumento As TipoDocumento,
+	S.Identificacion,
+	S.Email,
+	S.Telefono,
+	S.Contacto,
+	P.Id As Pais,
+	D.Id As Departamento,
+	C.Id As Ciudad,
+	S.Direccion,
+	S.Activo
+	FROM Sucursal S,
+	Pais P,
+	Departamento D,
+	Ciudad C,
+	Empresa E
+	WHERE S.Id = @IdSucursal
+	AND C.IdDepartamento = D.Id
+	AND D.IdPais = P.Id
+	AND S.IdCiudad = C.Id
+	AND E.Id = S.IdEmpresa
+END
+
+go
+
+CREATE PROCEDURE [dbo].[SP_GuardarCambiosSucursal] 
+				@IdSucursal int, 
+				@IdEmpresa int,
+				@IdUser varchar(255), 
+				@NombreSucursal varchar(255), 
+				@IdTipoDocumento int,
+				@Identificacion varchar(255),
+				@Email varchar(255), 
+				@Telefono varchar(255),  
+				@Contacto varchar(255),
+				@IdCiudad int,
+				@Direccion varchar(255),
+				@Activo int, 
+				@Resultado varchar(255) OUTPUT
+AS
+BEGIN
+DECLARE @Modificar INT, @IdUsuario INT, @NombreUsuario VARCHAR(255), @SubMenu VARCHAR(255)
+SET @SubMenu = '/Sucursal'
+SELECT @IdUsuario = Id FROM Usuario WHERE IdUser = @IdUser
+SELECT @NombreUsuario = Nombre FROM Usuario WHERE IdUser = @IdUser
+SELECT @Modificar = dbo.Fun_PermisoUsuario('Editar',@IdUsuario, @SubMenu)	
+				IF @Modificar > 0
+					BEGIN
+						UPDATE Sucursal 
+						SET		IdEmpresa = @IdEmpresa,
+								Nombre = @NombreSucursal, 
+								IdTipoDocumento =  @IdTipoDocumento,
+								Identificacion = @Identificacion,								 
+								Email = @Email, 
+								Telefono = @Telefono,
+								Contacto = @Contacto,
+								IdCiudad = @IdCiudad,
+								Direccion = @Direccion,
+								Activo = @Activo
+								WHERE Id = @IdSucursal
+					    SET @Resultado = 'OK*Se guardaron los cambios de la sucursal ' + @NombreSucursal+ ' correctamente'
+					END
+				ELSE
+					BEGIN
+						SET @Resultado = 'Error*El usuario '+ @NombreUsuario + ' no tiene permiso para realizar cambios a la sucursal' 
+					END
+	SELECT @Resultado
+END
+
+go
+
+CREATE PROCEDURE [dbo].[SP_GridSucursal]
+AS
+BEGIN
+	SELECT	Id, 
+			dbo.Fun_BuscarNombreEmpresa(IdEmpresa) As Empresa,
+			Nombre, 
+			dbo.Fun_BuscarNombreTipoDocumento(IdTipoDocumento) As TipoDocumento,
+			Identificacion,
+			Email,
+			Telefono,
+			Contacto,
+			Direccion,
+			dbo.Fun_BuscarNombreCiudadCompuesto(IdCiudad) As Ciudad,
+			CASE Activo
+			WHEN 1 THEN 'Activo'
+			ELSE 'Inactivo'
+			END as Estado,
+			dbo.Fun_BuscarNombreUsuario(CreateBy) As CreateBy,
+			CONVERT(varchar(255),DateCreate,20) As DateCreate
+			FROM Sucursal
+END
+
+go
+
+CREATE PROCEDURE [dbo].[SP_ListaSucursal]
+AS
+BEGIN
+	SELECT Id, Nombre FROM Sucursal WHERE Activo = 1
+END
+
+go
+
+CREATE FUNCTION Fun_BuscarNombreSucursal(@IdSucursal INT)
+RETURNS VARCHAR(255)
+AS BEGIN
+DECLARE @NombreSucursal VARCHAR(255)
+	SELECT	@NombreSucursal = Nombre
+	FROM	Sucursal
+	WHERE	Id = @IdSucursal
+	RETURN @NombreSucursal
+END
+
+go
+
+CREATE PROCEDURE [dbo].[SP_EliminarSucursal] @IdUser varchar(255), @IdSucursal int, @Resultado varchar(255) OUTPUT
+AS
+BEGIN
+DECLARE @Eliminar INT, @IdUsuario INT, @NombreUsuario VARCHAR(255), @validar INT, @NombreSucursal varchar(255), @SubMenu VARCHAR(255)
+SET @SubMenu = '/Sucursal'
+SELECT @IdUsuario = Id FROM Usuario WHERE IdUser = @IdUser
+SELECT @NombreUsuario = Nombre FROM Usuario WHERE IdUser = @IdUser
+SELECT @NombreSucursal = Nombre FROM Pais WHERE Id = @IdSucursal
+	SELECT	@Eliminar = dbo.Fun_PermisoUsuario('Eliminar',@IdUsuario, @SubMenu)	
+		IF @Eliminar > 0
+			BEGIN	
+				SELECT @validar = 0
+				IF @validar > 0 
+					BEGIN
+						SET @Resultado = 'Error*La Sucursal ' + @NombreSucursal +' no se puede eliminar, actualmente se encuentra en uso'	
+					END
+				ELSE
+					BEGIN
+						DELETE Sucursal WHERE Id = @IdSucursal
+						SET @Resultado = 'OK*Se elimino la sucursal'	
+					END								
+			END
+		ELSE
+			BEGIN
+				SET @Resultado = 'Error*El usuario '+ @NombreUsuario + ' no tiene permiso para eliminar la sucursal' 
 			END
 	SELECT @Resultado
 END

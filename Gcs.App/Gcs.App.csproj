@@ -2135,6 +2135,7 @@
     <Content Include="JsApp\Menu.js" />
     <Content Include="JsApp\Pais.js" />
     <Content Include="JsApp\SubMenu.js" />
+    <Content Include="JsApp\Sucursal.js" />
     <Content Include="JsApp\TipoDocumento.js" />
     <Content Include="JsApp\TipoFormaPago.js" />
     <Content Include="JsApp\TipoGenero.js" />
@@ -4438,6 +4439,9 @@
     <Content Include="Views\Empresa\Index.cshtml" />
     <Content Include="Views\Empresa\Crear_Empresa.cshtml" />
     <Content Include="Views\Empresa\Editar_Empresa.cshtml" />
+    <Content Include="Views\Sucursal\Index.cshtml" />
+    <Content Include="Views\Sucursal\Crear_Sucursal.cshtml" />
+    <Content Include="Views\Sucursal\Editar_Sucursal.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -4451,7 +4455,6 @@
     <Folder Include="Sources\ImagesProfileUsers\" />
     <Folder Include="Views\Menu\" />
     <Folder Include="Views\SubMenu\" />
-    <Folder Include="Views\Sucursal\" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\index.d.ts" />
