@@ -28,11 +28,6 @@ namespace Gcs.App.Controllers
             string resultado = dataEmpresa.CrearEmpresa(IdUser, NombreEmpresa, IdTipoDocumento, Identificacion, Email, Telefono, Contacto, IdCiudad, Direccion);
             return Json(resultado);
         }
-        //public JsonResult GuardarCambiosEmpresa(int IdEmpresa, string IdUser, string NombreEmpresa, int IdTipoDocumento, string Identificacion, string Email, string Telefono, string Contacto)
-        //{
-        //    var resultado = "OK*holas"+" "+IdEmpresa+" "+IdUser+" "+NombreEmpresa + " " + IdTipoDocumento + " " + Identificacion + " " + Email + " " + Telefono + " " + Contacto;
-        //    return Json(resultado);
-        //}
         public JsonResult GuardarCambiosEmpresa(int IdEmpresa, string IdUser, string NombreEmpresa, int IdTipoDocumento, string Identificacion, string Email, string Telefono, string Contacto, int IdCiudad, string Direccion, int Activo)
         {
             var resultado = dataEmpresa.GuardarCambiosEmpresa(IdEmpresa, IdUser, NombreEmpresa, IdTipoDocumento, Identificacion, Email, Telefono, Contacto, IdCiudad, Direccion, Activo);
