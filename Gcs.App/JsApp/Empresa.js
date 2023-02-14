@@ -48,8 +48,59 @@
     }
 }
 
-
-
+function GuardarCambiosEmpresa() {
+    let User = Cookies.get('IdUser');
+    let IdEmpresa = Cookies.get('IdEdit');
+    let NombreEmpresa = $('#InputENombreEmpresa').val();
+    let IdTipoDocumento = $('#SelectETipoDocumento').val();
+    let Identificacion = $('#InputEIdentificacionEmpresa').val();
+    let Email = $('#InputEEmailEmpresa').val();
+    let Telefono = $('#InputETelefonoEmpresa').val();
+    let Contacto = $('#InputEContactoEmpresa').val();
+    let IdCiudad = $('#SelectECiudad').val();
+    let Direccion = $('#InputEDireccionEmpresa').val();
+    let Activo = $('#SelectEstadoEmpresa').val();
+    if (NombreEmpresa == null || NombreEmpresa == '' || NombreEmpresa == undefined) {
+        Swal.fire('Mensaje del Sistema', 'Ingrese nombre de la empresa', 'info');
+    } else if (IdTipoDocumento == -1 || IdTipoDocumento == null || IdTipoDocumento == '') {
+        Swal.fire('Mensaje del Sistema', 'Seleccione tipo documento', 'info');
+    } else if (IdCiudad == -1 || IdCiudad == null || IdCiudad == '') {
+        Swal.fire('Mensaje del Sistema', 'Seleccione la ciudad', 'info');
+    } else {
+        $.ajax({
+            type: 'POST',
+            dataType: 'json',
+            url: '/Empresa/GuardarCambiosEmpresa',
+            data: {               
+                IdUser: User,
+                IdEmpresa: IdEmpresa,
+                NombreEmpresa: NombreEmpresa,
+                IdTipoDocumento: IdTipoDocumento,
+                Identificacion: Identificacion,
+                Email: Email,
+                Telefono: Telefono,
+                Contacto: Contacto,
+                IdCiudad: IdCiudad,
+                Direccion: Direccion,
+                Activo: Activo
+            },
+            success: function (resultado) {
+                valor = resultado.split('*');
+                if (valor[0] == 'OK') {
+                    Swal.fire({
+                        title: 'Mensaje del Sistema',
+                        text: valor[1],
+                        icon: 'success',
+                    }).then((result) => {
+                        window.location.href = '/Empresa';
+                    })
+                } else {
+                    Swal.fire('Mensaje del Sistema', valor[1], 'info');
+                }
+            }
+        });
+    }
+}
 
 
 function EliminarEmpresa() {
@@ -81,6 +132,28 @@ function EliminarEmpresa() {
 }
 
 
+function CargarDatosEmpresa() {
+    let IdEmpresa = Cookies.get('IdEdit');
+    $.ajax({
+        type: 'POST',
+        dataType: 'json',
+        url: '/Empresa/CargarDatosEmpresa',
+        data: { IdEmpresa: IdEmpresa },
+        success: function (resultado) {
+            $('#InputENombreEmpresa').val(resultado[0].Nombre);
+            $('#SelectETipoDocumento').val(resultado[0].TipoDocumento);
+            $('#InputEIdentificacionEmpresa').val(resultado[0].Identificacion);            
+            $('#InputEEmailEmpresa').val(resultado[0].Email);
+            $('#InputETelefonoEmpresa').val(resultado[0].Telefono);
+            $('#InputEContactoEmpresa').val(resultado[0].Contacto);
+            $('#SelectEPais').val(resultado[0].Pais);
+            $('#SelectEDepartamento').val(resultado[0].Departamento);
+            $('#SelectECiudad').val(resultado[0].Ciudad);
+            $('#InputEDireccionEmpresa').val(resultado[0].Direccion);            
+            $('#SelectEstadoEmpresa').val(resultado[0].Activo);
+        }
+    });
+}
 
 
 function ListaEmpresa(Tipo) {

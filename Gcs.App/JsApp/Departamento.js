@@ -152,6 +152,8 @@ function BuscarDeptoIdPais(Tipo,IdPais) {
         success: function (resultado) {
             $("#SelectDepartamento").empty().append();
             $("#SelectCiudad").empty().append();
+            $("#SelectEDepartamento").empty().append();
+            $("#SelectECiudad").empty().append();
             var contador = 0;
             if (Tipo == "N") {
                 if (IdPais == -1) {
@@ -169,10 +171,20 @@ function BuscarDeptoIdPais(Tipo,IdPais) {
                     }
                 }                
             } else {
-                $.each(resultado, function () {
-                    $("#SelectEDepartamento").append('<option value="' + resultado[contador].Id + '">' + resultado[contador].Nombre + '</option>');
-                    contador++;
-                });
+                if (IdPais == -1) {
+                    $("#SelectEDepartamento").empty().append();
+                    $("#SelectECiudad").empty().append();
+                } else {
+                    if (resultado.length === 0) {
+                        $("#SelectEDepartamento").append('<option value="">No hay Datos</option>');
+                    } else {
+                        $("#SelectEDepartamento").empty().append('<option value="-1">Seleccione Departamento</option>');
+                        $.each(resultado, function () {
+                            $("#SelectEDepartamento").append('<option value="' + resultado[contador].Id + '">' + resultado[contador].Nombre + '</option>');
+                            contador++;
+                        });
+                    }
+                }   
             }
         },
     });

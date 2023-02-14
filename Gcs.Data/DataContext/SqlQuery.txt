@@ -3670,6 +3670,77 @@ SELECT	@Crear = dbo.Fun_PermisoUsuario('Crear',@IdUsuario, @SubMenu)
 END
 
 go
+
+CREATE PROCEDURE SP_CargarDatosEmpresa @IdEmpresa Int
+AS
+BEGIN
+	SELECT E.Nombre,
+	E.IdTipoDocumento As TipoDocumento,
+	E.Identificacion,
+	E.Email,
+	E.Telefono,
+	E.Contacto,
+	P.Id As Pais,
+	D.Id As Departamento,
+	C.Id As Ciudad,
+	E.Direccion,
+	E.Activo
+	FROM Empresa E,
+	Pais P,
+	Departamento D,
+	Ciudad C
+	WHERE E.Id = 2
+	AND C.IdDepartamento = D.Id
+	AND D.IdPais = P.Id
+	AND E.IdCiudad = C.Id
+END
+
+go
+
+CREATE PROCEDURE [dbo].[SP_GuardarCambiosEmpresa] 
+				@IdEmpresa int, 
+				@IdUser varchar(255), 
+				@NombreEmpresa varchar(255), 
+				@IdTipoDocumento int,
+				@Identificacion varchar(255),
+				@Email varchar(255), 
+				@Telefono varchar(255),  
+				@Contacto varchar(255),
+				@IdCiudad int,
+				@Direccion varchar(255),
+				@Activo int, 
+				@Resultado varchar(255) OUTPUT
+AS
+BEGIN
+DECLARE @Modificar INT, @IdUsuario INT, @NombreUsuario VARCHAR(255), @SubMenu VARCHAR(255)
+SET @SubMenu = '/Empresa'
+SELECT @IdUsuario = Id FROM Usuario WHERE IdUser = @IdUser
+SELECT @NombreUsuario = Nombre FROM Usuario WHERE IdUser = @IdUser
+SELECT @Modificar = dbo.Fun_PermisoUsuario('Editar',@IdUsuario, @SubMenu)	
+				IF @Modificar > 0
+					BEGIN
+						UPDATE Empresa 
+						SET		Nombre = @NombreEmpresa, 
+								IdTipoDocumento =  @IdTipoDocumento,
+								Identificacion = @Identificacion,								 
+								Email = @Email, 
+								Telefono = @Telefono,
+								Contacto = @Contacto,
+								IdCiudad = @IdCiudad,
+								Direccion = @Direccion,
+								Activo = @Activo
+								WHERE Id = @IdEmpresa
+					    SET @Resultado = 'OK*Se guardaron los cambios de la empresa ' + @NombreEmpresa+ ' correctamente'
+					END
+				ELSE
+					BEGIN
+						SET @Resultado = 'Error*El usuario '+ @NombreUsuario + ' no tiene permiso para realizar cambios a la empresa' 
+					END
+	SELECT @Resultado
+END
+
+go
+
 CREATE PROCEDURE [dbo].[SP_GridEmpresa]
 AS
 BEGIN

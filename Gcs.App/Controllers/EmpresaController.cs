@@ -28,24 +28,27 @@ namespace Gcs.App.Controllers
             string resultado = dataEmpresa.CrearEmpresa(IdUser, NombreEmpresa, IdTipoDocumento, Identificacion, Email, Telefono, Contacto, IdCiudad, Direccion);
             return Json(resultado);
         }
-
-        //public JsonResult GuardarCambiosEmpresa(int IdEmpresa, string IdUser, string NombreEmpresa, int Activo)
+        //public JsonResult GuardarCambiosEmpresa(int IdEmpresa, string IdUser, string NombreEmpresa, int IdTipoDocumento, string Identificacion, string Email, string Telefono, string Contacto)
         //{
-        //    var resultado = dataEmpresa.GuardarCambiosEmpresa(IdEmpresa, IdUser, NombreEmpresa, Activo);
+        //    var resultado = "OK*holas"+" "+IdEmpresa+" "+IdUser+" "+NombreEmpresa + " " + IdTipoDocumento + " " + Identificacion + " " + Email + " " + Telefono + " " + Contacto;
         //    return Json(resultado);
         //}
+        public JsonResult GuardarCambiosEmpresa(int IdEmpresa, string IdUser, string NombreEmpresa, int IdTipoDocumento, string Identificacion, string Email, string Telefono, string Contacto, int IdCiudad, string Direccion, int Activo)
+        {
+            var resultado = dataEmpresa.GuardarCambiosEmpresa(IdEmpresa, IdUser, NombreEmpresa, IdTipoDocumento, Identificacion, Email, Telefono, Contacto, IdCiudad, Direccion, Activo);
+            return Json(resultado);
+        }
         public JsonResult EliminarEmpresa(string IdUser, int IdEmpresa)
         {
             string resultado = dataEmpresa.EliminarEmpresa(IdUser, IdEmpresa);
             return Json(resultado);
         }
 
-        //public ActionResult CargarDatosEmpresa(int IdEmpresa)
-        //{
-        //    var resultado = dataEmpresa.CargarDatosEmpresa(IdEmpresa);
-        //    return Json(resultado);
-        //}
-
+        public ActionResult CargarDatosEmpresa(int IdEmpresa)
+        {
+            var resultado = dataEmpresa.CargarDatosEmpresa(IdEmpresa);
+            return Json(resultado);
+        }
         public JsonResult ListaEmpresa()
         {
             var resultado = dataEmpresa.ListaEmpresa();

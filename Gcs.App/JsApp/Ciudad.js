@@ -151,6 +151,7 @@ function BuscarCiudadIdDepartamento(Tipo, IdDepartamento) {
         data: { IdDepartamento: IdDepartamento },
         success: function (resultado) {   
             $("#SelectCiudad").empty().append();
+            $("#SelectECiudad").empty().append();
             var contador = 0;
             if (Tipo == "N") {
                 if (IdDepartamento == -1) {
@@ -166,11 +167,20 @@ function BuscarCiudadIdDepartamento(Tipo, IdDepartamento) {
                         });
                     }
                 }            
-            } else {
-                $.each(resultado, function () {
-                    $("#SelectECiudad").append('<option value="' + resultado[contador].Id + '">' + resultado[contador].Nombre + '</option>');
-                    contador++;
-                });
+            } else {                
+                if (IdDepartamento == -1) {
+                    $("#SelectECiudad").empty().append();
+                } else {
+                    if (resultado.length === 0) {
+                        $("#SelectECiudad").append('<option value="0">No hay Datos</option>');
+                    } else {
+                        $("#SelectECiudad").empty().append('<option value="-1">Seleccione Ciudad</option>');
+                        $.each(resultado, function () {
+                            $("#SelectECiudad").append('<option value="' + resultado[contador].Id + '">' + resultado[contador].Nombre + '</option>');
+                            contador++;
+                        });
+                    }
+                } 
             }
         },
     });

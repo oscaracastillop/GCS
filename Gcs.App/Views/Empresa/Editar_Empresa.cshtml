@@ -1,7 +1,90 @@
-﻿
-@{
-    ViewBag.Title = "Editar_Empresa";
+﻿@{
+    ViewBag.Title = "Empresa";
 }
 
-<h2>Editar_Empresa</h2>
+<h7>
+    <a href="/Home"><i>INICIO</i></a>
+    &nbsp;<i class="bi-chevron-right"></i>&nbsp;
+    <a href="/Modulo/Configuracion"><i>MODULO CONFIGURACIÓN</i></a>
+    &nbsp;<i class="bi-chevron-right"></i>&nbsp;
+    <a href="/Empresa"><i>EMPRESA</i></a>
+    &nbsp;<i class="bi-chevron-right"></i>&nbsp;
+    <label style="font-weight:bold">EDITAR EMPRESA</label>
+    <hr />
+</h7>
+
+<table class="table table-borderless">
+    <tr>
+        <td>
+            <label><strong>Nombre Empresa</strong></label>
+            <input class="form-control" type="text" id="InputENombreEmpresa" name="name" autocomplete="off" />
+        </td>
+        <td>
+            <label><strong>Tipo Documento</strong></label>
+            <select class="form-control" id="SelectETipoDocumento"></select>
+        </td>
+        <td>
+            <label><strong>Identificación Empresa</strong></label>
+            <input class="form-control" type="text" id="InputEIdentificacionEmpresa" name="name" autocomplete="off" />
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label><strong>Email</strong></label>
+            <input class="form-control" type="text" id="InputEEmailEmpresa" name="name" autocomplete="off" />
+        </td>
+        <td>
+            <label><strong>Teléfono</strong></label>
+            <input class="form-control" type="text" id="InputETelefonoEmpresa" name="name" autocomplete="off" />
+        </td>
+        <td>
+            <label><strong>Nombre Contacto</strong></label>
+            <input class="form-control" type="text" id="InputEContactoEmpresa" name="name" autocomplete="off" />
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label><strong>País</strong></label>
+            <select class="form-control" id="SelectEPais" onchange="BuscarDeptoIdPais('',$('#SelectEPais').val())"></select>
+        </td>
+        <td>
+            <label><strong>Departamento</strong></label>
+            <select class="form-control" id="SelectEDepartamento" onchange="BuscarCiudadIdDepartamento('',$('#SelectEDepartamento').val())"></select>
+        </td>
+        <td>
+            <label><strong>Ciudad</strong></label>
+            <select class="form-control" id="SelectECiudad"></select>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label><strong>Dirección</strong></label>
+            <input class="form-control" type="text" id="InputEDireccionEmpresa" name="name" autocomplete="off" />
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label><strong>Estado</strong></label>
+            <select class="form-control" id="SelectEstadoEmpresa">
+                <option value="0">Inactivo</option>
+                <option value="1">Activo</option>
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <button class="btn btn-success btn-sm" onclick="GuardarCambiosEmpresa()">Guardar Cambios</button>
+        </td>
+    </tr>
+</table>
+
+<script>
+    $(document).ready(function () {
+        CargarDatosEmpresa();
+        ListaTipoDocumento();
+        ListaPais();
+        ListaDepartamento();
+        ListaCiudad();
+    });
+</script>
 
