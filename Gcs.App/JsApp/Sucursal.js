@@ -148,6 +148,7 @@ function CargarDatosSucursal() {
         url: '/Sucursal/CargarDatosSucursal',
         data: { IdSucursal: IdSucursal },
         success: function (resultado) {
+            $('#IdEEmpresa').val(resultado[0].IdEmpresa);
             $('#InputENombreSucursal').val(resultado[0].Nombre);
             $('#SelectETipoDocumento').val(resultado[0].TipoDocumento);
             $('#InputEIdentificacionSucursal').val(resultado[0].Identificacion);
