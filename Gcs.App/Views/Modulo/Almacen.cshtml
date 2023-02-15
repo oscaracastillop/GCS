@@ -1,6 +1,30 @@
-﻿
-@{
-    ViewBag.Title = "Almacen";
+﻿@{
+    ViewBag.Title = "Modulo Almacén";
 }
 
-<h2>Almacen</h2>
+<h7>
+    <a href="/Home"><i>INICIO</i></a>
+    &nbsp;<i class="bi-chevron-right"></i>&nbsp;
+    <label style="font-weight:bold">MODULO ALMACEN</label>
+</h7>
+
+<hr />
+
+<div id="SubMenuBotones" style="text-align:center"></div>
+
+<script>
+    $(document).ready(function () {
+        let IdUser = Cookies.get('IdUser');
+        if (IdUser == '' || IdUser == undefined || IdUser == null) {
+            Swal.fire({
+                title: 'Mensaje del Sistema',
+                text: "Su sesión ya expiró, por favor vuelva a ingresar",
+                icon: 'info',
+            }).then((result) => {
+                window.location.href = '/Login';
+            })
+        } else {
+            ListaSubMenu('/Modulo/Almacen');
+        }
+    });
+</script>

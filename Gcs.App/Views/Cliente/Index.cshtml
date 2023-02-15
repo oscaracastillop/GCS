@@ -1,7 +1,41 @@
-﻿
-@{
-    ViewBag.Title = "Index";
+﻿@{
+    ViewBag.Title = "Cliente";
 }
+<div>
+    <a href="/Home"><i>INICIO</i></a>
+    &nbsp;<i class="bi-chevron-right"></i>&nbsp;
+    <a href="/Modulo/Cliente"><i>MODULO CLIENTE</i></a>
+    &nbsp;<i class="bi-chevron-right"></i>&nbsp;
+    <label style="font-weight:bold">CLIENTE</label>
+    <hr />
+</div>
 
-<h2>Index</h2>
+<a href="/Cliente/Crear_Cliente" class="btn btn-success btn-sm" title="Agregar un nuevo Registro" style="float:right">Crear Cliente</a>
+<br />
+<br />
+<table id="gridCliente" class="table display" style="width:100%"></table>
 
+@*Modal Eliminar*@
+<div class="modal fade" id="ModalEliminarCliente" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel"><strong>Eliminar Cliente</strong></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <label id="IdCliente" hidden></label>
+                <label id="MensajeEliminarCliente"></label>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger btn-sm" onclick="EliminarCliente()"><i class="bi-trash"></i> Eliminar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        GridCliente();
+    });
+</script>

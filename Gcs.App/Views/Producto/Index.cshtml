@@ -1,7 +1,42 @@
-﻿
-@{
-    ViewBag.Title = "Index";
+﻿@{
+    ViewBag.Title = "Producto";
 }
+<div>
+    <a href="/Home"><i>INICIO</i></a>
+    &nbsp;<i class="bi-chevron-right"></i>&nbsp;
+    <a href="/Modulo/Almacen"><i>MODULO ALMACEN</i></a>
+    &nbsp;<i class="bi-chevron-right"></i>&nbsp;
+    <label style="font-weight:bold">PRODUCTO</label>
+    <hr />
+</div>
 
-<h2>Index</h2>
+<a href="/Producto/Crear_Producto" class="btn btn-success btn-sm" title="Agregar un nuevo Registro" style="float:right">Crear Producto</a>
+<br />
+<br />
+<table id="gridProducto" class="table display" style="width:100%"></table>
+
+@*Modal Eliminar*@
+<div class="modal fade" id="ModalEliminarProducto" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel"><strong>Eliminar Producto</strong></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <label id="IdProducto" hidden></label>
+                <label id="MensajeEliminarProducto"></label>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger btn-sm" onclick="EliminarProducto()"><i class="bi-trash"></i> Eliminar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        GridProducto();
+    });
+</script>
 

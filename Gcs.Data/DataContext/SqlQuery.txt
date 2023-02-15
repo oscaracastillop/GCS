@@ -254,7 +254,7 @@ insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (4, 'Factura','<i class
 insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (4, 'Remisión','<i class="bi-file-earmark-text" style="font-size: 2rem; color: #11ABE9;"></i>','/Remision')
 insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (4, 'Cotización','<i class="bi-file-earmark-medical" style="font-size: 2rem; color: #11ABE9;"></i>','/Cotizacion')
 
-insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (5, 'CLiente','<i class="bi-person-circle" style="font-size: 2rem; color: #11ABE9;"></i>','/Cliente')
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (5, 'Cliente','<i class="bi-person-circle" style="font-size: 2rem; color: #11ABE9;"></i>','/Cliente')
 
 insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (6, 'Compra','<i class="bi-cart4" style="font-size: 2rem; color: #11ABE9;"></i>','/OrdenCompra')
 insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (6, 'Entrada','<i class="bi-cart4" style="font-size: 2rem; color: #11ABE9;"></i>','/Entrada')
@@ -3714,7 +3714,7 @@ BEGIN
 	Pais P,
 	Departamento D,
 	Ciudad C
-	WHERE E.Id = IdEmpresa
+	WHERE E.Id = @IdEmpresa
 	AND C.IdDepartamento = D.Id
 	AND D.IdPais = P.Id
 	AND E.IdCiudad = C.Id
