@@ -240,23 +240,24 @@ insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (1, 'Empresa','<i class
 insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (1, 'Sucursal','<i class="bi-shop" style="font-size: 2rem; color: #11ABE9;"></i>','/Sucursal')
 
 insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (2, 'Empleado','<i class="bi-person" style="font-size: 2rem; color: #11ABE9;"></i>','/Empleado')
-insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (2, 'Dia Laborado','<i class="bi-calendar-check" style="font-size: 2rem; color: #11ABE9;"></i>','/Dia_Laborado')
-insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (2, 'Hora Extra','<i class="bi-clock" style="font-size: 2rem; color: #11ABE9;"></i>','/Hora_Extra')
-insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (2, 'Permiso Empleado','<i class="bi-clock-history" style="font-size: 2rem; color: #11ABE9;"></i>','/Permiso_Empleado')
-insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (2, 'Préstamo','<i class="bi-cash-coin" style="font-size: 2rem; color: #11ABE9;"></i>','/Prestamo')
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (2, 'Dia Laborado','<i class="bi-calendar-check" style="font-size: 2rem; color: #11ABE9;"></i>','/DiaLaborado')
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (2, 'Hora Extra','<i class="bi-clock" style="font-size: 2rem; color: #11ABE9;"></i>','/HoraExtra')
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (2, 'Permiso Empleado','<i class="bi-clock-history" style="font-size: 2rem; color: #11ABE9;"></i>','/PermisoEmpleado')
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (2, 'Préstamo','<i class="bi-cash-coin" style="font-size: 2rem; color: #11ABE9;"></i>','/PrestamoEmpleado')
 insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (2, 'Nómina Empleado','<i class="bi-calculator" style="font-size: 2rem; color: #11ABE9;"></i>','/Nomina_Empleado')
 
 insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (3, 'Contratista','<i class="bi-person-gear" style="font-size: 2rem; color: #11ABE9;"></i>','/Contratista')
-insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (3, 'Actividad Realizada','<i class="bi-hammer" style="font-size: 2rem; color: #11ABE9;"></i>','/Actividad_Realizada')
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (3, 'Actividad Realizada','<i class="bi-hammer" style="font-size: 2rem; color: #11ABE9;"></i>','/ActividadRealizadaContratista')
 insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (3, 'Nómina Contratista','<i class="bi-calculator" style="font-size: 2rem; color: #11ABE9;"></i>','/Nomina_Contratista')
 
 insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (4, 'Factura','<i class="bi-file-earmark-text" style="font-size: 2rem; color: #11ABE9;"></i>','/Factura')
 insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (4, 'Remisión','<i class="bi-file-earmark-text" style="font-size: 2rem; color: #11ABE9;"></i>','/Remision')
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (4, 'Cotización','<i class="bi-file-earmark-medical" style="font-size: 2rem; color: #11ABE9;"></i>','/Cotizacion')
 
 insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (5, 'CLiente','<i class="bi-person-circle" style="font-size: 2rem; color: #11ABE9;"></i>','/Cliente')
-insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (5, 'Cotización','<i class="bi-file-earmark-medical" style="font-size: 2rem; color: #11ABE9;"></i>','/Cotizacion')
 
-insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (6, 'Compra','<i class="bi-cart4" style="font-size: 2rem; color: #11ABE9;"></i>','/Compra')
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (6, 'Compra','<i class="bi-cart4" style="font-size: 2rem; color: #11ABE9;"></i>','/OrdenCompra')
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (6, 'Entrada','<i class="bi-cart4" style="font-size: 2rem; color: #11ABE9;"></i>','/Entrada')
 insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (6, 'Salida','<i class="bi-box-arrow-right" style="font-size: 2rem; color: #11ABE9;"></i>','/Salida')
 insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (6, 'Inventario','<i class="bi-graph-up" style="font-size: 2rem; color: #11ABE9;"></i>','/Inventario')
 insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (6, 'Categoría','<i class="bi-grid" style="font-size: 2rem; color: #11ABE9;"></i>','/Categoria')
@@ -356,6 +357,8 @@ insert into Permiso_SubMenu (IdSubMenu, IdUsuario, Permiso, Crear, Editar, Elimi
 insert into Permiso_SubMenu (IdSubMenu, IdUsuario, Permiso, Crear, Editar, Eliminar) Values (44,1,1,1,1,1)
 insert into Permiso_SubMenu (IdSubMenu, IdUsuario, Permiso, Crear, Editar, Eliminar) Values (45,1,1,1,1,1)
 insert into Permiso_SubMenu (IdSubMenu, IdUsuario, Permiso, Crear, Editar, Eliminar) Values (46,1,1,1,1,1)
+insert into Permiso_SubMenu (IdSubMenu, IdUsuario, Permiso, Crear, Editar, Eliminar) Values (47,1,1,1,1,1)
+
 
 go
 
@@ -3901,7 +3904,7 @@ CREATE PROCEDURE SP_CargarDatosSucursal @IdSucursal Int
 AS
 BEGIN
 	SELECT 
-	E.Nombre,
+	E.Id,
 	S.Nombre,
 	S.IdTipoDocumento As TipoDocumento,
 	S.Identificacion,
