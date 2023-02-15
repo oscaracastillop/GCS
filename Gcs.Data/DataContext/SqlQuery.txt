@@ -256,8 +256,8 @@ insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (4, 'Cotización','<i c
 
 insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (5, 'Cliente','<i class="bi-person-circle" style="font-size: 2rem; color: #11ABE9;"></i>','/Cliente')
 
-insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (6, 'Compra','<i class="bi-cart4" style="font-size: 2rem; color: #11ABE9;"></i>','/OrdenCompra')
-insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (6, 'Entrada','<i class="bi-cart4" style="font-size: 2rem; color: #11ABE9;"></i>','/Entrada')
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (6, 'OrdenCompra','<i class="bi-cart4" style="font-size: 2rem; color: #11ABE9;"></i>','/OrdenCompra')
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (6, 'Entrada','<i class="bi-arrow-in-right" style="font-size: 2rem; color: #11ABE9;"></i>','/Entrada')
 insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (6, 'Salida','<i class="bi-box-arrow-right" style="font-size: 2rem; color: #11ABE9;"></i>','/Salida')
 insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (6, 'Inventario','<i class="bi-graph-up" style="font-size: 2rem; color: #11ABE9;"></i>','/Inventario')
 insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (6, 'Categoría','<i class="bi-grid" style="font-size: 2rem; color: #11ABE9;"></i>','/Categoria')
