@@ -129,6 +129,34 @@ function ListaPais(Tipo) {
     });
 }
 
+function ListaPaisNacionalidad(Tipo) {
+    $.ajax({
+        type: 'POST',
+        dataType: 'json',
+        url: '/Pais/ListaPais',
+        data: {},
+        success: function (resultado) {
+            var contador = 0;
+            if (Tipo == "N") {
+                if (resultado.length === 0) {
+                    $("#SelectPaisNacionalidad").append('<option value="">No hay Datos</option>');
+                } else {
+                    $("#SelectPaisNacionalidad").empty().append('<option value="-1">Seleccione País</option>');
+                    $.each(resultado, function () {
+                        $("#SelectPaisNacionalidad").append('<option value="' + resultado[contador].Id + '">' + resultado[contador].Nombre + '</option>');
+                        contador++;
+                    });
+                }
+            } else {
+                $.each(resultado, function () {
+                    $("#SelectEPaisNacionalidad").append('<option value="' + resultado[contador].Id + '">' + resultado[contador].Nombre + '</option>');
+                    contador++;
+                });
+            }
+        },
+    });
+}
+
 function GridPais() {
     let datatable = $('#gridPais').DataTable({
          "responsive": true,

@@ -113,7 +113,7 @@ function ListaTipoGenero(Tipo) {
                 if (resultado.length === 0) {
                     $("#SelectTipoGenero").append('<option value="">No hay Datos</option>');
                 } else {
-                    $("#SelectTipoGenero").empty().append('<option value="-1">Seleccione TipoGenero</option>');
+                    $("#SelectTipoGenero").empty().append('<option value="-1">Seleccione Sexo</option>');
                     $.each(resultado, function () {
                         $("#SelectTipoGenero").append('<option value="' + resultado[contador].Id + '">' + resultado[contador].Nombre + '</option>');
                         contador++;
