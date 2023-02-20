@@ -45,6 +45,7 @@
     <Compile Include="Models\CajaCompensacionFamiliar.cs" />
     <Compile Include="Models\Ciudad.cs" />
     <Compile Include="Models\Departamento.cs" />
+    <Compile Include="Models\Empleado.cs" />
     <Compile Include="Models\Empresa.cs" />
     <Compile Include="Models\Eps.cs" />
     <Compile Include="Models\FondoCesantias.cs" />

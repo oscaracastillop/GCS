@@ -69,6 +69,7 @@
     <Compile Include="DataEntities\DataCajaCompensacionFamiliar.cs" />
     <Compile Include="DataEntities\DataCiudad.cs" />
     <Compile Include="DataEntities\DataDepartamento.cs" />
+    <Compile Include="DataEntities\DataEmpleado.cs" />
     <Compile Include="DataEntities\DataEmpresa.cs" />
     <Compile Include="DataEntities\DataEps.cs" />
     <Compile Include="DataEntities\DataFondoCesantias.cs" />

@@ -4051,3 +4051,66 @@ END
 
 go
 
+CREATE TABLE Empleado 
+(Id int identity(1,1) Primary key ,
+Nombre varchar(255),
+Apellido varchar(255),
+IdTipoDocumento int,
+Identificacion varchar(255),
+Activo int default 1,
+CreateBy int,
+DateCreate datetime,
+unique(Identificacion)
+)
+
+ALTER TABLE Empleado ADD CONSTRAINT FK_IdCreateByEmpleado FOREIGN KEY (CreateBy ) references Usuario(Id)
+ALTER TABLE Empleado ADD CONSTRAINT FK_IdTipoDocumentoEmpleado FOREIGN KEY (IdTipoDocumento ) references TipoDocumento(Id)
+
+go
+
+CREATE PROCEDURE [dbo].[SP_CrearEmpleado] 
+@IdUser varchar(255), 
+@NombreEmpleado varchar(255), 
+@ApellidoEmpleado varchar(255),
+@IdTipoDocumento int,
+@Identificacion varchar(255),
+@Resultado varchar(255) OUTPUT
+AS
+BEGIN
+DECLARE @Crear INT, @IdUsuario INT, @NombreUsuario VARCHAR(255), @SubMenu VARCHAR(255)
+SELECT @IdUsuario = Id FROM Usuario WHERE IdUser = @IdUser
+SELECT @NombreUsuario = Nombre FROM Usuario WHERE IdUser = @IdUser
+SET @SubMenu = '/Empleado'
+SELECT	@Crear = dbo.Fun_PermisoUsuario('Crear',@IdUsuario, @SubMenu)	
+		IF @Crear > 0
+			BEGIN
+				INSERT INTO Empleado 
+				(Nombre, Apellido, IdTipoDocumento, Identificacion, CreateBy, DateCreate) 
+				VALUES 
+				(@NombreEmpleado, @ApellidoEmpleado, @IdTipoDocumento, @Identificacion, @IdUsuario, GETDATE()) 
+				SET @Resultado = 'OK*Se a creado el empleado ' + @NombreEmpleado+ ' correctamente'
+			END
+		ELSE
+			BEGIN
+				SET @Resultado = 'Error*El usuario '+ @NombreUsuario + ' no tiene permiso para crear el empleado' 
+			END
+	SELECT @Resultado
+END
+
+go
+
+CREATE PROCEDURE [dbo].[SP_GridEmpleado]
+AS
+BEGIN
+	SELECT	Id, 
+			Nombre + ' ' +Apellido As Nombre, 
+			dbo.Fun_BuscarNombreTipoDocumento(IdTipoDocumento) As TipoDocumento,
+			Identificacion,
+			CASE Activo
+			WHEN 1 THEN 'Activo'
+			ELSE 'Inactivo'
+			END as Estado,
+			dbo.Fun_BuscarNombreUsuario(CreateBy) As CreateBy,
+			CONVERT(varchar(255),DateCreate,20) As DateCreate
+			FROM Empleado
+END
