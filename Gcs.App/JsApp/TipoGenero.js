@@ -129,6 +129,35 @@ function ListaTipoGenero(Tipo) {
     });
 }
 
+
+function ListaTipoGeneroEmpleado(Tipo) {
+    $.ajax({
+        type: 'POST',
+        dataType: 'json',
+        url: '/TipoGenero/ListaTipoGenero',
+        data: {},
+        success: function (resultado) {
+            var contador = 0;
+            if (Tipo == "N") {
+                if (resultado.length === 0) {
+                    $("#SelectSexoEmpleado").append('<option value="">No hay Datos</option>');
+                } else {
+                    $("#SelectSexoEmpleado").empty().append('<option value="-1">Seleccione Sexo</option>');
+                    $.each(resultado, function () {
+                        $("#SelectSexoEmpleado").append('<option value="' + resultado[contador].Id + '">' + resultado[contador].Nombre + '</option>');
+                        contador++;
+                    });
+                }
+            } else {
+                $.each(resultado, function () {
+                    $("#SelectETipoGenero").append('<option value="' + resultado[contador].Id + '">' + resultado[contador].Nombre + '</option>');
+                    contador++;
+                });
+            }
+        },
+    });
+}
+
 function GridTipoGenero() {
     let datatable = $('#gridTipoGenero').DataTable({
         "responsive": true,

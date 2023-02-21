@@ -4057,6 +4057,38 @@ Nombre varchar(255),
 Apellido varchar(255),
 IdTipoDocumento int,
 Identificacion varchar(255),
+IdNacionalidad int,
+FechaNacimiento varchar(255),
+LugarNacimiento varchar(255),
+IdSexo int,
+IdEstadoCivil int,
+Email varchar(255),
+Telefono1 varchar(255),
+Telefono2 varchar(255),
+IdPaisResidencia int,
+IdDepartamentoResidencia int,
+IdCiudadResidencia int,
+DireccionResidencia varchar(255),
+TipoVivienda varchar(255),
+NombreArrendador varchar(255),
+TelefonoArrendador varchar(255),
+TiempoResidiendo varchar(255),
+NombreRF1 varchar(255),
+ParentescoRF1 varchar(255),
+TelefonoRF1 varchar(255),
+ProfesionRF1 varchar(255),
+NombreRF2 varchar(255),
+ParentescoRF2 varchar(255),
+TelefonoRF2 varchar(255),
+ProfesionRF2 varchar(255),
+NombreRP1 varchar(255),
+DireccionRP1 varchar(255),
+TelefonoRP1 varchar(255),
+ProfesionRP1 varchar(255),
+NombreRP2 varchar(255),
+DireccionRP2 varchar(255),
+TelefonoRP2 varchar(255),
+ProfesionRP2 varchar(255),
 Activo int default 1,
 CreateBy int,
 DateCreate datetime,
@@ -4065,6 +4097,11 @@ unique(Identificacion)
 
 ALTER TABLE Empleado ADD CONSTRAINT FK_IdCreateByEmpleado FOREIGN KEY (CreateBy ) references Usuario(Id)
 ALTER TABLE Empleado ADD CONSTRAINT FK_IdTipoDocumentoEmpleado FOREIGN KEY (IdTipoDocumento ) references TipoDocumento(Id)
+ALTER TABLE Empleado ADD CONSTRAINT FK_IdNacionalidadEmpleado FOREIGN KEY (IdNacionalidad) references Pais(Id)
+ALTER TABLE Empleado ADD CONSTRAINT FK_IdPaisResidenciaEmpleado FOREIGN KEY (IdPaisResidencia ) references Pais(Id)
+ALTER TABLE Empleado ADD CONSTRAINT FK_IdDepartamentoResidenciaEmpleado FOREIGN KEY (IdDepartamentoResidencia ) references Departamento(Id)
+ALTER TABLE Empleado ADD CONSTRAINT FK_IdCiudadResidenciaEmpleado FOREIGN KEY (IdCiudadResidencia ) references Ciudad(Id)
+ALTER TABLE Empleado ADD CONSTRAINT FK_IdSexoEmpleado FOREIGN KEY (IdSexo ) references TipoGenero(Id)
 
 go
 
@@ -4113,4 +4150,66 @@ BEGIN
 			dbo.Fun_BuscarNombreUsuario(CreateBy) As CreateBy,
 			CONVERT(varchar(255),DateCreate,20) As DateCreate
 			FROM Empleado
+END
+
+go
+
+CREATE PROCEDURE SP_CargarDatosHVEmpleado @IdEmpleado Int
+AS
+BEGIN
+	SELECT	Nombre,
+			Apellido,
+			dbo.Fun_BuscarNombreTipoDocumento(IdTipoDocumento) As TipoDocumento,
+			Identificacion,
+			dbo.Fun_BuscarNombrePais(IdNacionalidad) As Nacionalidad,
+			FechaNacimiento,
+			LugarNacimiento,
+			IdSexo,
+			IdEstadoCivil,
+			Email,
+			Telefono1,
+			Telefono2,
+			dbo.Fun_BuscarNombrePais(IdPaisResidencia) As PaisResidencia,
+			dbo.Fun_BuscarNombreDepartamento(IdDepartamentoResidencia) As DepartamentoResidencia,
+			dbo.Fun_BuscarNombreCiudad(IdCiudadResidencia) As CiudadResidencia,
+			DireccionResidencia,
+			TipoVivienda,
+			NombreArrendador,
+			TelefonoArrendador,
+			TiempoResidiendo,
+			NombreRF1,
+			ParentescoRF1,
+			TelefonoRF1,
+			ProfesionRF1,
+			NombreRF2,
+			ParentescoRF2,
+			TelefonoRF2,
+			ProfesionRF2,
+			NombreRP1,
+			DireccionRP1,
+			TelefonoRP1,
+			ProfesionRP1,
+			NombreRP2,
+			DireccionRP2,
+			TelefonoRP2,
+			ProfesionRP2
+	FROM Empleado
+	WHERE Id = @IdEmpleado
+END
+
+go
+
+CREATE PROCEDURE SP_CargarDatosPersonales @IdEmpleado Int
+AS
+BEGIN
+	SELECT	ISNULL(IdNacionalidad,-1) As IdNacionalidad,
+			ISNULL(FechaNacimiento, '1900-01-01') As FechaNacimiento,
+			ISNULL(LugarNacimiento,'') As LugarNacimiento,
+			ISNULL(IdSexo, -1) As IdSexo,
+			ISNULL(IdEstadoCivil, 0) As IdEstadoCivil,
+			ISNULL(Email,'') As Email,
+			ISNULL(Telefono1,'') As Telefono1,
+			ISNULL(Telefono2,'') As Telefono2
+	FROM Empleado
+	WHERE Id = @IdEmpleado
 END

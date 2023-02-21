@@ -4319,6 +4319,8 @@
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
     <Content Include="Sources\ImagesApp\Logo.png" />
+    <Content Include="Sources\ImagesHojaVidaEmpleado\Usuario.png" />
+    <Content Include="Sources\ImagesProfileUsers\Usuario.png" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -4522,6 +4524,7 @@
     <Content Include="Views\Factura\Index.cshtml" />
     <Content Include="Views\Factura\Crear_Factura.cshtml" />
     <Content Include="Views\Factura\Editar_Factura.cshtml" />
+    <Content Include="Views\Empleado\Hoja_Vida_Empleado.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -4532,7 +4535,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
-    <Folder Include="Sources\ImagesProfileUsers\" />
     <Folder Include="Views\Menu\" />
     <Folder Include="Views\SubMenu\" />
   </ItemGroup>

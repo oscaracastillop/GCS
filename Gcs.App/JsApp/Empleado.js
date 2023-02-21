@@ -42,6 +42,88 @@
     }
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+function CargarDatosHVEmpleado() {
+    let IdEmpleado = Cookies.get('IdHVEmpleado');
+    $.ajax({
+        type: 'POST',
+        dataType: 'json',
+        url: '/Empleado/CargarDatosHVEmpleado',
+        data: { IdEmpleado: IdEmpleado },
+        success: function (resultado) {
+            $('#InputHVNombre').text(resultado[0].Nombre);
+            $('#InputHVApellido').text(resultado[0].Apellido);
+            $('#InputHVTipoDocumento').text(resultado[0].TipoDocumento);
+            $('#InputHVIdentificacion').text(resultado[0].Identificacion);
+            $('#InputHVNacionalidad').text(resultado[0].Nacionalidad);
+            $('#InputHVFechaNacimiento').text(resultado[0].FechaNacimiento);
+            $('#InputHVLugarNacimiento').text(resultado[0].LugarNacimiento);
+            $('#InputHVSexo').text(resultado[0].Sexo);
+            $('#InputHVEstadoCivil').text(resultado[0].EstadoCivil);
+            $('#InputHVEmail').text(resultado[0].Email);
+            $('#InputHVTelefono1').text(resultado[0].Telefono1);
+            $('#InputHVTelefono2').text(resultado[0].Telefono2);
+            $('#InputHVPaisResidencia').text(resultado[0].PaisResidencia);
+            $('#InputHVDepartamentoResidencia').text(resultado[0].DepartamentoResidencia);
+            $('#InputHVCiudadResidencia').text(resultado[0].CiudadResidencia);
+            $('#InputHVDireccionResidencia').text(resultado[0].DireccionResidencia);
+            $('#InputHVTipoVivienda').text(resultado[0].TipoVivienda);
+            $('#InputHVNombreArrendador').text(resultado[0].NombreArrendador);
+            $('#InputHVTiempoResidiendo').text(resultado[0].TiempoResidiendo);
+            $('#InputHVNombreRF1').text(resultado[0].NombreRF1);
+            $('#InputHVParentescoRF1').text(resultado[0].ParentescoRF1);
+            $('#InputHVTelefonoRF1').text(resultado[0].TelefonoRF1);
+            $('#InputHVProfesionRF1').text(resultado[0].ProfesionRF1);
+            $('#InputHVNombreRF2').text(resultado[0].NombreRF2);
+            $('#InputHVParentescoRF2').text(resultado[0].ParentescoRF2);
+            $('#InputHVTelefonoRF2').text(resultado[0].TelefonoRF2);
+            $('#InputHVProfesionRF2').text(resultado[0].ProfesionRF2);
+            $('#InputHVNombreRP1').text(resultado[0].NombreRP1);
+            $('#InputHVDireccionRP1').text(resultado[0].DireccionRP1);
+            $('#InputHVTelefonoRP1').text(resultado[0].TelefonoRP1);
+            $('#InputHVProfesionRP1').text(resultado[0].ProfesionRP1);
+            $('#InputHVNombreRP2').text(resultado[0].NombreRP2);
+            $('#InputHVDireccionRP2').text(resultado[0].DireccionRP2);
+            $('#InputHVTelefonoRP2').text(resultado[0].TelefonoRP2);
+            $('#InputHVProfesionRP2').text(resultado[0].ProfesionRP2);
+        }
+    });
+}
+
+function CargarDatosPersonales() {
+    let IdEmpleado = Cookies.get('IdHVEmpleado');
+    $.ajax({
+        type: 'POST',
+        dataType: 'json',
+        url: '/Empleado/CargarDatosPersonales',
+        data: { IdEmpleado: IdEmpleado },
+        success: function (resultado) {
+            $('#SelectPaisNacionalidad').val(resultado[0].IdNacionalidad);
+            $('#InputFechaNacimientoEmpleado').val(resultado[0].FechaNacimiento);
+            $('#InputLugarNacimientoEmpleado').val(resultado[0].LugarNacimiento);
+            $('#SelectSexoEmpleado').val(resultado[0].IdSexo);
+            $('#SelectEstadoCivil').val(resultado[0].IdEstadoCivil);
+            $('#InputEmailEmpleado').val(resultado[0].Email);
+            $('#InputTelefono1Empleado').val(resultado[0].Telefono1);
+            $('#InputTelefono2Empleado').val(resultado[0].Telefono2);
+        }
+    });
+    $('#ModalDatosPersonalesEmpleado').modal('show')
+}
+
+
 function GridEmpleado() {
     let datatable = $('#gridEmpleado').DataTable({
         "responsive": true,
@@ -102,62 +184,62 @@ function GridEmpleado() {
                 orderable: false,
                 "autoWidth": false,
             },
-            {
-                title: "Inf. Personal",
-                data: null,
-                defaultContent: '<a href="#" class="DatosPersonalesEmpleado">Ver</a>',
-                className: '',
-                orderable: false,
-                "autoWidth": false,
-            },
-            {
-                title: "Inf. Laboral",
-                data: null,
-                defaultContent: '<a href="#" class="DatosFamiliaresEmpleado">Ver</a>',
-                className: '',
-                orderable: false,
-                "autoWidth": false,
-            },
-            {
-                title: "Inf. Familiar",
-                data: null,
-                defaultContent: '<a href="#" class="DatosFamiliaresEmpleado">Ver</a>',
-                className: '',
-                orderable: false,
-                "autoWidth": true,
-            },
-            {
-                title: "Inf. Hijos",
-                data: null,
-                defaultContent: '<a href="#" class="DatoHijosEmpleado">Ver</a>',
-                className: '',
-                orderable: false,
-                "autoWidth": false,
-            },
-            {
-                title: "Ref. Personal",
-                data: null,
-                defaultContent: '<a href="#" class="DatosPersonalesEmpleado">Ver</a>',
-                className: '',
-                orderable: false,
-                "autoWidth": false,
-            },
-            {
-                title: "Ref. Familiar",
-                data: null,
-                defaultContent: '<a href="#" class="DatosFamiliaresEmpleado">Ver</a>',
-                className: '',
-                orderable: false,
-                "autoWidth": false,
-            },
-            {
-                title: "Inf. Educación",
-                data: null,
-                defaultContent: '<a href="#" class="DatosFamiliaresEmpleado">Ver</a>',
-                className: '',
-                orderable: false,
-                "autoWidth": false,
-            },
+            //{
+            //    title: "Inf. Personal",
+            //    data: null,
+            //    defaultContent: '<a href="#" class="DatosPersonalesEmpleado">Ver</a>',
+            //    className: '',
+            //    orderable: false,
+            //    "autoWidth": false,
+            //},
+            //{
+            //    title: "Inf. Laboral",
+            //    data: null,
+            //    defaultContent: '<a href="#" class="DatosFamiliaresEmpleado">Ver</a>',
+            //    className: '',
+            //    orderable: false,
+            //    "autoWidth": false,
+            //},
+            //{
+            //    title: "Inf. Familiar",
+            //    data: null,
+            //    defaultContent: '<a href="#" class="DatosFamiliaresEmpleado">Ver</a>',
+            //    className: '',
+            //    orderable: false,
+            //    "autoWidth": true,
+            //},
+            //{
+            //    title: "Inf. Hijos",
+            //    data: null,
+            //    defaultContent: '<a href="#" class="DatoHijosEmpleado">Ver</a>',
+            //    className: '',
+            //    orderable: false,
+            //    "autoWidth": false,
+            //},
+            //{
+            //    title: "Ref. Personal",
+            //    data: null,
+            //    defaultContent: '<a href="#" class="DatosPersonalesEmpleado">Ver</a>',
+            //    className: '',
+            //    orderable: false,
+            //    "autoWidth": false,
+            //},
+            //{
+            //    title: "Ref. Familiar",
+            //    data: null,
+            //    defaultContent: '<a href="#" class="DatosFamiliaresEmpleado">Ver</a>',
+            //    className: '',
+            //    orderable: false,
+            //    "autoWidth": false,
+            //},
+            //{
+            //    title: "Inf. Educación",
+            //    data: null,
+            //    defaultContent: '<a href="#" class="DatosFamiliaresEmpleado">Ver</a>',
+            //    className: '',
+            //    orderable: false,
+            //    "autoWidth": false,
+            //},
             {
                 title: "Editar",
                 data: null,
@@ -196,4 +278,10 @@ function GridEmpleado() {
         $('#IdEmpleado').text(data.Id);
         $('#MensajeEliminarEmpleado').text('Esta seguro de eliminar la Empleado ' + data.Nombre + ' ?');
     })
+
+    $('#gridEmpleado').on('click', '.HojaVidaEmpleado', function () {
+        let data = datatable.row($(this).parents()).data();
+        Cookies.set('IdHVEmpleado', data.Id);
+        window.location = "/Empleado/Hoja_Vida_Empleado";
+    });
 }

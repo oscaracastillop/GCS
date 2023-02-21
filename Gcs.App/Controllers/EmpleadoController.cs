@@ -23,13 +23,27 @@ namespace Gcs.App.Controllers
         {
             return View();
         }
+        public ActionResult Hoja_Vida_Empleado()
+        {
+            return View();
+        }
 
         public JsonResult CrearEmpleado(string IdUser, string NombreEmpleado, string ApellidoEmpleado, int IdTipoDocumento, string Identificacion)
         {
             string resultado = dataEmpleado.CrearEmpleado(IdUser, NombreEmpleado, ApellidoEmpleado, IdTipoDocumento, Identificacion);
             return Json(resultado);
         }
+        public ActionResult CargarDatosHVEmpleado(int IdEmpleado)
+        {
+            var resultado = dataEmpleado.CargarDatosHVEmpleado(IdEmpleado);
+            return Json(resultado);
+        }
 
+        public ActionResult CargarDatosPersonales(int IdEmpleado)
+        {
+            var resultado = dataEmpleado.CargarDatosPersonales(IdEmpleado);
+            return Json(resultado);
+        }
 
 
 

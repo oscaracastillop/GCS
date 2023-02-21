@@ -9,12 +9,14 @@
     margin-right: 15px;
     margin-top: 15px;
     margin-bottom: 15px;
-    height: 90px;
-    width: 140px;
+    height: 120px;
+    width: 200px;
     border-radius: 0%;
     -webkit-box-shadow: 0px 0px 10px -1px rgba(0,0,0,1);
     -moz-box-shadow: 0px 0px 10px -1px rgba(0, 0, 0, 1);
     box-shadow: 0px 0px 10px -1px rgba(0, 0, 0, 1);
+    padding:20px;
+
 }
 
 .menuBtn {
@@ -50,9 +52,20 @@ label{
 }
 
 .fondolayout1 {
-    background-color: #F4F8F9;
-    box-shadow: 0px 1px 1px 0px rgba(0,0,0,0.95);
+    background-color: #F1F1F1;
+    box-shadow: 0px 1px 5px 0px rgba(0,0,0,0.5);
     border-radius: 10px;
     padding: 10px;
     margin-top: 20px;
 }
+
+.imagenhv {
+    height:200px;
+    display:block;
+    margin:auto;
+}
+
+.Centrar-Texto {
+    text-align:center;
+}
+

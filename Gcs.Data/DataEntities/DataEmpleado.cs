@@ -59,7 +59,31 @@ namespace Gcs.Data.DataEntities
 
 
 
+        public List<CargarDatosHVEmpleado> CargarDatosHVEmpleado(int IdEmpleado)
+        {
+            try
+            {
+                return _conection.Database.SqlQuery<CargarDatosHVEmpleado>("SP_CargarDatosHVEmpleado @IdEmpleado",
+                    new SqlParameter("@IdEmpleado", IdEmpleado)).ToList();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
+        public List<CargarDatosPersonales> CargarDatosPersonales(int IdEmpleado)
+        {
+            try
+            {
+                return _conection.Database.SqlQuery<CargarDatosPersonales>("SP_CargarDatosPersonales @IdEmpleado",
+                    new SqlParameter("@IdEmpleado", IdEmpleado)).ToList();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
         public List<GridEmpleado> GridEmpleado()
         {

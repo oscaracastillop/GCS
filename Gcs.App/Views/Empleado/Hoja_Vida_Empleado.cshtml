@@ -1,0 +1,317 @@
+﻿@{
+    ViewBag.Title = "Hoja Vida Empleado";
+}
+
+<h7>
+    <a href="/Home"><i>INICIO</i></a>
+    &nbsp;<i class="bi-chevron-right"></i>&nbsp;
+    <a href="/Modulo/Empleado"><i>MODULO EMPLEADO</i></a>
+    &nbsp;<i class="bi-chevron-right"></i>&nbsp;
+    <a href="/Empleado"><i>EMPLEADO</i></a>
+    &nbsp;<i class="bi-chevron-right"></i>&nbsp;
+    <label style="font-weight:bold">HOJA VIDA EMPLEADO</label>
+    <hr />
+</h7>
+<img src="~/Sources/ImagesHojaVidaEmpleado/Usuario.png" class="imagenhv">
+<div id="ImagePerfilUsuario"></div>
+<div class="Centrar-Texto">
+    <a href="#">Cambiar Foto</a>
+</div>
+
+
+
+<div style="margin-top:50px" class="fondolayout1">
+    <label><strong>DATOS PERSONALES</strong><a href="#" title="Editar"onclick="CargarDatosPersonales()"><i class="bi-pencil-fill" style="Color:orange; margin-left:20px"></i></a></label>
+    <table class="table table-borderless" style="width:100%">
+        <tr>
+            <td width="25%">
+                <label><strong>Nombres</strong></label>
+                <br />
+                <Label id="InputHVNombre"></Label>
+            </td>
+            <td width="25%">
+                <label><strong>Apellidos</strong></label>
+                <br />
+                <Label id="InputHVApellido"></Label>
+            </td>
+            <td width="25%">
+                <label><strong>Tipo Documento</strong></label>
+                <br />
+                <Label id="InputHVTipoDocumento"></Label>
+            </td>
+            <td width="25%">
+                <label><strong>Identificación</strong></label>
+                <br />
+                <Label id="InputHVIdentificacion"></Label>
+            </td>
+        </tr>
+        <tr>
+            <td width="25%">
+                <label><strong>Nacionalidad</strong></label>
+                <br />
+                <Label id="InputHVNacionalidad"></Label>
+            </td>
+            <td width="25%">
+                <label><strong>Fecha Nacimiento</strong></label>
+                <br />
+                <Label id="InputHVFechaNacimiento"></Label>
+            </td>
+            <td>
+                <label><strong>Lugar Nacimiento</strong></label>
+                <br />
+                <Label id="InputHVLugarNacimiento"></Label>
+            </td>
+            <td width="25%">
+                <label><strong>Sexo</strong></label>
+                <br />
+                <Label id="InputHVSexo"></Label>
+            </td>
+        </tr>
+        <tr>
+            <td width="25%">
+                <label><strong>Estado Civil</strong></label>
+                <br />
+                <Label id="InputHVEstadoCivil"></Label>
+            </td>
+            <td width="25%">
+                <label><strong>Email</strong></label>
+                <br />
+                <Label id="InputHVEmail"></Label>
+            </td>
+            <td width="25%">
+                <label><strong>Teléfono 1</strong></label>
+                <br />
+                <Label id="InputHVTelefono1"></Label>
+            </td>
+            <td width="25%">
+                <label><strong>Teléfono 2</strong></label>
+                <br />
+                <Label id="InputHVTelefono2"></Label>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div style="margin-top:20px" class="fondolayout1">
+    <label><strong>DATOS RESIDENCIA</strong><a href="#" title="Editar"><i class="bi-pencil-fill" style="Color:orange; margin-left:20px"></i></a></label>
+    <table class="table table-borderless" style="width:100%">
+        <tr>
+            <td width="25%">
+                <label><strong>País</strong></label>
+                <br />
+                <Label id="InputHVPaisResidencia"></Label>
+            </td>
+            <td width="25%">
+                <label><strong>Departamento</strong></label>
+                <br />
+                <Label id="InputHVDepartamentoResidencia"></Label>
+            </td>
+            <td width="25%">
+                <label><strong>Ciudad</strong></label>
+                <br />
+                <Label id="InputHVCiudadResidencia"></Label>
+            </td>
+            <td width="25%">
+                <label><strong>Dirección</strong></label>
+                <br />
+                <Label id="InputHVDireccionResidencia"></Label>
+            </td>
+        </tr>
+        <tr>
+            <td width="25%">
+                <label><strong>Tipo Vivienda</strong></label>
+                <br />
+                <Label id="InputHVTipoVivienda"></Label>
+            </td>
+            <td width="25%">
+                <label><strong>Nombre Arrendador</strong></label>
+                <br />
+                <Label id="InputHVNombreArrendador"></Label>
+            </td>
+            <td width="25%">
+                <label><strong>Teléfono Arrendador</strong></label>
+                <br />
+                <Label id="InputHVNombreArrendador"></Label>
+            </td>
+            <td width="25%">
+                <label><strong>Tiempo Residiendo</strong></label>
+                <br />
+                <Label id="InputHVTiempoResidiendo"></Label>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div style="margin-top:20px" class="fondolayout1">
+    <label><strong>REFERENCIAS FAMILIARES</strong><a href="#" title="Editar"><i class="bi-pencil-fill" style="Color:orange; margin-left:20px"></i></a></label>
+    <table class="table table-borderless" style="width:100%">
+        <tr>
+            <td width="25%">
+                <label><strong>1. Nombre y Apellidos</strong></label>
+                <br />
+                <Label id="InputHVNombreRF1"></Label>
+            </td>
+            <td width="25%">
+                <label><strong>Parentesco</strong></label>
+                <br />
+                <Label id="InputHVParentescoRF1"></Label>
+            </td>
+            <td width="25%">
+                <label><strong>Teléfono</strong></label>
+                <br />
+                <Label id="InputHVTelefonoRF1"></Label>
+            </td>
+            <td width="25%">
+                <label><strong>Profesión</strong></label>
+                <br />
+                <Label id="InputHVProfesionRF1"></Label>
+            </td>
+        </tr>
+        <tr>
+            <td width="25%">
+                <label><strong>2. Nombre y Apellidos</strong></label>
+                <br />
+                <Label id="InputHVNombreRF2"></Label>
+            </td>
+            <td width="25%">
+                <label><strong>Parentesco</strong></label>
+                <br />
+                <Label id="InputHVParentescoRF2"></Label>
+            </td>
+            <td width="25%">
+                <label><strong>Teléfono</strong></label>
+                <br />
+                <Label id="InputHVTelefonoRF2"></Label>
+            </td>
+            <td width="25%">
+                <label><strong>Profesión</strong></label>
+                <br />
+                <Label id="InputHVProfesionRF2"></Label>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div>
+    <label><strong>REFERENCIAS PERSONALES</strong><a href="#" title="Editar"><i class="bi-pencil-fill" style="Color:orange; margin-left:20px"></i></a></label>
+    <table class="table table-borderless" style="width:100%">
+        <tr>
+            <td width="25%">
+                <label><strong>1. Nombre y Apellidos</strong></label>
+                <br />
+                <Label id="InputHVNombreRP1"></Label>
+            </td>
+            <td width="25%">
+                <label><strong>Dirección</strong></label>
+                <br />
+                <Label id="InputHVDireccionRP1"></Label>
+            </td>
+            <td width="25%">
+                <label><strong>Teléfono</strong></label>
+                <br />
+                <Label id="InputHVTelefonoRP1"></Label>
+            </td>
+            <td width="25%">
+                <label><strong>Profesión</strong></label>
+                <br />
+                <Label id="InputHVProfesionRP1"></Label>
+            </td>
+        </tr>
+        <tr>
+            <td width="25%">
+                <label><strong>2. Nombre y Apellidos</strong></label>
+                <br />
+                <Label id="InputHVNombreRP2"></Label>
+            </td>
+            <td width="25%">
+                <label><strong>Dirección</strong></label>
+                <br />
+                <Label id="InputHVDireccionRP2"></Label>
+            </td>
+            <td width="25%">
+                <label><strong>Teléfono</strong></label>
+                <br />
+                <Label id="InputHVTelefonoRP2"></Label>
+            </td>
+            <td width="25%">
+                <label><strong>Profesión</strong></label>
+                <br />
+                <Label id="InputHVProfesionRP2"></Label>
+            </td>
+        </tr>
+    </table>
+</div>
+
+
+@*Modal Datos Personales*@
+<div class="modal fade" id="ModalDatosPersonalesEmpleado" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog" style="min-width:98%">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel"><strong>Datos Personales</strong></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <table class="table table-borderless" style="width:100%">
+                    <tr>
+                        <td width="25%">
+                            <label><strong>Nacionalidad</strong></label>
+                            <select class="form-control" id="SelectPaisNacionalidad"></select>
+                        </td>
+                        <td width="25%">
+                            <label><strong>Fecha Nacimiento</strong></label>
+                            <input class="form-control" type="date" id="InputFechaNacimientoEmpleado" name="name" autocomplete="off" />
+                        </td>
+                        <td width="25%">
+                            <label><strong>Lugar Nacimiento</strong></label>
+                            <input class="form-control" type="text" id="InputLugarNacimientoEmpleado" name="name" autocomplete="off" />
+                        </td>
+                        <td width="25%">
+                            <label><strong>Sexo</strong></label>
+                            <select class="form-control" id="SelectSexoEmpleado"></select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="25%">
+                            <label><strong>Estado Civil</strong></label>
+                            <select class="form-control" id="SelectEstadoCivil">
+                                <option value="0">Seleccione Opción</option>
+                                <option value="1">Soltero(a)</option>
+                                <option value="2">Unión Libre</option>
+                                <option value="3">Casado(a)</option>
+                                <option value="4">Separado(a)</option>
+                                <option value="5">Viudo(a)</option>
+                            </select>
+                        </td>
+                        <td width="25%">
+                            <label><strong>Email</strong></label>
+                            <input class="form-control" type="text" id="InputEmailEmpleado" name="name" autocomplete="off" />
+                        </td>
+                        <td width="25%">
+                            <label><strong>Teléfono 1</strong></label>
+                            <input class="form-control" type="text" id="InputTelefono1Empleado" name="name" autocomplete="off" />
+                        </td>
+                        <td width="25%">
+                            <label><strong>Teléfono 2</strong></label>
+                            <input class="form-control" type="text" id="InputTelefono2Empleado" name="name" autocomplete="off" />
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success btn-sm" onclick="GuardarDatosPersonalesEmpleado()"><i class="bi-trash"></i> Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        CargarDatosHVEmpleado();
+        ListaPais();
+        ListaPaisNacionalidad('N');
+        ListaDepartamento();
+        ListaCiudad();
+        ListaTipoGeneroEmpleado('N');
+    });
+</script>
