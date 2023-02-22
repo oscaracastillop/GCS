@@ -85,6 +85,27 @@ namespace Gcs.Data.DataEntities
             }
         }
 
+        public string GuardarCambiosDatosPersonales(int IdEmpleado, string IdUser, int IdNacionalidad, string FechaNacimientoEmpleado, string LugarNacimientoEmpleado, int IdSexoEmpleado, int IdTipoEstadoCivil, string EmailEmpleado, string Telefono1Empleado, string Telefono2Empleado)
+        {
+            string resultado = String.Empty;            
+                var varIdEmpleado = new SqlParameter("@IdEmpleado", SqlDbType.Int) { Value = IdEmpleado };
+                var varIdUser = new SqlParameter("@IdUser", SqlDbType.VarChar) { Value = IdUser };
+                var varIdNacionalidad = new SqlParameter("@IdNacionalidad", SqlDbType.Int) { Value = IdNacionalidad };
+                var varFechaNacimientoEmpleado = new SqlParameter("@FechaNacimientoEmpleado", SqlDbType.VarChar) { Value = FechaNacimientoEmpleado };
+                var varLugarNacimientoEmpleado = new SqlParameter("@LugarNacimientoEmpleado", SqlDbType.VarChar) { Value = LugarNacimientoEmpleado };
+                var varIdSexoEmpleado = new SqlParameter("@IdSexoEmpleado", SqlDbType.Int) { Value = IdSexoEmpleado };
+                var varIdTipoEstadoCivil = new SqlParameter("@IdTipoEstadoCivil", SqlDbType.Int) { Value = IdTipoEstadoCivil };
+                var varEmailEmpleado = new SqlParameter("@EmailEmpleado", SqlDbType.VarChar) { Value = EmailEmpleado };
+                var varTelefono1Empleado = new SqlParameter("@Telefono1Empleado", SqlDbType.VarChar) { Value = Telefono1Empleado };
+                var varTelefono2Empleado = new SqlParameter("@Telefono2Empleado", SqlDbType.VarChar) { Value = Telefono2Empleado };
+                var varResultado = new SqlParameter("@Resultado", SqlDbType.VarChar) { Direction = ParameterDirection.Output, Size = 255 };
+
+                _conection.Database.ExecuteSqlCommand("SP_GuardarCambiosDatosPersonales @IdEmpleado, @IdUser, @IdNacionalidad, @FechaNacimientoEmpleado, @LugarNacimientoEmpleado, @IdSexoEmpleado, @IdTipoEstadoCivil, @EmailEmpleado, @Telefono1Empleado, @Telefono2Empleado, @Resultado OUTPUT", varIdEmpleado, varIdUser, varIdNacionalidad, varFechaNacimientoEmpleado, varLugarNacimientoEmpleado, varIdSexoEmpleado, varIdTipoEstadoCivil, varEmailEmpleado, varTelefono1Empleado, varTelefono2Empleado, varResultado);
+
+                resultado = Convert.ToString(varResultado.Value);   
+            return resultado;
+        }
+
         public List<GridEmpleado> GridEmpleado()
         {
             try

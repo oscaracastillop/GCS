@@ -273,6 +273,7 @@ insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'Ciudad','<i class=
 insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'Arl','<i class="bi-pass" style="font-size: 2rem; color: #11ABE9;"></i>','/Arl')--27
 insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'Caja Compensación Familiar','<i class="bi-pass" style="font-size: 2rem; color: #11ABE9;"></i>','/CajaCompensacionFamiliar')--28
 insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'Eps','<i class="bi-pass" style="font-size: 2rem; color: #11ABE9;"></i>','/Eps')--29
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'Estado Civil','<i class="bi-pass" style="font-size: 2rem; color: #11ABE9;"></i>','/TipoEstadoCivil')--29
 insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'Fondo Pensiones','<i class="bi-pass" style="font-size: 2rem; color: #11ABE9;"></i>','/FondoPension')--30
 insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'Fondo Cesantías','<i class="bi-pass" style="font-size: 2rem; color: #11ABE9;"></i>','/FondoCesantias')--31
 insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'Tipo Actividad','<i class="bi-tools" style="font-size: 2rem; color: #11ABE9;"></i>','/TipoActividad')--32
@@ -358,6 +359,7 @@ insert into Permiso_SubMenu (IdSubMenu, IdUsuario, Permiso, Crear, Editar, Elimi
 insert into Permiso_SubMenu (IdSubMenu, IdUsuario, Permiso, Crear, Editar, Eliminar) Values (45,1,1,1,1,1)
 insert into Permiso_SubMenu (IdSubMenu, IdUsuario, Permiso, Crear, Editar, Eliminar) Values (46,1,1,1,1,1)
 insert into Permiso_SubMenu (IdSubMenu, IdUsuario, Permiso, Crear, Editar, Eliminar) Values (47,1,1,1,1,1)
+insert into Permiso_SubMenu (IdSubMenu, IdUsuario, Permiso, Crear, Editar, Eliminar) Values (48,1,1,1,1,1)
 
 
 go
@@ -2631,6 +2633,148 @@ END
 
 go
 
+CREATE TABLE TipoEstadoCivil 
+(Id int identity(1,1) Primary key ,
+Nombre varchar(255),
+Activo int default 1,
+CreateBy int,
+DateCreate datetime,
+unique(Nombre)
+)
+
+ALTER TABLE TipoEstadoCivil ADD CONSTRAINT FK_IdCreateByTipoEstadoCivil FOREIGN KEY (CreateBy ) references Usuario(Id)
+
+go
+insert into TipoEstadoCivil(Nombre, CreateBy,DateCreate)values('Soltero(a)',1,Getdate())
+insert into TipoEstadoCivil(Nombre, CreateBy,DateCreate)values('Unión Libre',1,Getdate())
+insert into TipoEstadoCivil(Nombre, CreateBy,DateCreate)values('Casado(a)',1,Getdate())
+insert into TipoEstadoCivil(Nombre, CreateBy,DateCreate)values('Separado(a)',1,Getdate())
+insert into TipoEstadoCivil(Nombre, CreateBy,DateCreate)values('Viudo(a)',1,Getdate())
+
+go
+
+CREATE PROCEDURE [dbo].[SP_GridTipoEstadoCivil]
+AS
+BEGIN
+	SELECT	Id, 
+			Nombre, 
+			CASE Activo
+			WHEN 1 THEN 'Activo'
+			ELSE 'Inactivo'
+			END as Estado,
+			dbo.Fun_BuscarNombreUsuario(CreateBy) As CreateBy,
+			CONVERT(varchar(255),DateCreate,20) As DateCreate
+			FROM TipoEstadoCivil
+END
+
+GO
+
+CREATE PROCEDURE [dbo].[SP_CrearTipoEstadoCivil] @IdUser varchar(255), @NombreTipoEstadoCivil varchar(255), @Resultado varchar(255) OUTPUT
+AS
+BEGIN
+DECLARE @Crear INT, @IdUsuario INT, @NombreUsuario VARCHAR(255), @SubMenu VARCHAR(255)
+SELECT @IdUsuario = Id FROM Usuario WHERE IdUser = @IdUser
+SELECT @NombreUsuario = Nombre FROM Usuario WHERE IdUser = @IdUser
+SET @SubMenu = '/TipoEstadoCivil'
+SELECT	@Crear = dbo.Fun_PermisoUsuario('Crear',@IdUsuario, @SubMenu)	
+		IF @Crear > 0
+			BEGIN
+				INSERT INTO TipoEstadoCivil (Nombre,CreateBy, DateCreate) VALUES (@NombreTipoEstadoCivil, @IdUsuario, GETDATE()) 
+				SET @Resultado = 'OK*Se a creado el tipo estado civil ' + @NombreTipoEstadoCivil+ ' correctamente'
+			END
+		ELSE
+			BEGIN
+				SET @Resultado = 'Error*El usuario '+ @NombreUsuario + ' no tiene permiso para crear tipo estado civil' 
+			END
+	SELECT @Resultado
+END
+
+go
+
+CREATE PROCEDURE SP_CargarDatosTipoEstadoCivil @IdTipoEstadoCivil Int
+AS
+BEGIN
+	SELECT Nombre,
+	Activo
+	FROM TipoEstadoCivil
+	WHERE Id = @IdTipoEstadoCivil
+END
+
+go
+
+CREATE PROCEDURE [dbo].[SP_GuardarCambiosTipoEstadoCivil] @IdTipoEstadoCivil int, @IdUser varchar(255), @NombreTipoEstadoCivil varchar(255), @Activo int, @Resultado varchar(255) OUTPUT
+AS
+BEGIN
+DECLARE @Modificar INT, @IdUsuario INT, @NombreUsuario VARCHAR(255), @SubMenu VARCHAR(255)
+SET @SubMenu = '/TipoEstadoCivil'
+SELECT @IdUsuario = Id FROM Usuario WHERE IdUser = @IdUser
+SELECT @NombreUsuario = Nombre FROM Usuario WHERE IdUser = @IdUser
+SELECT @Modificar = dbo.Fun_PermisoUsuario('Editar',@IdUsuario, @SubMenu)	
+				IF @Modificar > 0
+					BEGIN
+						UPDATE TipoEstadoCivil SET  Nombre = @NombreTipoEstadoCivil, Activo = @Activo WHERE Id = @IdTipoEstadoCivil
+					    SET @Resultado = 'OK*Se guardaron los cambios del tipo estado civil ' + @NombreTipoEstadoCivil+ ' correctamente'
+					END
+				ELSE
+					BEGIN
+						SET @Resultado = 'Error*El usuario '+ @NombreUsuario + ' no tiene permiso para realizar cambios al tipo estado civil' 
+					END
+	SELECT @Resultado
+END
+
+go
+
+CREATE PROCEDURE [dbo].[SP_ListaTipoEstadoCivil]
+AS
+BEGIN
+	SELECT Id, Nombre FROM TipoEstadoCivil WHERE Activo = 1
+END
+
+go
+
+CREATE FUNCTION Fun_BuscarNombreTipoEstadoCivil(@IdTipoEstadoCivil INT)
+RETURNS VARCHAR(255)
+AS BEGIN
+DECLARE @NombreTipoEstadoCivil VARCHAR(255)
+	SELECT	@NombreTipoEstadoCivil = Nombre
+	FROM	TipoEstadoCivil
+	WHERE	Id = @IdTipoEstadoCivil
+	RETURN @NombreTipoEstadoCivil
+END
+
+go
+
+CREATE PROCEDURE [dbo].[SP_EliminarTipoEstadoCivil] @IdUser varchar(255), @IdTipoEstadoCivil int, @Resultado varchar(255) OUTPUT
+AS
+BEGIN
+DECLARE @Eliminar INT, @IdUsuario INT, @NombreUsuario VARCHAR(255), @validar INT, @NombreTipoEstadoCivil varchar(255), @SubMenu VARCHAR(255)
+SET @SubMenu = '/TipoEstadoCivil'
+SELECT @IdUsuario = Id FROM Usuario WHERE IdUser = @IdUser
+SELECT @NombreUsuario = Nombre FROM Usuario WHERE IdUser = @IdUser
+SELECT @NombreTipoEstadoCivil = Nombre FROM Pais WHERE Id = @IdTipoEstadoCivil
+	SELECT	@Eliminar = dbo.Fun_PermisoUsuario('Eliminar',@IdUsuario, @SubMenu)	
+		IF @Eliminar > 0
+			BEGIN	
+				SELECT @validar = 0
+				IF @validar > 0 
+					BEGIN
+						SET @Resultado = 'Error*El tipo estado civil ' + @NombreTipoEstadoCivil +' no se puede eliminar, actualmente se encuentra en uso'	
+					END
+				ELSE
+					BEGIN
+						DELETE TipoEstadoCivil WHERE Id = @IdTipoEstadoCivil
+						SET @Resultado = 'OK*Se elimino el tipo estado civil correctamente'	
+					END								
+			END
+		ELSE
+			BEGIN
+				SET @Resultado = 'Error*El usuario '+ @NombreUsuario + ' no tiene permiso para eliminar el tipo estado civil' 
+			END
+	SELECT @Resultado
+END
+
+go
+
 CREATE TABLE TipoGenero 
 (Id int identity(1,1) Primary key ,
 Nombre varchar(255),
@@ -4164,8 +4308,8 @@ BEGIN
 			dbo.Fun_BuscarNombrePais(IdNacionalidad) As Nacionalidad,
 			FechaNacimiento,
 			LugarNacimiento,
-			IdSexo,
-			IdEstadoCivil,
+			dbo.Fun_BuscarNombreTipoGenero(IdSexo) As Sexo,
+			dbo.Fun_BuscarNombreTipoEstadoCivil(IdEstadoCivil) As EstadoCivil,
 			Email,
 			Telefono1,
 			Telefono2,
@@ -4212,4 +4356,47 @@ BEGIN
 			ISNULL(Telefono2,'') As Telefono2
 	FROM Empleado
 	WHERE Id = @IdEmpleado
+END
+
+go
+
+CREATE PROCEDURE [dbo].[SP_GuardarCambiosDatosPersonales] 
+				@IdEmpleado int, 
+				@IdUser varchar(255),
+				@IdNacionalidad int,
+				@FechaNacimientoEmpleado varchar(255),
+				@LugarNacimientoEmpleado varchar(255),
+				@IdSexoEmpleado int,
+				@IdTipoEstadoCivil int,
+				@EmailEmpleado varchar(255),
+				@Telefono1Empleado varchar(255),
+				@Telefono2Empleado varchar(255),
+				@Resultado varchar(255) OUTPUT
+AS
+BEGIN
+DECLARE @Modificar INT, @IdUsuario INT, @NombreUsuario VARCHAR(255), @SubMenu VARCHAR(255)
+SET @SubMenu = '/Empleado'
+SELECT @IdUsuario = Id FROM Usuario WHERE IdUser = @IdUser
+SELECT @NombreUsuario = Nombre FROM Usuario WHERE IdUser = @IdUser
+SELECT @Modificar = dbo.Fun_PermisoUsuario('Editar',@IdUsuario, @SubMenu)	
+				IF @Modificar > 0
+					BEGIN
+						UPDATE	Empleado 
+						SET		IdNacionalidad = @IdNacionalidad,
+								FechaNacimiento = @FechaNacimientoEmpleado,
+								LugarNacimiento = @LugarNacimientoEmpleado,
+								IdSexo = @IdSexoEmpleado,
+								IdEstadoCivil = @IdTipoEstadoCivil,
+								Email = @EmailEmpleado,
+								Telefono1 = @Telefono1Empleado,
+								Telefono2 = @Telefono2Empleado
+						WHERE	Id = @IdEmpleado
+					    --SET @Resultado = 'OK*Se guardaron los cambios del Empleado ' + @NombreSucursal+ ' correctamente'
+						SET @Resultado = 'OK*Se guardaron los cambios del empleado correctamente'
+					END
+				ELSE
+					BEGIN
+						SET @Resultado = 'Error*El usuario '+ @NombreUsuario + ' no tiene permiso para realizar cambios al empleado' 
+					END
+	SELECT @Resultado
 END

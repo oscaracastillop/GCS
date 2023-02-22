@@ -103,24 +103,79 @@ function CargarDatosHVEmpleado() {
 }
 
 function CargarDatosPersonales() {
-    let IdEmpleado = Cookies.get('IdHVEmpleado');
+    let IdEmpleado = Cookies.get('IdHVEmpleado');  
+    ListaPaisNacionalidad('N');
+    ListaTipoGeneroEmpleado('N');
+    ListaTipoEstadoCivil('N');
     $.ajax({
         type: 'POST',
         dataType: 'json',
         url: '/Empleado/CargarDatosPersonales',
         data: { IdEmpleado: IdEmpleado },
-        success: function (resultado) {
+        success: function (resultado) {            
             $('#SelectPaisNacionalidad').val(resultado[0].IdNacionalidad);
             $('#InputFechaNacimientoEmpleado').val(resultado[0].FechaNacimiento);
             $('#InputLugarNacimientoEmpleado').val(resultado[0].LugarNacimiento);
             $('#SelectSexoEmpleado').val(resultado[0].IdSexo);
-            $('#SelectEstadoCivil').val(resultado[0].IdEstadoCivil);
+            $('#SelectTipoEstadoCivil').val(resultado[0].IdEstadoCivil);
             $('#InputEmailEmpleado').val(resultado[0].Email);
             $('#InputTelefono1Empleado').val(resultado[0].Telefono1);
             $('#InputTelefono2Empleado').val(resultado[0].Telefono2);
         }
-    });
+    });    
     $('#ModalDatosPersonalesEmpleado').modal('show')
+}
+
+function GuardarCambiosDatosPersonales() {
+    let User = Cookies.get('IdUser');
+    let IdEmpleado = Cookies.get('IdHVEmpleado');
+    let IdNacionalidad = $('#SelectPaisNacionalidad').val();
+    let FechaNacimientoEmpleado = $('#InputFechaNacimientoEmpleado').val();
+    let LugarNacimientoEmpleado = $('#InputLugarNacimientoEmpleado').val();
+    let IdSexoEmpleado = $('#SelectSexoEmpleado').val();
+    let IdTipoEstadoCivil = $('#SelectTipoEstadoCivil').val();
+    let EmailEmpleado = $('#InputEmailEmpleado').val();
+    let Telefono1Empleado = $('#InputTelefono1Empleado').val();
+    let Telefono2Empleado = $('#InputTelefono2Empleado').val();
+    if (IdNacionalidad == '' || IdNacionalidad == null || IdNacionalidad == -1) {
+        Swal.fire('Mensaje del Sistema', 'Seleccione nacionalidad', 'info');
+    } else if (IdSexoEmpleado == '' || IdSexoEmpleado == null || IdSexoEmpleado == -1) {
+        Swal.fire('Mensaje del Sistema', 'Seleccione el sexo', 'info');
+    } else if (IdTipoEstadoCivil == '' || IdTipoEstadoCivil == null || IdTipoEstadoCivil == -1) {
+        Swal.fire('Mensaje del Sistema', 'Seleccione estado civil', 'info');
+    } else {
+        $.ajax({
+            type: 'POST',
+            dataType: 'json',
+            url: '/Empleado/GuardarCambiosDatosPersonales',
+            data: {
+                IdEmpleado: IdEmpleado,
+                IdUser: User,
+                IdNacionalidad: IdNacionalidad,
+                FechaNacimientoEmpleado: FechaNacimientoEmpleado,
+                LugarNacimientoEmpleado: LugarNacimientoEmpleado,
+                IdSexoEmpleado: IdSexoEmpleado,
+                IdTipoEstadoCivil: IdTipoEstadoCivil,
+                EmailEmpleado: EmailEmpleado,
+                Telefono1Empleado: Telefono1Empleado,
+                Telefono2Empleado: Telefono2Empleado
+            },
+            success: function (resultado) {
+                valor = resultado.split('*');
+                if (valor[0] == 'OK') {
+                    Swal.fire({
+                        title: 'Mensaje del Sistema',
+                        text: valor[1],
+                        icon: 'success',
+                    }).then((result) => {
+                        window.location.href = '/Empleado/Hoja_Vida_Empleado';
+                    })
+                } else {
+                    Swal.fire('Mensaje del Sistema', valor[1], 'info');
+                }
+            }
+        });
+    }
 }
 
 

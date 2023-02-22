@@ -20,7 +20,7 @@
 
 
 
-<div style="margin-top:50px" class="fondolayout1">
+<div style="margin-top:50px">
     <label><strong>DATOS PERSONALES</strong><a href="#" title="Editar"onclick="CargarDatosPersonales()"><i class="bi-pencil-fill" style="Color:orange; margin-left:20px"></i></a></label>
     <table class="table table-borderless" style="width:100%">
         <tr>
@@ -92,7 +92,7 @@
     </table>
 </div>
 
-<div style="margin-top:20px" class="fondolayout1">
+<div>
     <label><strong>DATOS RESIDENCIA</strong><a href="#" title="Editar"><i class="bi-pencil-fill" style="Color:orange; margin-left:20px"></i></a></label>
     <table class="table table-borderless" style="width:100%">
         <tr>
@@ -142,7 +142,7 @@
     </table>
 </div>
 
-<div style="margin-top:20px" class="fondolayout1">
+<div>
     <label><strong>REFERENCIAS FAMILIARES</strong><a href="#" title="Editar"><i class="bi-pencil-fill" style="Color:orange; margin-left:20px"></i></a></label>
     <table class="table table-borderless" style="width:100%">
         <tr>
@@ -274,14 +274,7 @@
                     <tr>
                         <td width="25%">
                             <label><strong>Estado Civil</strong></label>
-                            <select class="form-control" id="SelectEstadoCivil">
-                                <option value="0">Seleccione Opción</option>
-                                <option value="1">Soltero(a)</option>
-                                <option value="2">Unión Libre</option>
-                                <option value="3">Casado(a)</option>
-                                <option value="4">Separado(a)</option>
-                                <option value="5">Viudo(a)</option>
-                            </select>
+                            <select class="form-control" id="SelectTipoEstadoCivil"></select>
                         </td>
                         <td width="25%">
                             <label><strong>Email</strong></label>
@@ -299,7 +292,7 @@
                 </table>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-success btn-sm" onclick="GuardarDatosPersonalesEmpleado()"><i class="bi-trash"></i> Guardar</button>
+                <button type="button" class="btn btn-success btn-sm" onclick="GuardarCambiosDatosPersonales()"><i class="bi-trash"></i> Guardar</button>
             </div>
         </div>
     </div>
@@ -308,10 +301,9 @@
 <script>
     $(document).ready(function () {
         CargarDatosHVEmpleado();
-        ListaPais();
-        ListaPaisNacionalidad('N');
+        ListaPais();        
         ListaDepartamento();
         ListaCiudad();
-        ListaTipoGeneroEmpleado('N');
+                
     });
 </script>

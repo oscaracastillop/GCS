@@ -55,6 +55,7 @@
     <Compile Include="Models\SubMenu.cs" />
     <Compile Include="Models\Sucursal.cs" />
     <Compile Include="Models\TipoDocumento.cs" />
+    <Compile Include="Models\TipoEstadoCivil.cs" />
     <Compile Include="Models\TipoFormaPago.cs" />
     <Compile Include="Models\TipoGenero.cs" />
     <Compile Include="Models\TipoHoraExtra.cs" />

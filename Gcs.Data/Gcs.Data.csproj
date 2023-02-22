@@ -81,6 +81,7 @@
     <Compile Include="DataEntities\DataSubMenu.cs" />
     <Compile Include="DataEntities\DataSucursal.cs" />
     <Compile Include="DataEntities\DataTipoDocumento.cs" />
+    <Compile Include="DataEntities\DataTipoEstadoCivil.cs" />
     <Compile Include="DataEntities\DataTipoFormaPago.cs" />
     <Compile Include="DataEntities\DataTipoGenero.cs" />
     <Compile Include="DataEntities\DataTipoHoraExtra.cs" />

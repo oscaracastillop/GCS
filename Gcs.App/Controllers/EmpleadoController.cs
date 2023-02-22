@@ -45,7 +45,11 @@ namespace Gcs.App.Controllers
             return Json(resultado);
         }
 
-
+        public JsonResult GuardarCambiosDatosPersonales(int IdEmpleado, string IdUser, int IdNacionalidad, string FechaNacimientoEmpleado, string LugarNacimientoEmpleado, int IdSexoEmpleado, int IdTipoEstadoCivil, string EmailEmpleado, string Telefono1Empleado, string Telefono2Empleado)
+        {
+            var resultado = dataEmpleado.GuardarCambiosDatosPersonales(IdEmpleado, IdUser, IdNacionalidad, FechaNacimientoEmpleado, LugarNacimientoEmpleado, IdSexoEmpleado, IdTipoEstadoCivil, EmailEmpleado, Telefono1Empleado, Telefono2Empleado);
+            return Json(resultado);
+        }
 
         public ActionResult GridEmpleado()
         {

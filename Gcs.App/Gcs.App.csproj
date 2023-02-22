@@ -2138,6 +2138,7 @@
     <Content Include="JsApp\SubMenu.js" />
     <Content Include="JsApp\Sucursal.js" />
     <Content Include="JsApp\TipoDocumento.js" />
+    <Content Include="JsApp\TipoEstadoCivil.js" />
     <Content Include="JsApp\TipoFormaPago.js" />
     <Content Include="JsApp\TipoGenero.js" />
     <Content Include="JsApp\TipoHoraExtra.js" />
@@ -4362,6 +4363,7 @@
     <Compile Include="Controllers\SubMenuController.cs" />
     <Compile Include="Controllers\SucursalController.cs" />
     <Compile Include="Controllers\TipoDocumentoController.cs" />
+    <Compile Include="Controllers\TipoEstadoCivilController.cs" />
     <Compile Include="Controllers\TipoFormaPagoController.cs" />
     <Compile Include="Controllers\TipoGeneroController.cs" />
     <Compile Include="Controllers\TipoHoraExtraController.cs" />
@@ -4525,6 +4527,9 @@
     <Content Include="Views\Factura\Crear_Factura.cshtml" />
     <Content Include="Views\Factura\Editar_Factura.cshtml" />
     <Content Include="Views\Empleado\Hoja_Vida_Empleado.cshtml" />
+    <Content Include="Views\TipoEstadoCivil\Index.cshtml" />
+    <Content Include="Views\TipoEstadoCivil\Crear_TipoEstadoCivil.cshtml" />
+    <Content Include="Views\TipoEstadoCivil\Editar_TipoEstadoCivil.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
