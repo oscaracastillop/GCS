@@ -21,7 +21,7 @@
 
 
 <div style="margin-top:50px">
-    <label><strong>DATOS PERSONALES</strong><a href="#" title="Editar"onclick="CargarDatosPersonales()"><i class="bi-pencil-fill" style="Color:orange; margin-left:20px"></i></a></label>
+    <label><strong>DATOS PERSONALES</strong><a href="#" title="Editar" onclick="CargarDatosPersonales()"><i class="bi-pencil-fill" style="Color:orange; margin-left:20px"></i></a></label>
     <table class="table table-borderless" style="width:100%">
         <tr>
             <td width="25%">
@@ -93,7 +93,7 @@
 </div>
 
 <div>
-    <label><strong>DATOS RESIDENCIA</strong><a href="#" title="Editar"><i class="bi-pencil-fill" style="Color:orange; margin-left:20px"></i></a></label>
+    <label><strong>DATOS RESIDENCIA</strong><a href="#" title="Editar" onclick="CargarDatosResidencia()"><i class="bi-pencil-fill" style="Color:orange; margin-left:20px"></i></a></label>
     <table class="table table-borderless" style="width:100%">
         <tr>
             <td width="25%">
@@ -298,12 +298,70 @@
     </div>
 </div>
 
+@*Modal Datos Residencia*@
+<div class="modal fade" id="ModalDatosResidenciaEmpleado" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog" style="min-width:98%">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel"><strong>Datos Personales</strong></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <table class="table table-borderless" style="width:100%">
+                    <tr>
+                        <td width="25%">
+                            <label><strong>País</strong></label>
+                            <select class="form-control" id="SelectPais" onchange="BuscarDeptoIdPais('N',$('#SelectPais').val())"></select>
+                        </td>
+                        <td width="25%">
+                            <label><strong>Departamento</strong></label>
+                            <select class="form-control" id="SelectDepartamento" onchange="BuscarCiudadIdDepartamento('N',$('#SelectDepartamento').val())"></select>
+                        </td>
+                        <td width="25%">
+                            <label><strong>Ciudad</strong></label>
+                            <select class="form-control" id="SelectCiudad"></select>
+                        </td>
+                        <td width="25%">
+                            <label><strong>Dirección</strong></label>
+                            <input class="form-control" type="text" id="InputDireccionEmpresa" name="name" autocomplete="off" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="25%">
+                            <label><strong>Tipo Vivienda</strong></label>
+                            <select class="form-control" id="SelectTipoVivienda"></select>
+                        </td>
+                        <td width="25%">
+                            <label><strong>Nombre Arrendador</strong></label>
+                            <input class="form-control" type="text" id="InputNombreArrendador" name="name" autocomplete="off" />
+                        </td>
+                        <td width="25%">
+                            <label><strong>Teléfono Arrendador</strong></label>
+                            <input class="form-control" type="text" id="InputTelefonoArrendador" name="name" autocomplete="off" />
+                        </td>
+                        <td width="25%">
+                            <label><strong>Tiempo Residiendo</strong></label>
+                            <input class="form-control" type="text" id="InputDireccionEmpresa" name="name" autocomplete="off" />
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success btn-sm" onclick="GuardarCambiosDatosPersonales()"><i class="bi-trash"></i> Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script>
     $(document).ready(function () {
         CargarDatosHVEmpleado();
-        ListaPais();        
+        ListaPais('N');
         ListaDepartamento();
         ListaCiudad();
-                
+        ListaPaisNacionalidad('N');
+        ListaTipoGeneroEmpleado('N');
+        ListaTipoEstadoCivil('N');
+        ListaTipoVivienda('N');
     });
 </script>

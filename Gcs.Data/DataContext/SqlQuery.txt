@@ -283,6 +283,7 @@ insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'Tipo Género','<i 
 insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'Tipo Hora Extra','<i class="bi-clock" style="font-size: 2rem; color: #11ABE9;"></i>','/TipoHoraExtra')--36
 insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'Tipo Moneda','<i class="bi-cash-coin" style="font-size: 2rem; color: #11ABE9;"></i>','/TipoMoneda')--37
 insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'Tipo Unidad Medida','<i class="bi-speedometer2" style="font-size: 2rem; color: #11ABE9;"></i>','/TipoUnidadMedida')--38
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'Tipo Vivienda','<i class="bi-speedometer2" style="font-size: 2rem; color: #11ABE9;"></i>','/TipoVivienda')--38
 
 insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (9, 'Usuario','<i class="bi-person" style="font-size: 2rem; color: #11ABE9;"></i>','/Usuario')
 insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (9, 'Permiso Usuario','<i class="bi-lock" style="font-size: 2rem; color: #11ABE9;"></i>','/Permiso_Usuario')
@@ -360,6 +361,7 @@ insert into Permiso_SubMenu (IdSubMenu, IdUsuario, Permiso, Crear, Editar, Elimi
 insert into Permiso_SubMenu (IdSubMenu, IdUsuario, Permiso, Crear, Editar, Eliminar) Values (46,1,1,1,1,1)
 insert into Permiso_SubMenu (IdSubMenu, IdUsuario, Permiso, Crear, Editar, Eliminar) Values (47,1,1,1,1,1)
 insert into Permiso_SubMenu (IdSubMenu, IdUsuario, Permiso, Crear, Editar, Eliminar) Values (48,1,1,1,1,1)
+insert into Permiso_SubMenu (IdSubMenu, IdUsuario, Permiso, Crear, Editar, Eliminar) Values (49,1,1,1,1,1)
 
 
 go
@@ -2190,6 +2192,148 @@ SELECT @NombreTipoDocumento = Nombre FROM Pais WHERE Id = @IdTipoDocumento
 		ELSE
 			BEGIN
 				SET @Resultado = 'Error*El usuario '+ @NombreUsuario + ' no tiene permiso para eliminar el tipo documento' 
+			END
+	SELECT @Resultado
+END
+
+go
+
+CREATE TABLE TipoVivienda 
+(Id int identity(1,1) Primary key,
+Nombre varchar(255),
+Activo int default 1,
+CreateBy int,
+DateCreate datetime,
+unique(Nombre)
+)
+
+ALTER TABLE TipoVivienda ADD CONSTRAINT FK_IdCreateByTipoVivienda FOREIGN KEY (CreateBy ) references Usuario(Id)
+
+go
+
+insert into TipoVivienda(Nombre, CreateBy,DateCreate)values('Propia',1,Getdate())
+insert into TipoVivienda(Nombre, CreateBy,DateCreate)values('Familiar',1,Getdate())
+insert into TipoVivienda(Nombre, CreateBy,DateCreate)values('En Arriendo',1,Getdate())
+
+go
+
+CREATE PROCEDURE [dbo].[SP_GridTipoVivienda]
+AS
+BEGIN
+	SELECT	Id, 
+			Nombre, 
+			CASE Activo
+			WHEN 1 THEN 'Activo'
+			ELSE 'Inactivo'
+			END as Estado,
+			dbo.Fun_BuscarNombreUsuario(CreateBy) As CreateBy,
+			CONVERT(varchar(255),DateCreate,20) As DateCreate
+			FROM TipoVivienda
+END
+
+GO
+
+CREATE PROCEDURE [dbo].[SP_CrearTipoVivienda] @IdUser varchar(255), @NombreTipoVivienda varchar(255), @Resultado varchar(255) OUTPUT
+AS
+BEGIN
+DECLARE @Crear INT, @IdUsuario INT, @NombreUsuario VARCHAR(255), @SubMenu VARCHAR(255)
+SELECT @IdUsuario = Id FROM Usuario WHERE IdUser = @IdUser
+SELECT @NombreUsuario = Nombre FROM Usuario WHERE IdUser = @IdUser
+SET @SubMenu = '/TipoVivienda'
+SELECT	@Crear = dbo.Fun_PermisoUsuario('Crear',@IdUsuario, @SubMenu)	
+		IF @Crear > 0
+			BEGIN
+				INSERT INTO TipoVivienda (Nombre,CreateBy, DateCreate) VALUES (@NombreTipoVivienda, @IdUsuario, GETDATE()) 
+				SET @Resultado = 'OK*Se a creado el tipo vivienda ' + @NombreTipoVivienda+ ' correctamente'
+			END
+		ELSE
+			BEGIN
+				SET @Resultado = 'Error*El usuario '+ @NombreUsuario + ' no tiene permiso para crear tipo vivienda' 
+			END
+	SELECT @Resultado
+END
+
+go
+
+CREATE PROCEDURE SP_CargarDatosTipoVivienda @IdTipoVivienda Int
+AS
+BEGIN
+	SELECT Nombre,
+	Activo
+	FROM TipoVivienda
+	WHERE Id = @IdTipoVivienda
+END
+
+go
+
+CREATE PROCEDURE [dbo].[SP_GuardarCambiosTipoVivienda] @IdTipoVivienda int, @IdUser varchar(255), @NombreTipoVivienda varchar(255), @Activo int, @Resultado varchar(255) OUTPUT
+AS
+BEGIN
+DECLARE @Modificar INT, @IdUsuario INT, @NombreUsuario VARCHAR(255), @SubMenu VARCHAR(255)
+SET @SubMenu = '/TipoVivienda'
+SELECT @IdUsuario = Id FROM Usuario WHERE IdUser = @IdUser
+SELECT @NombreUsuario = Nombre FROM Usuario WHERE IdUser = @IdUser
+SELECT @Modificar = dbo.Fun_PermisoUsuario('Editar',@IdUsuario, @SubMenu)	
+				IF @Modificar > 0
+					BEGIN
+						UPDATE TipoVivienda SET  Nombre = @NombreTipoVivienda, Activo = @Activo WHERE Id = @IdTipoVivienda
+					    SET @Resultado = 'OK*Se guardaron los cambios del tipo vivienda ' + @NombreTipoVivienda+ ' correctamente'
+					END
+				ELSE
+					BEGIN
+						SET @Resultado = 'Error*El usuario '+ @NombreUsuario + ' no tiene permiso para realizar cambios al tipo vivienda' 
+					END
+	SELECT @Resultado
+END
+
+go
+
+CREATE PROCEDURE [dbo].[SP_ListaTipoVivienda]
+AS
+BEGIN
+	SELECT Id, Nombre FROM TipoVivienda WHERE Activo = 1
+END
+
+go
+
+CREATE FUNCTION Fun_BuscarNombreTipoVivienda(@IdTipoVivienda INT)
+RETURNS VARCHAR(255)
+AS BEGIN
+DECLARE @NombreTipoVivienda VARCHAR(255)
+	SELECT	@NombreTipoVivienda = Nombre
+	FROM	TipoVivienda
+	WHERE	Id = @IdTipoVivienda
+	RETURN @NombreTipoVivienda
+END
+
+go
+
+
+CREATE PROCEDURE [dbo].[SP_EliminarTipoVivienda] @IdUser varchar(255), @IdTipoVivienda int, @Resultado varchar(255) OUTPUT
+AS
+BEGIN
+DECLARE @Eliminar INT, @IdUsuario INT, @NombreUsuario VARCHAR(255), @validar INT, @NombreTipoVivienda varchar(255), @SubMenu VARCHAR(255)
+SET @SubMenu = '/TipoVivienda'
+SELECT @IdUsuario = Id FROM Usuario WHERE IdUser = @IdUser
+SELECT @NombreUsuario = Nombre FROM Usuario WHERE IdUser = @IdUser
+SELECT @NombreTipoVivienda = Nombre FROM Pais WHERE Id = @IdTipoVivienda
+	SELECT	@Eliminar = dbo.Fun_PermisoUsuario('Eliminar',@IdUsuario, @SubMenu)	
+		IF @Eliminar > 0
+			BEGIN	
+				SELECT @validar = 0 --COUNT(1) FROM Departamento WHERE IdTipoVivienda = @IdTipoVivienda
+				IF @validar > 0 
+					BEGIN
+						SET @Resultado = 'Error*El tipo vivienda ' + @NombreTipoVivienda +' no se puede eliminar, actualmente se encuentra en uso'	
+					END
+				ELSE
+					BEGIN
+						DELETE TipoVivienda WHERE Id = @IdTipoVivienda
+						SET @Resultado = 'OK*Se elimino el tipo vivienda correctamente'	
+					END								
+			END
+		ELSE
+			BEGIN
+				SET @Resultado = 'Error*El usuario '+ @NombreUsuario + ' no tiene permiso para eliminar el tipo vivienda' 
 			END
 	SELECT @Resultado
 END

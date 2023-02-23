@@ -87,6 +87,7 @@
     <Compile Include="DataEntities\DataTipoHoraExtra.cs" />
     <Compile Include="DataEntities\DataTipoMoneda.cs" />
     <Compile Include="DataEntities\DataTipoUnidadMedida.cs" />
+    <Compile Include="DataEntities\DataTipoVivienda.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

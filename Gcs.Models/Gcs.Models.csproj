@@ -61,6 +61,7 @@
     <Compile Include="Models\TipoHoraExtra.cs" />
     <Compile Include="Models\TipoMoneda.cs" />
     <Compile Include="Models\TipoUnidadMedida.cs" />
+    <Compile Include="Models\TipoVivienda.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

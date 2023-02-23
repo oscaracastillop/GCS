@@ -103,10 +103,7 @@ function CargarDatosHVEmpleado() {
 }
 
 function CargarDatosPersonales() {
-    let IdEmpleado = Cookies.get('IdHVEmpleado');  
-    ListaPaisNacionalidad('N');
-    ListaTipoGeneroEmpleado('N');
-    ListaTipoEstadoCivil('N');
+    let IdEmpleado = Cookies.get('IdHVEmpleado');    
     $.ajax({
         type: 'POST',
         dataType: 'json',
@@ -125,6 +122,7 @@ function CargarDatosPersonales() {
     });    
     $('#ModalDatosPersonalesEmpleado').modal('show')
 }
+
 
 function GuardarCambiosDatosPersonales() {
     let User = Cookies.get('IdUser');
@@ -176,6 +174,29 @@ function GuardarCambiosDatosPersonales() {
             }
         });
     }
+}
+
+
+
+function CargarDatosResidencia() {
+    let IdEmpleado = Cookies.get('IdHVEmpleado');
+    //$.ajax({
+    //    type: 'POST',
+    //    dataType: 'json',
+    //    url: '/Empleado/CargarDatosResidencia',
+    //    data: { IdEmpleado: IdEmpleado },
+    //    success: function (resultado) {
+    //        $('#SelectPaisNacionalidad').val(resultado[0].IdNacionalidad);
+    //        $('#InputFechaNacimientoEmpleado').val(resultado[0].FechaNacimiento);
+    //        $('#InputLugarNacimientoEmpleado').val(resultado[0].LugarNacimiento);
+    //        $('#SelectSexoEmpleado').val(resultado[0].IdSexo);
+    //        $('#SelectTipoEstadoCivil').val(resultado[0].IdEstadoCivil);
+    //        $('#InputEmailEmpleado').val(resultado[0].Email);
+    //        $('#InputTelefono1Empleado').val(resultado[0].Telefono1);
+    //        $('#InputTelefono2Empleado').val(resultado[0].Telefono2);
+    //    }
+    //});
+    $('#ModalDatosResidenciaEmpleado').modal('show')
 }
 
 
