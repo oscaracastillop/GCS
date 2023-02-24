@@ -131,7 +131,7 @@
             <td width="25%">
                 <label><strong>Teléfono Arrendador</strong></label>
                 <br />
-                <Label id="InputHVNombreArrendador"></Label>
+                <Label id="InputHVTelefonoArrendador"></Label>
             </td>
             <td width="25%">
                 <label><strong>Tiempo Residiendo</strong></label>
@@ -323,7 +323,7 @@
                         </td>
                         <td width="25%">
                             <label><strong>Dirección</strong></label>
-                            <input class="form-control" type="text" id="InputDireccionEmpresa" name="name" autocomplete="off" />
+                            <input class="form-control" type="text" id="InputDireccionEmpleado" name="name" autocomplete="off" />
                         </td>
                     </tr>
                     <tr>
@@ -341,13 +341,13 @@
                         </td>
                         <td width="25%">
                             <label><strong>Tiempo Residiendo</strong></label>
-                            <input class="form-control" type="text" id="InputDireccionEmpresa" name="name" autocomplete="off" />
+                            <input class="form-control" type="text" id="InputTiempoResidiendo" name="name" autocomplete="off" />
                         </td>
                     </tr>
                 </table>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-success btn-sm" onclick="GuardarCambiosDatosPersonales()"><i class="bi-trash"></i> Guardar</button>
+                <button type="button" class="btn btn-success btn-sm" onclick="GuardarCambiosDatosResidencia()"><i class="bi-trash"></i> Guardar</button>
             </div>
         </div>
     </div>
@@ -357,8 +357,8 @@
     $(document).ready(function () {
         CargarDatosHVEmpleado();
         ListaPais('N');
-        ListaDepartamento();
-        ListaCiudad();
+        ListaDepartamento('N');
+        ListaCiudad('N');
         ListaPaisNacionalidad('N');
         ListaTipoGeneroEmpleado('N');
         ListaTipoEstadoCivil('N');

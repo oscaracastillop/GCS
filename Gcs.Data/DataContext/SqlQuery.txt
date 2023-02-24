@@ -4353,11 +4353,9 @@ IdEstadoCivil int,
 Email varchar(255),
 Telefono1 varchar(255),
 Telefono2 varchar(255),
-IdPaisResidencia int,
-IdDepartamentoResidencia int,
 IdCiudadResidencia int,
 DireccionResidencia varchar(255),
-TipoVivienda varchar(255),
+IdTipoVivienda int,
 NombreArrendador varchar(255),
 TelefonoArrendador varchar(255),
 TiempoResidiendo varchar(255),
@@ -4386,10 +4384,9 @@ unique(Identificacion)
 ALTER TABLE Empleado ADD CONSTRAINT FK_IdCreateByEmpleado FOREIGN KEY (CreateBy ) references Usuario(Id)
 ALTER TABLE Empleado ADD CONSTRAINT FK_IdTipoDocumentoEmpleado FOREIGN KEY (IdTipoDocumento ) references TipoDocumento(Id)
 ALTER TABLE Empleado ADD CONSTRAINT FK_IdNacionalidadEmpleado FOREIGN KEY (IdNacionalidad) references Pais(Id)
-ALTER TABLE Empleado ADD CONSTRAINT FK_IdPaisResidenciaEmpleado FOREIGN KEY (IdPaisResidencia ) references Pais(Id)
-ALTER TABLE Empleado ADD CONSTRAINT FK_IdDepartamentoResidenciaEmpleado FOREIGN KEY (IdDepartamentoResidencia ) references Departamento(Id)
 ALTER TABLE Empleado ADD CONSTRAINT FK_IdCiudadResidenciaEmpleado FOREIGN KEY (IdCiudadResidencia ) references Ciudad(Id)
 ALTER TABLE Empleado ADD CONSTRAINT FK_IdSexoEmpleado FOREIGN KEY (IdSexo ) references TipoGenero(Id)
+ALTER TABLE Empleado ADD CONSTRAINT FK_IdTipoViviendaEmpleado FOREIGN KEY (IdTipoVivienda ) references TipoVivienda(Id)
 
 go
 
@@ -4445,45 +4442,52 @@ go
 CREATE PROCEDURE SP_CargarDatosHVEmpleado @IdEmpleado Int
 AS
 BEGIN
-	SELECT	Nombre,
-			Apellido,
-			dbo.Fun_BuscarNombreTipoDocumento(IdTipoDocumento) As TipoDocumento,
-			Identificacion,
-			dbo.Fun_BuscarNombrePais(IdNacionalidad) As Nacionalidad,
-			FechaNacimiento,
-			LugarNacimiento,
-			dbo.Fun_BuscarNombreTipoGenero(IdSexo) As Sexo,
-			dbo.Fun_BuscarNombreTipoEstadoCivil(IdEstadoCivil) As EstadoCivil,
-			Email,
-			Telefono1,
-			Telefono2,
-			dbo.Fun_BuscarNombrePais(IdPaisResidencia) As PaisResidencia,
-			dbo.Fun_BuscarNombreDepartamento(IdDepartamentoResidencia) As DepartamentoResidencia,
-			dbo.Fun_BuscarNombreCiudad(IdCiudadResidencia) As CiudadResidencia,
-			DireccionResidencia,
-			TipoVivienda,
-			NombreArrendador,
-			TelefonoArrendador,
-			TiempoResidiendo,
-			NombreRF1,
-			ParentescoRF1,
-			TelefonoRF1,
-			ProfesionRF1,
-			NombreRF2,
-			ParentescoRF2,
-			TelefonoRF2,
-			ProfesionRF2,
-			NombreRP1,
-			DireccionRP1,
-			TelefonoRP1,
-			ProfesionRP1,
-			NombreRP2,
-			DireccionRP2,
-			TelefonoRP2,
-			ProfesionRP2
-	FROM Empleado
-	WHERE Id = @IdEmpleado
+	SELECT	E.Nombre,
+			E.Apellido,
+			dbo.Fun_BuscarNombreTipoDocumento(E.IdTipoDocumento) As TipoDocumento,
+			E.Identificacion,
+			dbo.Fun_BuscarNombrePais(E.IdNacionalidad) As Nacionalidad,
+			E.FechaNacimiento,
+			E.LugarNacimiento,
+			dbo.Fun_BuscarNombreTipoGenero(E.IdSexo) As Sexo,
+			dbo.Fun_BuscarNombreTipoEstadoCivil(E.IdEstadoCivil) As EstadoCivil,
+			E.Email,
+			E.Telefono1,
+			E.Telefono2,
+			dbo.Fun_BuscarNombrePais(P.Id) As PaisResidencia,
+			dbo.Fun_BuscarNombreDepartamento(D.Id) As DepartamentoResidencia,
+			dbo.Fun_BuscarNombreCiudad(C.Id) As CiudadResidencia,
+			E.DireccionResidencia,
+			dbo.Fun_BuscarNombreTipoVivienda(E.IdTipoVivienda) As TipoVivienda,
+			E.NombreArrendador,
+			E.TelefonoArrendador,
+			E.TiempoResidiendo,
+			E.NombreRF1,
+			E.ParentescoRF1,
+			E.TelefonoRF1,
+			E.ProfesionRF1,
+			E.NombreRF2,
+			E.ParentescoRF2,
+			E.TelefonoRF2,
+			E.ProfesionRF2,
+			E.NombreRP1,
+			E.DireccionRP1,
+			E.TelefonoRP1,
+			E.ProfesionRP1,
+			E.NombreRP2,
+			E.DireccionRP2,
+			E.TelefonoRP2,
+			E.ProfesionRP2
+	FROM	Empleado E,
+			Pais P,
+			Departamento D,
+			Ciudad C
+	WHERE	E.Id = @IdEmpleado
+			AND P.Id = D.IdPais
+			AND D.Id = C.IdDepartamento
+			AND C.Id = E.IdCiudadResidencia
 END
+
 
 go
 
@@ -4544,3 +4548,70 @@ SELECT @Modificar = dbo.Fun_PermisoUsuario('Editar',@IdUsuario, @SubMenu)
 					END
 	SELECT @Resultado
 END
+
+go
+
+
+CREATE PROCEDURE SP_CargarDatosResidencia @IdEmpleado Int
+AS
+BEGIN
+	SELECT	
+		ISNULL(P.Id,-1) As IdPais,
+		ISNULL(D.Id,-1) As IdDepartamento,
+		ISNULL(C.Id,-1) As IdCiudad,
+		ISNULL(E.DireccionResidencia,'') As DireccionResidencia,
+		ISNULL(E.IdTipoVivienda, -1) As IdTipoVivienda,
+		ISNULL(E.NombreArrendador,'') As NombreArrendador,
+		ISNULL(E.TelefonoArrendador,'') As TelefonoArrendador,
+		ISNULL(E.TiempoResidiendo,'') As TiempoResidiendo
+FROM	Empleado E,
+		Pais P,
+		Departamento D,
+		Ciudad C
+WHERE	E.Id = @IdEmpleado
+		AND C.Id = E.IdCiudadResidencia
+		AND P.Id = D.IdPais
+		AND D.Id = C.IdDepartamento
+END
+
+go
+
+CREATE PROCEDURE [dbo].[SP_GuardarCambiosDatosResidencia] 
+				@IdEmpleado int, 
+				@IdUser varchar(255),
+				@IdCiudad int,
+				@DireccionEmpleado varchar(255),
+				@IdTipoVivienda int,
+				@NombreArrendador varchar(255),
+				@TelefonoArrendador varchar(255),
+				@TiempoResidiendo varchar(255),
+				@Resultado varchar(255) OUTPUT
+AS
+BEGIN
+DECLARE @Modificar INT, @IdUsuario INT, @NombreUsuario VARCHAR(255), @SubMenu VARCHAR(255)
+SET @SubMenu = '/Empleado'
+SELECT @IdUsuario = Id FROM Usuario WHERE IdUser = @IdUser
+SELECT @NombreUsuario = Nombre FROM Usuario WHERE IdUser = @IdUser
+SELECT @Modificar = dbo.Fun_PermisoUsuario('Editar',@IdUsuario, @SubMenu)	
+				IF @Modificar > 0
+					BEGIN
+						UPDATE	Empleado 
+						SET		IdCiudadResidencia = @IdCiudad,
+								DireccionResidencia = @DireccionEmpleado,
+								IdTipoVivienda = @IdTipoVivienda,
+								NombreArrendador = @NombreArrendador,
+								TelefonoArrendador = @TelefonoArrendador,
+								TiempoResidiendo = @TiempoResidiendo
+						WHERE	Id = @IdEmpleado
+					    --SET @Resultado = 'OK*Se guardaron los cambios del Empleado ' + @NombreSucursal+ ' correctamente'
+						SET @Resultado = 'OK*Se guardaron los cambios del empleado correctamente'
+					END
+				ELSE
+					BEGIN
+						SET @Resultado = 'Error*El usuario '+ @NombreUsuario + ' no tiene permiso para realizar cambios al empleado' 
+					END
+	SELECT @Resultado
+END
+
+GO
+

@@ -81,6 +81,7 @@ function CargarDatosHVEmpleado() {
             $('#InputHVDireccionResidencia').text(resultado[0].DireccionResidencia);
             $('#InputHVTipoVivienda').text(resultado[0].TipoVivienda);
             $('#InputHVNombreArrendador').text(resultado[0].NombreArrendador);
+            $('#InputHVTelefonoArrendador').text(resultado[0].TelefonoArrendador); 
             $('#InputHVTiempoResidiendo').text(resultado[0].TiempoResidiendo);
             $('#InputHVNombreRF1').text(resultado[0].NombreRF1);
             $('#InputHVParentescoRF1').text(resultado[0].ParentescoRF1);
@@ -180,23 +181,70 @@ function GuardarCambiosDatosPersonales() {
 
 function CargarDatosResidencia() {
     let IdEmpleado = Cookies.get('IdHVEmpleado');
-    //$.ajax({
-    //    type: 'POST',
-    //    dataType: 'json',
-    //    url: '/Empleado/CargarDatosResidencia',
-    //    data: { IdEmpleado: IdEmpleado },
-    //    success: function (resultado) {
-    //        $('#SelectPaisNacionalidad').val(resultado[0].IdNacionalidad);
-    //        $('#InputFechaNacimientoEmpleado').val(resultado[0].FechaNacimiento);
-    //        $('#InputLugarNacimientoEmpleado').val(resultado[0].LugarNacimiento);
-    //        $('#SelectSexoEmpleado').val(resultado[0].IdSexo);
-    //        $('#SelectTipoEstadoCivil').val(resultado[0].IdEstadoCivil);
-    //        $('#InputEmailEmpleado').val(resultado[0].Email);
-    //        $('#InputTelefono1Empleado').val(resultado[0].Telefono1);
-    //        $('#InputTelefono2Empleado').val(resultado[0].Telefono2);
-    //    }
-    //});
+    $.ajax({
+        type: 'POST',
+        dataType: 'json',
+        url: '/Empleado/CargarDatosResidencia',
+        data: { IdEmpleado: IdEmpleado },
+        success: function (resultado) {
+            $('#SelectPais').val(resultado[0].IdPais);
+            $('#SelectDepartamento').val(resultado[0].IdDepartamento);
+            $('#SelectCiudad').val(resultado[0].IdCiudad);
+            $('#InputDireccionEmpleado').val(resultado[0].DireccionResidencia);
+            $('#SelectTipoVivienda').val(resultado[0].IdTipoVivienda);
+            $('#InputNombreArrendador').val(resultado[0].NombreArrendador);
+            $('#InputTelefonoArrendador').val(resultado[0].TelefonoArrendador);
+            $('#InputTiempoResidiendo').val(resultado[0].TiempoResidiendo);
+        }
+    });
     $('#ModalDatosResidenciaEmpleado').modal('show')
+}
+
+
+function GuardarCambiosDatosResidencia() {
+    let User = Cookies.get('IdUser');
+    let IdEmpleado = Cookies.get('IdHVEmpleado');
+    let IdCiudad = $('#SelectCiudad').val();
+    let DireccionEmpleado = $('#InputDireccionEmpleado').val();
+    let IdTipoVivienda = $('#SelectTipoVivienda').val();
+    let NombreArrendador = $('#InputNombreArrendador').val();
+    let TelefonoArrendador = $('#InputTelefonoArrendador').val();
+    let TiempoResidiendo = $('#InputTiempoResidiendo').val();
+    if (IdCiudad == '' || IdCiudad == null || IdCiudad == -1) {
+        Swal.fire('Mensaje del Sistema', 'Seleccione la ciudad', 'info');
+    } else if (IdTipoVivienda == '' || IdTipoVivienda == null || IdTipoVivienda == -1) {
+        Swal.fire('Mensaje del Sistema', 'Seleccione el tipo de vivienda', 'info');
+    } else {
+        $.ajax({
+            type: 'POST',
+            dataType: 'json',
+            url: '/Empleado/GuardarCambiosDatosResidencia',
+            data: {
+                IdEmpleado: IdEmpleado,
+                IdUser: User,
+                IdCiudad: IdCiudad,
+                DireccionEmpleado: DireccionEmpleado,
+                IdTipoVivienda: IdTipoVivienda,
+                NombreArrendador: NombreArrendador,
+                TelefonoArrendador: TelefonoArrendador,
+                TiempoResidiendo: TiempoResidiendo,
+            },
+            success: function (resultado) {
+                valor = resultado.split('*');
+                if (valor[0] == 'OK') {
+                    Swal.fire({
+                        title: 'Mensaje del Sistema',
+                        text: valor[1],
+                        icon: 'success',
+                    }).then((result) => {
+                        window.location.href = '/Empleado/Hoja_Vida_Empleado';
+                    })
+                } else {
+                    Swal.fire('Mensaje del Sistema', valor[1], 'info');
+                }
+            }
+        });
+    }
 }
 
 

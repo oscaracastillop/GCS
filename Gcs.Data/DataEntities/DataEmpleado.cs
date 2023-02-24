@@ -106,6 +106,38 @@ namespace Gcs.Data.DataEntities
             return resultado;
         }
 
+        public List<CargarDatosResidencia> CargarDatosResidencia(int IdEmpleado)
+        {
+            try
+            {
+                return _conection.Database.SqlQuery<CargarDatosResidencia>("SP_CargarDatosResidencia @IdEmpleado",
+                    new SqlParameter("@IdEmpleado", IdEmpleado)).ToList();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public string GuardarCambiosDatosResidencia(int IdEmpleado, string IdUser, int IdCiudad, string DireccionEmpleado, int IdTipoVivienda, string NombreArrendador, string TelefonoArrendador, string TiempoResidiendo)
+        {
+            string resultado = String.Empty;
+            var varIdEmpleado = new SqlParameter("@IdEmpleado", SqlDbType.Int) { Value = IdEmpleado };
+            var varIdUser = new SqlParameter("@IdUser", SqlDbType.VarChar) { Value = IdUser };
+            var varIdCiudad = new SqlParameter("@IdCiudad", SqlDbType.Int) { Value = IdCiudad };
+            var varDireccionEmpleado = new SqlParameter("@DireccionEmpleado", SqlDbType.VarChar) { Value = DireccionEmpleado };
+            var varIdTipoVivienda = new SqlParameter("@IdTipoVivienda", SqlDbType.Int) { Value = IdTipoVivienda };
+            var varNombreArrendador = new SqlParameter("@NombreArrendador", SqlDbType.VarChar) { Value = NombreArrendador };
+            var varTelefonoArrendador = new SqlParameter("@TelefonoArrendador", SqlDbType.VarChar) { Value = TelefonoArrendador };
+            var varTiempoResidiendo = new SqlParameter("@TiempoResidiendo", SqlDbType.VarChar) { Value = TiempoResidiendo };
+            var varResultado = new SqlParameter("@Resultado", SqlDbType.VarChar) { Direction = ParameterDirection.Output, Size = 255 };
+
+            _conection.Database.ExecuteSqlCommand("SP_GuardarCambiosDatosResidencia @IdEmpleado, @IdUser, @IdCiudad, @DireccionEmpleado, @IdTipoVivienda, @NombreArrendador, @TelefonoArrendador, @TiempoResidiendo, @Resultado OUTPUT", varIdEmpleado, varIdUser, varIdCiudad, varDireccionEmpleado, varIdTipoVivienda, varNombreArrendador, varTelefonoArrendador, varTiempoResidiendo, varResultado);
+
+            resultado = Convert.ToString(varResultado.Value);
+            return resultado;
+        }
+
         public List<GridEmpleado> GridEmpleado()
         {
             try

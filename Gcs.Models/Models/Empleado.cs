@@ -38,6 +38,7 @@ namespace Gcs.Models.Models
             public string DireccionResidencia { get; set; }
             public string TipoVivienda { get; set; }
             public string NombreArrendador { get; set; }
+            public string TelefonoArrendador { get; set; }
             public string TiempoResidiendo { get; set; }
             public string NombreRF1 { get; set; }
             public string ParentescoRF1 { get; set; }
@@ -67,6 +68,18 @@ namespace Gcs.Models.Models
             public string Email { get; set; }
             public string Telefono1 { get; set; }
             public string Telefono2 { get; set; }
+        }
+
+        public class CargarDatosResidencia
+        {
+            public int IdPais { get; set; }
+            public int IdDepartamento { get; set; }
+            public int IdCiudad { get; set; }
+            public string DireccionResidencia { get; set; }
+            public int IdTipoVivienda { get; set; }
+            public string NombreArrendador { get; set; }
+            public string TelefonoArrendador { get; set; }
+            public string TiempoResidiendo { get; set; }
         }
     }
 }

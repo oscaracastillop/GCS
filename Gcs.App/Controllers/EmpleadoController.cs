@@ -51,6 +51,18 @@ namespace Gcs.App.Controllers
             return Json(resultado);
         }
 
+        public ActionResult CargarDatosResidencia(int IdEmpleado)
+        {
+            var resultado = dataEmpleado.CargarDatosResidencia(IdEmpleado);
+            return Json(resultado);
+        }
+
+        public JsonResult GuardarCambiosDatosResidencia(int IdEmpleado, string IdUser, int IdCiudad, string DireccionEmpleado, int IdTipoVivienda, string NombreArrendador, string TelefonoArrendador, string TiempoResidiendo)
+        {
+            var resultado = dataEmpleado.GuardarCambiosDatosResidencia(IdEmpleado, IdUser, IdCiudad, DireccionEmpleado,IdTipoVivienda, NombreArrendador, TelefonoArrendador, TiempoResidiendo);
+            return Json(resultado);
+        }
+
         public ActionResult GridEmpleado()
         {
             var data = dataEmpleado.GridEmpleado();
