@@ -12,39 +12,25 @@
     <label style="font-weight:bold">HOJA VIDA EMPLEADO</label>
     <hr />
 </h7>
-<img src="~/Sources/ImagesHojaVidaEmpleado/Usuario.png" class="imagenhv">
-<div id="ImagePerfilUsuario"></div>
+<div style="margin-top:50px">
+    <img src="~/Sources/ImagesHojaVidaEmpleado/Usuario.png" class="imagenhv">
+    <div id="ImagePerfilUsuario"></div>
+</div>
+
 <div class="Centrar-Texto">
     <a href="#">Cambiar Foto</a>
 </div>
 
 
+<div style="text-align:center; margin-top:20px; color:cornflowerblue">
+    <label style="font-size:25px!important;font-weight:bold"><i id="LabelNombreEmpleado"></i></label>
+    <br />
+    <label style="font-size:18px!important;font-weight:bold"><i id="LabelDocumentoIdentificacion"></i></label>
+</div>
 
-<div style="margin-top:50px">
-    <label><strong>DATOS PERSONALES</strong><a href="#" title="Editar" onclick="CargarDatosPersonales()"><i class="bi-pencil-fill" style="Color:orange; margin-left:20px"></i></a></label>
+<div style="margin-top:50px;" class="fondolayout1">
+    <label><strong>INFORMACION PERSONAL</strong><a href="#" title="Editar" onclick="CargarDatosPersonales()"><i class="bi-pencil-fill" style="Color:orange; margin-left:20px"></i></a></label>
     <table class="table table-borderless" style="width:100%">
-        <tr>
-            <td width="25%">
-                <label><strong>Nombres</strong></label>
-                <br />
-                <Label id="InputHVNombre"></Label>
-            </td>
-            <td width="25%">
-                <label><strong>Apellidos</strong></label>
-                <br />
-                <Label id="InputHVApellido"></Label>
-            </td>
-            <td width="25%">
-                <label><strong>Tipo Documento</strong></label>
-                <br />
-                <Label id="InputHVTipoDocumento"></Label>
-            </td>
-            <td width="25%">
-                <label><strong>Identificación</strong></label>
-                <br />
-                <Label id="InputHVIdentificacion"></Label>
-            </td>
-        </tr>
         <tr>
             <td width="25%">
                 <label><strong>Nacionalidad</strong></label>
@@ -92,8 +78,8 @@
     </table>
 </div>
 
-<div>
-    <label><strong>DATOS RESIDENCIA</strong><a href="#" title="Editar" onclick="CargarDatosResidencia()"><i class="bi-pencil-fill" style="Color:orange; margin-left:20px"></i></a></label>
+<div class="fondolayout1">
+    <label><strong>INFORMACION RESIDENCIA</strong><a href="#" title="Editar" onclick="CargarDatosResidencia()"><i class="bi-pencil-fill" style="Color:orange; margin-left:20px"></i></a></label>
     <table class="table table-borderless" style="width:100%">
         <tr>
             <td width="25%">
@@ -142,8 +128,8 @@
     </table>
 </div>
 
-<div>
-    <label><strong>REFERENCIAS FAMILIARES</strong><a href="#" title="Editar"><i class="bi-pencil-fill" style="Color:orange; margin-left:20px"></i></a></label>
+<div class="fondolayout1">
+    <label><strong>REFERENCIAS FAMILIARES</strong><a href="#" title="Editar"  onclick="CargarDatosRFEmpleado()"><i class="bi-pencil-fill" style="Color:orange; margin-left:20px"></i></a></label>
     <table class="table table-borderless" style="width:100%">
         <tr>
             <td width="25%">
@@ -192,7 +178,7 @@
     </table>
 </div>
 
-<div>
+<div class="fondolayout1">
     <label><strong>REFERENCIAS PERSONALES</strong><a href="#" title="Editar"><i class="bi-pencil-fill" style="Color:orange; margin-left:20px"></i></a></label>
     <table class="table table-borderless" style="width:100%">
         <tr>
@@ -248,7 +234,7 @@
     <div class="modal-dialog" style="min-width:98%">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel"><strong>Datos Personales</strong></h5>
+                <h5 class="modal-title" id="staticBackdropLabel"><strong>Información Personal</strong></h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -303,7 +289,7 @@
     <div class="modal-dialog" style="min-width:98%">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel"><strong>Datos Personales</strong></h5>
+                <h5 class="modal-title" id="staticBackdropLabel"><strong>Información Residencia</strong></h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -353,9 +339,65 @@
     </div>
 </div>
 
+@*Modal referencias Familiares*@
+<div class="modal fade" id="ModalDatosRFEmpleado" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog" style="min-width:98%">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel"><strong>Referencias Familiares</strong></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <table class="table table-borderless" style="width:100%">
+                    <tr>
+                        <td width="25%">
+                            <label><strong>1. Nombre y Apellidos</strong></label>
+                            <input class="form-control" type="text" id="InputNombreRF1Empleado" name="name" autocomplete="off" />
+                        </td>
+                        <td width="25%">
+                            <label><strong>Parentesco</strong></label>
+                            <input class="form-control" type="text" id="InputParentescoRF1Empleado" name="name" autocomplete="off" />
+                        </td>
+                        <td width="25%">
+                            <label><strong>Teléfono</strong></label>
+                            <input class="form-control" type="text" id="InputTelefonoRF1Empleado" name="name" autocomplete="off" />
+                        </td>
+                        <td width="25%">
+                            <label><strong>Profesión</strong></label>
+                            <input class="form-control" type="text" id="InputProfesionRF1Empleado" name="name" autocomplete="off" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="25%">
+                            <label><strong>2. Nombre y Apellidos</strong></label>
+                            <input class="form-control" type="text" id="InputNombreRF2Empleado" name="name" autocomplete="off" />
+                        </td>
+                        <td width="25%">
+                            <label><strong>Parentesco</strong></label>
+                            <input class="form-control" type="text" id="InputParentescoRF2Empleado" name="name" autocomplete="off" />
+                        </td>
+                        <td width="25%">
+                            <label><strong>Teléfono</strong></label>
+                            <input class="form-control" type="text" id="InputTelefonoRF2Empleado" name="name" autocomplete="off" />
+                        </td>
+                        <td width="25%">
+                            <label><strong>Profesión</strong></label>
+                            <input class="form-control" type="text" id="InputProfesionRF2Empleado" name="name" autocomplete="off" />
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success btn-sm" onclick="GuardarCambiosRFEmpleado()"><i class="bi-trash"></i> Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script>
     $(document).ready(function () {
         CargarDatosHVEmpleado();
+        CargarDatosCabeceraEmpleado();
         ListaPais('N');
         ListaDepartamento('N');
         ListaCiudad('N');

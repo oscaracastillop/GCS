@@ -55,6 +55,18 @@ namespace Gcs.Data.DataEntities
 
 
 
+        public List<CargarDatosCabeceraEmpleado> CargarDatosCabeceraEmpleado(int IdEmpleado)
+        {
+            try
+            {
+                return _conection.Database.SqlQuery<CargarDatosCabeceraEmpleado>("SP_CargarDatosCabeceraEmpleado @IdEmpleado",
+                    new SqlParameter("@IdEmpleado", IdEmpleado)).ToList();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
 
 
@@ -133,6 +145,40 @@ namespace Gcs.Data.DataEntities
             var varResultado = new SqlParameter("@Resultado", SqlDbType.VarChar) { Direction = ParameterDirection.Output, Size = 255 };
 
             _conection.Database.ExecuteSqlCommand("SP_GuardarCambiosDatosResidencia @IdEmpleado, @IdUser, @IdCiudad, @DireccionEmpleado, @IdTipoVivienda, @NombreArrendador, @TelefonoArrendador, @TiempoResidiendo, @Resultado OUTPUT", varIdEmpleado, varIdUser, varIdCiudad, varDireccionEmpleado, varIdTipoVivienda, varNombreArrendador, varTelefonoArrendador, varTiempoResidiendo, varResultado);
+
+            resultado = Convert.ToString(varResultado.Value);
+            return resultado;
+        }
+
+        public List<CargarDatosRFEmpleado> CargarDatosRFEmpleado(int IdEmpleado)
+        {
+            try
+            {
+                return _conection.Database.SqlQuery<CargarDatosRFEmpleado>("SP_CargarDatosRFEmpleado @IdEmpleado",
+                    new SqlParameter("@IdEmpleado", IdEmpleado)).ToList();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public string GuardarCambiosRFEmpleado(int IdEmpleado, string IdUser, string NombreRF1Empleado, string ParentescoRF1Empleado, string TelefonoRF1Empleado, string ProfesionRF1Empleado, string NombreRF2Empleado, string ParentescoRF2Empleado, string TelefonoRF2Empleado, string ProfesionRF2Empleado)
+        {
+            string resultado = String.Empty;
+            var varIdEmpleado = new SqlParameter("@IdEmpleado", SqlDbType.Int) { Value = IdEmpleado };
+            var varIdUser = new SqlParameter("@IdUser", SqlDbType.VarChar) { Value = IdUser };
+            var varNombreRF1Empleado = new SqlParameter("@NombreRF1Empleado", SqlDbType.VarChar) { Value = NombreRF1Empleado };
+            var varParentescoRF1Empleado = new SqlParameter("@ParentescoRF1Empleado", SqlDbType.VarChar) { Value = ParentescoRF1Empleado };
+            var varTelefonoRF1Empleado = new SqlParameter("@TelefonoRF1Empleado", SqlDbType.VarChar) { Value = TelefonoRF1Empleado };
+            var varProfesionRF1Empleado = new SqlParameter("@ProfesionRF1Empleado", SqlDbType.VarChar) { Value = ProfesionRF1Empleado };
+            var varNombreRF2Empleado = new SqlParameter("@NombreRF2Empleado", SqlDbType.VarChar) { Value = NombreRF2Empleado };
+            var varParentescoRF2Empleado = new SqlParameter("@ParentescoRF2Empleado", SqlDbType.VarChar) { Value = ParentescoRF2Empleado };
+            var varTelefonoRF2Empleado = new SqlParameter("@TelefonoRF2Empleado", SqlDbType.VarChar) { Value = TelefonoRF2Empleado };
+            var varProfesionRF2Empleado = new SqlParameter("@ProfesionRF2Empleado", SqlDbType.VarChar) { Value = ProfesionRF2Empleado };
+            var varResultado = new SqlParameter("@Resultado", SqlDbType.VarChar) { Direction = ParameterDirection.Output, Size = 255 };
+
+            _conection.Database.ExecuteSqlCommand("SP_GuardarCambiosRFEmpleado @IdEmpleado, @IdUser, @NombreRF1Empleado, @ParentescoRF1Empleado, @TelefonoRF1Empleado, @ProfesionRF1Empleado, @NombreRF2Empleado, @ParentescoRF2Empleado, @TelefonoRF2Empleado, @ProfesionRF2Empleado, @Resultado OUTPUT", varIdEmpleado, varIdUser, varNombreRF1Empleado, varParentescoRF1Empleado, varTelefonoRF1Empleado, varProfesionRF1Empleado, varNombreRF2Empleado, varParentescoRF2Empleado, varTelefonoRF2Empleado, varProfesionRF2Empleado, varResultado);
 
             resultado = Convert.ToString(varResultado.Value);
             return resultado;

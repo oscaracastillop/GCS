@@ -39,6 +39,12 @@ namespace Gcs.App.Controllers
             return Json(resultado);
         }
 
+        public ActionResult CargarDatosCabeceraEmpleado(int IdEmpleado)
+        {
+            var resultado = dataEmpleado.CargarDatosCabeceraEmpleado(IdEmpleado);
+            return Json(resultado);
+        }
+
         public ActionResult CargarDatosPersonales(int IdEmpleado)
         {
             var resultado = dataEmpleado.CargarDatosPersonales(IdEmpleado);
@@ -60,6 +66,18 @@ namespace Gcs.App.Controllers
         public JsonResult GuardarCambiosDatosResidencia(int IdEmpleado, string IdUser, int IdCiudad, string DireccionEmpleado, int IdTipoVivienda, string NombreArrendador, string TelefonoArrendador, string TiempoResidiendo)
         {
             var resultado = dataEmpleado.GuardarCambiosDatosResidencia(IdEmpleado, IdUser, IdCiudad, DireccionEmpleado,IdTipoVivienda, NombreArrendador, TelefonoArrendador, TiempoResidiendo);
+            return Json(resultado);
+        }
+
+        public ActionResult CargarDatosRFEmpleado(int IdEmpleado)
+        {
+            var resultado = dataEmpleado.CargarDatosRFEmpleado(IdEmpleado);
+            return Json(resultado);
+        }
+
+        public JsonResult GuardarCambiosRFEmpleado(int IdEmpleado, string IdUser, string NombreRF1Empleado, string ParentescoRF1Empleado, string TelefonoRF1Empleado, string ProfesionRF1Empleado, string NombreRF2Empleado, string ParentescoRF2Empleado, string TelefonoRF2Empleado, string ProfesionRF2Empleado)
+        {
+            var resultado = dataEmpleado.GuardarCambiosRFEmpleado(IdEmpleado, IdUser, NombreRF1Empleado, ParentescoRF1Empleado, TelefonoRF1Empleado, ProfesionRF1Empleado, NombreRF2Empleado, ParentescoRF2Empleado, TelefonoRF2Empleado, ProfesionRF2Empleado);
             return Json(resultado);
         }
 

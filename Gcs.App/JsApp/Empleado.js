@@ -42,17 +42,19 @@
     }
 }
 
-
-
-
-
-
-
-
-
-
-
-
+function CargarDatosCabeceraEmpleado() {
+    let IdEmpleado = Cookies.get('IdHVEmpleado');
+    $.ajax({
+        type: 'POST',
+        dataType: 'json',
+        url: '/Empleado/CargarDatosCabeceraEmpleado',
+        data: { IdEmpleado: IdEmpleado },
+        success: function (resultado) {
+            $('#LabelNombreEmpleado').text(resultado[0].NombreEmpleado);
+            $('#LabelDocumentoIdentificacion').text(resultado[0].Identificacion);
+        }
+    });
+}
 
 
 function CargarDatosHVEmpleado() {
@@ -63,10 +65,6 @@ function CargarDatosHVEmpleado() {
         url: '/Empleado/CargarDatosHVEmpleado',
         data: { IdEmpleado: IdEmpleado },
         success: function (resultado) {
-            $('#InputHVNombre').text(resultado[0].Nombre);
-            $('#InputHVApellido').text(resultado[0].Apellido);
-            $('#InputHVTipoDocumento').text(resultado[0].TipoDocumento);
-            $('#InputHVIdentificacion').text(resultado[0].Identificacion);
             $('#InputHVNacionalidad').text(resultado[0].Nacionalidad);
             $('#InputHVFechaNacimiento').text(resultado[0].FechaNacimiento);
             $('#InputHVLugarNacimiento').text(resultado[0].LugarNacimiento);
@@ -248,6 +246,72 @@ function GuardarCambiosDatosResidencia() {
 }
 
 
+function CargarDatosRFEmpleado() {
+    let IdEmpleado = Cookies.get('IdHVEmpleado');
+    $.ajax({
+        type: 'POST',
+        dataType: 'json',
+        url: '/Empleado/CargarDatosRFEmpleado',
+        data: { IdEmpleado: IdEmpleado },
+        success: function (resultado) {
+            $('#InputNombreRF1Empleado').val(resultado[0].NombreRF1Empleado);
+            $('#InputParentescoRF1Empleado').val(resultado[0].ParentescoRF1Empleado);
+            $('#InputTelefonoRF1Empleado').val(resultado[0].TelefonoRF1Empleado);
+            $('#InputProfesionRF1Empleado').val(resultado[0].ProfesionRF1Empleado);
+            $('#InputNombreRF2Empleado').val(resultado[0].NombreRF2Empleado);
+            $('#InputParentescoRF2Empleado').val(resultado[0].ParentescoRF2Empleado);
+            $('#InputTelefonoRF2Empleado').val(resultado[0].TelefonoRF2Empleado);
+            $('#InputProfesionRF2Empleado').val(resultado[0].ProfesionRF2Empleado);
+        }
+    });
+    $('#ModalDatosRFEmpleado').modal('show')
+}
+
+function GuardarCambiosRFEmpleado() {
+    let User = Cookies.get('IdUser');
+    let IdEmpleado = Cookies.get('IdHVEmpleado');
+    let NombreRF1Empleado = $('#InputNombreRF1Empleado').val();
+    let ParentescoRF1Empleado = $('#InputParentescoRF1Empleado').val();
+    let TelefonoRF1Empleado = $('#InputTelefonoRF1Empleado').val();
+    let ProfesionRF1Empleado = $('#InputProfesionRF1Empleado').val();
+    let NombreRF2Empleado = $('#InputNombreRF2Empleado').val();
+    let ParentescoRF2Empleado = $('#InputParentescoRF2Empleado').val();
+    let TelefonoRF2Empleado = $('#InputTelefonoRF2Empleado').val();
+    let ProfesionRF2Empleado = $('#InputProfesionRF2Empleado').val();
+    $.ajax({
+        type: 'POST',
+        dataType: 'json',
+        url: '/Empleado/GuardarCambiosRFEmpleado',
+        data: {
+            IdEmpleado: IdEmpleado,
+            IdUser: User,
+            NombreRF1Empleado: NombreRF1Empleado,
+            ParentescoRF1Empleado: ParentescoRF1Empleado,
+            TelefonoRF1Empleado: TelefonoRF1Empleado,
+            ProfesionRF1Empleado: ProfesionRF1Empleado,
+            NombreRF2Empleado: NombreRF2Empleado,
+            ParentescoRF2Empleado: ParentescoRF2Empleado,
+            TelefonoRF2Empleado: TelefonoRF2Empleado,
+            ProfesionRF2Empleado: ProfesionRF2Empleado
+        },
+        success: function (resultado) {
+            valor = resultado.split('*');
+            if (valor[0] == 'OK') {
+                Swal.fire({
+                    title: 'Mensaje del Sistema',
+                    text: valor[1],
+                    icon: 'success',
+                }).then((result) => {
+                    window.location.href = '/Empleado/Hoja_Vida_Empleado';
+                })
+            } else {
+                Swal.fire('Mensaje del Sistema', valor[1], 'info');
+            }
+        }
+    });    
+}
+
+
 function GridEmpleado() {
     let datatable = $('#gridEmpleado').DataTable({
         "responsive": true,
@@ -406,6 +470,10 @@ function GridEmpleado() {
     $('#gridEmpleado').on('click', '.HojaVidaEmpleado', function () {
         let data = datatable.row($(this).parents()).data();
         Cookies.set('IdHVEmpleado', data.Id);
+       
         window.location = "/Empleado/Hoja_Vida_Empleado";
+        $('#LabelNombreEmpleado').text(data.Id);
+        $('#LabelTipoDocumento').text(data.TipoDocumento);
+        $('#LabelDocumentoIdentificacion').text(data.Identificacion);
     });
 }

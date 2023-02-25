@@ -20,10 +20,6 @@ namespace Gcs.Models.Models
         }
         public class CargarDatosHVEmpleado
         {
-            public string Nombre { get; set; }
-            public string Apellido { get; set; }
-            public string TipoDocumento { get; set; }
-            public string Identificacion { get; set; }
             public string Nacionalidad { get; set; }
             public string FechaNacimiento { get; set; }
             public string LugarNacimiento { get; set; }
@@ -80,6 +76,24 @@ namespace Gcs.Models.Models
             public string NombreArrendador { get; set; }
             public string TelefonoArrendador { get; set; }
             public string TiempoResidiendo { get; set; }
+        }
+
+        public class CargarDatosCabeceraEmpleado
+        {            
+            public string NombreEmpleado { get; set; }
+            public string Identificacion { get; set; }
+        }
+
+        public class CargarDatosRFEmpleado
+        {
+            public string NombreRF1Empleado { get; set; }
+            public string ParentescoRF1Empleado { get; set; }
+            public string TelefonoRF1Empleado { get; set; }
+            public string ProfesionRF1Empleado { get; set; }
+            public string NombreRF2Empleado { get; set; }
+            public string ParentescoRF2Empleado { get; set; }
+            public string TelefonoRF2Empleado { get; set; }
+            public string ProfesionRF2Empleado { get; set; }
         }
     }
 }
