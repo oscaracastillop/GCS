@@ -184,6 +184,40 @@ namespace Gcs.Data.DataEntities
             return resultado;
         }
 
+        public List<CargarDatosRPEmpleado> CargarDatosRPEmpleado(int IdEmpleado)
+        {
+            try
+            {
+                return _conection.Database.SqlQuery<CargarDatosRPEmpleado>("SP_CargarDatosRPEmpleado @IdEmpleado",
+                    new SqlParameter("@IdEmpleado", IdEmpleado)).ToList();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public string GuardarCambiosRPEmpleado(int IdEmpleado, string IdUser, string NombreRP1Empleado, string DireccionRP1Empleado, string TelefonoRP1Empleado, string ProfesionRP1Empleado, string NombreRP2Empleado, string DireccionRP2Empleado, string TelefonoRP2Empleado, string ProfesionRP2Empleado)
+        {
+            string resultado = String.Empty;
+            var varIdEmpleado = new SqlParameter("@IdEmpleado", SqlDbType.Int) { Value = IdEmpleado };
+            var varIdUser = new SqlParameter("@IdUser", SqlDbType.VarChar) { Value = IdUser };
+            var varNombreRP1Empleado = new SqlParameter("@NombreRP1Empleado", SqlDbType.VarChar) { Value = NombreRP1Empleado };
+            var varDireccionRP1Empleado = new SqlParameter("@DireccionRP1Empleado", SqlDbType.VarChar) { Value = DireccionRP1Empleado };
+            var varTelefonoRP1Empleado = new SqlParameter("@TelefonoRP1Empleado", SqlDbType.VarChar) { Value = TelefonoRP1Empleado };
+            var varProfesionRP1Empleado = new SqlParameter("@ProfesionRP1Empleado", SqlDbType.VarChar) { Value = ProfesionRP1Empleado };
+            var varNombreRP2Empleado = new SqlParameter("@NombreRP2Empleado", SqlDbType.VarChar) { Value = NombreRP2Empleado };
+            var varDireccionRP2Empleado = new SqlParameter("@DireccionRP2Empleado", SqlDbType.VarChar) { Value = DireccionRP2Empleado };
+            var varTelefonoRP2Empleado = new SqlParameter("@TelefonoRP2Empleado", SqlDbType.VarChar) { Value = TelefonoRP2Empleado };
+            var varProfesionRP2Empleado = new SqlParameter("@ProfesionRP2Empleado", SqlDbType.VarChar) { Value = ProfesionRP2Empleado };
+            var varResultado = new SqlParameter("@Resultado", SqlDbType.VarChar) { Direction = ParameterDirection.Output, Size = 255 };
+
+            _conection.Database.ExecuteSqlCommand("SP_GuardarCambiosRPEmpleado @IdEmpleado, @IdUser, @NombreRP1Empleado, @DireccionRP1Empleado, @TelefonoRP1Empleado, @ProfesionRP1Empleado, @NombreRP2Empleado, @DireccionRP2Empleado, @TelefonoRP2Empleado, @ProfesionRP2Empleado, @Resultado OUTPUT", varIdEmpleado, varIdUser, varNombreRP1Empleado, varDireccionRP1Empleado, varTelefonoRP1Empleado, varProfesionRP1Empleado, varNombreRP2Empleado, varDireccionRP2Empleado, varTelefonoRP2Empleado, varProfesionRP2Empleado, varResultado);
+
+            resultado = Convert.ToString(varResultado.Value);
+            return resultado;
+        }
+
         public List<GridEmpleado> GridEmpleado()
         {
             try

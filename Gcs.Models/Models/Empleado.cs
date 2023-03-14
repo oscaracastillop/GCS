@@ -95,5 +95,17 @@ namespace Gcs.Models.Models
             public string TelefonoRF2Empleado { get; set; }
             public string ProfesionRF2Empleado { get; set; }
         }
+
+        public class CargarDatosRPEmpleado
+        {
+            public string NombreRP1Empleado { get; set; }
+            public string DireccionRP1Empleado { get; set; }
+            public string TelefonoRP1Empleado { get; set; }
+            public string ProfesionRP1Empleado { get; set; }
+            public string NombreRP2Empleado { get; set; }
+            public string DireccionRF2Empleado { get; set; }
+            public string TelefonoRP2Empleado { get; set; }
+            public string ProfesionRP2Empleado { get; set; }
+        }
     }
 }

@@ -81,6 +81,18 @@ namespace Gcs.App.Controllers
             return Json(resultado);
         }
 
+        public ActionResult CargarDatosRPEmpleado(int IdEmpleado)
+        {
+            var resultado = dataEmpleado.CargarDatosRPEmpleado(IdEmpleado);
+            return Json(resultado);
+        }
+
+        public JsonResult GuardarCambiosRPEmpleado(int IdEmpleado, string IdUser, string NombreRP1Empleado, string DireccionRP1Empleado, string TelefonoRP1Empleado, string ProfesionRP1Empleado, string NombreRP2Empleado, string DireccionRP2Empleado, string TelefonoRP2Empleado, string ProfesionRP2Empleado)
+        {
+            var resultado = dataEmpleado.GuardarCambiosRPEmpleado(IdEmpleado, IdUser, NombreRP1Empleado, DireccionRP1Empleado, TelefonoRP1Empleado, ProfesionRP1Empleado, NombreRP2Empleado, DireccionRP2Empleado, TelefonoRP2Empleado, ProfesionRP2Empleado);
+            return Json(resultado);
+        }
+
         public ActionResult GridEmpleado()
         {
             var data = dataEmpleado.GridEmpleado();
