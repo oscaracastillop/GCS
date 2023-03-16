@@ -129,7 +129,7 @@
 </div>
 
 <div class="fondolayout1">
-    <label><strong>REFERENCIAS FAMILIARES</strong><a href="#" title="Editar"  onclick="CargarDatosRFEmpleado()"><i class="bi-pencil-fill" style="Color:orange; margin-left:20px"></i></a></label>
+    <label><strong>REFERENCIAS FAMILIARES</strong><a href="#" title="Editar" onclick="CargarDatosRFEmpleado()"><i class="bi-pencil-fill" style="Color:orange; margin-left:20px"></i></a></label>
     <table class="table table-borderless" style="width:100%">
         <tr>
             <td width="25%">
@@ -179,7 +179,7 @@
 </div>
 
 <div class="fondolayout1">
-    <label><strong>REFERENCIAS PERSONALES</strong><a href="#" title="Editar"><i class="bi-pencil-fill" style="Color:orange; margin-left:20px"></i></a></label>
+    <label><strong>REFERENCIAS PERSONALES</strong><a href="#" title="Editar" onclick="CargarDatosRPEmpleado()"><i class="bi-pencil-fill" style="Color:orange; margin-left:20px"></i></a></label>
     <table class="table table-borderless" style="width:100%">
         <tr>
             <td width="25%">
@@ -389,6 +389,61 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-success btn-sm" onclick="GuardarCambiosRFEmpleado()"><i class="bi-trash"></i> Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*Modal referencias Personales*@
+<div class="modal fade" id="ModalDatosRPEmpleado" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog" style="min-width:98%">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel"><strong>Referencias Personales</strong></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <table class="table table-borderless" style="width:100%">
+                    <tr>
+                        <td width="25%">
+                            <label><strong>1. Nombre y Apellidos</strong></label>
+                            <input class="form-control" type="text" id="InputNombreRP1Empleado" name="name" autocomplete="off" />
+                        </td>
+                        <td width="25%">
+                            <label><strong>Dirección</strong></label>
+                            <input class="form-control" type="text" id="InputDireccionRP1Empleado" name="name" autocomplete="off" />
+                        </td>
+                        <td width="25%">
+                            <label><strong>Teléfono</strong></label>
+                            <input class="form-control" type="text" id="InputTelefonoRP1Empleado" name="name" autocomplete="off" />
+                        </td>
+                        <td width="25%">
+                            <label><strong>Profesión</strong></label>
+                            <input class="form-control" type="text" id="InputProfesionRP1Empleado" name="name" autocomplete="off" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="25%">
+                            <label><strong>2. Nombre y Apellidos</strong></label>
+                            <input class="form-control" type="text" id="InputNombreRP2Empleado" name="name" autocomplete="off" />
+                        </td>
+                        <td width="25%">
+                            <label><strong>Dirección</strong></label>
+                            <input class="form-control" type="text" id="InputDireccionRP2Empleado" name="name" autocomplete="off" />
+                        </td>
+                        <td width="25%">
+                            <label><strong>Teléfono</strong></label>
+                            <input class="form-control" type="text" id="InputTelefonoRP2Empleado" name="name" autocomplete="off" />
+                        </td>
+                        <td width="25%">
+                            <label><strong>Profesión</strong></label>
+                            <input class="form-control" type="text" id="InputProfesionRP2Empleado" name="name" autocomplete="off" />
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success btn-sm" onclick="GuardarCambiosRPEmpleado()"><i class="bi-trash"></i> Guardar</button>
             </div>
         </div>
     </div>

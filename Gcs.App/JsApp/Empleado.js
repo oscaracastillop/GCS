@@ -311,6 +311,70 @@ function GuardarCambiosRFEmpleado() {
     });    
 }
 
+function CargarDatosRPEmpleado() {
+    let IdEmpleado = Cookies.get('IdHVEmpleado');
+    $.ajax({
+        type: 'POST',
+        dataType: 'json',
+        url: '/Empleado/CargarDatosRPEmpleado',
+        data: { IdEmpleado: IdEmpleado },
+        success: function (resultado) {
+            $('#InputNombreRP1Empleado').val(resultado[0].NombreRP1Empleado);
+            $('#InputDireccionRP1Empleado').val(resultado[0].DireccionRP1Empleado);
+            $('#InputTelefonoRP1Empleado').val(resultado[0].TelefonoRP1Empleado);
+            $('#InputProfesionRP1Empleado').val(resultado[0].ProfesionRP1Empleado);
+            $('#InputNombreRP2Empleado').val(resultado[0].NombreRP2Empleado);
+            $('#InputDireccionRP2Empleado').val(resultado[0].DireccionRP2Empleado);
+            $('#InputTelefonoRP2Empleado').val(resultado[0].TelefonoRP2Empleado);
+            $('#InputProfesionRP2Empleado').val(resultado[0].ProfesionRP2Empleado);
+        }
+    });
+    $('#ModalDatosRPEmpleado').modal('show')
+}
+
+function GuardarCambiosRPEmpleado() {
+    let User = Cookies.get('IdUser');
+    let IdEmpleado = Cookies.get('IdHVEmpleado');
+    let NombreRP1Empleado = $('#InputNombreRP1Empleado').val();
+    let DireccionRP1Empleado = $('#InputDireccionRP1Empleado').val();
+    let TelefonoRP1Empleado = $('#InputTelefonoRP1Empleado').val();
+    let ProfesionRP1Empleado = $('#InputProfesionRP1Empleado').val();
+    let NombreRP2Empleado = $('#InputNombreRP2Empleado').val();
+    let DireccionRP2Empleado = $('#InputDireccionRP2Empleado').val();
+    let TelefonoRP2Empleado = $('#InputTelefonoRP2Empleado').val();
+    let ProfesionRP2Empleado = $('#InputProfesionRP2Empleado').val();
+    $.ajax({
+        type: 'POST',
+        dataType: 'json',
+        url: '/Empleado/GuardarCambiosRPEmpleado',
+        data: {
+            IdEmpleado: IdEmpleado,
+            IdUser: User,
+            NombreRP1Empleado: NombreRP1Empleado,
+            DireccionRP1Empleado: DireccionRP1Empleado,
+            TelefonoRP1Empleado: TelefonoRP1Empleado,
+            ProfesionRP1Empleado: ProfesionRP1Empleado,
+            NombreRP2Empleado: NombreRP2Empleado,
+            DireccionRP2Empleado: DireccionRP2Empleado,
+            TelefonoRP2Empleado: TelefonoRP2Empleado,
+            ProfesionRP2Empleado: ProfesionRP2Empleado
+        },
+        success: function (resultado) {
+            valor = resultado.split('*');
+            if (valor[0] == 'OK') {
+                Swal.fire({
+                    title: 'Mensaje del Sistema',
+                    text: valor[1],
+                    icon: 'success',
+                }).then((result) => {
+                    window.location.href = '/Empleado/Hoja_Vida_Empleado';
+                })
+            } else {
+                Swal.fire('Mensaje del Sistema', valor[1], 'info');
+            }
+        }
+    });
+}
 
 function GridEmpleado() {
     let datatable = $('#gridEmpleado').DataTable({

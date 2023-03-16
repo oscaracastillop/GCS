@@ -4682,3 +4682,67 @@ SELECT @Modificar = dbo.Fun_PermisoUsuario('Editar',@IdUsuario, @SubMenu)
 					END
 	SELECT @Resultado
 END
+
+go
+
+CREATE PROCEDURE SP_CargarDatosRPEmpleado @IdEmpleado Int
+AS
+BEGIN
+	SELECT	
+		ISNULL(NombreRP1,'') As NombreRP1Empleado,
+		ISNULL(DireccionRP1,'') As DireccionRP1Empleado,
+		ISNULL(TelefonoRP1,'') As TelefonoRP1Empleado,
+		ISNULL(ProfesionRP1,'') As ProfesionRP1Empleado,
+		ISNULL(NombreRP2, '') As NombreRP2Empleado,
+		ISNULL(DireccionRP2,'') As DireccionRP2Empleado,
+		ISNULL(TelefonoRP2,'') As TelefonoRP2Empleado,
+		ISNULL(ProfesionRP2,'') As ProfesionRP2Empleado
+FROM	Empleado 
+WHERE	Id = @IdEmpleado		
+END
+
+go
+
+CREATE PROCEDURE [dbo].[SP_GuardarCambiosRPEmpleado] 
+				@IdEmpleado int, 
+				@IdUser varchar(255),
+				@NombreRP1Empleado varchar(255),
+				@DireccionRP1Empleado varchar(255),
+				@TelefonoRP1Empleado varchar(255),
+				@ProfesionRP1Empleado varchar(255),
+				@NombreRP2Empleado varchar(255),
+				@DireccionRP2Empleado varchar(255),
+				@TelefonoRP2Empleado varchar(255),
+				@ProfesionRP2Empleado varchar(255),
+				@Resultado varchar(255) OUTPUT
+AS
+BEGIN
+DECLARE @Modificar INT, @IdUsuario INT, @NombreUsuario VARCHAR(255), @SubMenu VARCHAR(255)
+SET @SubMenu = '/Empleado'
+SELECT @IdUsuario = Id FROM Usuario WHERE IdUser = @IdUser
+SELECT @NombreUsuario = Nombre FROM Usuario WHERE IdUser = @IdUser
+SELECT @Modificar = dbo.Fun_PermisoUsuario('Editar',@IdUsuario, @SubMenu)
+				IF @Modificar > 0
+					BEGIN
+						UPDATE	Empleado 
+						SET		NombreRP1 = @NombreRP1Empleado,
+								DireccionRP1 = @DireccionRP1Empleado,
+								TelefonoRP1 = @TelefonoRP1Empleado,
+								ProfesionRP1 = @ProfesionRP1Empleado,
+								NombreRP2 = @NombreRP2Empleado,
+								DireccionRP2 = @DireccionRP2Empleado,
+								TelefonoRP2 = @TelefonoRP2Empleado,
+								ProfesionRP2 = @ProfesionRP2Empleado
+						WHERE	Id = @IdEmpleado
+					    --SET @Resultado = 'OK*Se guardaron los cambios del Empleado ' + @NombreSucursal+ ' correctamente'
+						SET @Resultado = 'OK*Se guardaron los cambios del empleado correctamente'
+					END
+				ELSE
+					BEGIN
+						SET @Resultado = 'Error*El usuario '+ @NombreUsuario + ' no tiene permiso para realizar cambios al empleado' 
+					END
+	SELECT @Resultado
+END
+
+go
+

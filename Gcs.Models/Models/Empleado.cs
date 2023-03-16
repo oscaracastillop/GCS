@@ -103,9 +103,10 @@ namespace Gcs.Models.Models
             public string TelefonoRP1Empleado { get; set; }
             public string ProfesionRP1Empleado { get; set; }
             public string NombreRP2Empleado { get; set; }
-            public string DireccionRF2Empleado { get; set; }
+            public string DireccionRP2Empleado { get; set; }
             public string TelefonoRP2Empleado { get; set; }
             public string ProfesionRP2Empleado { get; set; }
         }
     }
 }
+
