@@ -236,65 +236,65 @@ ALTER TABLE SubMenu ADD CONSTRAINT FK_IdMenuSubmenu FOREIGN KEY (IdMenu) referen
 
 go
 
-insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (1, 'Empresa','<i class="bi-building" style="font-size: 2rem; color: #11ABE9;"></i>','/Empresa')
-insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (1, 'Sucursal','<i class="bi-shop" style="font-size: 2rem; color: #11ABE9;"></i>','/Sucursal')
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (1, 'Empresa','<i class="bi-building" style="font-size: 2.5rem; color: #11ABE9;"></i>','/Empresa')
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (1, 'Sucursal','<i class="bi-shop" style="font-size: 2.5rem; color: #11ABE9;"></i>','/Sucursal')
 
-insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (2, 'Empleado','<i class="bi-person" style="font-size: 2rem; color: #11ABE9;"></i>','/Empleado')
-insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (2, 'Dia Laborado','<i class="bi-calendar-check" style="font-size: 2rem; color: #11ABE9;"></i>','/DiaLaborado')
-insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (2, 'Hora Extra','<i class="bi-clock" style="font-size: 2rem; color: #11ABE9;"></i>','/HoraExtra')
-insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (2, 'Permiso Empleado','<i class="bi-clock-history" style="font-size: 2rem; color: #11ABE9;"></i>','/PermisoEmpleado')
-insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (2, 'Préstamo','<i class="bi-cash-coin" style="font-size: 2rem; color: #11ABE9;"></i>','/PrestamoEmpleado')
-insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (2, 'Nómina Empleado','<i class="bi-calculator" style="font-size: 2rem; color: #11ABE9;"></i>','/Nomina_Empleado')
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (2, 'Empleado','<i class="bi-person" style="font-size: 2.5rem; color: #11ABE9;"></i>','/Empleado')
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (2, 'Dia Laborado','<i class="bi-calendar-check" style="font-size: 2.5rem; color: #11ABE9;"></i>','/DiaLaborado')
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (2, 'Hora Extra','<i class="bi-clock" style="font-size: 2.5rem; color: #11ABE9;"></i>','/HoraExtra')
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (2, 'Permiso Empleado','<i class="bi-clock-history" style="font-size: 2.5rem; color: #11ABE9;"></i>','/PermisoEmpleado')
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (2, 'Préstamo','<i class="bi-cash-coin" style="font-size: 2.5rem; color: #11ABE9;"></i>','/PrestamoEmpleado')
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (2, 'Nómina Empleado','<i class="bi-calculator" style="font-size: 2.5rem; color: #11ABE9;"></i>','/Nomina_Empleado')
 
-insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (3, 'Contratista','<i class="bi-person-gear" style="font-size: 2rem; color: #11ABE9;"></i>','/Contratista')
-insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (3, 'Actividad Realizada','<i class="bi-hammer" style="font-size: 2rem; color: #11ABE9;"></i>','/ActividadRealizadaContratista')
-insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (3, 'Nómina Contratista','<i class="bi-calculator" style="font-size: 2rem; color: #11ABE9;"></i>','/Nomina_Contratista')
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (3, 'Contratista','<i class="bi-person-gear" style="font-size: 2.5rem; color: #11ABE9;"></i>','/Contratista')
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (3, 'Actividad Realizada','<i class="bi-hammer" style="font-size: 2.5rem; color: #11ABE9;"></i>','/ActividadRealizadaContratista')
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (3, 'Nómina Contratista','<i class="bi-calculator" style="font-size: 2.5rem; color: #11ABE9;"></i>','/Nomina_Contratista')
 
-insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (4, 'Factura','<i class="bi-file-earmark-text" style="font-size: 2rem; color: #11ABE9;"></i>','/Factura')
-insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (4, 'Remisión','<i class="bi-file-earmark-text" style="font-size: 2rem; color: #11ABE9;"></i>','/Remision')
-insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (4, 'Cotización','<i class="bi-file-earmark-medical" style="font-size: 2rem; color: #11ABE9;"></i>','/Cotizacion')
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (4, 'Factura','<i class="bi-file-earmark-text" style="font-size: 2.5rem; color: #11ABE9;"></i>','/Factura')
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (4, 'Remisión','<i class="bi-file-earmark-text" style="font-size: 2.5rem; color: #11ABE9;"></i>','/Remision')
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (4, 'Cotización','<i class="bi-file-earmark-medical" style="font-size: 2.5rem; color: #11ABE9;"></i>','/Cotizacion')
 
-insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (5, 'Cliente','<i class="bi-person-circle" style="font-size: 2rem; color: #11ABE9;"></i>','/Cliente')
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (5, 'Cliente','<i class="bi-person-circle" style="font-size: 2.5rem; color: #11ABE9;"></i>','/Cliente')
 
-insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (6, 'OrdenCompra','<i class="bi-cart4" style="font-size: 2rem; color: #11ABE9;"></i>','/OrdenCompra')
-insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (6, 'Entrada','<i class="bi-arrow-in-right" style="font-size: 2rem; color: #11ABE9;"></i>','/Entrada')
-insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (6, 'Salida','<i class="bi-box-arrow-right" style="font-size: 2rem; color: #11ABE9;"></i>','/Salida')
-insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (6, 'Inventario','<i class="bi-graph-up" style="font-size: 2rem; color: #11ABE9;"></i>','/Inventario')
-insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (6, 'Categoría','<i class="bi-grid" style="font-size: 2rem; color: #11ABE9;"></i>','/Categoria')
-insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (6, 'Producto','<i class="bi-box-seam" style="font-size: 2rem; color: #11ABE9;"></i>','/Producto')
-insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (6, 'Proveedor','<i class="bi-truck" style="font-size: 2rem; color: #11ABE9;"></i>','/Proveedor')
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (6, 'OrdenCompra','<i class="bi-cart4" style="font-size: 2.5rem; color: #11ABE9;"></i>','/OrdenCompra')
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (6, 'Entrada','<i class="bi-arrow-in-right" style="font-size: 2.5rem; color: #11ABE9;"></i>','/Entrada')
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (6, 'Salida','<i class="bi-box-arrow-right" style="font-size: 2.5rem; color: #11ABE9;"></i>','/Salida')
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (6, 'Inventario','<i class="bi-graph-up" style="font-size: 2.5rem; color: #11ABE9;"></i>','/Inventario')
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (6, 'Categoría','<i class="bi-grid" style="font-size: 2.5rem; color: #11ABE9;"></i>','/Categoria')
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (6, 'Producto','<i class="bi-box-seam" style="font-size: 2.5rem; color: #11ABE9;"></i>','/Producto')
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (6, 'Proveedor','<i class="bi-truck" style="font-size: 2.5rem; color: #11ABE9;"></i>','/Proveedor')
 
-insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (7, 'Maquínaria','<i class="bi-speedometer" style="font-size: 2rem; color: #11ABE9;"></i>','/Maquinaria')
-insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (7, 'Herramienta','<i class="bi-wrench-adjustable" style="font-size: 2rem; color: #11ABE9;"></i>','/Herramienta')
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (7, 'Maquínaria','<i class="bi-speedometer" style="font-size: 2.5rem; color: #11ABE9;"></i>','/Maquinaria')
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (7, 'Herramienta','<i class="bi-wrench-adjustable" style="font-size: 2.5rem; color: #11ABE9;"></i>','/Herramienta')
 
-insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'País','<i class="bi-geo-fill" style="font-size: 2rem; color: #11ABE9;"></i>','/Pais')--24
-insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'Departamento','<i class="bi-geo-fill" style="font-size: 2rem; color: #11ABE9;"></i>','/Departamento')--25
-insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'Ciudad','<i class="bi-geo-fill" style="font-size: 2rem; color: #11ABE9;"></i>','/Ciudad')--26
-insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'Arl','<i class="bi-pass" style="font-size: 2rem; color: #11ABE9;"></i>','/Arl')--27
-insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'Caja Compensación Familiar','<i class="bi-pass" style="font-size: 2rem; color: #11ABE9;"></i>','/CajaCompensacionFamiliar')--28
-insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'Eps','<i class="bi-pass" style="font-size: 2rem; color: #11ABE9;"></i>','/Eps')--29
-insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'Estado Civil','<i class="bi-pass" style="font-size: 2rem; color: #11ABE9;"></i>','/TipoEstadoCivil')--29
-insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'Fondo Pensiones','<i class="bi-pass" style="font-size: 2rem; color: #11ABE9;"></i>','/FondoPension')--30
-insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'Fondo Cesantías','<i class="bi-pass" style="font-size: 2rem; color: #11ABE9;"></i>','/FondoCesantias')--31
-insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'Tipo Actividad','<i class="bi-tools" style="font-size: 2rem; color: #11ABE9;"></i>','/TipoActividad')--32
-insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'Tipo Documento','<i class="bi-filetype-doc" style="font-size: 2rem; color: #11ABE9;"></i>','/TipoDocumento')--33
-insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'Tipo Forma Pago','<i class="bi-credit-card" style="font-size: 2rem; color: #11ABE9;"></i>','/TipoFormaPago')--34
-insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'Tipo Género','<i class="bi-people" style="font-size: 2rem; color: #11ABE9;"></i>','/TipoGenero')--35
-insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'Tipo Hora Extra','<i class="bi-clock" style="font-size: 2rem; color: #11ABE9;"></i>','/TipoHoraExtra')--36
-insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'Tipo Moneda','<i class="bi-cash-coin" style="font-size: 2rem; color: #11ABE9;"></i>','/TipoMoneda')--37
-insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'Tipo Unidad Medida','<i class="bi-speedometer2" style="font-size: 2rem; color: #11ABE9;"></i>','/TipoUnidadMedida')--38
-insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'Tipo Vivienda','<i class="bi-speedometer2" style="font-size: 2rem; color: #11ABE9;"></i>','/TipoVivienda')--38
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'País','<i class="bi-geo-fill" style="font-size: 2.5rem; color: #11ABE9;"></i>','/Pais')--24
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'Departamento','<i class="bi-geo-fill" style="font-size: 2.5rem; color: #11ABE9;"></i>','/Departamento')--25
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'Ciudad','<i class="bi-geo-fill" style="font-size: 2.5rem; color: #11ABE9;"></i>','/Ciudad')--26
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'Arl','<i class="bi-pass" style="font-size: 2.5rem; color: #11ABE9;"></i>','/Arl')--27
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'Caja Compensación Familiar','<i class="bi-pass" style="font-size: 2.5rem; color: #11ABE9;"></i>','/CajaCompensacionFamiliar')--28
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'Eps','<i class="bi-pass" style="font-size: 2.5rem; color: #11ABE9;"></i>','/Eps')--29
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'Estado Civil','<i class="bi-pass" style="font-size: 2.5rem; color: #11ABE9;"></i>','/TipoEstadoCivil')--29
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'Fondo Pensiones','<i class="bi-pass" style="font-size: 2.5rem; color: #11ABE9;"></i>','/FondoPension')--30
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'Fondo Cesantías','<i class="bi-pass" style="font-size: 2.5rem; color: #11ABE9;"></i>','/FondoCesantias')--31
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'Tipo Actividad','<i class="bi-tools" style="font-size: 2.5rem; color: #11ABE9;"></i>','/TipoActividad')--32
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'Tipo Documento','<i class="bi-filetype-doc" style="font-size: 2.5rem; color: #11ABE9;"></i>','/TipoDocumento')--33
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'Tipo Forma Pago','<i class="bi-credit-card" style="font-size: 2.5rem; color: #11ABE9;"></i>','/TipoFormaPago')--34
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'Tipo Género','<i class="bi-people" style="font-size: 2.5rem; color: #11ABE9;"></i>','/TipoGenero')--35
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'Tipo Hora Extra','<i class="bi-clock" style="font-size: 2.5rem; color: #11ABE9;"></i>','/TipoHoraExtra')--36
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'Tipo Moneda','<i class="bi-cash-coin" style="font-size: 2.5rem; color: #11ABE9;"></i>','/TipoMoneda')--37
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'Tipo Unidad Medida','<i class="bi-speedometer2" style="font-size: 2.5rem; color: #11ABE9;"></i>','/TipoUnidadMedida')--38
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (8, 'Tipo Vivienda','<i class="bi-speedometer2" style="font-size: 2.5rem; color: #11ABE9;"></i>','/TipoVivienda')--38
 
-insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (9, 'Usuario','<i class="bi-person" style="font-size: 2rem; color: #11ABE9;"></i>','/Usuario')
-insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (9, 'Permiso Usuario','<i class="bi-lock" style="font-size: 2rem; color: #11ABE9;"></i>','/Permiso_Usuario')
-insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (9, 'Modulo','<i class="bi-file-post" style="font-size: 2rem; color: #11ABE9;"></i>','/Modulo')
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (9, 'Usuario','<i class="bi-person" style="font-size: 2.5rem; color: #11ABE9;"></i>','/Usuario')
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (9, 'Permiso Usuario','<i class="bi-lock" style="font-size: 2.5rem; color: #11ABE9;"></i>','/Permiso_Usuario')
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (9, 'Modulo','<i class="bi-file-post" style="font-size: 2.5rem; color: #11ABE9;"></i>','/Modulo')
 
-insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (10, 'Información Usuario','<i class="bi-person-badge" style="font-size: 2rem; color: #11ABE9;"></i>','/Informacion_Usuario')
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (10, 'Información Usuario','<i class="bi-person-badge" style="font-size: 2.5rem; color: #11ABE9;"></i>','/Informacion_Usuario')
 
-insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (11, 'Contacto','<i class="bi-envelope" style="font-size: 2rem; color: #11ABE9;"></i>','/Contacto')
-insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (11, 'Quienes Somos','<i class="bi-briefcase" style="font-size: 2rem; color: #11ABE9;"></i>','/Quienes_Somos')
-insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (11, 'Licencia de Uso','<i class="bi-card-text" style="font-size: 2rem; color: #11ABE9;"></i>','/Licencia_de_Uso')
-insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (11, 'Notas de la Versión','<i class="bi-info-circle" style="font-size: 2rem; color: #11ABE9;"></i>','/Notas_de_la_Version')
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (11, 'Contacto','<i class="bi-envelope" style="font-size: 2.5rem; color: #11ABE9;"></i>','/Contacto')
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (11, 'Quienes Somos','<i class="bi-briefcase" style="font-size: 2.5rem; color: #11ABE9;"></i>','/Quienes_Somos')
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (11, 'Licencia de Uso','<i class="bi-card-text" style="font-size: 2.5rem; color: #11ABE9;"></i>','/Licencia_de_Uso')
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (11, 'Notas de la Versión','<i class="bi-info-circle" style="font-size: 2.5rem; color: #11ABE9;"></i>','/Notas_de_la_Version')
 
 go
 
