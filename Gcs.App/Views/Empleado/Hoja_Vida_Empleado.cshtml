@@ -12,222 +12,226 @@
     <label style="font-weight:bold">HOJA VIDA EMPLEADO</label>
     <hr />
 </h7>
-<div style="margin-top:50px">
-    <img src="~/Sources/ImagesHojaVidaEmpleado/Usuario.png" class="imagenhv">
-    <div id="ImagePerfilUsuario"></div>
-</div>
 
-<div class="Centrar-Texto">
-    <a href="#">Cambiar Foto</a>
-</div>
+<table class=" table table-borderless" style="min-width:100%">
+    <tr style="min-width:100%">
+        <td style="width:33%">
+            <strong>Nombre: </strong><label id="LabelNombreEmpleado" style="font-size:15px; font-weight:bold"></label>
+            <br />
+            <strong>Identificación: </strong><label id="LabelDocumentoIdentificacion"></label>
+            <br />
+            <br />
+            <ul>
+                <li><a href="#">Cambiar Foto hoja Vida</a></li>
+                <li><a href="javascript:CargarDatosPerfilprofesional()">Perfil Profesional</a></li>
+                <li><a href="javascript:CargarDatosPersonales()">Información Personal</a></li>
+                <li><a href="#" onclick="CargarDatosResidencia()">Información Residencia</a></li>
+                <li><a href="#" onclick="CargarDatosEstudiosRealizados()">Estudios Realizados</a></li>
+                <li><a href="#" onclick="CargarDatosExperienciaLaboral()">Experiencia Laboral</a></li>
+                <li><a href="#" onclick="CargarDatosFamilia()">Información Familiar</a></li>
+                <li><a href="#" onclick="CargarDatosRFEmpleado()">Referencias Familiares</a></li>
+            </ul>
+        </td>
+        <td style="width:46%">
+            <strong><label>PERFIL PROFESIONAL</label></strong>
+            <br />
+            <br />
+            <P style="text-align:justify">Es un ser capaz de proponer soluciones a problemas en pequeña y gran escala. Su formación, le permite, también, ser líder en temas tecnológicos y científicos. Formular propuestas para la solución de problemas reales mediante el uso de la tecnologías y las matemáticas aplicadas.</P>
+        </td>
+        <td style="width:20%;text-align:center">
+            <img src="~/Sources/ImagesHojaVidaEmpleado/Usuario.png" class="" style="height:150px">
+        </td>
 
-
-<div style="text-align:center; margin-top:20px; color:cornflowerblue">
-    <label style="font-size:25px!important;font-weight:bold"><i id="LabelNombreEmpleado"></i></label>
-    <br />
-    <label style="font-size:18px!important;font-weight:bold"><i id="LabelDocumentoIdentificacion"></i></label>
-</div>
-
-<div style="margin-top:50px;" class="seccionhv">
-    <label><strong>INFORMACION PERSONAL</strong><a href="#" title="Editar" onclick="CargarDatosPersonales()"><i class="bi-pencil-fill" style="Color:orange; margin-left:20px"></i></a></label>
-    <table class="table table-borderless" style="width:100%">
-        <tr>
-            <td width="25%">
-                <label><strong>Nacionalidad</strong></label>
-                <br />
-                <Label id="InputHVNacionalidad"></Label>
-            </td>
-            <td width="25%">
-                <label><strong>Fecha Nacimiento</strong></label>
-                <br />
-                <Label id="InputHVFechaNacimiento"></Label>
-            </td>
-            <td>
-                <label><strong>Lugar Nacimiento</strong></label>
-                <br />
-                <Label id="InputHVLugarNacimiento"></Label>
-            </td>
-            <td width="25%">
-                <label><strong>Sexo</strong></label>
-                <br />
-                <Label id="InputHVSexo"></Label>
-            </td>
-        </tr>
-        <tr>
-            <td width="25%">
-                <label><strong>Estado Civil</strong></label>
-                <br />
-                <Label id="InputHVEstadoCivil"></Label>
-            </td>
-            <td width="25%">
-                <label><strong>Email</strong></label>
-                <br />
-                <Label id="InputHVEmail"></Label>
-            </td>
-            <td width="25%">
-                <label><strong>Teléfono 1</strong></label>
-                <br />
-                <Label id="InputHVTelefono1"></Label>
-            </td>
-            <td width="25%">
-                <label><strong>Teléfono 2</strong></label>
-                <br />
-                <Label id="InputHVTelefono2"></Label>
-            </td>
-        </tr>
-    </table>
-</div>
-
-<div class="seccionhv">
-    <label><strong>INFORMACION RESIDENCIA</strong><a href="#" title="Editar" onclick="CargarDatosResidencia()"><i class="bi-pencil-fill" style="Color:orange; margin-left:20px"></i></a></label>
-    <table class="table table-borderless" style="width:100%">
-        <tr>
-            <td width="25%">
-                <label><strong>País</strong></label>
-                <br />
-                <Label id="InputHVPaisResidencia"></Label>
-            </td>
-            <td width="25%">
-                <label><strong>Departamento</strong></label>
-                <br />
-                <Label id="InputHVDepartamentoResidencia"></Label>
-            </td>
-            <td width="25%">
-                <label><strong>Ciudad</strong></label>
-                <br />
-                <Label id="InputHVCiudadResidencia"></Label>
-            </td>
-            <td width="25%">
-                <label><strong>Dirección</strong></label>
-                <br />
-                <Label id="InputHVDireccionResidencia"></Label>
-            </td>
-        </tr>
-        <tr>
-            <td width="25%">
-                <label><strong>Tipo Vivienda</strong></label>
-                <br />
-                <Label id="InputHVTipoVivienda"></Label>
-            </td>
-            <td width="25%">
-                <label><strong>Nombre Arrendador</strong></label>
-                <br />
-                <Label id="InputHVNombreArrendador"></Label>
-            </td>
-            <td width="25%">
-                <label><strong>Teléfono Arrendador</strong></label>
-                <br />
-                <Label id="InputHVTelefonoArrendador"></Label>
-            </td>
-            <td width="25%">
-                <label><strong>Tiempo Residiendo</strong></label>
-                <br />
-                <Label id="InputHVTiempoResidiendo"></Label>
-            </td>
-        </tr>
-    </table>
-</div>
-
-<div class="seccionhv">
-    <label><strong>REFERENCIAS FAMILIARES</strong><a href="#" title="Editar" onclick="CargarDatosRFEmpleado()"><i class="bi-pencil-fill" style="Color:orange; margin-left:20px"></i></a></label>
-    <table class="table table-borderless" style="width:100%">
-        <tr>
-            <td width="25%">
-                <label><strong>1. Nombre y Apellidos</strong></label>
-                <br />
-                <Label id="InputHVNombreRF1"></Label>
-            </td>
-            <td width="25%">
-                <label><strong>Parentesco</strong></label>
-                <br />
-                <Label id="InputHVParentescoRF1"></Label>
-            </td>
-            <td width="25%">
-                <label><strong>Teléfono</strong></label>
-                <br />
-                <Label id="InputHVTelefonoRF1"></Label>
-            </td>
-            <td width="25%">
-                <label><strong>Profesión</strong></label>
-                <br />
-                <Label id="InputHVProfesionRF1"></Label>
-            </td>
-        </tr>
-        <tr>
-            <td width="25%">
-                <label><strong>2. Nombre y Apellidos</strong></label>
-                <br />
-                <Label id="InputHVNombreRF2"></Label>
-            </td>
-            <td width="25%">
-                <label><strong>Parentesco</strong></label>
-                <br />
-                <Label id="InputHVParentescoRF2"></Label>
-            </td>
-            <td width="25%">
-                <label><strong>Teléfono</strong></label>
-                <br />
-                <Label id="InputHVTelefonoRF2"></Label>
-            </td>
-            <td width="25%">
-                <label><strong>Profesión</strong></label>
-                <br />
-                <Label id="InputHVProfesionRF2"></Label>
-            </td>
-        </tr>
-    </table>
-</div>
-
-<div class="seccionhv">
-    <label><strong><u>REFERENCIAS PERSONALES</u></strong><a href="#" title="Editar" onclick="CargarDatosRPEmpleado()"><i class="bi-pencil-fill" style="Color:orange; margin-left:20px"></i></a></label>
-    <table class="table table-borderless" style="width:100%">
-        <tr>
-            <td width="25%">
-                <label><strong>1. Nombre y Apellidos</strong></label>
-                <br />
-                <Label id="InputHVNombreRP1"></Label>
-            </td>
-            <td width="25%">
-                <label><strong>Dirección</strong></label>
-                <br />
-                <Label id="InputHVDireccionRP1"></Label>
-            </td>
-            <td width="25%">
-                <label><strong>Teléfono</strong></label>
-                <br />
-                <Label id="InputHVTelefonoRP1"></Label>
-            </td>
-            <td width="25%">
-                <label><strong>Profesión</strong></label>
-                <br />
-                <Label id="InputHVProfesionRP1"></Label>
-            </td>
-        </tr>
-        <tr>
-            <td width="25%">
-                <label><strong>2. Nombre y Apellidos</strong></label>
-                <br />
-                <Label id="InputHVNombreRP2"></Label>
-            </td>
-            <td width="25%">
-                <label><strong>Dirección</strong></label>
-                <br />
-                <Label id="InputHVDireccionRP2"></Label>
-            </td>
-            <td width="25%">
-                <label><strong>Teléfono</strong></label>
-                <br />
-                <Label id="InputHVTelefonoRP2"></Label>
-            </td>
-            <td width="25%">
-                <label><strong>Profesión</strong></label>
-                <br />
-                <Label id="InputHVProfesionRP2"></Label>
-            </td>
-        </tr>
-    </table>
-</div>
-
+    </tr>
+</table>
+<strong><label>INFORMACION PERSONAL</label></strong>
+<table class="table table-borderless" style="width:100%">
+    <tr>
+        <td width="25%">
+            <label><strong>Nacionalidad</strong></label>
+            <br />
+            <Label id="InputHVNacionalidad"></Label>
+        </td>
+        <td width="25%">
+            <label><strong>Fecha Nacimiento</strong></label>
+            <br />
+            <Label id="InputHVFechaNacimiento"></Label>
+        </td>
+        <td>
+            <label><strong>Lugar Nacimiento</strong></label>
+            <br />
+            <Label id="InputHVLugarNacimiento"></Label>
+        </td>
+        <td width="25%">
+            <label><strong>Sexo</strong></label>
+            <br />
+            <Label id="InputHVSexo"></Label>
+        </td>
+    </tr>
+    <tr>
+        <td width="25%">
+            <label><strong>Estado Civil</strong></label>
+            <br />
+            <Label id="InputHVEstadoCivil"></Label>
+        </td>
+        <td width="25%">
+            <label><strong>Email</strong></label>
+            <br />
+            <Label id="InputHVEmail"></Label>
+        </td>
+        <td width="25%">
+            <label><strong>Teléfono 1</strong></label>
+            <br />
+            <Label id="InputHVTelefono1"></Label>
+        </td>
+        <td width="25%">
+            <label><strong>Teléfono 2</strong></label>
+            <br />
+            <Label id="InputHVTelefono2"></Label>
+        </td>
+    </tr>
+</table>
+<label><strong>INFORMACION RESIDENCIA</strong></label>
+<table class="table table-borderless" style="width:100%">
+    <tr>
+        <td width="25%">
+            <label><strong>País</strong></label>
+            <br />
+            <Label id="InputHVPaisResidencia"></Label>
+        </td>
+        <td width="25%">
+            <label><strong>Departamento</strong></label>
+            <br />
+            <Label id="InputHVDepartamentoResidencia"></Label>
+        </td>
+        <td width="25%">
+            <label><strong>Ciudad</strong></label>
+            <br />
+            <Label id="InputHVCiudadResidencia"></Label>
+        </td>
+        <td width="25%">
+            <label><strong>Dirección</strong></label>
+            <br />
+            <Label id="InputHVDireccionResidencia"></Label>
+        </td>
+    </tr>
+    <tr>
+        <td width="25%">
+            <label><strong>Tipo Vivienda</strong></label>
+            <br />
+            <Label id="InputHVTipoVivienda"></Label>
+        </td>
+        <td width="25%">
+            <label><strong>Nombre Arrendador</strong></label>
+            <br />
+            <Label id="InputHVNombreArrendador"></Label>
+        </td>
+        <td width="25%">
+            <label><strong>Teléfono Arrendador</strong></label>
+            <br />
+            <Label id="InputHVTelefonoArrendador"></Label>
+        </td>
+        <td width="25%">
+            <label><strong>Tiempo Residiendo</strong></label>
+            <br />
+            <Label id="InputHVTiempoResidiendo"></Label>
+        </td>
+    </tr>
+</table>
+<label><strong>REFERENCIAS FAMILIARES</strong></label>
+<table class="table table-borderless" style="width:100%">
+    <tr>
+        <td width="25%">
+            <label><strong>1. Nombre y Apellidos</strong></label>
+            <br />
+            <Label id="InputHVNombreRF1"></Label>
+        </td>
+        <td width="25%">
+            <label><strong>Parentesco</strong></label>
+            <br />
+            <Label id="InputHVParentescoRF1"></Label>
+        </td>
+        <td width="25%">
+            <label><strong>Teléfono</strong></label>
+            <br />
+            <Label id="InputHVTelefonoRF1"></Label>
+        </td>
+        <td width="25%">
+            <label><strong>Profesión</strong></label>
+            <br />
+            <Label id="InputHVProfesionRF1"></Label>
+        </td>
+    </tr>
+    <tr>
+        <td width="25%">
+            <label><strong>2. Nombre y Apellidos</strong></label>
+            <br />
+            <Label id="InputHVNombreRF2"></Label>
+        </td>
+        <td width="25%">
+            <label><strong>Parentesco</strong></label>
+            <br />
+            <Label id="InputHVParentescoRF2"></Label>
+        </td>
+        <td width="25%">
+            <label><strong>Teléfono</strong></label>
+            <br />
+            <Label id="InputHVTelefonoRF2"></Label>
+        </td>
+        <td width="25%">
+            <label><strong>Profesión</strong></label>
+            <br />
+            <Label id="InputHVProfesionRF2"></Label>
+        </td>
+    </tr>
+</table>
+<label><strong>REFERENCIAS PERSONALES</strong></label>
+<table class="table table-borderless" style="width:100%">
+    <tr>
+        <td width="25%">
+            <label><strong>1. Nombre y Apellidos</strong></label>
+            <br />
+            <Label id="InputHVNombreRP1"></Label>
+        </td>
+        <td width="25%">
+            <label><strong>Dirección</strong></label>
+            <br />
+            <Label id="InputHVDireccionRP1"></Label>
+        </td>
+        <td width="25%">
+            <label><strong>Teléfono</strong></label>
+            <br />
+            <Label id="InputHVTelefonoRP1"></Label>
+        </td>
+        <td width="25%">
+            <label><strong>Profesión</strong></label>
+            <br />
+            <Label id="InputHVProfesionRP1"></Label>
+        </td>
+    </tr>
+    <tr>
+        <td width="25%">
+            <label><strong>2. Nombre y Apellidos</strong></label>
+            <br />
+            <Label id="InputHVNombreRP2"></Label>
+        </td>
+        <td width="25%">
+            <label><strong>Dirección</strong></label>
+            <br />
+            <Label id="InputHVDireccionRP2"></Label>
+        </td>
+        <td width="25%">
+            <label><strong>Teléfono</strong></label>
+            <br />
+            <Label id="InputHVTelefonoRP2"></Label>
+        </td>
+        <td width="25%">
+            <label><strong>Profesión</strong></label>
+            <br />
+            <Label id="InputHVProfesionRP2"></Label>
+        </td>
+    </tr>
+</table>
 
 @*Modal Datos Personales*@
 <div class="modal fade" id="ModalDatosPersonalesEmpleado" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -283,7 +287,6 @@
         </div>
     </div>
 </div>
-
 @*Modal Datos Residencia*@
 <div class="modal fade" id="ModalDatosResidenciaEmpleado" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog" style="min-width:98%">
@@ -338,7 +341,6 @@
         </div>
     </div>
 </div>
-
 @*Modal referencias Familiares*@
 <div class="modal fade" id="ModalDatosRFEmpleado" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog" style="min-width:98%">
@@ -393,7 +395,6 @@
         </div>
     </div>
 </div>
-
 @*Modal referencias Personales*@
 <div class="modal fade" id="ModalDatosRPEmpleado" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog" style="min-width:98%">

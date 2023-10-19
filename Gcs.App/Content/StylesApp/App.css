@@ -95,3 +95,28 @@ label{
     box-shadow: 0px 0px 10px -1px rgba(0, 0, 0, 1);
     padding: 20px;
 }
+
+#contenedor {
+    text-align: left;
+    width: 100%;
+    margin: auto;
+}
+
+#lateral {
+    width: 20%; /* Este será el ancho que tendrá tu columna */
+    background-color: #CCCCCC; /* Aquí pon el color del fondo que quieras para este lateral */
+    float: left; /* Aquí determinas de lado quieres quede esta "columna" */
+}
+
+#principal {
+    width: 75%;
+    float: right;
+    background-color: #FFFFFF;
+    border: #000000 1px solid; /* ponemos un donde para que se vea bonito */
+}
+/* Para limpiar los floats */
+.clearfix:after {
+    content: "";
+    display: table;
+    clear: both;
+}
