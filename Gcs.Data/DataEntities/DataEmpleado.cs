@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using static Gcs.Models.Models.Empleado;
+using static Gcs.Models.Models.Eps;
 
 namespace Gcs.Data.DataEntities
 {
@@ -216,6 +217,18 @@ namespace Gcs.Data.DataEntities
 
             resultado = Convert.ToString(varResultado.Value);
             return resultado;
+        }
+
+        public List<ListaEmpleado> ListaEmpleado()
+        {
+            try
+            {
+                return _conection.Database.SqlQuery<ListaEmpleado>("SP_ListaEmpleado").ToList();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public List<GridEmpleado> GridEmpleado()

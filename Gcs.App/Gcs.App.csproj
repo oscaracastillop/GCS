@@ -4362,6 +4362,7 @@
     <Compile Include="Controllers\SalidaController.cs" />
     <Compile Include="Controllers\SubMenuController.cs" />
     <Compile Include="Controllers\SucursalController.cs" />
+    <Compile Include="Controllers\Sucursal_EmpleadoController.cs" />
     <Compile Include="Controllers\TipoDocumentoController.cs" />
     <Compile Include="Controllers\TipoEstadoCivilController.cs" />
     <Compile Include="Controllers\TipoFormaPagoController.cs" />
@@ -4534,6 +4535,9 @@
     <Content Include="Views\TipoVivienda\Index.cshtml" />
     <Content Include="Views\TipoVivienda\Crear_TipoVivienda.cshtml" />
     <Content Include="Views\TipoVivienda\Editar_TipoVivienda.cshtml" />
+    <Content Include="Views\Sucursal_Empleado\Index.cshtml" />
+    <Content Include="Views\Sucursal_Empleado\Crear_Sucursal_Empleado.cshtml" />
+    <Content Include="Views\Sucursal_Empleado\Editar_Sucursal_Empleado.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

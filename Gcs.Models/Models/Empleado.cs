@@ -107,6 +107,12 @@ namespace Gcs.Models.Models
             public string TelefonoRP2Empleado { get; set; }
             public string ProfesionRP2Empleado { get; set; }
         }
+
+        public class ListaEmpleado
+        {
+            public int Id { get; set; }
+            public string Nombre { get; set; }
+        }
     }
 }
 

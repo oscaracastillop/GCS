@@ -1,0 +1,44 @@
+﻿
+@{
+    ViewBag.Title = "Sucursal Empleado";
+}
+
+<div>
+    <a href="/Home"><i>INICIO</i></a>
+    &nbsp;<i class="bi-chevron-right"></i>&nbsp;
+    <a href="/Modulo/Empresa"><i>MODULO EMPRESA</i></a>
+    &nbsp;<i class="bi-chevron-right"></i>&nbsp;
+    <label style="font-weight:bold">SUCURSAL EMPLEADO</label>
+    <hr />
+</div>
+
+<a href="/Sucursal_Empleado/Crear_Sucursal_Empleado" class="btn btn-success btn-sm" title="Agregar un nuevo Registro" style="float:right">Crear Sucursal Empleado</a>
+<br />
+<br />
+<table id="gridSucursalEmpleado" class="table display" style="width:100%"></table>
+
+@*Modal Eliminar*@
+<div class="modal fade" id="ModalEliminarSucursalEmpleado" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel"><strong>Eliminar Sucursal Empleado</strong></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <label id="IdSucursalEmpleado" hidden></label>
+                <label id="MensajeEliminarSucursalEmpleado"></label>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger btn-sm" onclick="EliminarSucursalEmpleado()"><i class="bi-trash"></i> Eliminar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        GridSucursalEmpleado();
+    });
+</script>
+

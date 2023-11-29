@@ -237,7 +237,8 @@ ALTER TABLE SubMenu ADD CONSTRAINT FK_IdMenuSubmenu FOREIGN KEY (IdMenu) referen
 go
 
 insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (1, 'Empresa','<i class="bi-building" style="font-size: 2.5rem; color: #11ABE9;"></i>','/Empresa')
-insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (1, 'Sucursal','<i class="bi-shop" style="font-size: 2.5rem; color: #11ABE9;"></i>','/Sucursal')
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (1, 'Sucursal','<i class="bi-houses" style="font-size: 2.5rem; color: #11ABE9;"></i>','/Sucursal')
+insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (1, 'Sucursal Empleado','<i class="bi-house-gear" style="font-size: 2.5rem; color: #11ABE9;"></i>','/Sucursal_Empleado')
 
 insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (2, 'Empleado','<i class="bi-person" style="font-size: 2.5rem; color: #11ABE9;"></i>','/Empleado')
 insert into SubMenu (IdMenu, Nombre, Icono, Ruta) Values (2, 'Dia Laborado','<i class="bi-calendar-check" style="font-size: 2.5rem; color: #11ABE9;"></i>','/DiaLaborado')
@@ -362,6 +363,7 @@ insert into Permiso_SubMenu (IdSubMenu, IdUsuario, Permiso, Crear, Editar, Elimi
 insert into Permiso_SubMenu (IdSubMenu, IdUsuario, Permiso, Crear, Editar, Eliminar) Values (47,1,1,1,1,1)
 insert into Permiso_SubMenu (IdSubMenu, IdUsuario, Permiso, Crear, Editar, Eliminar) Values (48,1,1,1,1,1)
 insert into Permiso_SubMenu (IdSubMenu, IdUsuario, Permiso, Crear, Editar, Eliminar) Values (49,1,1,1,1,1)
+insert into Permiso_SubMenu (IdSubMenu, IdUsuario, Permiso, Crear, Editar, Eliminar) Values (50,1,1,1,1,1)
 
 
 go
@@ -3949,6 +3951,11 @@ ALTER TABLE Empresa ADD CONSTRAINT FK_IdCiudadEmpresa FOREIGN KEY (IdCiudad ) re
 
 go
 
+INSERT INTO Empresa (Nombre, IdTipoDocumento, Identificacion, Email, Telefono, Contacto, IdCiudad, Direccion, CreateBy, DateCreate) VALUES ('E&G CONSTRUCCIONES S.A.S', 4, '901.766.109-1','edwinfabiangarzon@hotmail.com', '321 4208189', 'Edwin Fabian Garzón López', 571, '',1, GETDATE())
+INSERT INTO Empresa (Nombre, IdTipoDocumento, Identificacion, Email, Telefono, Contacto, IdCiudad, Direccion, CreateBy, DateCreate) VALUES ('ASESOS DE LA SABANA', 4, '901.766.109-1','edwinfabiangarzon@hotmail.com', '321 4208189', 'Edwin Fabian Garzón López', 571, '',1, GETDATE())
+
+go
+
 CREATE PROCEDURE [dbo].[SP_CrearEmpresa] 
 @IdUser varchar(255), 
 @NombreEmpresa varchar(255), 
@@ -4439,6 +4446,14 @@ BEGIN
 			dbo.Fun_BuscarNombreUsuario(CreateBy) As CreateBy,
 			CONVERT(varchar(255),DateCreate,20) As DateCreate
 			FROM Empleado
+END
+
+go
+
+CREATE PROCEDURE [dbo].[SP_ListaEmpleado]
+AS
+BEGIN
+	SELECT Id, Nombre + ' ' + Apellido AS Nombre FROM Empleado WHERE Activo = 1
 END
 
 go

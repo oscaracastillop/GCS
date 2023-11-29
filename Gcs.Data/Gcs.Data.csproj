@@ -80,6 +80,7 @@
     <Compile Include="DataEntities\DataRol.cs" />
     <Compile Include="DataEntities\DataSubMenu.cs" />
     <Compile Include="DataEntities\DataSucursal.cs" />
+    <Compile Include="DataEntities\DataSucursal_Empleado.cs" />
     <Compile Include="DataEntities\DataTipoDocumento.cs" />
     <Compile Include="DataEntities\DataTipoEstadoCivil.cs" />
     <Compile Include="DataEntities\DataTipoFormaPago.cs" />

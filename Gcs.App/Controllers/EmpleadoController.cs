@@ -93,6 +93,12 @@ namespace Gcs.App.Controllers
             return Json(resultado);
         }
 
+        public JsonResult ListaEmpleado()
+        {
+            var resultado = dataEmpleado.ListaEmpleado();
+            return Json(resultado);
+        }
+      
         public ActionResult GridEmpleado()
         {
             var data = dataEmpleado.GridEmpleado();

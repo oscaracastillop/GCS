@@ -1,0 +1,48 @@
+﻿@{
+    ViewBag.Title = "Crear Sucursal Empleado";
+}
+
+<h7>
+    <a href="/Home"><i>INICIO</i></a>
+    &nbsp;<i class="bi-chevron-right"></i>&nbsp;
+    <a href="/Modulo/Empresa"><i>MODULO EMPRESA</i></a>
+    &nbsp;<i class="bi-chevron-right"></i>&nbsp;
+    <a href="/Sucursal_Empleado"><i>SUCURSAL EMPLEADO</i></a>
+    &nbsp;<i class="bi-chevron-right"></i>&nbsp;
+    <label style="font-weight:bold">CREAR SUCURSAL EMPLEADO</label>
+    <hr />
+</h7>
+
+<table class="table table-borderless">
+    <tr>
+        <td width="25%">
+            <label><strong>Sucursal</strong></label>
+            <select class="form-control" id="SelectSucursal"></select>
+        </td>
+        <td width="25%">
+            <label><strong>Empleado</strong></label>
+            <select class="form-control" id="SelectEmpleado"></select>
+        </td>
+        <td width="25%">
+            <label><strong>Fecha Inicio</strong></label>
+            <input class="form-control" type="date" id="InputFechaInicial" name="name" autocomplete="off" />
+        </td>
+        <td width="25%">
+            <label><strong>Fecha Final</strong></label>
+            <input class="form-control" type="date" id="InputFechaFinal" name="name" autocomplete="off" />
+        </td>
+    </tr>    
+    <tr>
+        <td>
+            <button class="btn btn-success btn-sm" onclick="CrearSucursalEmpleado()"><i class="bi-upload"></i> Guardar</button>
+        </td>
+    </tr>
+</table>
+
+<script>
+    $(document).ready(function () {
+        ListaSucursal('N');
+        ListaEmpleado('N');
+    });
+</script>
+

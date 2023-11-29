@@ -541,3 +541,31 @@ function GridEmpleado() {
         $('#LabelDocumentoIdentificacion').text(data.Identificacion);
     });
 }
+
+function ListaEmpleado(Tipo) {
+    $.ajax({
+        type: 'POST',
+        dataType: 'json',
+        url: '/Empleado/ListaEmpleado',
+        data: {},
+        success: function (resultado) {
+            var contador = 0;
+            if (Tipo == "N") {
+                if (resultado.length === 0) {
+                    $("#SelectEmpleado").append('<option value="">No hay Datos</option>');
+                } else {
+                    $("#SelectEmpleado").empty().append('<option value="-1">Seleccione Empleado</option>');
+                    $.each(resultado, function () {
+                        $("#SelectEmpleado").append('<option value="' + resultado[contador].Id + '">' + resultado[contador].Nombre + '</option>');
+                        contador++;
+                    });
+                }
+            } else {
+                $.each(resultado, function () {
+                    $("#SelectEEmpleado").append('<option value="' + resultado[contador].Id + '">' + resultado[contador].Nombre + '</option>');
+                    contador++;
+                });
+            }
+        },
+    });
+}
